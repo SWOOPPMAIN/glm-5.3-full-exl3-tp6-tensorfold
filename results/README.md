@@ -102,3 +102,16 @@ minimum host-available memory: 11.08 GiB. Guards stayed clear.
 This qualifies distributed request mechanics using short raw-text fixtures.
 It does not establish serving throughput, long-context quality or HTTP/chat API
 compatibility. The production model remains vLLM P24.
+
+## TensorFold: TFP18 decode graphs and local HTTP
+
+[Six-rank summary](tfp18-tensorfold.json), [recipe and conditions](../recipes/tensorfold-tp6/DECODE_GRAPHS.md).
+329 GPU checks passed, including 264 exact tensor checks and 27 sequence comparisons.
+91 CPU checks passed. The actual HTTP handler used the checkpoint chat template,
+four clients, SSE text/token/usage checks, retained history and cancellation.
+
+With 128 output tokens, three warm C1 repeats measured code 22.78 → 24.48 tok/s
+and prose 23.75 → 23.64 tok/s. One C4 run per mode measured 22.34 → 23.11 tok/s
+combined, including prefill. All outputs matched independent serial decoding.
+These runs compare TensorFold eager and graphs, not the separate P24 workload.
+They do not qualify broad API behavior, long-context quality or production deployment.

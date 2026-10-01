@@ -15,11 +15,14 @@
 - Distributed TP6 request controller, leader-only sampler and bounded
   concurrent-client scheduler, qualified against original-weight serial output.
 
+- Bounded decode graphs and actual checkpoint chat-template HTTP C1/C4/SSE,
+  with exact serial output checks and separate short-context timing.
+
 ## Next
 
-1. Connect the qualified request scheduler to the real App/HTTP frontend.
-2. Capture decode graphs and pack concurrent requests into shared target passes.
-3. Qualify chat templates, conversation history, tools, reasoning, streaming and usage.
+1. Profile remaining TensorFold HTTP decode costs and compare matched workloads with P24.
+2. Pack concurrent requests into shared target passes and tune draft depth.
+3. Extend API checks to conversation history, tools, reasoning, stops and disconnects.
 4. Measure authentic code/prose and uncached 8K/32K/128K; qualify real 360K quality.
 5. Package the backend and promote measured gains through Max/Pi-router/Code.
 6. Publish a verified clean-machine image build and portable fleet launcher.

@@ -96,7 +96,8 @@ class Replica:
         self.hashes = {k:v for k,v in self.hashes.items() if k in self.core.requests}
         return digest(dict(closed=self.closed, requests=state, free=self.core.pool.free,
                            generation=self.core.pool.generation, context=self.core.context_limit,
-                           capacity=self.core.pool.capacity, max_requests=self.core.max_requests))
+                           capacity=self.core.pool.capacity, max_requests=self.core.max_requests,
+                           backend=self.core.backend.control_state() if hasattr(self.core.backend,'control_state') else None))
 
     def prepare(self, command):
         self.core._worker()
@@ -163,6 +164,8 @@ class Replica:
         if op == 'close':
             for r in list(self.core.requests.values()):
                 self.core.drop(r)
+            if hasattr(self.core.backend,'close_graphs'):
+                self.core.backend.close_graphs()
             self.closed = True
             return dict(closed=True)
         raise RuntimeError('Prepared operation was lost')

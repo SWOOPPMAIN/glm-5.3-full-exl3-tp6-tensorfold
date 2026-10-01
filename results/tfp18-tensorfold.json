@@ -1,0 +1,822 @@
+{
+  "at": 1790890374.3291783,
+  "source_revision": "ab21e2c61d20c399b12a139a81ecb85e70b9ccfc",
+  "passed": true,
+  "cpu_checks": 91,
+  "checks": 329,
+  "exact_tensor_checks": 264,
+  "exact_sequence_checks": 27,
+  "scope": "Original 79-layer weights with804K resident cache. Bounded independent CUDA graph pools for full target rows1..5, canonical MTP row1 and vocabulary rows1..5. Exact eager/graph components at changed tokens, logical positions and physical bases across2048/4096 indexer bounds; real checkpoint chat-template HTTP C1/C4 and SSE against independent serial128-token code/prose references.",
+  "cache_capacity_tokens": 804000,
+  "candidate_configuration": {
+    "expert_chunk_rows": 1024,
+    "bulk_min_rows": 256,
+    "attention_part_rows": 128,
+    "skip_empty_attention": true,
+    "max_graph_entries": 16
+  },
+  "component_graph_state": {
+    "kind": "full_tp6_graphs_v1",
+    "plan": {
+      "max_graphs": 16,
+      "max_rows": 5,
+      "capture_bytes": 536870912,
+      "inputs": 985600,
+      "total": 537856516
+    },
+    "entries": [
+      {
+        "operation": "target",
+        "rows": 3,
+        "visible": 2048
+      },
+      {
+        "operation": "target",
+        "rows": 4,
+        "visible": 2048
+      },
+      {
+        "operation": "target",
+        "rows": 5,
+        "visible": 2048
+      },
+      {
+        "operation": "target",
+        "rows": 1,
+        "visible": 2048
+      },
+      {
+        "operation": "mtp",
+        "rows": 1,
+        "visible": 2048
+      },
+      {
+        "operation": "target",
+        "rows": 1,
+        "visible": 4096
+      },
+      {
+        "operation": "head",
+        "rows": 1,
+        "visible": 0
+      },
+      {
+        "operation": "target",
+        "rows": 2,
+        "visible": 4096
+      },
+      {
+        "operation": "head",
+        "rows": 2,
+        "visible": 0
+      },
+      {
+        "operation": "target",
+        "rows": 3,
+        "visible": 4096
+      },
+      {
+        "operation": "head",
+        "rows": 3,
+        "visible": 0
+      },
+      {
+        "operation": "target",
+        "rows": 4,
+        "visible": 4096
+      },
+      {
+        "operation": "head",
+        "rows": 4,
+        "visible": 0
+      },
+      {
+        "operation": "target",
+        "rows": 5,
+        "visible": 4096
+      },
+      {
+        "operation": "head",
+        "rows": 5,
+        "visible": 0
+      },
+      {
+        "operation": "mtp",
+        "rows": 1,
+        "visible": 4096
+      }
+    ],
+    "captures": 17,
+    "replays": 44,
+    "evictions": 1,
+    "eager": 0,
+    "closed": false
+  },
+  "component_peak_graph_growth_bytes": 0,
+  "http_modes": {
+    "eager": {
+      "c1": [
+        {
+          "fixture": 0,
+          "repeat": 0,
+          "output_tokens": 128,
+          "elapsed_s": 6.111153554986231,
+          "decode_tok_s": 21.900705306178757,
+          "prefill_s": 0.2999,
+          "decode_s": 5.7989,
+          "new_captures": 0,
+          "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+        },
+        {
+          "fixture": 1,
+          "repeat": 0,
+          "output_tokens": 128,
+          "elapsed_s": 5.800020063994452,
+          "decode_tok_s": 23.295058512784767,
+          "prefill_s": 0.3376,
+          "decode_s": 5.4518,
+          "new_captures": 0,
+          "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+        },
+        {
+          "fixture": 0,
+          "repeat": 1,
+          "output_tokens": 128,
+          "elapsed_s": 5.9026061600307,
+          "decode_tok_s": 22.77904328018223,
+          "prefill_s": 0.2969,
+          "decode_s": 5.5753,
+          "new_captures": 0,
+          "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+        },
+        {
+          "fixture": 1,
+          "repeat": 1,
+          "output_tokens": 128,
+          "elapsed_s": 5.7128352409927174,
+          "decode_tok_s": 23.7471952131638,
+          "prefill_s": 0.3523,
+          "decode_s": 5.348,
+          "new_captures": 0,
+          "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+        },
+        {
+          "fixture": 0,
+          "repeat": 2,
+          "output_tokens": 128,
+          "elapsed_s": 5.782118281989824,
+          "decode_tok_s": 23.251981911056593,
+          "prefill_s": 0.3003,
+          "decode_s": 5.4619,
+          "new_captures": 0,
+          "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+        },
+        {
+          "fixture": 1,
+          "repeat": 2,
+          "output_tokens": 128,
+          "elapsed_s": 5.5674948380328715,
+          "decode_tok_s": 24.37619961612284,
+          "prefill_s": 0.3266,
+          "decode_s": 5.21,
+          "new_captures": 0,
+          "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+        }
+      ],
+      "c4": {
+        "clients": [
+          {
+            "fixture": 0,
+            "elapsed_s": 22.797035078983754,
+            "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+          },
+          {
+            "fixture": 1,
+            "elapsed_s": 22.543988819990773,
+            "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+          },
+          {
+            "fixture": 0,
+            "elapsed_s": 22.9154676279868,
+            "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+          },
+          {
+            "fixture": 1,
+            "elapsed_s": 21.800142900960054,
+            "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+          }
+        ],
+        "wall_s": 22.91650714800926,
+        "output_tokens": 512,
+        "aggregate_tok_s": 22.34197370014466
+      },
+      "followup_tokens": [
+        64,
+        1632,
+        21260,
+        34120,
+        5486,
+        25,
+        990,
+        1565
+      ],
+      "commands": 508,
+      "samples": 2305,
+      "captures": 0,
+      "replays": 0,
+      "peak_graph_growth_bytes": 0,
+      "median_decode_tok_s": {
+        "0": 22.77904328018223,
+        "1": 23.7471952131638
+      }
+    },
+    "graphs": {
+      "c1": [
+        {
+          "fixture": 0,
+          "repeat": 0,
+          "output_tokens": 128,
+          "elapsed_s": 5.497586251993198,
+          "decode_tok_s": 24.484287642182377,
+          "prefill_s": 0.2955,
+          "decode_s": 5.187,
+          "new_captures": 0,
+          "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+        },
+        {
+          "fixture": 1,
+          "repeat": 0,
+          "output_tokens": 128,
+          "elapsed_s": 5.7074081570026465,
+          "decode_tok_s": 23.638021851210752,
+          "prefill_s": 0.3243,
+          "decode_s": 5.3727,
+          "new_captures": 0,
+          "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+        },
+        {
+          "fixture": 0,
+          "repeat": 1,
+          "output_tokens": 128,
+          "elapsed_s": 5.499269266962074,
+          "decode_tok_s": 24.560046412686134,
+          "prefill_s": 0.3069,
+          "decode_s": 5.171,
+          "new_captures": 0,
+          "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+        },
+        {
+          "fixture": 1,
+          "repeat": 1,
+          "output_tokens": 128,
+          "elapsed_s": 5.376172222022433,
+          "decode_tok_s": 25.349807381384856,
+          "prefill_s": 0.3373,
+          "decode_s": 5.0099,
+          "new_captures": 0,
+          "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+        },
+        {
+          "fixture": 0,
+          "repeat": 2,
+          "output_tokens": 128,
+          "elapsed_s": 5.6154864220297895,
+          "decode_tok_s": 24.006200026463528,
+          "prefill_s": 0.312,
+          "decode_s": 5.2903,
+          "new_captures": 0,
+          "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+        },
+        {
+          "fixture": 1,
+          "repeat": 2,
+          "output_tokens": 128,
+          "elapsed_s": 5.896903284010477,
+          "decode_tok_s": 22.935365611399057,
+          "prefill_s": 0.3294,
+          "decode_s": 5.5373,
+          "new_captures": 0,
+          "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+        }
+      ],
+      "c4": {
+        "clients": [
+          {
+            "fixture": 0,
+            "elapsed_s": 21.64718993799761,
+            "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+          },
+          {
+            "fixture": 1,
+            "elapsed_s": 21.91670434101252,
+            "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+          },
+          {
+            "fixture": 0,
+            "elapsed_s": 22.155793969985098,
+            "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+          },
+          {
+            "fixture": 1,
+            "elapsed_s": 22.047351432032883,
+            "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+          }
+        ],
+        "wall_s": 22.15659254603088,
+        "output_tokens": 512,
+        "aggregate_tok_s": 23.108246402794432
+      },
+      "followup_tokens": [
+        64,
+        1632,
+        21260,
+        34120,
+        5486,
+        25,
+        990,
+        1565
+      ],
+      "commands": 508,
+      "samples": 2305,
+      "captures": 8,
+      "replays": 4209,
+      "peak_graph_growth_bytes": 0,
+      "median_decode_tok_s": {
+        "0": 24.484287642182377,
+        "1": 23.638021851210752
+      }
+    }
+  },
+  "comparison": {
+    "c1": {
+      "0": {
+        "eager_tok_s": 22.77904328018223,
+        "graph_tok_s": 24.484287642182377,
+        "speedup": 1.0748602274918064
+      },
+      "1": {
+        "eager_tok_s": 23.7471952131638,
+        "graph_tok_s": 23.638021851210752,
+        "speedup": 0.9954026839391741
+      }
+    },
+    "c4": {
+      "eager_tok_s": 22.34197370014466,
+      "graph_tok_s": 23.108246402794432,
+      "speedup": 1.0342974489601522
+    }
+  },
+  "chat_fixtures": [
+    {
+      "body": {
+        "model": "glm-5.3",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Write a complete Python LRU cache with get and put methods, type annotations, clear documentation, and unit tests covering eviction and updating existing keys. Explain the time complexity."
+          }
+        ],
+        "temperature": 0,
+        "max_tokens": 128,
+        "ignore_eos": true,
+        "return_token_ids": true,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "prompt_tokens": 46,
+      "prompt_sha256": "86d8efe0d9fb17e95946f4dc848092c1435da636bbc5dccb506196617ebfcac3",
+      "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+    },
+    {
+      "body": {
+        "model": "glm-5.3",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Explain how a transformer language model processes a prompt and generates an answer. Cover attention, key-value caching, speculative decoding, and the tradeoffs of splitting a model across several GPUs. Use clear paragraphs and concrete examples."
+          }
+        ],
+        "temperature": 0,
+        "max_tokens": 128,
+        "ignore_eos": true,
+        "return_token_ids": true,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "prompt_tokens": 56,
+      "prompt_sha256": "cd777e0fb5eb8a80a8f36c01927165f71955fade7af3d4bc62e5087693166959",
+      "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+    }
+  ],
+  "client_cases": [
+    {
+      "case": "target-graph-b0-p31-r1",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "head-graph-b0-p31-r1",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "target-graph-b0-p31-r2",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "head-graph-b0-p31-r2",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "target-graph-b0-p31-r3",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "head-graph-b0-p31-r3",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "target-graph-b0-p31-r4",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "head-graph-b0-p31-r4",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "target-graph-b0-p31-r5",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "head-graph-b0-p31-r5",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "mtp-graph-b0-p31",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "target-graph-b0-p32-r1",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "head-graph-b0-p32-r1",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "target-graph-b0-p32-r2",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "head-graph-b0-p32-r2",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "target-graph-b0-p32-r3",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "head-graph-b0-p32-r3",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "target-graph-b0-p32-r4",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "head-graph-b0-p32-r4",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "target-graph-b0-p32-r5",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "head-graph-b0-p32-r5",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "mtp-graph-b0-p32",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "target-graph-b440000-p2047-r1",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "head-graph-b440000-p2047-r1",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "target-graph-b440000-p2047-r2",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "head-graph-b440000-p2047-r2",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "target-graph-b440000-p2047-r3",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "head-graph-b440000-p2047-r3",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "target-graph-b440000-p2047-r4",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "head-graph-b440000-p2047-r4",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "target-graph-b440000-p2047-r5",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "head-graph-b440000-p2047-r5",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "mtp-graph-b440000-p2047",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "target-graph-b440000-p2048-r1",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "head-graph-b440000-p2048-r1",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "target-graph-b440000-p2048-r2",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "head-graph-b440000-p2048-r2",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "target-graph-b440000-p2048-r3",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "head-graph-b440000-p2048-r3",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "target-graph-b440000-p2048-r4",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "head-graph-b440000-p2048-r4",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "target-graph-b440000-p2048-r5",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "head-graph-b440000-p2048-r5",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "mtp-graph-b440000-p2048",
+      "passed": true,
+      "exact_tensor": true
+    },
+    {
+      "case": "bounded-graph-reuse",
+      "passed": true,
+      "captures": 17,
+      "replays": 44,
+      "evictions": 1
+    },
+    {
+      "case": "component-graphs-released",
+      "passed": true
+    },
+    {
+      "case": "eager-http-warmup-0-serial-parity",
+      "passed": true,
+      "exact_tokens": true
+    },
+    {
+      "case": "eager-http-warmup-1-serial-parity",
+      "passed": true,
+      "exact_tokens": true
+    },
+    {
+      "case": "eager-http-c1-0-0-serial-parity",
+      "passed": true,
+      "exact_tokens": true
+    },
+    {
+      "case": "eager-http-c1-1-0-serial-parity",
+      "passed": true,
+      "exact_tokens": true
+    },
+    {
+      "case": "eager-http-c1-0-1-serial-parity",
+      "passed": true,
+      "exact_tokens": true
+    },
+    {
+      "case": "eager-http-c1-1-1-serial-parity",
+      "passed": true,
+      "exact_tokens": true
+    },
+    {
+      "case": "eager-http-c1-0-2-serial-parity",
+      "passed": true,
+      "exact_tokens": true
+    },
+    {
+      "case": "eager-http-c1-1-2-serial-parity",
+      "passed": true,
+      "exact_tokens": true
+    },
+    {
+      "case": "eager-http-four-client-serial-parity",
+      "passed": true,
+      "exact_sequences": 4
+    },
+    {
+      "case": "eager-http-stream-serial-parity",
+      "passed": true,
+      "exact_tokens": true,
+      "stream_content_parity": true
+    },
+    {
+      "case": "eager-http-context-rejection",
+      "passed": true
+    },
+    {
+      "case": "eager-retained-chat-prefix",
+      "passed": true,
+      "cached": 173
+    },
+    {
+      "case": "eager-callback-cancellation",
+      "passed": true
+    },
+    {
+      "case": "eager-ordered-clean-shutdown",
+      "passed": true
+    },
+    {
+      "case": "eager-all-rank-execution-counts",
+      "passed": true
+    },
+    {
+      "case": "graphs-http-warmup-0-serial-parity",
+      "passed": true,
+      "exact_tokens": true
+    },
+    {
+      "case": "graphs-http-warmup-1-serial-parity",
+      "passed": true,
+      "exact_tokens": true
+    },
+    {
+      "case": "graphs-http-c1-0-0-serial-parity",
+      "passed": true,
+      "exact_tokens": true
+    },
+    {
+      "case": "graphs-http-c1-1-0-serial-parity",
+      "passed": true,
+      "exact_tokens": true
+    },
+    {
+      "case": "graphs-http-c1-0-1-serial-parity",
+      "passed": true,
+      "exact_tokens": true
+    },
+    {
+      "case": "graphs-http-c1-1-1-serial-parity",
+      "passed": true,
+      "exact_tokens": true
+    },
+    {
+      "case": "graphs-http-c1-0-2-serial-parity",
+      "passed": true,
+      "exact_tokens": true
+    },
+    {
+      "case": "graphs-http-c1-1-2-serial-parity",
+      "passed": true,
+      "exact_tokens": true
+    },
+    {
+      "case": "graphs-http-four-client-serial-parity",
+      "passed": true,
+      "exact_sequences": 4
+    },
+    {
+      "case": "graphs-http-stream-serial-parity",
+      "passed": true,
+      "exact_tokens": true,
+      "stream_content_parity": true
+    },
+    {
+      "case": "graphs-http-context-rejection",
+      "passed": true
+    },
+    {
+      "case": "graphs-retained-chat-prefix",
+      "passed": true,
+      "cached": 173
+    },
+    {
+      "case": "graphs-callback-cancellation",
+      "passed": true
+    },
+    {
+      "case": "graphs-ordered-clean-shutdown",
+      "passed": true
+    },
+    {
+      "case": "graphs-all-rank-execution-counts",
+      "passed": true
+    },
+    {
+      "case": "retained-chat-followup-eager-graph-parity",
+      "passed": true,
+      "exact_tokens": true
+    },
+    {
+      "case": "eager-timed-c1-no-new-captures",
+      "passed": true
+    },
+    {
+      "case": "graphs-timed-c1-no-new-captures",
+      "passed": true
+    }
+  ],
+  "limitations": [
+    "128-output-token short-context local HTTP diagnostic; not comparable to the512-token P24 serving benchmark. C1 is127 output tokens divided by engine decode time; C4 is512 tokens divided by four-client wall time including prefill.",
+    "Decode graphs are warm in the timed C1 runs. This does not establish cold graph-capture latency, long-context graph behavior or broad numerical/semantic quality.",
+    "No packed continuous GPU batches; scheduler interleaves serialized steps. Background priority applies only while waiting.",
+    "SSE visible text/token IDs/usage checked; full tools, reasoning, grammar, stop/history and disconnect regressions remain.",
+    "Resident804K cache does not establish360K semantic quality; TensorFold is not promoted to live serving."
+  ],
+  "maximum_torch_gib": 99.93309545516968,
+  "maximum_cgroup_gib": 58.00505065917969,
+  "minimum_host_available_gib": 10.82,
+  "all_exit0": true,
+  "all_oom_false": true,
+  "all_diagnostic_guards_clear": true,
+  "original_weights_unchanged": true,
+  "quantization": "original mixed K3/K4 3.25 bpw",
+  "complete_quality_gate": false,
+  "serving_throughput": false,
+  "tensorfold_serving": false,
+  "raw_receipt_sha256": "375df436ac877f5035f172bbfa64ac8025fa878c2ccde48d30ef5ef0a534cf75"
+}

@@ -61,3 +61,7 @@ These are research references, not a claim that each project's code is installed
 
 Source imports and portability changes are listed in [provenance/imports.json](provenance/imports.json).
 Please report missing or incorrect attribution through an issue.
+
+Swoopp also implemented the full-TP6 bounded decode graph adapter and HTTP
+qualification harness, using PyTorch CUDA graphs and the retained TensorFold
+and Mia framework. This is a local integration, not an upstream performance claim.

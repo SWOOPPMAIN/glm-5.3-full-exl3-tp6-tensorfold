@@ -11,5 +11,6 @@ All five attention modes passed the recorded component and full-model checks.
 The selected settings remain explicit options; serving integration is still
 incomplete. The full-model request core subsequently passed short-request
 serial parity in [TFP16](../results/tfp16-tensorfold.json). Distributed request commands and the scheduler subsequently passed
-[TFP17](../results/tfp17-tensorfold.json). Graph acceleration and App/HTTP
-integration remain next.
+[TFP17](../results/tfp17-tensorfold.json). Decode graphs and short App/HTTP checks subsequently passed
+[TFP18](../results/tfp18-tensorfold.json). Profiling, packed batching and broader
+API/long-context qualification remain next.

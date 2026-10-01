@@ -6,12 +6,12 @@ full-model port. Start with [the TP6 recipe](../../recipes/tensorfold-tp6/README
 - Base: [Ash Hart / TensorFold](https://github.com/ashhart/TensorFold), v0.5.0.
 - Patched baseline: [MiaAI-Lab](https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks-TensorFold).
 - Swoopp port: `src/tensorfold/families/glm_moe_dsa/`.
-- Snapshot: `f06e85fe20ef8b626f5c1054b24d4b84410b9567`.
+- Snapshot: `ab21e2c61d20c399b12a139a81ecb85e70b9ccfc`.
 
 Source under `src/` matches the qualified revision byte for byte. GPU probe
 scripts from earlier experiments replace one private head address with
 `MASTER_ADDR`; those portability edits have not been rerun on six GPUs. The
-TFP16 request and TFP17 controller probes already used `MASTER_ADDR` in their
+TFP16 request, TFP17 controller and TFP18 graph probes already used `MASTER_ADDR` in their
 executed source. Original framework and Mia license notices remain in this
 directory. Only the full-TP6 CPU tests and tools are included; unrelated upstream
 test suites and documentation are not exported.

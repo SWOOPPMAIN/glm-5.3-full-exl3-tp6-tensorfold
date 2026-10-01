@@ -9,13 +9,15 @@ caches, RoPE table and one shared workspace must already exist.
 Under `experimental/tensorfold/src/tensorfold/families/glm_moe_dsa/`:
 
 - `request_backend.py`: connects the qualified full model to eager request steps.
+- `graphs.py` / `graph_plan.py`: bounded target/MTP/head capture and replay
+  using fixed inputs and independent graph pools; [details](DECODE_GRAPHS.md).
 - `request.py`: chunked prefill, recursive MTP, target verification, cache leases
   and retained-prefix reuse.
 - `control.py`: prepare/execute/result agreement over the existing TCPStore.
 - `control_sampling.py`: rank-zero token decisions on the existing NCCL group.
 - `scheduler.py`: bounded client queues, one model worker, cancellation and
   deliberate eviction/reuse of terminal prefixes; `ServingEngine` matches the
-  CUDA App call interface, but HTTP integration is still unqualified.
+  CUDA App call interface and passes the short HTTP checks in TFP18.
 - `memory.py`: `request_plan` reserves additional request buffers and sampler
   temporaries, above model/cache/workspace storage and the runtime reserve.
 
@@ -72,8 +74,10 @@ resident 804K cache. It includes four interleaved requests and prefix reuse.
 CPU tests additionally cover every four-draft rejection position and cancellation
 after target, during sampling and mid-draft.
 
-This does not qualify chat templates, long-context reasoning, API cancellation,
-streaming/tool/reasoning formatting, continuous batches, or generation speed.
+TFP16 alone does not qualify API behavior, long-context reasoning or speed.
+TFP18 adds short checkpoint chat-template HTTP, streamed text/token/usage parity
+and warm timing; tools, reasoning, stop/history, disconnect handling, continuous
+batches and long-context behavior still need broader qualification.
 The serving deployment remains vLLM P24.
 
 [TFP17](../../results/tfp17-tensorfold.json) exercises this controller and scheduler

@@ -5,9 +5,9 @@ mixed K3/K4 EXL3 weights**. This is Swoopp's private working repository for the
 serving recipe, measured optimizations, and ongoing TensorFold port.
 
 **Status — October 1, 2026:** vLLM serves the model today. TensorFold can run
-the full target/MTP model and an eager request core with recursive drafting
-on all six ranks. Its distributed request controller and concurrent-client
-scheduler now pass original-weight checks. API integration remains in development.
+the full target/MTP model with decode graphs on all six ranks. Short chat-template
+HTTP requests, four concurrent clients and streamed replies pass exact-output
+checks. Full API qualification and deployment remain in development.
 
 ## Performance
 
@@ -37,7 +37,11 @@ The request core also passed **102 checks across six ranks**. Four interleaved
 requests and a retained-prefix follow-up matched serial generation exactly
 on every rank. [Scope and limits](results/tfp16-tensorfold.json). The distributed controller
 and scheduler also pass serial parity with concurrent clients, prefix reuse and
-cancellation. [TFP17](results/tfp17-tensorfold.json).
+cancellation. [TFP17](results/tfp17-tensorfold.json). Decode graphs and local HTTP
+then passed **329 GPU checks**; short code generation improved **22.8 → 24.5 tok/s**
+versus TensorFold eager execution, while prose was unchanged. These 128-token
+diagnostic runs are separate from the P24 measurements above.
+[TFP18 results and limits](results/tfp18-tensorfold.json).
 
 ## Recipes
 
@@ -57,7 +61,7 @@ weights and compiled artifacts are downloaded or built separately.
 | --- | --- |
 | `weights/` | Pinned checkpoint manifest, lossless resharing and verification |
 | `runtime/vllm/` | Serving overlays, node entrypoint, memory guard, E3 sources |
-| `experimental/tensorfold/` | Source snapshot through distributed request qualification |
+| `experimental/tensorfold/` | Source snapshot through decode graph and short HTTP qualification |
 | `experiments/` | Completed attention experiment and next development steps |
 | `results/` | Serving measurements and separate TensorFold experiment results |
 | `provenance/` | Source revisions, import hashes, and local change records |

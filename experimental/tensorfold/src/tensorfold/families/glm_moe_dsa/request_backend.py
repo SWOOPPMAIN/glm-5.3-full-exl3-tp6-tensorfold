@@ -37,7 +37,7 @@ class FullModelBackend:
         if torch.cuda.current_stream(self.device) != self.stream:
             raise RuntimeError('The admitted request workspace has one CUDA stream owner')
 
-    def _inputs(self, tokens, start, extent):
+    def _host_positions(self, tokens, start, extent):
         self._stream()
         n = len(tokens)
         if (not isinstance(extent, Extent) or type(start) is not int or start < 0
@@ -47,6 +47,10 @@ class FullModelBackend:
             raise ValueError('Forward rows exceed the owned cache extent')
         host_positions = list(range(start, start+n))
         visible = visible_token_bound(host_positions, extent.size)
+        return host_positions, visible
+
+    def _inputs(self, tokens, start, extent):
+        host_positions, visible = self._host_positions(tokens, start, extent)
         ids = torch.tensor(tokens, dtype=torch.int64, device=self.device)
         positions = torch.tensor(host_positions, dtype=torch.int64, device=self.device)
         bases = torch.full_like(positions, extent.base)

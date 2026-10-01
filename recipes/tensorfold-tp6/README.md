@@ -8,7 +8,7 @@ K3/K4 3.25 bpw expert fragments. Full-model target/MTP forward execution works;
 
 [`experimental/tensorfold/`](../../experimental/tensorfold/README.md) is a
 source snapshot of our qualified port revision
-`f06e85fe20ef8b626f5c1054b24d4b84410b9567`.
+`ab21e2c61d20c399b12a139a81ecb85e70b9ccfc`.
 The complete framework source is retained to preserve imports and upstream
 notices; the new family is under `src/tensorfold/families/glm_moe_dsa/`.
 
@@ -37,6 +37,7 @@ touched the entire 804,000-token cache. Earlier experiments cover hidden
 states, logits and changed-input graphs; TFP16 covers eager request execution
 against serial target generation.
 
+- `tools/glm53_tp6_graph_check.py`: decode graph and real local HTTP gate.
 - `tools/glm53_tp6_control_check.py`: distributed controller/scheduler gate.
 - `tools/glm53_tp6_request_check.py`: preceding request-core parity gate.
 - `tools/glm53_tp6_attention_tuning_check.py`: attention comparison and graphs.
@@ -79,6 +80,11 @@ The distributed controller, leader-only sampler and concurrent-client scheduler
 passed 28 checks across six ranks, including 6 client output comparisons
 against independent serial decoding. See [TFP17](../../results/tfp17-tensorfold.json).
 
-Decode graphs, packed GPU batches, authentic long-context quality and API
-integration remain unfinished. The scheduler currently interleaves eager steps;
-background priority applies while waiting, without active preemption.
+Decode graphs and the actual App/HTTP path now pass 329 GPU checks, including
+264 exact tensor checks and 27 sequence comparisons. The code fixture gained
+7.5% over eager execution; prose was unchanged. See the
+[graph recipe and measurement limits](DECODE_GRAPHS.md).
+
+Packed GPU batches, broader API behavior and authentic long-context quality
+remain unfinished. The scheduler serializes model passes; background priority
+applies while waiting, without active preemption.
