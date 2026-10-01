@@ -1,0 +1,102 @@
+{
+  "at": 1790879368.7394943,
+  "source_revision": "e69eb5f82c0467e2b07fc41d0ee8429ae7342dbe",
+  "passed": true,
+  "checks": 618,
+  "cpu_checks": 43,
+  "scope": "Independent CPU rank0..5 FP32-add oracle for15 collective row shapes, catastrophic-cancellation inputs, zero tails, input preservation, alias rejection and changed-input graphs. Full original79-layer model then compares target3072, changed2053, MTP3072, last-row logits and short17 graphs at804K resident cache and1024 expert chunks. Synthetic tokens; no full request engine or serving-speed/quality qualification.",
+  "timings": {
+    "gather": {
+      "target3072": {
+        "per_rank_median_ms": {
+          "0": 11065.3857421875,
+          "1": 11065.3828125,
+          "2": 11065.5419921875,
+          "3": 11065.3701171875,
+          "4": 11065.291015625,
+          "5": 11065.4716796875
+        },
+        "maximum_rank_median_ms": 11065.5419921875
+      },
+      "mtp3072": {
+        "per_rank_median_ms": {
+          "0": 180.5021514892578,
+          "1": 180.50653076171875,
+          "2": 180.54835510253906,
+          "3": 180.62069702148438,
+          "4": 180.53890991210938,
+          "5": 180.53248596191406
+        },
+        "maximum_rank_median_ms": 180.62069702148438
+      },
+      "short17_graph": {
+        "per_rank_median_ms": {
+          "0": 181.6584014892578,
+          "1": 181.62322998046875,
+          "2": 181.5936279296875,
+          "3": 181.62889099121094,
+          "4": 181.64700317382812,
+          "5": 181.64028930664062
+        },
+        "maximum_rank_median_ms": 181.6584014892578
+      }
+    },
+    "sharded256": {
+      "target3072": {
+        "per_rank_median_ms": {
+          "0": 9617.4892578125,
+          "1": 9617.5,
+          "2": 9617.4833984375,
+          "3": 9617.4931640625,
+          "4": 9617.41015625,
+          "5": 9617.5087890625
+        },
+        "maximum_rank_median_ms": 9617.5087890625
+      },
+      "mtp3072": {
+        "per_rank_median_ms": {
+          "0": 155.59117126464844,
+          "1": 155.59266662597656,
+          "2": 155.61001586914062,
+          "3": 155.58653259277344,
+          "4": 155.5975341796875,
+          "5": 155.58294677734375
+        },
+        "maximum_rank_median_ms": 155.61001586914062
+      },
+      "short17_graph": {
+        "per_rank_median_ms": {
+          "0": 180.6669464111328,
+          "1": 180.63743591308594,
+          "2": 180.63165283203125,
+          "3": 180.64358520507812,
+          "4": 180.6598358154297,
+          "5": 180.65721130371094
+        },
+        "maximum_rank_median_ms": 180.6669464111328
+      }
+    }
+  },
+  "target_throughput_improvement_percent": 15.056219181954633,
+  "target_latency_reduction_percent": 13.08596726800496,
+  "target_input_tokens_per_second": 319.41743619653647,
+  "limitations": [
+    "Whole-pass timings have five repeats per mode on one loaded model; the gather control precedes the candidate, with no interleaved control rerun.",
+    "Early1/5/6-row timings are inconsistent with later shapes and may reflect startup settling; they must not select a small-batch cutoff. Threshold256 is conservative; no small-batch speed claim.",
+    "CUDA-event stage intervals include host launch gaps and stream waits. Nested attention/indexer/projection categories overlap; do not sum them.",
+    "Uninstrumented forward timing is not a user request, token-generation rate, real code/prose prefill rate or authentic360K quality result."
+  ],
+  "maximum_torch_gib": 100.17807483673096,
+  "minimum_host_available_gib": 11.37,
+  "memory_note": "Cgroup peak understates unified GPU memory. Admission uses actual CUDA allocations and fresh host guards; serving engine/API overhead is not yet qualified.",
+  "all_exit0": true,
+  "all_oom_false": true,
+  "all_diagnostic_guards_clear": true,
+  "original_weights_unchanged": true,
+  "quantization": "original mixedK3/K4 3.25bpw",
+  "complete_quality_gate": false,
+  "serving_throughput": false,
+  "tensorfold_serving": false,
+  "cache_capacity_tokens": 804000,
+  "raw_receipt_sha256": "6497afcafa77735550237b399ff18a21d2745cd335d8590c74931c70eefc59b9"
+}

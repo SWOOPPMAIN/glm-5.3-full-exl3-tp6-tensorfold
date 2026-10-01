@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-01",
+  "scope": "Repository export and CPU validation only; serving fleet unchanged.",
+  "qualified_tensorfold_cpu_checks": 43,
+  "pending_attention_cpu_checks": 45,
+  "weight_placement_checks": 4,
+  "import_hashes_verified": 558,
+  "qualified_tensorfold_source_files_byte_identical": 425,
+  "node_shell_syntax_passed": true,
+  "local_document_links_passed": true,
+  "credential_pattern_scan_passed": true,
+  "gpu_tests_run_for_export": false,
+  "inference_benchmarks_run_for_export": false,
+  "limitations": [
+    "Pattern scanning cannot prove absence of every possible secret.",
+    "Portable image build and general fleet controller are not included.",
+    "TensorFold full-model serving integration remains incomplete."
+  ]
+}

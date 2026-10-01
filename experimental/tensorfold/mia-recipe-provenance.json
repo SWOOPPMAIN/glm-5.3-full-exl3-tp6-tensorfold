@@ -1,0 +1,217 @@
+{
+  "repository": "https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks-TensorFold",
+  "revision": "ed026ef92d1650120dada1294a112acb6c8f2f48",
+  "base_version": "v0.5.0",
+  "base_revision": "9cd52ab4daba68ddd09be89be8f23ad43175e821",
+  "patches": [
+    {
+      "path": "0001-glm-exl3-prompt-experts.patch",
+      "sha256": "edc86d34101f5f7299b702d9d943509088cf53932bc4982f33fa62559e6a601d"
+    },
+    {
+      "path": "0002-glm-dense-fp8.patch",
+      "sha256": "a80bc63c7517a2ba7cd39cfd7f9a5644d07a2b8c803ad03fb077c130e9be456c"
+    },
+    {
+      "path": "0003-glm-vision.patch",
+      "sha256": "fd78c713077639399eeb8d5251ff4a389b21c5ca0671990b7787dbc0551b1429"
+    },
+    {
+      "path": "0004-glm-prompt-kernels.patch",
+      "sha256": "e5c716fa6d866d4bd87e1f6069cea1760991f1d23d4e7c2096cb97264eb5c771"
+    },
+    {
+      "path": "0005-glm-dense-q4.patch",
+      "sha256": "53930ed4d5906928036cfc07ca82a9218a4d6cc4303947f0d19ec986b1555911"
+    },
+    {
+      "path": "0006-cuda-roce-allgather.patch",
+      "sha256": "4628ab0b91ec44bdcdeec67b62493e59e20b8ff973a57f48ce966af2484eea51"
+    },
+    {
+      "path": "0007-glm-copy-drafts.patch",
+      "sha256": "7432ccd235a64f89203df37dcde5f7c1a00c4f54729676dc4621bafee7b490a7"
+    },
+    {
+      "path": "0008-glm-prompt-grid.patch",
+      "sha256": "2c47d12bd2a41581a4bd81261665bd3db59a9d6a09b77a1a5e4cf4480beeaa94"
+    },
+    {
+      "path": "0009-glm-prefill-kernels.patch",
+      "sha256": "5a9297b742cab2ef51aa49be8b9bfaa37210b176da23e3b261d6f1f1b92578a1"
+    },
+    {
+      "path": "0010-glm-hc-split.patch",
+      "sha256": "06156a756665a9551953b1ab7ce8f3d54e78b4d50557fc3af43c7d47f66fa615"
+    },
+    {
+      "path": "0011-glm-draft-sim.patch",
+      "sha256": "a1f8fe12c822e570cb5a61355e803ac133d69fda333c85cd299669ff55e52847"
+    },
+    {
+      "path": "0012-glm-kda-chunked.patch",
+      "sha256": "3b83a048f37c1505d3abfc35af28d0381dff50f37a839848ca305680ee0a603c"
+    },
+    {
+      "path": "0013-glm-decode-rounds.patch",
+      "sha256": "a05e35c2a178d13e810adc6b7f31e61126b38c1f1b4b26aa81a46d74a7733a11"
+    },
+    {
+      "path": "0014-glm-kda-chunked-gb10.patch",
+      "sha256": "fded3f2cf26fadf827117620a5264557ef1afd94202d95d3d93d7814ab97394d"
+    },
+    {
+      "path": "0015-glm-shared-prefix.patch",
+      "sha256": "4dee67516b31eb98d68fe2ab4cb0a0e078132b8e0c136222ff6109f4e229ad5e"
+    },
+    {
+      "path": "0016-glm-decode-kernels.patch",
+      "sha256": "d38d9f0032500efeea7a24d594be00f0d75c76df18dcecc3092844b81562d6e6"
+    },
+    {
+      "path": "0017-glm-overlap-priority.patch",
+      "sha256": "c0a0698de741c727c4e639b38adb2a53a7ab040c1f0feebd2d57f59f5cf621e3"
+    },
+    {
+      "path": "0018-glm-noise-policies.patch",
+      "sha256": "d34d31c6679fb7d485b90ab082b0392d3238c6ba3a2bb1924f224a04bb1a27f3"
+    },
+    {
+      "path": "0019-glm-decode-kernels2.patch",
+      "sha256": "047448f7b0cb58038bf245c3badd39a893ebf0e6922c7b2c3bbc7001595790f8"
+    },
+    {
+      "path": "0020-glm-prompt-experts-order.patch",
+      "sha256": "47a3ea494d513fd1940d39a6222faa58eb7e920444c9edfa3747bdb408cce6f2"
+    },
+    {
+      "path": "0021-glm-dflash-policy-env.patch",
+      "sha256": "377896a850ce9ea5093d28d410a089874bc53ff12112a909a21c1d8201d5696e"
+    },
+    {
+      "path": "0022-glm-overlap-normal-priority.patch",
+      "sha256": "ba6ec21bf892abfbc8126dc4339512236e8a14ea6fa27feafc74f0d73b707bf2"
+    },
+    {
+      "path": "0023-glm-idle-doorbell.patch",
+      "sha256": "d7ec72249a13da03a8229d4ac70c2cd4d58ce0de5eeefe6d89b1af5609f0bcf0"
+    },
+    {
+      "path": "0024-server-effort-max.patch",
+      "sha256": "8b6e27ecfc38da5e3beeb4a26eeb5cc94b2e25c0d45808fa8a795e17594af11a"
+    },
+    {
+      "path": "0025-cuda-memory-reserve.patch",
+      "sha256": "4a13c5e7d0386c7543c539196eead1fcf9b176088574b14276319ce0090007ea"
+    },
+    {
+      "path": "0026-glm-prompt-select-rows.patch",
+      "sha256": "4bc55061c06a91d7e80cda896184dfa949721a5b7a8b56eb8405d888359f1c47"
+    },
+    {
+      "path": "0027-glm-dflash2-ring.patch",
+      "sha256": "50d54ab3111918a397535a95cf2d2d0f2c7f5a57ab3a354c3ba9c034386d18f9"
+    },
+    {
+      "path": "0028-glm-multi-kda.patch",
+      "sha256": "95eca4887bfe47be46419dd117f0c83231e2c9002ee03c2f7b6705a6c2558156"
+    },
+    {
+      "path": "0029-glm-multi-dflash2.patch",
+      "sha256": "cc9adda4770d5b620846e12cf11463b666dc89facf3a14ca81660c4491aac0fa"
+    },
+    {
+      "path": "0030-glm-mtp-off.patch",
+      "sha256": "0e8a2046cb392fcdf1d70db796b6c5f88013ec4041c9fa96f648db92a30ea9d9"
+    },
+    {
+      "path": "0031-glm-lean-prompt-scratch.patch",
+      "sha256": "4ece2450d8fd8a96ae30cd03ee955fe6fe3537fd6ad28e51e41e34d0f460c38c"
+    },
+    {
+      "path": "0032-glm-multi-dsa.patch",
+      "sha256": "15f4e7d465c99e2a9c87fb5f80af4971d72bd2e7a71b5e65e589011ba245a959"
+    },
+    {
+      "path": "0033-glm-multi-stream-engine.patch",
+      "sha256": "5e0c68095bab41f9bf87795c6839a4f5d31dca1ae41587c17cabab22b4dc1b0c"
+    },
+    {
+      "path": "0034-glm-decode-index-regs.patch",
+      "sha256": "81e3c7de778a3c9bbe4bdcda2760e026c82d559123a3442245eae7c24529f862"
+    },
+    {
+      "path": "0035-glm-code-copy-drafts.patch",
+      "sha256": "af9e5c7a3bfc3a13a0918c018082dcea5e23881aea5ae96500141c43e55a0901"
+    },
+    {
+      "path": "0036-glm-prefill-overlap2.patch",
+      "sha256": "80c66676250bc5df0300ae5bafb6e1c40c43a18c6dfa63aff9a5174e430ee270"
+    },
+    {
+      "path": "0037-cuda-nucleus-union.patch",
+      "sha256": "8ae5567f925041105b6798b9ab72c21dc975f1b448261cc484826edc3e99e013"
+    },
+    {
+      "path": "0038-glm-multi-rounds.patch",
+      "sha256": "96122aeff97e35c82a63acb1729a21294001795fbcb1800681a4b026b1a9d488"
+    },
+    {
+      "path": "0039-glm-tool-calls.patch",
+      "sha256": "121bd71561c4dd506e1bd4b7acf7ef6857f7b387f8f4587aa25d53518f7f1101"
+    },
+    {
+      "path": "0040-cuda-tokenize.patch",
+      "sha256": "773cc9aa89f41f07c680bf2970a7e756551947bfa5568fa397f0a40a90333388"
+    },
+    {
+      "path": "0041-glm-kv-fp8.patch",
+      "sha256": "4ca802c5176aead2d71d7e35b652afa9c7fd6428c7213061b05f11239a2aca14"
+    },
+    {
+      "path": "0042-glm-kda-chunked-kernel.patch",
+      "sha256": "9eea9c93ee6125aa113c24cc178913926d3405e1effb260e0855bfbf1dac431f"
+    },
+    {
+      "path": "0043-glm-parallel-deadlocks.patch",
+      "sha256": "240a54a480140b23ea6dcf31268a0c6657cef62a41b522006b8e0229c6c7ad63"
+    },
+    {
+      "path": "0044-glm-parallel-ring-base.patch",
+      "sha256": "c9fb854b44369f7b8574c1e7b9f45ed688e75115d03563269dc9f9bf01aae7b2"
+    },
+    {
+      "path": "0045-glm-prompt-replay.patch",
+      "sha256": "608a214b2d8f5728ab6ad4b476eca24ba31c3e83da46a7d8a176e606a9d923ca"
+    },
+    {
+      "path": "0046-glm-visible-pools.patch",
+      "sha256": "3feff8f83e0fe3f7eb9adc486aad60c1a526e5ed93040f3f39c2900f2c279622"
+    },
+    {
+      "path": "0047-cuda-context-errors.patch",
+      "sha256": "67fcd12761701526c5f71d92a8a708310cda58699a69fabca6ec684ab1ba2c3e"
+    },
+    {
+      "path": "0048-cuda-metrics.patch",
+      "sha256": "ae47d9b746e208beba9d84b335e32c3872a947cae436f6bd7cce7161a7974d0e"
+    },
+    {
+      "path": "0049-glm-l2-prefetch.patch",
+      "sha256": "2a70bb47d994cf5276a670c98920467347e0ee0c17813300518ca5888a899c5a"
+    },
+    {
+      "path": "0050-glm-exl3-decode-loads.patch",
+      "sha256": "387c5d55584d698c1c66387d0b51efd09c06bfc0b4500d567e2c5d0be8189845"
+    },
+    {
+      "path": "0051-glm-timing-tokens.patch",
+      "sha256": "a5cf2056c04ae0ddc0e0ef5d2893f6d50769498981550c983d121e6ca88eca93"
+    },
+    {
+      "path": "0052-glm-multi-prefill.patch",
+      "sha256": "1d550fc8d4ad9013eb07527c8974175712f4a672c1bcbdfc57e785c9a27c174d"
+    }
+  ],
+  "scope": "Imported recipe baseline; full GLM TP6 support still requires a new family"
+}

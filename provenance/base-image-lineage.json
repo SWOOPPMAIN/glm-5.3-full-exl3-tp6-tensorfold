@@ -1,0 +1,45 @@
+{
+  "base_image": "ghcr.io/miaai-lab/glm-5.3-flash-2x-dgx-sparks@sha256:9bb1557a4234fce63d59599e44d10747eabd742beb337eebf9e7070be8a0fd58",
+  "platform": "linux/arm64",
+  "cuda_arch": "12.1a",
+  "vllm": {
+    "repository": "https://github.com/local-inference-lab/vllm.git",
+    "base_commit": "b5f995e73e6b7fe27c9927477e277a151ebcc9e9",
+    "composition_repository": "https://github.com/local-inference-lab/blackwell-llm-docker.git",
+    "composition_commit": "cc2ac998e8f7b5f04d4271a79e6647b4debad3db",
+    "patch_sha256": "841b4858cd355503749d066b9a5559c089ecd715d15719d7c447f20043bb49d2",
+    "qualified_result_tree": "d6cf36ae0dc30d48fd656a3c34a353ec62074922",
+    "codeload_result_tree": "fd6dcf5889dbc7c6eb410d00811e42bd35637163"
+  },
+  "b12x": {
+    "repository": "https://github.com/local-inference-lab/b12x.git",
+    "base_commit": "a71c705f1c4710f59129562d26c73e70098e29de",
+    "composition_repository": "https://github.com/local-inference-lab/blackwell-llm-docker.git",
+    "composition_commit": "cc2ac998e8f7b5f04d4271a79e6647b4debad3db",
+    "patch_sha256": "eb06046d3710ec9cdb569b1b8e706f592996274977a95dd0a3511b628b0884fe",
+    "result_tree": "f6dc512eb13ac2c09b2bf53656c704081af64361"
+  },
+  "exllamav3": {
+    "repository": "https://github.com/brandonmmusic-max/exllamav3.git",
+    "commit": "704aefd743b390af4bd0fb429d1906f9b964c7d8"
+  },
+  "cutlass": {
+    "repository": "https://github.com/NVIDIA/cutlass.git",
+    "commit": "e6233cbac5d7c7a865c19c91cd684ceece19513c"
+  },
+  "triton_kernels": {
+    "repository": "https://github.com/triton-lang/triton.git",
+    "commit": "0add68262ab0a2e33b84524346cb27cbb2787356"
+  },
+  "flashinfer_compatibility": {
+    "base_version": "0.6.17",
+    "requirement_patch": "runtime/flashinfer-0.6.17.patch",
+    "patch_sha256": "76df2a077ae038745f375ee2486cf03191ada30a253705e6264ab4f05e5336ee"
+  },
+  "dflash2_overlay": {
+    "repository": "https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks.git",
+    "commit": "c707598ebcf02fd827d079a7c47e785069425efe"
+  },
+  "recipe_origin": "https://github.com/d3y4n/glm-5.3-4x-dgx-spark",
+  "note": "Historical base-image lineage; not a current clean-machine build or active model/drafter configuration."
+}

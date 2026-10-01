@@ -1,0 +1,408 @@
+{
+  "image": "sha256:801206ed6b1dd8abbc75dc877b3ba0ee56d25fda564f1a0cd998f85c4efeaf0f",
+  "native_qualification_passed": true,
+  "short_prefill": [
+    {
+      "tokens": 128,
+      "control_ttft_samples": [
+        0.5524173467420042,
+        0.5710242921486497,
+        0.5607989598065615,
+        0.5467205229215324,
+        0.5578257129527628
+      ],
+      "candidate_ttft_samples": [
+        0.465107349678874,
+        0.4727432853542268,
+        0.462999040260911,
+        0.4611372873187065,
+        0.46685970574617386
+      ],
+      "control_median_seconds": 0.5578257129527628,
+      "candidate_median_seconds": 0.465107349678874,
+      "latency_reduction_percent": 16.6213856982495,
+      "control_server_prefill_samples": [
+        0.5254606699454598,
+        0.5435408059856854,
+        0.5275897620012984,
+        0.5295350609812886,
+        0.5256530049955472
+      ],
+      "candidate_server_prefill_samples": [
+        0.4538245529984124,
+        0.4529129230068065,
+        0.44084647798445076,
+        0.4403746229945682,
+        0.4460704470402561
+      ],
+      "control_server_prefill_median_seconds": 0.5275897620012984,
+      "candidate_server_prefill_median_seconds": 0.4460704470402561,
+      "server_prefill_reduction_percent": 15.45126930663253
+    },
+    {
+      "tokens": 256,
+      "control_ttft_samples": [
+        0.876837651245296,
+        0.8686682917177677,
+        0.8550703120417893,
+        0.8689547614194453,
+        0.9029799038544297
+      ],
+      "candidate_ttft_samples": [
+        0.7895367071032524,
+        0.7869229563511908,
+        0.7954131187871099,
+        0.8016104251146317,
+        0.8204312832094729
+      ],
+      "control_median_seconds": 0.8689547614194453,
+      "candidate_median_seconds": 0.7954131187871099,
+      "latency_reduction_percent": 8.46323029661573,
+      "control_server_prefill_samples": [
+        0.8536938059842214,
+        0.8330263970419765,
+        0.8388802009867504,
+        0.8369172500097193,
+        0.8735976510215551
+      ],
+      "candidate_server_prefill_samples": [
+        0.7587979410309345,
+        0.7547299159923568,
+        0.7651023209909908,
+        0.7670151910278946,
+        0.7835626680171117
+      ],
+      "control_server_prefill_median_seconds": 0.8388802009867504,
+      "candidate_server_prefill_median_seconds": 0.7651023209909908,
+      "server_prefill_reduction_percent": 8.794805254549676
+    },
+    {
+      "tokens": 511,
+      "control_ttft_samples": [
+        0.967785001732409,
+        0.9466530252248049,
+        0.9510924178175628,
+        0.948232667054981,
+        0.9735090546309948
+      ],
+      "candidate_ttft_samples": [
+        0.8756994982250035,
+        0.8965588100254536,
+        0.889157772064209,
+        0.9012262369506061,
+        0.8696795450523496
+      ],
+      "control_median_seconds": 0.9510924178175628,
+      "candidate_median_seconds": 0.889157772064209,
+      "latency_reduction_percent": 6.511948217973707,
+      "control_server_prefill_samples": [
+        0.9336937029729597,
+        0.9166012160130776,
+        0.920744200993795,
+        0.9154683320084587,
+        0.9390282880049199
+      ],
+      "candidate_server_prefill_samples": [
+        0.8538427160237916,
+        0.8639962539891712,
+        0.8576837130240165,
+        0.8663771079736762,
+        0.8385130010428838
+      ],
+      "control_server_prefill_median_seconds": 0.920744200993795,
+      "candidate_server_prefill_median_seconds": 0.8576837130240165,
+      "server_prefill_reduction_percent": 6.848860726107731
+    },
+    {
+      "tokens": 512,
+      "control_ttft_samples": [
+        1.0563685637898743,
+        1.0576772009953856,
+        1.0269591067917645,
+        1.0330750616267323,
+        1.0311733717098832
+      ],
+      "candidate_ttft_samples": [
+        0.9707259540446103,
+        0.9672776409424841,
+        0.965288442093879,
+        0.9775547538883984,
+        0.9588480000384152
+      ],
+      "control_median_seconds": 1.0330750616267323,
+      "candidate_median_seconds": 0.9672776409424841,
+      "latency_reduction_percent": 6.369084215491593,
+      "control_server_prefill_samples": [
+        0.9348487089737318,
+        0.9501437669969164,
+        0.9177436929894611,
+        0.9256520459894091,
+        0.9232409839751199
+      ],
+      "candidate_server_prefill_samples": [
+        0.8500251150107943,
+        0.8565150220529176,
+        0.8452629140228964,
+        0.8657787060365081,
+        0.8517177499597892
+      ],
+      "control_server_prefill_median_seconds": 0.9256520459894091,
+      "candidate_server_prefill_median_seconds": 0.8517177499597892,
+      "server_prefill_reduction_percent": 7.987266527412373
+    },
+    {
+      "tokens": 513,
+      "control_ttft_samples": [
+        0.9225647477433085,
+        0.9394486509263515,
+        0.934613314922899,
+        0.9390829862095416,
+        0.9394505401141942
+      ],
+      "candidate_ttft_samples": [
+        0.9280752600170672,
+        0.9570553340017796,
+        0.9242290807887912,
+        0.9305417812429368,
+        0.9305296679958701
+      ],
+      "control_median_seconds": 0.9390829862095416,
+      "candidate_median_seconds": 0.9305296679958701,
+      "latency_reduction_percent": 0.9108160129910892,
+      "control_server_prefill_samples": [
+        0.89559215499321,
+        0.908657590043731,
+        0.8978199019911699,
+        0.908112387987785,
+        0.9080544509924948
+      ],
+      "candidate_server_prefill_samples": [
+        0.9046007569995709,
+        0.9263332239934243,
+        0.8918269739951938,
+        0.8971591370063834,
+        0.8992640689830296
+      ],
+      "control_server_prefill_median_seconds": 0.9080544509924948,
+      "candidate_server_prefill_median_seconds": 0.8992640689830296,
+      "server_prefill_reduction_percent": 0.9680456937199544
+    },
+    {
+      "tokens": 1024,
+      "control_ttft_samples": [
+        1.3222542121075094,
+        1.305204309988767,
+        1.3446437171660364,
+        1.3371191248297691,
+        1.3553481427952647
+      ],
+      "candidate_ttft_samples": [
+        1.3414795910939574,
+        1.330315514933318,
+        1.3582944311201572,
+        1.327343350276351,
+        1.315762931946665
+      ],
+      "control_median_seconds": 1.3371191248297691,
+      "candidate_median_seconds": 1.330315514933318,
+      "latency_reduction_percent": 0.5088260103464859,
+      "control_server_prefill_samples": [
+        1.292227477999404,
+        1.2807378679863177,
+        1.3055262090056203,
+        1.3008221340132877,
+        1.3179480899707414
+      ],
+      "candidate_server_prefill_samples": [
+        1.3155010620248504,
+        1.2989094060030766,
+        1.3187835389981046,
+        1.2926437230198644,
+        1.2853475530282594
+      ],
+      "control_server_prefill_median_seconds": 1.3008221340132877,
+      "candidate_server_prefill_median_seconds": 1.2989094060030766,
+      "server_prefill_reduction_percent": 0.14703993422298112
+    },
+    {
+      "tokens": 3072,
+      "control_ttft_samples": [
+        3.535739546176046,
+        3.553052832838148,
+        3.5688596786931157,
+        3.5408908086828887,
+        3.574779185000807
+      ],
+      "candidate_ttft_samples": [
+        3.53849659813568,
+        3.558913945220411,
+        3.5308923688717186,
+        3.568224743939936,
+        3.5425036177039146
+      ],
+      "control_median_seconds": 3.553052832838148,
+      "candidate_median_seconds": 3.5425036177039146,
+      "latency_reduction_percent": 0.2969056648056245,
+      "control_server_prefill_samples": [
+        3.4183115400373936,
+        3.429761237988714,
+        3.445791328966152,
+        3.4297750769765116,
+        3.4521786389523186
+      ],
+      "candidate_server_prefill_samples": [
+        3.421950213960372,
+        3.439731160993688,
+        3.401627370971255,
+        3.449656269978732,
+        3.424253054021392
+      ],
+      "control_server_prefill_median_seconds": 3.4297750769765116,
+      "candidate_server_prefill_median_seconds": 3.424253054021392,
+      "server_prefill_reduction_percent": 0.16100248066376333
+    },
+    {
+      "tokens": 3584,
+      "control_ttft_samples": [
+        4.5015807040035725,
+        4.487257844302803,
+        4.515737125184387,
+        4.488477068953216,
+        4.500518629793078
+      ],
+      "candidate_ttft_samples": [
+        4.4381232699379325,
+        4.440608563832939,
+        4.416173492092639,
+        4.466825644019991,
+        4.388085565995425
+      ],
+      "control_median_seconds": 4.500518629793078,
+      "candidate_median_seconds": 4.4381232699379325,
+      "latency_reduction_percent": 1.386403767825617,
+      "control_server_prefill_samples": [
+        4.373569203948136,
+        4.376760590006597,
+        4.378925319004338,
+        4.38218502595555,
+        4.394343600026332
+      ],
+      "candidate_server_prefill_samples": [
+        4.3104268969618715,
+        4.325606980943121,
+        4.288586198003031,
+        4.3607848130050115,
+        4.2840565699734725
+      ],
+      "control_server_prefill_median_seconds": 4.378925319004338,
+      "candidate_server_prefill_median_seconds": 4.3104268969618715,
+      "server_prefill_reduction_percent": 1.5642747261568224
+    },
+    {
+      "tokens": 3585,
+      "control_ttft_samples": [
+        4.463496740907431,
+        4.482248719781637,
+        4.455922145862132,
+        4.496188264805824,
+        4.443995667621493
+      ],
+      "candidate_ttft_samples": [
+        4.4818771397694945,
+        4.428704543039203,
+        4.483929628971964,
+        4.451491673011333,
+        4.458231582771987
+      ],
+      "control_median_seconds": 4.463496740907431,
+      "candidate_median_seconds": 4.458231582771987,
+      "latency_reduction_percent": 0.11796038937789133,
+      "control_server_prefill_samples": [
+        4.356293071992695,
+        4.363221923005767,
+        4.345851649995893,
+        4.383175303984899,
+        4.33183356502559
+      ],
+      "candidate_server_prefill_samples": [
+        4.358060082013253,
+        4.315235183981713,
+        4.35955680499319,
+        4.33881739602657,
+        4.342092676030006
+      ],
+      "control_server_prefill_median_seconds": 4.356293071992695,
+      "candidate_server_prefill_median_seconds": 4.342092676030006,
+      "server_prefill_reduction_percent": 0.3259743026470252
+    }
+  ],
+  "cold_long_prefill": [
+    {
+      "tokens": 8192,
+      "prior_ttft_seconds": 9.686109561938792,
+      "candidate_ttft_seconds": 9.669234613422304,
+      "latency_reduction_percent": 0.17421802229863337
+    },
+    {
+      "tokens": 32768,
+      "prior_ttft_seconds": 39.102454194566235,
+      "candidate_ttft_seconds": 39.01003567338921,
+      "latency_reduction_percent": 0.23634966929995116
+    },
+    {
+      "tokens": 131072,
+      "prior_ttft_seconds": 157.8158635974396,
+      "candidate_ttft_seconds": 157.33845191192813,
+      "latency_reduction_percent": 0.3025118480669775
+    }
+  ],
+  "initial_decode": {
+    "prior": {
+      "prose": 33.57072116183578,
+      "code": 46.63238188678589
+    },
+    "candidate": {
+      "prose": 33.47892637663845,
+      "code": 45.69009191589088
+    }
+  },
+  "warm_decode": {
+    "prior": {
+      "prose": 33.55161459385561,
+      "code": 44.915830883728546
+    },
+    "candidate": {
+      "prose": 33.69214339749522,
+      "code": 46.76876504188822
+    }
+  },
+  "concurrency": {
+    "control_tok_s": 73.78644076758547,
+    "candidate_tok_s": 72.36401243909654,
+    "change_percent": -1.9277638461642765
+  },
+  "limitations": [
+    "Short controls and candidate use five cold requests per exact shape, the same frozen fixtures and adjacent boots; no interleaved image reversal.",
+    "Long-prefill and decode controls are earlier P23r8 qualification, not freshly captured adjacent controls.",
+    "C4 is one run per adjacent boot and adaptive drafting state can differ.",
+    "TTFT includes the first generation step and HTTP delivery.",
+    "Native qualification does not replace actual post-publication Code/Chat checks."
+  ],
+  "sources": {
+    "p24-qualification-run.json": "c52e24cabaefdfe532a8619907ad96d9d6553e0f3cead69af04c37c5fc83630e",
+    "p24-control-run.json": "b3b893fa72f6faa83d2627bbd489686616961b5ea7de0ca534d37995517408c4",
+    "p24-control-short-speed.json": "64d8a67042b3fccea92e00f5d640d1f3ff26fcc22d57d5b2549150a7682865da",
+    "p24-short-prefill.json": "165532bdf0ecef70a23bf2d0b0fb2201fd4dedbaf682a393f96a8d5921a2fb6b",
+    "p24-speed.json": "55512041d369ce12df464b202d0e1d507e23c8ba2c9f94be5297d1abca8bc07f",
+    "p23r8-speed.json": "baf4c38858de67c634e07f5db7fd291b08c57da6069069b8d3117ba749b83abf",
+    "p24-warm-decode.json": "91b8b8b0778efac541513a8e7c76a9d12586609febdb1a451a756bcd861ae583",
+    "p23r8-warm-decode.json": "0d3c9ca5b4e06d0899984c86b2681621a88962255eb89658ef53c568b7ba5ca5",
+    "p24-concurrency.json": "bd84b6720d01fd0fb7c182c5007f9cf7cc5468493f6e404430cfca961368bdb8",
+    "p24-control-concurrency.json": "89fec29c74d680543b1becb4720f517bad6054dd0ab7b092ba288b4f19d5040e"
+  },
+  "promote": false,
+  "snapshot_note": "Completed historical P24 benchmark; this export did not rerun inference. Sources are local receipt names with original SHA256 hashes.",
+  "serving_context_tokens": 360000,
+  "serving_shared_cache_tokens": 470847,
+  "shared_cache_evidence": "P24 boot log 2026-10-01 18:26:20 UTC: GPU KV cache size 470,847 tokens"
+}

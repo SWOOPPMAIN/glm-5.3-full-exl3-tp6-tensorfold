@@ -1,0 +1,7 @@
+{
+  "base_image_id": "sha256:87252229aea9bb4062c5b477bb6f014eb516790c1078f25d527872a2f5c1f7d5",
+  "input_sha256": {
+    "model_executor/layers/quantization/exl3.py": "7e2167d425e5950d01769289eeefd769fa49ac9298a481405a4dde63312a6cde",
+    "config/virtual_tp.py": "442226d4a638551bd25c5173babbf6eedd2738664994007f0a74e3a189f1a1d3"
+  }
+}

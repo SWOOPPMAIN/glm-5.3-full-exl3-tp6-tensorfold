@@ -1,0 +1,14 @@
+{
+  "architecture": "sm_121",
+  "binary_sha256": "6d7c074523080b991de7a6d02dcd705ea9f89afb17d6d4c52200c450fe021964",
+  "binary_bytes": 23352968,
+  "sources": {
+    "experts.cpp": "b667ff9b7dabc2b2bc5c2bf77c762ebf3acd7e89e90218e2cd370772a21348e5",
+    "experts.cu": "f68b3020991894c60e67f1c63d2c782191429dd622f7426db165daefab4dc32a",
+    "experts_cb0.cu": "719ce51b1eb0218a36578adb9145358ee1271f0bbc72cfc575f3a273856bc236",
+    "experts_cb1.cu": "dad1e479d6047d4af6b30d38dab492df4534b829f8ef34d69552f6f033ee8825",
+    "experts_cb2.cu": "bcf5ea9c9d6f36dafa3132f52529006dfe0853425bad03040a9e37164f9266c4",
+    "decode.cuh": "47ae013bcad00186319f5ee05d4db400ed28f61c6a677d6fdffc8448526c4a58",
+    "experts_grouped.cuh": "9ec635f276b3dfe9f64f3b78b9c8ce1390bff502705cd6b262b0cd5897641a0d"
+  }
+}

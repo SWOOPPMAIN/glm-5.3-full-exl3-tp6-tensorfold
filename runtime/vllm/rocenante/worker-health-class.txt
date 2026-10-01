@@ -1,0 +1,21 @@
+class _B12xRoceCheckedAsyncOutput(AsyncModelRunnerOutput):
+    """An asynchronous output whose completion is followed by the RoCEnante check."""
+
+    def __init__(
+        self, inner: AsyncModelRunnerOutput, check: Callable[[], None]
+    ) -> None:
+        self._inner = inner
+        self._check = check
+
+    def get_output(self) -> ModelRunnerOutput:
+        """Wait for the wrapped output, then run the fail-stop check.
+
+        Returns:
+            The completed ModelRunnerOutput.
+
+        Raises:
+            RuntimeError: When a RoCEnante wait timed out or its proxy died.
+        """
+        output = self._inner.get_output()
+        self._check()
+        return output

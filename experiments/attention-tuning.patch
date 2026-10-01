@@ -1,0 +1,486 @@
+diff --git a/src/tensorfold/families/glm_moe_dsa/attention.py b/src/tensorfold/families/glm_moe_dsa/attention.py
+index d8c94a8..cb948bb 100644
+--- a/src/tensorfold/families/glm_moe_dsa/attention.py
++++ b/src/tensorfold/families/glm_moe_dsa/attention.py
+@@ -14,6 +14,13 @@ NOPE = tl.constexpr(192)
+ VALUE = tl.constexpr(256)
+ CHUNK = tl.constexpr(512)
+ TILE = tl.constexpr(32)
++ATTENTION_ROW_OPTIONS = (128, 256, 512, 1024)
++
++
++def validate_attention_options(part_rows, skip_empty):
++    if type(part_rows) is not int or part_rows not in ATTENTION_ROW_OPTIONS or type(skip_empty) is not bool:
++        raise ValueError('Attention needs128/256/512/1024 row chunks and a boolean empty-tile option')
++    return part_rows, skip_empty
+ 
+ 
+ def load_head_weights(reader, layer, rank, device='cuda'):
+@@ -129,7 +136,8 @@ def _projection_check(x, w, out, xs, ws, os, real):
+ @triton.jit
+ def _attention_chunks(QA, QR, LC, KC, LS, TOKENS, COUNTS, POS, BASE, PO, PM, PL,
+                       ROWS: tl.constexpr, H: tl.constexpr, REAL: tl.constexpr,
+-                      CAP: tl.constexpr, WIDTH: tl.constexpr, COMPACT: tl.constexpr):
++                      CAP: tl.constexpr, WIDTH: tl.constexpr, COMPACT: tl.constexpr,
++                      SKIP_EMPTY: tl.constexpr):
+     r, chunk = tl.program_id(0), tl.program_id(1)
+     hh = tl.arange(0, 16)
+     d = tl.arange(0, 512)
+@@ -142,7 +150,13 @@ def _attention_chunks(QA, QR, LC, KC, LS, TOKENS, COUNTS, POS, BASE, PO, PM, PL,
+     m = tl.full((16,), float('-inf'), tl.float32)
+     z = tl.zeros((16,), tl.float32)
+     o = tl.zeros((16, 512), tl.float32)
+-    for tile in range(CHUNK//TILE):
++    tiles = CHUNK//TILE
++    if SKIP_EMPTY:
++        # Selection count is device data and may change on every graph replay.
++        # Skip only wholly empty trailing tiles; keep all active tile arithmetic
++        # and the four-chunk merge order identical to the fixed-loop path.
++        tiles = tl.minimum(tl.cdiv(tl.maximum(count-chunk*CHUNK, 0), TILE), CHUNK//TILE)
++    for tile in range(tiles):
+         i = chunk*CHUNK+tile*TILE+tl.arange(0, TILE)
+         tok = tl.load(TOKENS+r*WIDTH+i, (i < count) & (i < WIDTH), -1).to(tl.int64)
+         slot = base+tok
+@@ -189,10 +203,11 @@ def _attention_merge(PO, PM, PL, OUT, ROWS: tl.constexpr, H: tl.constexpr, NCH:
+ 
+ 
+ class AttentionScratch:
+-    def __init__(self, rows, device, real_heads=11):
++    def __init__(self, rows, device, real_heads=11, *, part_rows=128, skip_empty=False):
+         if type(rows) is not int or not 1 <= rows <= 3072 or real_heads not in (9, 11):
+             raise ValueError('Expected TP6 heads and1..3072 rows')
+-        self.rows, self.part_rows, self.real_heads = rows, min(rows, 128), real_heads
++        part_rows, self.skip_empty = validate_attention_options(part_rows, skip_empty)
++        self.rows, self.part_rows, self.real_heads = rows, min(rows, part_rows), real_heads
+         n = 4*self.part_rows*11
+         self.po = torch.empty((n, 512), dtype=torch.float32, device=device)
+         self.pm = torch.empty(n, dtype=torch.float32, device=device)
+@@ -232,7 +247,7 @@ def attend(qa, q_rope, latent_cache, rope_cache, tokens, counts, positions, base
+         _attention_chunks[(n, 4)](qa[start:stop], q_rope[start:stop], latent_cache, rope_cache,
+             latent_scales if compact else latent_cache,
+             tokens[start:stop], counts[start:stop], positions[start:stop], bases[start:stop],
+-            scratch.po, scratch.pm, scratch.pl, n, 11, scratch.real_heads, cap, 2048, compact,
++            scratch.po, scratch.pm, scratch.pl, n, 11, scratch.real_heads, cap, 2048, compact, scratch.skip_empty,
+             num_warps=8, num_stages=1, enable_fp_fusion=False)
+         _attention_merge[(n, 11)](scratch.po, scratch.pm, scratch.pl, out[start:stop], n, 11, 4,
+                                   num_warps=4, enable_fp_fusion=False)
+diff --git a/src/tensorfold/families/glm_moe_dsa/decoder.py b/src/tensorfold/families/glm_moe_dsa/decoder.py
+index f4d88ed..e97a8c7 100644
+--- a/src/tensorfold/families/glm_moe_dsa/decoder.py
++++ b/src/tensorfold/families/glm_moe_dsa/decoder.py
+@@ -153,12 +153,13 @@ class DecoderWeights:
+ 
+ class DecoderScratch:
+     """One layer's execution buffers; not yet a whole-model memory planner."""
+-    def __init__(self,weights,rows,context_capacity,*,expert_chunk_rows=EXPERT_CHUNK_ROWS):
++    def __init__(self,weights,rows,context_capacity,*,expert_chunk_rows=EXPERT_CHUNK_ROWS,attention_part_rows=128,skip_empty_attention=False):
+         expert_chunk_rows=validate_chunk_rows(expert_chunk_rows)
+         device=weights.input_norm.device
+         self.weights,self.rows=weights,rows
+         self.attention=MLAScratch(rows,context_capacity,device,
+-                                  real_heads=weights.attention.weights.real_heads)
++                                  real_heads=weights.attention.weights.real_heads,
++                                  attention_part_rows=attention_part_rows,skip_empty_attention=skip_empty_attention)
+         # Attention and both TP sums retain the full model batch. Once the
+         # attention contribution has been reduced, its output buffer is dead
+         # and can hold the local FFN result. Bound the other FFN temporaries to
+@@ -180,13 +181,14 @@ class DecoderWorkspace(DecoderScratch):
+     Concurrent passes/streams must have separate workspaces or be serialized.
+     Returned layer outputs are borrowed until the next forward on this workspace.
+     """
+-    def __init__(self,dense_weights,moe_weights,rows,context_capacity,*,expert_chunk_rows=EXPERT_CHUNK_ROWS):
++    def __init__(self,dense_weights,moe_weights,rows,context_capacity,*,expert_chunk_rows=EXPERT_CHUNK_ROWS,attention_part_rows=128,skip_empty_attention=False):
+         if (not 0<=dense_weights.layer<3 or not 3<=moe_weights.layer<=78
+                 or dense_weights.rank!=moe_weights.rank
+                 or dense_weights.input_norm.device!=moe_weights.input_norm.device
+                 or dense_weights.attention.weights.real_heads!=moe_weights.attention.weights.real_heads):
+             raise ValueError('Model workspace needs matching original dense and MoE rank weights')
+-        super().__init__(dense_weights,rows,context_capacity,expert_chunk_rows=expert_chunk_rows)
++        super().__init__(dense_weights,rows,context_capacity,expert_chunk_rows=expert_chunk_rows,
++                         attention_part_rows=attention_part_rows,skip_empty_attention=skip_empty_attention)
+         self.rank=dense_weights.rank
+         self.dense=self.ffn
+         self.moe=MoEScratch(moe_weights.ffn.weights,self.ffn_rows,expert_chunk_rows=expert_chunk_rows)
+diff --git a/src/tensorfold/families/glm_moe_dsa/memory.py b/src/tensorfold/families/glm_moe_dsa/memory.py
+index c17681c..4e6ea5a 100644
+--- a/src/tensorfold/families/glm_moe_dsa/memory.py
++++ b/src/tensorfold/families/glm_moe_dsa/memory.py
+@@ -86,7 +86,7 @@ def tensor_storage_bytes(obj,*,device_type=None,skip=()):
+     walk(obj);return total
+ 
+ 
+-def workspace_plan(config,rank,rows,capacity,*,logit_rows=17,expert_chunk_rows=128,bulk_min_rows=None):
++def workspace_plan(config,rank,rows,capacity,*,logit_rows=17,expert_chunk_rows=128,bulk_min_rows=None,attention_part_rows=128,skip_empty_attention=False):
+     """Instantiate actual scratch shapes on Torch's non-allocating meta device."""
+     import torch
+     from types import SimpleNamespace as NS
+@@ -102,9 +102,11 @@ def workspace_plan(config,rank,rows,capacity,*,logit_rows=17,expert_chunk_rows=1
+             ffn=NS(gate=torch.empty((256,6144),dtype=torch.bfloat16,device='meta'),shared=NS(weights=NS(width=512 if rank<4 else 0)),routed=ex)
+         return NS(layer=index,rank=rank,input_norm=norm,attention=NS(weights=NS(real_heads=9 if rank==5 else 11)),ffn=NS(weights=ffn))
+     weights=NS(layers=[layer(i) for i in range(79)],vocab=NS(norm=torch.empty(6144,device='meta')))
+-    workspace=ModelWorkspace(weights,rows,capacity,logit_rows=logit_rows,expert_chunk_rows=expert_chunk_rows)
++    workspace=ModelWorkspace(weights,rows,capacity,logit_rows=logit_rows,expert_chunk_rows=expert_chunk_rows,
++                             attention_part_rows=attention_part_rows,skip_empty_attention=skip_empty_attention)
+     scratch=tensor_storage_bytes(workspace,device_type='meta',skip=('weights','layer'))
+     caches=capacity*(79*656+sum(config.indexer_source(i)==i for i in range(79))*132)
+     collective=reduction_plan(rows,bulk_min_rows=bulk_min_rows)['total'];rope=capacity*64*2
+-    return dict(rows=rows,capacity=capacity,logit_rows=logit_rows,expert_chunk_rows=expert_chunk_rows,bulk_min_rows=bulk_min_rows,workspace=scratch,cache=caches,
++    return dict(rows=rows,capacity=capacity,logit_rows=logit_rows,expert_chunk_rows=expert_chunk_rows,bulk_min_rows=bulk_min_rows,
++                attention_part_rows=attention_part_rows,skip_empty_attention=skip_empty_attention,workspace=scratch,cache=caches,
+                 collective=collective,rope=rope,total=scratch+caches+collective+rope)
+diff --git a/src/tensorfold/families/glm_moe_dsa/mla.py b/src/tensorfold/families/glm_moe_dsa/mla.py
+index 53855b4..9fb67a4 100644
+--- a/src/tensorfold/families/glm_moe_dsa/mla.py
++++ b/src/tensorfold/families/glm_moe_dsa/mla.py
+@@ -70,7 +70,7 @@ class SelectionState:
+ 
+ 
+ class MLAScratch:
+-    def __init__(self,rows,context_capacity,device,*,real_heads=11):
++    def __init__(self,rows,context_capacity,device,*,real_heads=11,attention_part_rows=128,skip_empty_attention=False):
+         if type(rows) is not int or not 1<=rows<=3072 or real_heads not in (9,11):
+             raise ValueError('Invalid full GLM TP6 MLA scratch geometry')
+         self.rows,self.real_heads=rows,real_heads
+@@ -80,7 +80,7 @@ class MLAScratch:
+         self.k_rope=bf(rows,64);self.k_rotated=bf(rows,64);self.q_rope=bf(rows,11,64)
+         self.q_absorbed=bf(rows,11,512);self.attended=bf(rows,11,512);self.expanded=bf(rows,11,256)
+         self.o_input=bf(rows,real_heads*256);self.output=bf(rows,6144)
+-        self.attention=AttentionScratch(rows,device,real_heads)
++        self.attention=AttentionScratch(rows,device,real_heads,part_rows=attention_part_rows,skip_empty=skip_empty_attention)
+         self.indexer=IndexerForwardScratch(rows,context_capacity,device)
+ 
+ 
+diff --git a/src/tensorfold/families/glm_moe_dsa/model.py b/src/tensorfold/families/glm_moe_dsa/model.py
+index 365efbe..5794f28 100644
+--- a/src/tensorfold/families/glm_moe_dsa/model.py
++++ b/src/tensorfold/families/glm_moe_dsa/model.py
+@@ -88,10 +88,11 @@ class ModelWeights:
+ 
+ 
+ class ModelWorkspace:
+-    def __init__(self,weights,rows,context_capacity,*,logit_rows=128,expert_chunk_rows=128):
++    def __init__(self,weights,rows,context_capacity,*,logit_rows=128,expert_chunk_rows=128,attention_part_rows=128,skip_empty_attention=False):
+         device=weights.vocab.norm.device
+         self.weights,self.rows=weights,rows
+-        self.decoder=DecoderWorkspace(weights.layers[0],weights.layers[3],rows,context_capacity,expert_chunk_rows=expert_chunk_rows)
++        self.decoder=DecoderWorkspace(weights.layers[0],weights.layers[3],rows,context_capacity,expert_chunk_rows=expert_chunk_rows,
++                                      attention_part_rows=attention_part_rows,skip_empty_attention=skip_empty_attention)
+         self.vocab=VocabScratch(rows,device,logit_rows=logit_rows)
+         self.mtp=MTPScratch(rows,device)
+         self.target_selection=SelectionState(rows,device)
+diff --git a/tools/glm53_tp6_stage_profile.py b/tools/glm53_tp6_stage_profile.py
+index 59f81d7..c7bc652 100644
+--- a/tools/glm53_tp6_stage_profile.py
++++ b/tools/glm53_tp6_stage_profile.py
+@@ -28,6 +28,12 @@ class StageProfile:
+         self.wrap(mla.MLA,'forward','attention_inclusive')
+         self.wrap(indexer.Indexer,'forward','indexer_inclusive')
+         self.wrap(mla,'linear','attention_projection')
++        self.wrap(mla,'absorb_query','attention_absorb')
++        self.wrap(mla,'attend','attention_selected')
++        self.wrap(mla,'expand_value','attention_expand')
++        self.wrap(mla,'apply_rope','attention_rope')
++        self.wrap(mla,'write_mla','attention_cache_write')
++        self.wrap(mla,'rms','attention_norms')
+         self.wrap(dense,'linear','indexer_projection')
+         self.wrap(mlp.Dense,'forward','dense_shared_ffn')
+         self.wrap(mlp,'gate_projection','router_projection')
+diff --git a/tests/test_glm53_full_tp6_attention_options.py b/tests/test_glm53_full_tp6_attention_options.py
+new file mode 100644
+index 0000000..274cd93
+--- /dev/null
++++ b/tests/test_glm53_full_tp6_attention_options.py
+@@ -0,0 +1,40 @@
++"""Attention scratch admission and option propagation; GPU exactness is separate."""
++import json
++from pathlib import Path
++import unittest
++from tensorfold.families.glm_moe_dsa.attention import AttentionScratch,validate_attention_options
++from tensorfold.families.glm_moe_dsa.config import Config
++from tensorfold.families.glm_moe_dsa.memory import workspace_plan,tensor_storage_bytes
++
++
++class AttentionOptions(unittest.TestCase):
++    def test_bounded_partials_account_for_all_heads_and_merge_fields(self):
++        for rows in (1,17,129,2053,3072):
++            for part in (128,256,512,1024):
++                s=AttentionScratch(rows,'meta',9,part_rows=part,skip_empty=True)
++                n=min(rows,part)
++                self.assertEqual(s.part_rows,n)
++                self.assertTrue(s.skip_empty)
++                self.assertEqual(s.po.shape,(4*n*11,512))
++                self.assertEqual(tensor_storage_bytes(s),4*n*11*(512+2)*4)
++        for bad in (True,0,127,2048,128.0):
++            with self.assertRaises(ValueError):validate_attention_options(bad,False)
++        for bad in (None,0,1,'true'):
++            with self.assertRaises(ValueError):validate_attention_options(128,bad)
++
++    def test_model_memory_plan_passes_options_without_expanding_kv_pool(self):
++        cfg=Config.from_dict(json.loads(Path('tests/fixtures/glm53_tp6/config.json').read_text()))
++        old=workspace_plan(cfg,0,3072,804000,expert_chunk_rows=1024,bulk_min_rows=256)
++        for part in (128,256,512,1024):
++            new=workspace_plan(cfg,0,3072,804000,expert_chunk_rows=1024,bulk_min_rows=256,
++                               attention_part_rows=part,skip_empty_attention=True)
++            extra=4*(part-128)*11*(512+2)*4
++            self.assertEqual(new['workspace']-old['workspace'],extra)
++            self.assertEqual(new['total']-old['total'],extra)
++            self.assertLess(extra,80*2**20)
++            self.assertTrue(new['skip_empty_attention'])
++            self.assertEqual(new['attention_part_rows'],part)
++            for key in ('cache','collective','rope'):self.assertEqual(new[key],old[key])
++
++
++if __name__=='__main__':unittest.main()
+diff --git a/tools/glm53_tp6_attention_options_check.py b/tools/glm53_tp6_attention_options_check.py
+new file mode 100644
+index 0000000..45280e8
+--- /dev/null
++++ b/tools/glm53_tp6_attention_options_check.py
+@@ -0,0 +1,100 @@
++"""Real GPU tests for empty-tile skipping and larger attention row batches."""
++import gc,math
++import torch
++from tensorfold.families.glm_moe_dsa.attention import AttentionScratch,attend
++from tensorfold.families.glm_moe_dsa.cache import LayerCache,write_mla
++
++
++def qualify(rank,report,check,save,timing):
++    torch.manual_seed(530615+rank)
++    capacity=364128
++    latent=torch.randn((capacity,512),dtype=torch.bfloat16,device='cuda')*.2
++    rope=torch.randn((capacity,64),dtype=torch.bfloat16,device='cuda')*.2
++    cache=LayerCache(0,capacity,'cuda',indexer=False)
++    slots=torch.arange(capacity,device='cuda');write_mla(latent,rope,slots,cache)
++    counts0=torch.tensor([0,1,17,31,32,33,511,512,513,1023,1024,1025,1535,1536,1537,2047,2048,
++                          17,33,512,2048,-3,3000],dtype=torch.int32,device='cuda')
++    count_list=counts0.cpu().tolist();n=len(count_list)
++    pos0=torch.tensor([max(c,0) for c in count_list],dtype=torch.int64,device='cuda')
++    pos0[16]=359999;pos0[17]=4095;pos0[18]=32;pos0[19]=511;pos0[20]=2047;pos0[22]=2047
++    base0=torch.zeros(n,dtype=torch.int64,device='cuda');base0[17]=360032;base0[18]=capacity-10;base0[20]=-20
++    tok0=torch.full((n,2048),-1,dtype=torch.int32,device='cuda')
++    for row,count in enumerate(count_list):
++        width=max(0,min(2048,count))
++        if width:tok0[row,:width]=torch.linspace(0,int(pos0[row]),width,device='cuda').round().int()
++    tok0[19].fill_(-1)  # A nonzero count with no readable keys.
++    tok0[18,0]=-1;tok0[18,32]=pos0[18]+1
++    qa0=torch.randn((n,11,512),dtype=torch.bfloat16,device='cuda')*.2
++    qr0=torch.randn((n,11,64),dtype=torch.bfloat16,device='cuda')*.2
++    def repeated(x,rows):return x.repeat(((rows+n-1)//n,)+(1,)*(x.ndim-1))[:rows].contiguous()
++    def oracle(qa,qr,lc,kc,scales,real):
++        expected=torch.zeros_like(qa,dtype=torch.float64)
++        for row,count in enumerate(count_list):
++            ids=tok0[row,:max(0,min(2048,count))].long()
++            valid=(ids>=0)&(ids<=pos0[row])&(ids+base0[row]>=0)&(ids+base0[row]<capacity)
++            addresses=ids[valid]+base0[row]
++            if not len(addresses):continue
++            values=lc[addresses] if scales is None else lc.view(torch.uint8)[addresses].view(lc.dtype)
++            if scales is not None:
++                values=(values.float().reshape(-1,4,128)*scales[addresses,:,None]).reshape(-1,512).bfloat16()
++            scores=(qa[row,:real].double()@values.double().T+qr[row,:real].double()@kc[addresses].double().T)/16
++            expected[row,:real]=scores.softmax(-1)@values.double()
++        return expected
++    def close(got,expected,label):
++        x,y=got.double(),expected.double();denom=float(y.square().mean())
++        same=torch.equal(x,y);relative=float((x-y).square().mean().sqrt())/math.sqrt(denom) if denom else (0. if same else float('inf'))
++        cosine=float(torch.nn.functional.cosine_similarity(x.flatten(),y.flatten(),dim=0)) if denom else float(same)
++        ok=bool(torch.isfinite(x).all()) and relative<.006 and cosine>.99995
++        report['cases'].append(dict(case=label,passed=ok,exact=False,relative_rms=relative,cosine=cosine,tolerance=.006))
++        save(label);assert ok,(label,relative,cosine)
++    report['attention_component_timings']={}
++    for compact in (False,True):
++        lc,kc,scales=(cache.latent,cache.rope,cache.scales) if compact else (latent,rope,None)
++        for real in (9,11):
++            prefix=f'compact{compact}-heads{real}'
++            qa=qa0.clone();qr=qr0.clone()
++            if real==9:qa[:,9:]=float('nan');qr[:,9:]=float('nan')
++            ref_small=torch.empty_like(qa);scratch=AttentionScratch(n,'cuda',real)
++            attend(qa,qr,lc,kc,tok0,counts0,pos0,base0,ref_small,scratch,latent_scales=scales)
++            expected=oracle(qa,qr,lc,kc,scales,real)
++            for row in range(n):close(ref_small[row:row+1],expected[row:row+1],prefix+f'-fp64-row{row}')
++            del expected
++            # 259 creates tails for128/256.3072 checks every row of a full batch.
++            for rows in (259,3072):
++                inputs=[repeated(x,rows) for x in (qa,qr,tok0,counts0,pos0,base0)]
++                reference=repeated(ref_small,rows);out=torch.empty_like(reference)
++                qa_b,qr_b,tokens,counts,positions,bases=inputs
++                fixed=AttentionScratch(rows,'cuda',real)
++                def run(arena,destination=out):
++                    return attend(qa_b,qr_b,lc,kc,tokens,counts,positions,bases,destination,arena,latent_scales=scales)
++                run(fixed);check(out,reference,prefix+f'-fixed-rows{rows}')
++                if rows==3072:
++                    report['attention_component_timings'][prefix]={'fixed128':timing(lambda:run(fixed),repeats=3)}
++                for part in (128,256,512,1024):
++                    candidate=AttentionScratch(rows,'cuda',real,part_rows=part,skip_empty=True)
++                    candidate.po.fill_(float('nan'));candidate.pm.fill_(float('nan'));candidate.pl.fill_(float('nan'))
++                    out.fill_(float('nan'));run(candidate)
++                    check(out,reference,prefix+f'-skip-part{part}-rows{rows}')
++                    if rows==3072:
++                        report['attention_component_timings'][prefix]['skip'+str(part)]=timing(lambda:run(candidate),repeats=3)
++                    if rows==259 and part in (128,1024):
++                        stream=torch.cuda.Stream();stream.wait_stream(torch.cuda.current_stream())
++                        with torch.cuda.stream(stream):run(candidate)
++                        torch.cuda.current_stream().wait_stream(stream);torch.cuda.synchronize()
++                        graph=torch.cuda.CUDAGraph()
++                        saved=[v.clone() for v in inputs]
++                        try:
++                            with torch.cuda.graph(graph,stream=stream):run(candidate)
++                            for step in (1,3):
++                                for target,value in zip(inputs,saved):target.copy_(value.roll(step,0))
++                                expected_graph=torch.empty_like(out);run(fixed,expected_graph)
++                                graph.replay();check(out,expected_graph,prefix+f'-graph-part{part}-change{step}')
++                            for target,value in zip(inputs,saved):target.copy_(value)
++                        finally:graph.reset()
++                        del graph,stream,saved,expected_graph
++                    del candidate
++                del fixed,run,inputs,reference,out,qa_b,qr_b,tokens,counts,positions,bases
++            del qa,qr,ref_small,scratch
++    # Clear all temporary device storage before the full-model load.
++    del latent,rope,cache,slots,counts0,pos0,base0,tok0,qa0,qr0,lc,kc,scales,oracle,repeated
++    torch.cuda.synchronize();gc.collect();torch.cuda.empty_cache();save('attention-component-complete')
+diff --git a/tools/glm53_tp6_attention_tuning_check.py b/tools/glm53_tp6_attention_tuning_check.py
+new file mode 100644
+index 0000000..3cec46a
+--- /dev/null
++++ b/tools/glm53_tp6_attention_tuning_check.py
+@@ -0,0 +1,141 @@
++#!/usr/bin/env python3
++"""Qualify full-GLM empty attention tiles and128/256/512/1024 row partials.
++
++Original weights,1024 expert chunks,bulk256 reduction and804K resident cache.
++Component FP64 reference checks and exact fixed-loop comparisons precede loading.
++Full target/MTP and changed-input graph tests are synthetic forward checks, not
++serving throughput, authentic360K quality or a complete request engine.
++"""
++import os, argparse,faulthandler,gc,hashlib,json,statistics,time
++from datetime import timedelta
++from pathlib import Path
++
++
++def main():
++    p=argparse.ArgumentParser(description=__doc__)
++    p.add_argument('--rank',type=int,required=True);p.add_argument('--port',type=int,required=True)
++    for name in ('model','manifest','output','admission'):p.add_argument('--'+name,type=Path,required=True)
++    a=p.parse_args();assert 0<=a.rank<6 and not a.output.exists()
++    assert int(Path('/sys/fs/cgroup/memory.max').read_text())<=108*2**30
++    def available():return int(next(s.split()[1] for s in Path('/proc/meminfo').read_text().splitlines() if s.startswith('MemAvailable:')))*1024
++    assert available()>=110*2**30
++    manifest=json.loads(a.manifest.read_text())
++    for path,digest in manifest.items():assert hashlib.sha256(Path(path).read_bytes()).hexdigest()==digest,path
++    deadline=time.monotonic()+90
++    while not a.admission.exists():
++        assert time.monotonic()<deadline,'Missing exact-CID guard admission';time.sleep(.1)
++    import torch
++    import torch.distributed as dist
++    from tensorfold.families.glm_moe_dsa.checkpoint import RankPieces
++    from tensorfold.families.glm_moe_dsa.compiled import load_experts
++    from tensorfold.families.glm_moe_dsa.decoder import TP6Reduction
++    from tensorfold.families.glm_moe_dsa.model import ModelWeights,ModelWorkspace,FullModel
++    from tensorfold.families.glm_moe_dsa.memory import weight_plan,workspace_plan,tensor_storage_bytes
++    from tensorfold.families.glm_moe_dsa.cache import LayerCache
++    from tensorfold.families.glm_moe_dsa.attention import rope_table
++    from glm53_tp6_stage_profile import StageProfile
++    from glm53_tp6_attention_options_check import qualify
++    torch.set_num_threads(1);torch.cuda.set_device(0);torch.manual_seed(530615)
++    assert torch.cuda.get_device_capability()==(12,1)
++    torch.cuda.set_per_process_memory_fraction(104*2**30/torch.cuda.get_device_properties(0).total_memory)
++    capacity=804000
++    report=dict(passed=False,rank=a.rank,cases=[],started_at=time.time(),source_manifest=manifest,scope=__doc__,
++        cache_capacity=capacity,model_rows=3072,expert_chunk_rows=1024,candidates={},minimum_available_gib=available()/2**30,
++        full_quality_gate=False,serving_throughput=False)
++    def save(phase):
++        free=available()/2**30
++        report.update(phase=phase,updated_at=time.time(),peak_cuda_allocated_gib=torch.cuda.max_memory_allocated()/2**30,
++            cuda_allocated_gib=torch.cuda.memory_allocated()/2**30,cuda_reserved_gib=torch.cuda.memory_reserved()/2**30,
++            available_gib=free,minimum_available_gib=min(free,report['minimum_available_gib']),
++            cgroup_peak_gib=int(Path('/sys/fs/cgroup/memory.peak').read_text())/2**30)
++        tmp=a.output.with_suffix('.tmp');tmp.write_text(json.dumps(report,indent=2)+'\n');tmp.replace(a.output)
++        print(json.dumps({'rank':a.rank,'phase':phase,'available_gib':free}),flush=True)
++    def check(got,expected,label):
++        torch.cuda.synchronize();ok=torch.equal(got,expected) and bool(torch.isfinite(got).all())
++        report['cases'].append(dict(case=label,passed=ok,exact=True));save(label);assert ok,label
++    def timing(fn,repeats=3):
++        samples=[];wall=[]
++        for _ in range(repeats):
++            torch.cuda.synchronize();dist.barrier()
++            begin,end=torch.cuda.Event(enable_timing=True),torch.cuda.Event(enable_timing=True)
++            start=time.perf_counter();begin.record();fn();end.record();end.synchronize()
++            wall.append((time.perf_counter()-start)*1000);samples.append(begin.elapsed_time(end))
++        return dict(milliseconds=samples,median_ms=statistics.median(samples),wall_ms=wall,median_wall_ms=statistics.median(wall))
++    graphs=[];faulthandler.dump_traceback_later(600,repeat=True)
++    try:
++        dist.init_process_group('nccl',init_method=f'tcp://{os.environ["MASTER_ADDR"]}:{a.port}',rank=a.rank,world_size=6,timeout=timedelta(seconds=240))
++        qualify(a.rank,report,check,save,timing)
++        reader=RankPieces(a.model,a.rank);plan=weight_plan(reader)
++        wp=workspace_plan(reader.config,a.rank,3072,capacity,logit_rows=17,expert_chunk_rows=1024,bulk_min_rows=256,attention_part_rows=1024)
++        assert plan['total']+wp['total']+4*2**30<104*2**30
++        report.update(weight_plan=plan,workspace_plan=wp)
++        reduction=TP6Reduction(dist.group.WORLD,a.rank).prepare(3072,'cuda',bulk_min_rows=256)
++        assert tensor_storage_bytes(reduction,device_type='cuda',skip=('group',))==wp['collective']
++        load_experts()
++        def progress(layer):
++            assert available()>=12*2**30
++            if layer%4==0 or layer==78:save(f'loaded-layer-{layer}')
++        weights=ModelWeights(reader,on_layer=progress)
++        report['retained_weight_bytes']=tensor_storage_bytes(weights,device_type='cuda');assert report['retained_weight_bytes']==plan['total']
++        model=FullModel(weights,reduction)
++        torch.cuda.synchronize();torch.cuda.empty_cache()
++        caches=[]
++        for layer in range(79):
++            c=LayerCache(layer,capacity,'cuda',indexer=reader.config.indexer_source(layer)==layer)
++            c.latent.zero_();c.scales.fill_(1);c.rope.zero_()
++            if c.index_keys is not None:c.index_keys.zero_();c.index_scales.fill_(1)
++            caches.append(c)
++            if layer%8==0:
++                torch.cuda.synchronize();assert available()>=10*2**30;save(f'cache-resident-layer-{layer}')
++        table=rope_table(capacity,'cuda');torch.cuda.synchronize();torch.cuda.empty_cache()
++        report['cache_bytes']=sum(c.nbytes() for c in caches);assert report['cache_bytes']==wp['cache']
++        arena=ModelWorkspace(weights,3072,capacity,logit_rows=17,expert_chunk_rows=1024,attention_part_rows=1024)
++        assert tensor_storage_bytes(arena,device_type='cuda',skip=('weights','layer'))==wp['workspace']
++        ids=(torch.arange(3072,device='cuda',dtype=torch.int64)*137+1000)%154880
++        pos=torch.arange(3072,device='cuda');base=torch.zeros_like(pos);draft_ids=(ids+19)%154880
++        references={}
++        for mode,part,skip in (('fixed128',128,False),('skip128',128,True),('skip256',256,True),('skip512',512,True),('skip1024',1024,True)):
++            attention=arena.decoder.attention.attention
++            attention.part_rows=part;attention.skip_empty=skip
++            torch.cuda.synchronize();dist.barrier();assert available()>=10*2**30
++            item=dict(attention_part_rows=part,skip_empty=skip);report['candidates'][mode]=item;save(mode+'-begin')
++            def compare(value,label):
++                if mode=='fixed128':references[label]=value.clone()
++                check(value,references[label],mode+'-'+label)
++            def target():return model.target_forward(ids,pos,base,pos,caches[:78],table,arena,scope=object(),visible_tokens=3072)
++            full=target().clone();compare(full,'target3072')
++            compare(model.logits(full[-1:].contiguous(),arena),'target-logits')
++            item['target3072']=timing(target)
++            uneven=ids[:2053]+37;up=pos[:2053];ub=base[:2053]
++            changed=model.target_forward(uneven,up,ub,up,caches[:78],table,arena,scope=object(),visible_tokens=2053).clone()
++            compare(changed,'changed2053');target()
++            def mtp():return model.mtp_forward(draft_ids,references['target3072'],pos,base,pos,caches[78],table,arena,scope=object(),visible_tokens=3072)
++            draft=mtp().clone();compare(draft,'mtp3072')
++            compare(model.logits(draft[-1:].contiguous(),arena),'mtp-logits');item['mtp3072']=timing(mtp)
++            small=ids[:17].clone();sp=pos[:17];sb=base[:17]
++            def short():return model.target_forward(small,sp,sb,sp,caches[:78],table,arena,scope=object(),visible_tokens=17)
++            compare(short(),'short17')
++            stream=torch.cuda.Stream();stream.wait_stream(torch.cuda.current_stream())
++            with torch.cuda.stream(stream):short()
++            torch.cuda.current_stream().wait_stream(stream);torch.cuda.synchronize();dist.barrier()
++            graph=torch.cuda.CUDAGraph();graphs.append(graph)
++            with torch.cuda.graph(graph):out=short()
++            small.add_(31);expected=short().clone();graph.replay();check(out,expected,mode+'-changed-graph')
++            item['short17_graph']=timing(graph.replay,repeats=11);graph.reset();graphs.clear()
++            target();torch.cuda.synchronize();dist.barrier()
++            with StageProfile() as profile:target()
++            item['stage_profile']=profile.result()
++            item['profile_scope']='Instrumented CUDA-event intervals overlap and include host gaps/stream waits; use separate uninstrumented target timings for the speed comparison.'
++            del profile,full,changed,draft,small,sp,sb,expected,out,graph,stream,target,mtp,short,compare
++            assert available()>=10*2**30;save(mode+'-complete')
++        save('numerical_checks_complete');torch.cuda.synchronize();dist.barrier();dist.destroy_process_group()
++        report.update(passed=True,communicator_destroyed=True,finished_at=time.time());save('complete')
++    except Exception as exc:
++        report['error']=type(exc).__name__+': '+str(exc);save('failed');raise
++    finally:
++        for graph in graphs:graph.reset()
++        faulthandler.cancel_dump_traceback_later()
++        if dist.is_initialized():dist.destroy_process_group()
++
++
++if __name__=='__main__':main()

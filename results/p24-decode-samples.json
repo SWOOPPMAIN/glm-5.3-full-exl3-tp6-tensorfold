@@ -1,0 +1,87 @@
+{
+  "schema": 1,
+  "label": "p24-warm",
+  "state": "complete",
+  "started_utc": "2026-10-01T10:47:21Z",
+  "fixtures_sha256": "2fada2edd75499dc84f1f151ef579cf0f2f4e8619bcd980e55f5282c3b000626",
+  "decode": [
+    {
+      "repeat": 0,
+      "case": "prose",
+      "usage": {
+        "prompt_tokens": 42,
+        "total_tokens": 554,
+        "completion_tokens": 512
+      },
+      "ttft_seconds": 0.38486117497086525,
+      "decode_tok_s_estimate": 33.54158064347608,
+      "elapsed_seconds": 15.619737851899117,
+      "timing_note": "Visible SSE timing estimate; MTP may emit multiple tokens per event."
+    },
+    {
+      "repeat": 0,
+      "case": "code",
+      "usage": {
+        "prompt_tokens": 44,
+        "total_tokens": 556,
+        "completion_tokens": 512
+      },
+      "ttft_seconds": 0.314433379098773,
+      "decode_tok_s_estimate": 46.76876504188822,
+      "elapsed_seconds": 11.240588203072548,
+      "timing_note": "Visible SSE timing estimate; MTP may emit multiple tokens per event."
+    },
+    {
+      "repeat": 1,
+      "case": "prose",
+      "usage": {
+        "prompt_tokens": 42,
+        "total_tokens": 554,
+        "completion_tokens": 512
+      },
+      "ttft_seconds": 0.41624360205605626,
+      "decode_tok_s_estimate": 33.69214339749522,
+      "elapsed_seconds": 15.583039829973131,
+      "timing_note": "Visible SSE timing estimate; MTP may emit multiple tokens per event."
+    },
+    {
+      "repeat": 1,
+      "case": "code",
+      "usage": {
+        "prompt_tokens": 44,
+        "total_tokens": 556,
+        "completion_tokens": 512
+      },
+      "ttft_seconds": 0.3149501597508788,
+      "decode_tok_s_estimate": 47.3456053631629,
+      "elapsed_seconds": 11.107978589832783,
+      "timing_note": "Visible SSE timing estimate; MTP may emit multiple tokens per event."
+    },
+    {
+      "repeat": 2,
+      "case": "prose",
+      "usage": {
+        "prompt_tokens": 42,
+        "total_tokens": 554,
+        "completion_tokens": 512
+      },
+      "ttft_seconds": 0.4150694259442389,
+      "decode_tok_s_estimate": 34.16765728066078,
+      "elapsed_seconds": 15.370788744650781,
+      "timing_note": "Visible SSE timing estimate; MTP may emit multiple tokens per event."
+    },
+    {
+      "repeat": 2,
+      "case": "code",
+      "usage": {
+        "prompt_tokens": 44,
+        "total_tokens": 556,
+        "completion_tokens": 512
+      },
+      "ttft_seconds": 0.3115391759201884,
+      "decode_tok_s_estimate": 44.24536759738087,
+      "elapsed_seconds": 11.860824900213629,
+      "timing_note": "Visible SSE timing estimate; MTP may emit multiple tokens per event."
+    }
+  ]
+}

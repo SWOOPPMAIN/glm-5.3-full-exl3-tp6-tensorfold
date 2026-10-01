@@ -1,0 +1,8 @@
+{
+  "schema": "amos-tp4-pieces-on-tp6-v1",
+  "rank": 0,
+  "source_repository": "davidsyoung/GLM-5.3-EXL3-TR3-3.25bpw",
+  "source_revision": "6d6bd738c0c1635513e0bd0fdf0302049bd820a9",
+  "owner": "(4 * global_expert + original_tp_rank) % 6",
+  "requires": "AMOS_EXL3_TP6_PIECES=1"
+}

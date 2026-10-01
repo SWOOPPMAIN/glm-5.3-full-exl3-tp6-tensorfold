@@ -1,0 +1,29 @@
+{
+  "vllm_pr": "https://github.com/local-inference-lab/vllm/pull/597",
+  "vllm_revision": "a7935eb1d8fa51400cd13452b1d988197deef3b8",
+  "b12x_pr": "https://github.com/local-inference-lab/b12x/pull/295",
+  "b12x_revision": "ffb7442d04a9f50b950df1fb17280acad881b7d5",
+  "base_files": {
+    "vllm/vllm/envs.py": "e489510c9fb40bb6f0b8fd803a534edbb9c4fc430d20780b5ca91d1eded2b992",
+    "vllm/vllm/distributed/device_communicators/cuda_communicator.py": "0f2280ca3af1a18fc46d69851f9a7ed3c47fc5b992bb7502d9b165b63860a6d1",
+    "vllm/vllm/distributed/parallel_state.py": "b8f8e06f73b7f36207bf76b9a7856b0e1bc01fb8dc9b1d62f73c3dbfe2ff1d2d",
+    "vllm/vllm/v1/worker/gpu_worker.py": "9796e1d2685fe8d5aec8fcc64ee73cafcb02fec284b1dc0eddb1dcbcddd97562",
+    "b12x/b12x/comm/__init__.py": "40e9a3d28152c461cf0cc8d3ae8a9c6f16ba8005ee3f38d772379e7bc607191e"
+  },
+  "vendor_files": {
+    "b12x_roce_all_reduce.py": "ea8a0f8515c82b7d57f4c085287f4dc106de745fbf2dd5721403072aeaf75114",
+    "UPSTREAM.md": "ed7299eb87a76701b888fe096a674da8fb4b2a563e4054c997f57faab0db74e6",
+    "test_b12x_roce_health.py": "1d2e255457687d59c8a67ee073cccde5d1e509bf15125c51a9596ccf87a12fa1",
+    "roce/_cute_intrinsics.py": "11737796a80a0966c04ee347d5ef83a662bde16dc188022134d2cbaa1567410b",
+    "roce/_oneshot_cute.py": "a2328b66d64a81484b78aa946bf37032cd997d6594c2047448b42886ada0a02d",
+    "roce/api.py": "aaa3dac7a1e06cd8ee54ac1d722dfa1a58d1c1a02118f12b54ed9b763d6fed68",
+    "roce/_allgather_cute.py": "377ebaf078a5877f8cfbd90de9ba0fb9f65e7a2fa103ea29b1b2841e63a31eeb",
+    "roce/roce_oneshot.py": "3e97805f64428cfc4cea352e77e8c2bd982fcff317a3973c826f0e98ef731ed9",
+    "roce/__init__.py": "17070372720121037728d2a3fdd9f53739929c751f1e17f16a124ce8991c589e",
+    "roce/_proxy.py": "6f951679abd73e76d394eaa23803fe54eb70263fcec688635074455ee10c166c",
+    "roce/_roce_proxy.c": "5e09786ebe98981f8ea1b50cc5a914bce98c379a33072f6ae0a20046f601544d",
+    "worker-health-class.txt": "f22919c26accae9dbd8f5a305947bd158e1eb0ef582eb4d50a12b322f1bb1b5c",
+    "worker-health-methods.txt": "ce7769f9ca4891c57ed45f567eb874106ae068192101294e90ad4a7222f8438e",
+    "LICENSE-APACHE-2.0": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+  }
+}
