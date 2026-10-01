@@ -11,9 +11,9 @@ class GraphKey:
 
 
 def graph_key(operation, rows, capacity, *, visible=None, max_rows=5):
-    if (operation not in ('target', 'mtp', 'head') or type(capacity) is not int
+    if (operation not in ('target', 'mtp', 'mtp_batch', 'head') or type(capacity) is not int
             or not 1 <= capacity <= 1048576 or type(rows) is not int
-            or not 1 <= rows <= 3072 or type(max_rows) is not int or not 1 <= max_rows <= 17):
+            or not 1 <= rows <= 3072 or type(max_rows) is not int or not 1 <= max_rows <= 32):
         raise ValueError('Invalid decode graph operation/row geometry')
     if operation == 'head':
         if visible is not None:
@@ -33,8 +33,8 @@ def graph_reserve(max_graphs=16, max_rows=5, capture_bytes=512*2**20):
     CUDA/NCCL driver allocations remain in the existing runtime reserve and
     host guard. This is an admission allowance, not a prediction of graph size.
     """
-    if (type(max_graphs) is not int or not 1 <= max_graphs <= 32
-            or type(max_rows) is not int or not 1 <= max_rows <= 17
+    if (type(max_graphs) is not int or not 1 <= max_graphs <= 64
+            or type(max_rows) is not int or not 1 <= max_rows <= 32
             or type(capture_bytes) is not int or not 1 <= capture_bytes <= 2**30):
         raise ValueError('Invalid bounded graph reserve')
     inputs = max_graphs*max_rows*(4*8+6144*2)

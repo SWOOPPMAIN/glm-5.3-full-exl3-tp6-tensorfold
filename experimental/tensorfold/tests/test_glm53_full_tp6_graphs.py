@@ -15,6 +15,7 @@ import torch
 
 from tensorfold.families.glm_moe_dsa.graph_plan import graph_key,graph_reserve
 from tensorfold.families.glm_moe_dsa.projection_plan import REFERENCE_PLAN
+from tensorfold.families.glm_moe_dsa.packed_backend import batch_counters
 from tensorfold.families.glm_moe_dsa.graphs import GraphBackend
 from tensorfold.families.glm_moe_dsa.request import Extent
 
@@ -70,6 +71,7 @@ def backend(max_graphs=16,capture_bytes=512*2**20):
     b.model,b.caches,b.table,b.workspace=FakeModel(),tuple(range(79)),object(),object()
     b.sampler=lambda logits,positions,sampling: logits.argmax(-1).tolist()
     b.projection_plan=REFERENCE_PLAN
+    b.batch_counts=batch_counters()
     b.plan=graph_reserve(max_graphs,5,capture_bytes)
     b.entries=OrderedDict();b.thread=threading.get_ident();b.closed=False;b.broken=None
     b.captures=b.replays=b.evictions=b.eager=b.retained_growth=b.peak_retained_growth=0
@@ -190,7 +192,7 @@ class GraphTests(unittest.TestCase):
         p=graph_reserve()
         self.assertLess(p['total'],.502*2**30)
         self.assertGreater(p['inputs'],16*5*6144*2)
-        for args in [(0,5,1),(33,5,1),(16,18,1),(16,5,2**30+1)]:
+        for args in [(0,5,1),(65,5,1),(16,33,1),(16,5,2**30+1)]:
             with self.assertRaises(ValueError):graph_reserve(*args)
 
 

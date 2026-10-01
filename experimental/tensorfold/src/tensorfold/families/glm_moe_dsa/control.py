@@ -128,6 +128,12 @@ class Replica:
             if type(args['cancelled']) is not bool:
                 raise ValueError('Cancellation must be one leader-owned boolean')
             self._request(args['key'], active=True)
+        elif op == 'step_many':
+            fields(args, ('keys', 'cancelled'))
+            if not isinstance(args['keys'], list) or not isinstance(args['cancelled'], list):
+                raise ValueError('Packed keys and cancellation flags must be lists')
+            requests = [self._request(key, active=True) for key in args['keys']]
+            self.core.preview_many(requests, args['cancelled'])
         elif op == 'drop':
             fields(args, ('key',))
             self._request(args['key'])
@@ -158,6 +164,14 @@ class Replica:
             return dict(phase=phase, **asdict(result), rounds=r.rounds,
                         total_drafted=r.drafted, total_accepted=r.accepted,
                         target_end=len(r.tokens), mtp_end=r.mtp_end)
+        if op == 'step_many':
+            requests = [self._request(key, active=True) for key in args['keys']]
+            phases = [r.status for r in requests]
+            steps = self.core.step_many(requests, args['cancelled'])
+            return {r.key:dict(phase=phase, **asdict(step), rounds=r.rounds,
+                        total_drafted=r.drafted, total_accepted=r.accepted,
+                        target_end=len(r.tokens), mtp_end=r.mtp_end)
+                    for r,phase,step in zip(requests,phases,steps)}
         if op == 'drop':
             self.core.drop(self._request(args['key']))
             return dict(dropped=args['key'])

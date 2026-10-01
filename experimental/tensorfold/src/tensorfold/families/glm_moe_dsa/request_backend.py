@@ -11,9 +11,10 @@ from tensorfold.cuda.sampling import sample_rows
 from .indexer_plan import visible_token_bound
 from .model import FullModel
 from .request import Extent
+from .packed_backend import PackedBackend,batch_counters
 
 
-class FullModelBackend:
+class FullModelBackend(PackedBackend):
     def __init__(self, model, caches, table, workspace, *, sampler=None):
         if not isinstance(model, FullModel) or workspace.weights is not model.weights:
             raise ValueError('Request backend needs its admitted full-model workspace')
@@ -32,6 +33,7 @@ class FullModelBackend:
         self.rows, self.logit_rows = workspace.rows, workspace.vocab.logit_rows
         self.vocab, self.eos = cfg.vocab, cfg.eos
         self.projection_plan = model.projections
+        self.batch_counts = batch_counters()
         self.stream = torch.cuda.current_stream(self.device)
         self.sampler = sample_rows if sampler is None else sampler
 
@@ -41,7 +43,11 @@ class FullModelBackend:
             raise RuntimeError('The admitted workspace requires its owning stream and projection plan')
 
     def control_state(self):
-        return dict(kind='full_tp6_eager_v1',projections=asdict(self.projection_plan))
+        return dict(kind='full_tp6_eager_v1',projections=asdict(self.projection_plan),packed=self.batch_counts)
+
+    def _hidden(self, hidden, rows):
+        if (hidden.shape != (rows,6144) or hidden.dtype != torch.bfloat16 or hidden.device != self.device):
+            raise ValueError('Input must be the owning normalized hidden rows')
 
     def _host_positions(self, tokens, start, extent):
         self._stream()

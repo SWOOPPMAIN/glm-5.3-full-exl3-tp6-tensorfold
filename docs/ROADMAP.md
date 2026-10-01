@@ -24,10 +24,13 @@
 - BF16 projection tile screening and immutable per-model plans, qualified on
   all six ranks against original-kernel tensors and serial request outputs.
 
+- Packed target/MTP/head execution across disjoint request cache leases,
+  qualified against serial output and actual short HTTP C1/C4/SSE.
+
 ## Next
 
-1. Carry the qualified projection plan into broader TensorFold tests and matched P24 comparisons.
-2. Pack concurrent requests into shared target passes and tune draft depth.
+1. Use scalar commands for one active client, qualify transitions to packed groups, and bound total prompt work per round.
+2. Compare matched production workloads with P24, including concurrent latency.
 3. Extend API checks to conversation history, tools, reasoning, stops and disconnects.
 4. Measure authentic code/prose and uncached 8K/32K/128K; qualify real 360K quality.
 5. Package the backend and promote measured gains through Max/Pi-router/Code.

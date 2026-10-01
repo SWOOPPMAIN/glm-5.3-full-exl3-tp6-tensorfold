@@ -18,6 +18,7 @@ from typing import Callable
 import torch
 
 from tensorfold.engine.exact_sampling import Sampling
+from .request_ops import Call
 
 
 @dataclass(frozen=True)
@@ -131,7 +132,7 @@ class RequestEngine:
 
     ``backend`` supplies target/mtp/sample/synchronize and rows/logit_rows,
     capacity/vocab/eos. Returned hidden rows are borrowed until its next forward.
-    One worker serializes steps for up to four requests over the same workspace.
+    One worker runs scalar or packed rounds for up to four requests over one workspace.
     Kept extents count against pool capacity; no second full-model arena is made.
     This is the execution core, not the HTTP scheduler or a six-rank command bus.
     """
@@ -238,7 +239,7 @@ class RequestEngine:
         request.pending_hidden = owned
         request.last_hidden = owned[-1:].clone()
 
-    def _absorb(self, request, next_tokens):
+    def _absorb_ops(self, request, next_tokens):
         n = len(next_tokens)
         if n == 0:
             return None
@@ -248,14 +249,14 @@ class RequestEngine:
         last = None
         for start in range(0, n, self.backend.rows):
             stop = min(n, start+self.backend.rows)
-            last = self.backend.mtp(next_tokens[start:stop], hidden[start:stop],
-                                    request.mtp_end+start, request.extent).clone()
+            last = (yield Call('mtp', (next_tokens[start:stop], hidden[start:stop],
+                                      request.mtp_end+start, request.extent))).clone()
         request.mtp_end += n
         request.pending_hidden = hidden[n:].clone() if n < len(hidden) else None
         return last[-1:]
 
-    def _sample(self, hidden, positions, request):
-        result = list(self.backend.sample(hidden, positions, request.sampling))
+    def _sample_ops(self, hidden, positions, request):
+        result = list((yield Call('sample', (hidden, positions, request.sampling))))
         if len(result) != len(positions) or any(type(t) is not int or not 0 <= t < self.backend.vocab for t in result):
             raise RuntimeError('Sampler returned invalid token IDs')
         return result
@@ -266,99 +267,154 @@ class RequestEngine:
         elif len(request.output) == request.max_tokens:
             request.status, request.finish_reason = 'finished', 'length'
 
-    def step(self, request, *, cancelled: Callable[[], bool] = lambda: False):
-        """One prefill chunk or verified decode round; cancellation is rank-coordinated.
-
-        The controller must distribute one cancellation decision to all ranks;
-        independent HTTP callbacks on each worker would desynchronize collectives.
-        """
-        self._worker()
+    def _active(self, request):
         self._owned(request)
         if request.status not in ('prefill', 'decode'):
             raise ValueError('Request is not active')
-        self.busy = True
-        try:
-            def stopped():
-                if not cancelled():
-                    return False
-                self.backend.synchronize()
-                request.status, request.finish_reason = 'cancelled', 'cancelled'
-                return True
-            if stopped():
-                return Step(finished=True, reason='cancelled')
-            if request.status == 'prefill':
-                start = len(request.tokens)
-                if start < len(request.prompt):
-                    part = request.prompt[start:start+self.backend.rows]
-                    hidden = self.backend.target(part, start, request.extent)
-                    if stopped():
-                        return Step(finished=True, reason='cancelled')
-                    self._append_hidden(request, hidden)
-                    request.tokens.extend(part)
-                # One known token beyond this target chunk is valid MTP input.
-                nxt = request.prompt[request.mtp_end+1:len(request.tokens)+1]
-                self._absorb(request, nxt)
-                if stopped():
-                    return Step(finished=True, reason='cancelled')
-                if len(request.tokens) < len(request.prompt):
-                    return Step()
-                token = self._sample(request.last_hidden, [len(request.tokens)], request)[0]
-                if stopped():
-                    return Step(finished=True, reason='cancelled')
-                request.pending = token
-                request.output.append(token)
-                request.status = 'decode'
-                self._finish(request)
-                return Step((token,), request.status == 'finished', request.finish_reason)
 
-            start = len(request.tokens)
-            # Every unabsorbed target row has its next token, ending at pending.
-            next_tokens = [*request.tokens[request.mtp_end+1:], request.pending]
-            draft_hidden = self._absorb(request, next_tokens)
-            if request.mtp_end != start or request.pending_hidden is not None:
-                raise RuntimeError('Canonical MTP prefix did not reach the target boundary')
-            room = request.max_tokens-len(request.output)
-            depth = min(request.draft_tokens, room-1)
-            drafts = []
-            for j in range(depth):
-                if stopped():
-                    return Step(finished=True, reason='cancelled')
-                token = self._sample(draft_hidden, [start+j+1], request)[0]
-                drafts.append(token)
-                if token in request.eos:
-                    break
-                if j+1 < depth:
-                    draft_hidden = self.backend.mtp([token], draft_hidden, start+j,
-                                                    request.extent).clone()
-                # Recursive writes do NOT advance request.mtp_end.
-            if stopped():
-                return Step(finished=True, reason='cancelled')
-            inputs = [request.pending, *drafts]
-            hidden = self.backend.target(inputs, start, request.extent)
-            if stopped():
-                return Step(finished=True, reason='cancelled')
-            hidden = hidden.clone()  # survives head projection and the next MTP pass
-            sampled = self._sample(hidden, list(range(start+1, start+1+len(inputs))), request)
-            if stopped():
-                return Step(finished=True, reason='cancelled')
-            keep = 1
-            for i, proposal in enumerate(drafts):
-                if sampled[i] != proposal or sampled[i] in request.eos:
-                    break
-                keep += 1
-            emitted = sampled[:keep]
-            request.tokens.extend(inputs[:keep])
-            self._append_hidden(request, hidden[:keep])
-            request.pending = emitted[-1]
-            request.output.extend(emitted)
-            request.rounds += 1
-            request.drafted += len(drafts)
-            request.accepted += keep-1
-            self._finish(request)
-            return Step(tuple(emitted), request.status == 'finished', request.finish_reason,
-                        len(drafts), keep-1)
+    def step(self, request, *, cancelled: Callable[[], bool] = lambda: False):
+        """One scalar round, retaining the same boundary cancellation semantics."""
+        self._worker(); self._active(request)
+        self.busy = True
+        routine = self._round(request, cancelled)
+        value = None
+        try:
+            while True:
+                try: call = routine.send(value)
+                except StopIteration as done: return done.value
+                value = getattr(self.backend, call.operation)(*call.args)
         except Exception:
             request.status, request.finish_reason = 'failed', 'error'
             raise
         finally:
+            routine.close()
             self.busy = False
+
+    def preview_many(self, requests, cancellations):
+        self._worker()
+        if (not 1 <= len(requests) <= self.max_requests or len(requests) != len(cancellations)
+                or len({id(r) for r in requests}) != len(requests)
+                or any(type(c) is not bool for c in cancellations)
+                or not callable(getattr(self.backend, 'batch', None))):
+            raise ValueError('Invalid packed request group or unavailable batch backend')
+        for request in requests: self._active(request)
+
+    def step_many(self, requests, cancellations):
+        """One round per request; pack matching operations into bounded passes.
+
+        All cancellation flags are frozen by the leader before this command.
+        Outputs are returned only after every operation in the group succeeds.
+        Partial failures retain all extents and are fatal to this command bus.
+        """
+        self.preview_many(requests, cancellations)
+        self.busy = True
+        routines = {i:self._round(r, lambda c=c:c) for i,(r,c) in enumerate(zip(requests,cancellations))}
+        pending, results = {}, {}
+        def advance(i, value):
+            try: pending[i] = routines[i].send(value)
+            except StopIteration as done:
+                pending.pop(i, None); results[i] = done.value
+        try:
+            for i in routines: advance(i, None)
+            while pending:
+                operation = next(iter(pending.values())).operation
+                limit = self.backend.logit_rows if operation == 'sample' else self.backend.rows
+                group, rows = [], 0
+                for i, call in pending.items():
+                    if call.operation == operation and rows+call.rows <= limit:
+                        group.append(i); rows += call.rows
+                if not group: raise RuntimeError('A request operation exceeds the admitted packed workspace')
+                values = self.backend.batch([pending[i] for i in group])
+                if len(values) != len(group): raise RuntimeError('Packed result cardinality differs')
+                # Backend retains each tensor before shared workspace reuse.
+                for i,value in zip(group,values): advance(i,value)
+            return [results[i] for i in range(len(requests))]
+        except Exception:
+            for request in requests:
+                request.status, request.finish_reason = 'failed', 'error'
+            raise
+        finally:
+            for routine in routines.values(): routine.close()
+            self.busy = False
+
+    def _round(self, request, cancelled):
+        """The single request algorithm, suspended only at model operations."""
+        def stopped():
+            if not cancelled():
+                return False
+            self.backend.synchronize()
+            request.status, request.finish_reason = 'cancelled', 'cancelled'
+            return True
+        if stopped():
+            return Step(finished=True, reason='cancelled')
+        if request.status == 'prefill':
+            start = len(request.tokens)
+            if start < len(request.prompt):
+                part = request.prompt[start:start+self.backend.rows]
+                hidden = yield Call('target', (part, start, request.extent))
+                if stopped():
+                    return Step(finished=True, reason='cancelled')
+                self._append_hidden(request, hidden)
+                request.tokens.extend(part)
+            # One known token beyond this target chunk is valid MTP input.
+            nxt = request.prompt[request.mtp_end+1:len(request.tokens)+1]
+            yield from self._absorb_ops(request, nxt)
+            if stopped():
+                return Step(finished=True, reason='cancelled')
+            if len(request.tokens) < len(request.prompt):
+                return Step()
+            token = (yield from self._sample_ops(request.last_hidden, [len(request.tokens)], request))[0]
+            if stopped():
+                return Step(finished=True, reason='cancelled')
+            request.pending = token
+            request.output.append(token)
+            request.status = 'decode'
+            self._finish(request)
+            return Step((token,), request.status == 'finished', request.finish_reason)
+
+        start = len(request.tokens)
+        # Every unabsorbed target row has its next token, ending at pending.
+        next_tokens = [*request.tokens[request.mtp_end+1:], request.pending]
+        draft_hidden = yield from self._absorb_ops(request, next_tokens)
+        if request.mtp_end != start or request.pending_hidden is not None:
+            raise RuntimeError('Canonical MTP prefix did not reach the target boundary')
+        room = request.max_tokens-len(request.output)
+        depth = min(request.draft_tokens, room-1)
+        drafts = []
+        for j in range(depth):
+            if stopped():
+                return Step(finished=True, reason='cancelled')
+            token = (yield from self._sample_ops(draft_hidden, [start+j+1], request))[0]
+            drafts.append(token)
+            if token in request.eos:
+                break
+            if j+1 < depth:
+                draft_hidden = (yield Call('mtp', ([token], draft_hidden, start+j,
+                                                  request.extent))).clone()
+            # Recursive writes do NOT advance request.mtp_end.
+        if stopped():
+            return Step(finished=True, reason='cancelled')
+        inputs = [request.pending, *drafts]
+        hidden = yield Call('target', (inputs, start, request.extent))
+        if stopped():
+            return Step(finished=True, reason='cancelled')
+        hidden = hidden.clone()  # survives head projection and the next MTP pass
+        sampled = yield from self._sample_ops(hidden, list(range(start+1, start+1+len(inputs))), request)
+        if stopped():
+            return Step(finished=True, reason='cancelled')
+        keep = 1
+        for i, proposal in enumerate(drafts):
+            if sampled[i] != proposal or sampled[i] in request.eos:
+                break
+            keep += 1
+        emitted = sampled[:keep]
+        request.tokens.extend(inputs[:keep])
+        self._append_hidden(request, hidden[:keep])
+        request.pending = emitted[-1]
+        request.output.extend(emitted)
+        request.rounds += 1
+        request.drafted += len(drafts)
+        request.accepted += keep-1
+        self._finish(request)
+        return Step(tuple(emitted), request.status == 'finished', request.finish_reason,
+                    len(drafts), keep-1)

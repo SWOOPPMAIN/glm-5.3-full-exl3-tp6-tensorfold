@@ -62,6 +62,7 @@ class ProjectionContracts(unittest.TestCase):
     def test_backend_rejects_policy_drift_before_a_captured_call(self):
         b=FullModelBackend.__new__(FullModelBackend);b.device='cuda:0';b.stream=object()
         b.projection_plan=REFERENCE_PLAN;b.model=NS(projections=REFERENCE_PLAN)
+        b.batch_counts={}
         old=b.control_state()
         with patch('tensorfold.families.glm_moe_dsa.request_backend.torch.cuda.current_stream',return_value=b.stream):
             b._stream()

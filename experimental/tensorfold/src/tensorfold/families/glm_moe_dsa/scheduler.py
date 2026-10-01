@@ -3,7 +3,7 @@
 The factory runs in the owning worker and must construct rank zero's backend,
 RequestEngine and RequestController there. Followers run controller.follow().
 Callbacks run on client threads; only the worker emits collective commands.
-This is eager round-robin execution, not packed continuous GPU batching.
+Packed mode combines compatible operations across active requests; scalar mode remains available for matched measurements.
 """
 from dataclasses import dataclass, field
 import heapq
@@ -51,12 +51,13 @@ class Ticket:
 
 
 class RequestScheduler:
-    def __init__(self, factory, *, draft_tokens=4, output_chunks=32, waiting_limit=32):
-        if (type(draft_tokens) is not int or draft_tokens < 0
+    def __init__(self, factory, *, draft_tokens=4, output_chunks=32, waiting_limit=32, packed=False):
+        if (type(packed) is not bool or type(draft_tokens) is not int or draft_tokens < 0
                 or type(output_chunks) is not int or output_chunks < 1
                 or type(waiting_limit) is not int or waiting_limit < 1):
             raise ValueError('Invalid scheduler bounds')
         self.factory, self.draft_tokens = factory, draft_tokens
+        self.packed = packed
         self.output_chunks, self.waiting_limit = output_chunks, waiting_limit
         self.condition = threading.Condition()
         self.waiting, self.active = [], []
@@ -182,6 +183,8 @@ class RequestScheduler:
             core = self.controller.replica.core
             if self.controller.rank != 0 or self.draft_tokens >= core.backend.logit_rows:
                 raise ValueError('Scheduler needs rank zero and admitted draft geometry')
+            if self.packed and not callable(getattr(core.backend, 'batch', None)):
+                raise ValueError('Packed scheduler requires an admitted batch backend')
             self.limit, self.eos = core.context_limit, core.backend.eos
             self.ready.set()
             while True:
@@ -218,9 +221,13 @@ class RequestScheduler:
                         for entry in blocked:
                             heapq.heappush(self.waiting, entry)
                     current = None
-                for current in list(self.active):
-                    start = time.perf_counter()
-                    result = self.controller.dispatch(dict(op='step', args=dict(
+                batch = list(self.active)
+                group_start = time.perf_counter()
+                grouped = self.controller.dispatch(dict(op='step_many', args=dict(
+                    keys=[t.key for t in batch], cancelled=[t.cancel.is_set() for t in batch]))) if self.packed and batch else None
+                for current in batch:
+                    start = group_start if grouped is not None else time.perf_counter()
+                    result = grouped[current.key] if grouped is not None else self.controller.dispatch(dict(op='step', args=dict(
                         key=current.key, cancelled=current.cancel.is_set())))
                     if result['phase'] == 'prefill':
                         current.prefill_s += time.perf_counter()-start

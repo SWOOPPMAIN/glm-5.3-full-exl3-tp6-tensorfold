@@ -1,0 +1,723 @@
+{
+  "at": 1790897012.6712832,
+  "source_revision": "c79902ec67c9e516e67b9aca82a851c9b7a49c91",
+  "passed": true,
+  "cpu_checks": 119,
+  "checks": 230,
+  "exact_sequence_checks": 89,
+  "exact_tensor_checks": 120,
+  "scope": "Original79-layer mixed3.25bpw weights,804K resident cache, qualified TFP20 projection plan. Packed target/MTP/head operations with per-row physical ownership, shared request algorithm and leader-coordinated grouped commands. Original-weight mixed-context tensor tests, mixed-sampling/depth/cancellation/history against serial output, and actual checkpoint-chat-template HTTP C1/C4/SSE.",
+  "cache_capacity_tokens": 804000,
+  "configuration": {
+    "expert_chunk_rows": 1024,
+    "bulk_min_rows": 256,
+    "attention_part_rows": 128,
+    "skip_empty_attention": true,
+    "max_graph_entries": 64,
+    "max_graph_rows": 32,
+    "graph_capture_bytes": 536870912,
+    "scalar_mtp_graph_rows": 1,
+    "packed_mtp_graph_rows": 32,
+    "logit_rows": 17,
+    "projection_plan": {
+      "decode": {
+        "m": 16,
+        "n": 64,
+        "stages": 3
+      },
+      "prefill": {
+        "m": 64,
+        "n": 128,
+        "stages": 2
+      },
+      "bulk_min_rows": 256
+    }
+  },
+  "comparison": {
+    "c4": {
+      "scalar_tok_s": 23.61138351656964,
+      "packed_tok_s": 51.7650248799849,
+      "speedup": 2.192375759923514
+    },
+    "c1": {
+      "0": {
+        "scalar_tok_s": 25.403048365803897,
+        "packed_tok_s": 23.06407089931716,
+        "speedup": 0.9079253232602063
+      },
+      "1": {
+        "scalar_tok_s": 24.955296614332592,
+        "packed_tok_s": 24.84836626883193,
+        "speedup": 0.9957151242418314
+      }
+    }
+  },
+  "modes": {
+    "scalar": {
+      "c1": [
+        {
+          "fixture": 0,
+          "repeat": 0,
+          "output_tokens": 128,
+          "elapsed_s": 5.295110673992895,
+          "decode_tok_s": 25.499959842582925,
+          "prefill_s": 0.302,
+          "decode_s": 4.9804,
+          "new_captures": 0,
+          "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+        },
+        {
+          "fixture": 1,
+          "repeat": 0,
+          "output_tokens": 128,
+          "elapsed_s": 5.253775346034672,
+          "decode_tok_s": 25.75803671027279,
+          "prefill_s": 0.3178,
+          "decode_s": 4.9305,
+          "new_captures": 0,
+          "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+        },
+        {
+          "fixture": 0,
+          "repeat": 1,
+          "output_tokens": 128,
+          "elapsed_s": 5.817034622945357,
+          "decode_tok_s": 23.098048487714383,
+          "prefill_s": 0.2968,
+          "decode_s": 5.4983,
+          "new_captures": 0,
+          "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+        },
+        {
+          "fixture": 1,
+          "repeat": 1,
+          "output_tokens": 128,
+          "elapsed_s": 5.816263300017454,
+          "decode_tok_s": 23.240493357244812,
+          "prefill_s": 0.3259,
+          "decode_s": 5.4646,
+          "new_captures": 0,
+          "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+        },
+        {
+          "fixture": 0,
+          "repeat": 2,
+          "output_tokens": 128,
+          "elapsed_s": 5.299431563005783,
+          "decode_tok_s": 25.403048365803897,
+          "prefill_s": 0.2917,
+          "decode_s": 4.9994,
+          "new_captures": 0,
+          "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+        },
+        {
+          "fixture": 1,
+          "repeat": 2,
+          "output_tokens": 128,
+          "elapsed_s": 5.43925583496457,
+          "decode_tok_s": 24.955296614332592,
+          "prefill_s": 0.332,
+          "decode_s": 5.0891,
+          "new_captures": 0,
+          "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+        }
+      ],
+      "c4": [
+        {
+          "clients": [
+            {
+              "fixture": 0,
+              "elapsed_s": 21.570542175031733,
+              "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+            },
+            {
+              "fixture": 1,
+              "elapsed_s": 21.287668680015486,
+              "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+            },
+            {
+              "fixture": 0,
+              "elapsed_s": 21.683482263993938,
+              "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+            },
+            {
+              "fixture": 1,
+              "elapsed_s": 20.60494159196969,
+              "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+            }
+          ],
+          "wall_s": 21.684455705049913,
+          "output_tokens": 512,
+          "aggregate_tok_s": 23.61138351656964,
+          "new_captures": 0
+        },
+        {
+          "clients": [
+            {
+              "fixture": 0,
+              "elapsed_s": 22.2707499449607,
+              "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+            },
+            {
+              "fixture": 1,
+              "elapsed_s": 21.907724907039665,
+              "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+            },
+            {
+              "fixture": 0,
+              "elapsed_s": 22.379241766990162,
+              "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+            },
+            {
+              "fixture": 1,
+              "elapsed_s": 21.346666288969573,
+              "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+            }
+          ],
+          "wall_s": 22.380128553020768,
+          "output_tokens": 512,
+          "aggregate_tok_s": 22.877437847911406,
+          "new_captures": 0
+        },
+        {
+          "clients": [
+            {
+              "fixture": 0,
+              "elapsed_s": 20.746476692031138,
+              "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+            },
+            {
+              "fixture": 1,
+              "elapsed_s": 20.87528374796966,
+              "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+            },
+            {
+              "fixture": 0,
+              "elapsed_s": 21.2420800490072,
+              "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+            },
+            {
+              "fixture": 1,
+              "elapsed_s": 21.004106820037123,
+              "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+            }
+          ],
+          "wall_s": 21.24279878597008,
+          "output_tokens": 512,
+          "aggregate_tok_s": 24.10228544546367,
+          "new_captures": 0
+        }
+      ],
+      "c4_warmups": [
+        {
+          "clients": [
+            {
+              "fixture": 0,
+              "elapsed_s": 21.19512378203217,
+              "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+            },
+            {
+              "fixture": 1,
+              "elapsed_s": 20.707262538024224,
+              "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+            },
+            {
+              "fixture": 0,
+              "elapsed_s": 21.57334072998492,
+              "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+            },
+            {
+              "fixture": 1,
+              "elapsed_s": 21.31842315994436,
+              "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+            }
+          ],
+          "wall_s": 21.574229723017197,
+          "output_tokens": 512,
+          "aggregate_tok_s": 23.732017623496215,
+          "new_captures": 0
+        },
+        {
+          "clients": [
+            {
+              "fixture": 0,
+              "elapsed_s": 22.665813340980094,
+              "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+            },
+            {
+              "fixture": 1,
+              "elapsed_s": 22.407113642024342,
+              "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+            },
+            {
+              "fixture": 0,
+              "elapsed_s": 22.90154315700056,
+              "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+            },
+            {
+              "fixture": 1,
+              "elapsed_s": 22.15544325200608,
+              "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+            }
+          ],
+          "wall_s": 22.9024327910156,
+          "output_tokens": 512,
+          "aggregate_tok_s": 22.355703635154978,
+          "new_captures": 0
+        }
+      ],
+      "followup_tokens": [
+        64,
+        1632,
+        21260,
+        34120,
+        5486,
+        25,
+        990,
+        1565
+      ],
+      "batch_counts": {
+        "target": {
+          "groups": 0,
+          "requests": 0,
+          "rows": 0,
+          "multi_request_groups": 0
+        },
+        "mtp": {
+          "groups": 0,
+          "requests": 0,
+          "rows": 0,
+          "multi_request_groups": 0
+        },
+        "sample": {
+          "groups": 0,
+          "requests": 0,
+          "rows": 0,
+          "multi_request_groups": 0
+        }
+      },
+      "commands": 1126,
+      "samples": 5121,
+      "captures": 9,
+      "replays": 9354,
+      "peak_graph_growth_bytes": 0,
+      "median_decode_tok_s": {
+        "0": 25.403048365803897,
+        "1": 24.955296614332592
+      },
+      "median_c4_aggregate_tok_s": 23.61138351656964
+    },
+    "packed": {
+      "c1": [
+        {
+          "fixture": 0,
+          "repeat": 0,
+          "output_tokens": 128,
+          "elapsed_s": 5.613792194984853,
+          "decode_tok_s": 23.869039787997817,
+          "prefill_s": 0.2862,
+          "decode_s": 5.3207,
+          "new_captures": 0,
+          "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+        },
+        {
+          "fixture": 1,
+          "repeat": 0,
+          "output_tokens": 128,
+          "elapsed_s": 5.451067042013165,
+          "decode_tok_s": 24.84836626883193,
+          "prefill_s": 0.3233,
+          "decode_s": 5.111,
+          "new_captures": 0,
+          "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+        },
+        {
+          "fixture": 0,
+          "repeat": 1,
+          "output_tokens": 128,
+          "elapsed_s": 5.828274536004756,
+          "decode_tok_s": 23.06407089931716,
+          "prefill_s": 0.2933,
+          "decode_s": 5.5064,
+          "new_captures": 0,
+          "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+        },
+        {
+          "fixture": 1,
+          "repeat": 1,
+          "output_tokens": 128,
+          "elapsed_s": 5.5534310810035095,
+          "decode_tok_s": 24.429184219131706,
+          "prefill_s": 0.331,
+          "decode_s": 5.1987,
+          "new_captures": 0,
+          "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+        },
+        {
+          "fixture": 0,
+          "repeat": 2,
+          "output_tokens": 128,
+          "elapsed_s": 6.221572293958161,
+          "decode_tok_s": 21.538931194138698,
+          "prefill_s": 0.2976,
+          "decode_s": 5.8963,
+          "new_captures": 0,
+          "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+        },
+        {
+          "fixture": 1,
+          "repeat": 2,
+          "output_tokens": 128,
+          "elapsed_s": 5.39306532999035,
+          "decode_tok_s": 25.1440337365618,
+          "prefill_s": 0.3306,
+          "decode_s": 5.0509,
+          "new_captures": 0,
+          "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+        }
+      ],
+      "c4": [
+        {
+          "clients": [
+            {
+              "fixture": 0,
+              "elapsed_s": 9.780554285971448,
+              "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+            },
+            {
+              "fixture": 1,
+              "elapsed_s": 9.561931892996654,
+              "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+            },
+            {
+              "fixture": 0,
+              "elapsed_s": 9.887300989998039,
+              "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+            },
+            {
+              "fixture": 1,
+              "elapsed_s": 9.562130100966897,
+              "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+            }
+          ],
+          "wall_s": 9.888132207037415,
+          "output_tokens": 512,
+          "aggregate_tok_s": 51.77924296315617,
+          "new_captures": 0
+        },
+        {
+          "clients": [
+            {
+              "fixture": 0,
+              "elapsed_s": 9.885821197996847,
+              "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+            },
+            {
+              "fixture": 1,
+              "elapsed_s": 9.885673965967726,
+              "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+            },
+            {
+              "fixture": 0,
+              "elapsed_s": 9.986554677016102,
+              "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+            },
+            {
+              "fixture": 1,
+              "elapsed_s": 9.140353204042185,
+              "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+            }
+          ],
+          "wall_s": 9.987439013959374,
+          "output_tokens": 512,
+          "aggregate_tok_s": 51.26439313265204,
+          "new_captures": 0
+        },
+        {
+          "clients": [
+            {
+              "fixture": 0,
+              "elapsed_s": 9.780931574001443,
+              "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+            },
+            {
+              "fixture": 1,
+              "elapsed_s": 9.512512543005869,
+              "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+            },
+            {
+              "fixture": 0,
+              "elapsed_s": 9.890047608991154,
+              "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+            },
+            {
+              "fixture": 1,
+              "elapsed_s": 9.781108710041735,
+              "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+            }
+          ],
+          "wall_s": 9.890848139009904,
+          "output_tokens": 512,
+          "aggregate_tok_s": 51.7650248799849,
+          "new_captures": 0
+        }
+      ],
+      "c4_warmups": [
+        {
+          "clients": [
+            {
+              "fixture": 0,
+              "elapsed_s": 14.791765894042328,
+              "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+            },
+            {
+              "fixture": 1,
+              "elapsed_s": 14.687595175986644,
+              "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+            },
+            {
+              "fixture": 0,
+              "elapsed_s": 14.79158959002234,
+              "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+            },
+            {
+              "fixture": 1,
+              "elapsed_s": 14.015926502004731,
+              "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+            }
+          ],
+          "wall_s": 14.792569416051265,
+          "output_tokens": 512,
+          "aggregate_tok_s": 34.61197210570018,
+          "new_captures": 20
+        },
+        {
+          "clients": [
+            {
+              "fixture": 0,
+              "elapsed_s": 12.23300540301716,
+              "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+            },
+            {
+              "fixture": 1,
+              "elapsed_s": 11.995036767038982,
+              "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+            },
+            {
+              "fixture": 0,
+              "elapsed_s": 12.358386651030742,
+              "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+            },
+            {
+              "fixture": 1,
+              "elapsed_s": 12.23300994595047,
+              "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+            }
+          ],
+          "wall_s": 12.359254717011936,
+          "output_tokens": 512,
+          "aggregate_tok_s": 41.426446150936265,
+          "new_captures": 5
+        }
+      ],
+      "followup_tokens": [
+        64,
+        1632,
+        21260,
+        34120,
+        5486,
+        25,
+        990,
+        1565
+      ],
+      "batch_counts": {
+        "target": {
+          "groups": 533,
+          "requests": 1064,
+          "rows": 7019,
+          "multi_request_groups": 187
+        },
+        "mtp": {
+          "groups": 2008,
+          "requests": 4088,
+          "rows": 8554,
+          "multi_request_groups": 717
+        },
+        "sample": {
+          "groups": 2690,
+          "requests": 5121,
+          "rows": 9178,
+          "multi_request_groups": 899
+        }
+      },
+      "commands": 586,
+      "samples": 5121,
+      "captures": 38,
+      "replays": 5191,
+      "peak_graph_growth_bytes": 0,
+      "median_decode_tok_s": {
+        "0": 23.06407089931716,
+        "1": 24.84836626883193
+      },
+      "median_c4_aggregate_tok_s": 51.7650248799849
+    }
+  },
+  "fixtures": [
+    {
+      "body": {
+        "model": "glm-5.3",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Write a complete Python LRU cache with get and put methods, type annotations, clear documentation, and unit tests covering eviction and updating existing keys. Explain the time complexity."
+          }
+        ],
+        "temperature": 0,
+        "max_tokens": 128,
+        "ignore_eos": true,
+        "return_token_ids": true,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "prompt_tokens": 46,
+      "prompt_sha256": "86d8efe0d9fb17e95946f4dc848092c1435da636bbc5dccb506196617ebfcac3",
+      "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+    },
+    {
+      "body": {
+        "model": "glm-5.3",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Explain how a transformer language model processes a prompt and generates an answer. Cover attention, key-value caching, speculative decoding, and the tradeoffs of splitting a model across several GPUs. Use clear paragraphs and concrete examples."
+          }
+        ],
+        "temperature": 0,
+        "max_tokens": 128,
+        "ignore_eos": true,
+        "return_token_ids": true,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "prompt_tokens": 56,
+      "prompt_sha256": "cd777e0fb5eb8a80a8f36c01927165f71955fade7af3d4bc62e5087693166959",
+      "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+    }
+  ],
+  "component_graph_state": {
+    "kind": "full_tp6_graphs_v1",
+    "plan": {
+      "max_graphs": 64,
+      "max_rows": 32,
+      "capture_bytes": 536870912,
+      "inputs": 25231360,
+      "total": 562102276
+    },
+    "projections": {
+      "decode": {
+        "m": 16,
+        "n": 64,
+        "stages": 3
+      },
+      "prefill": {
+        "m": 64,
+        "n": 128,
+        "stages": 2
+      },
+      "bulk_min_rows": 256
+    },
+    "packed": {
+      "target": {
+        "groups": 3,
+        "requests": 12,
+        "rows": 60,
+        "multi_request_groups": 3
+      },
+      "mtp": {
+        "groups": 2,
+        "requests": 8,
+        "rows": 16,
+        "multi_request_groups": 2
+      },
+      "sample": {
+        "groups": 1,
+        "requests": 4,
+        "rows": 8,
+        "multi_request_groups": 1
+      }
+    },
+    "entries": [
+      {
+        "operation": "target",
+        "rows": 20,
+        "visible": 4096
+      },
+      {
+        "operation": "mtp_batch",
+        "rows": 4,
+        "visible": 4096
+      },
+      {
+        "operation": "mtp_batch",
+        "rows": 12,
+        "visible": 4096
+      },
+      {
+        "operation": "head",
+        "rows": 8,
+        "visible": 0
+      }
+    ],
+    "captures": 4,
+    "replays": 6,
+    "evictions": 0,
+    "eager": 0,
+    "closed": false
+  },
+  "mixed_batch_counts": {
+    "target": {
+      "groups": 19,
+      "requests": 35,
+      "rows": 124,
+      "multi_request_groups": 7
+    },
+    "mtp": {
+      "groups": 44,
+      "requests": 67,
+      "rows": 120,
+      "multi_request_groups": 13
+    },
+    "sample": {
+      "groups": 54,
+      "requests": 85,
+      "rows": 135,
+      "multi_request_groups": 18
+    }
+  },
+  "maximum_torch_gib": 99.92760133743286,
+  "maximum_cgroup_gib": 57.82429122924805,
+  "minimum_host_available_gib": 10.36,
+  "limitations": [
+    "C4: four128-output HTTP clients, two warmups and three timed rounds per mode. Aggregate512/wall_seconds includes prompt processing, delivery and any reported new graph captures.",
+    "C1: three repeats per code/prose fixture,127/decode_seconds excludes first token/prefill; all timed C1 graphs warm.",
+    "Modes run consecutively within one guarded load; no confidence interval or hardware-ceiling claim. Short prompts/thinking disabled/greedy HTTP do not establish broad or long-context performance.",
+    "Mixed stochastic sampling is separately checked against serial references; distinct per-request policies remain separate leader sampling decisions after the packed head.",
+    "Scalar MTP uses one-row graphs; packed MTP admits multirow graphs. Observed changes include this canonical-MTP improvement as well as combining clients.",
+    "Full tool/reasoning/stop/grammar/history/disconnect API regression, authentic long-context qualification, family registration and packaged deployment remain incomplete."
+  ],
+  "all_exit0": true,
+  "all_oom_false": true,
+  "all_diagnostic_guards_clear": true,
+  "original_weights_unchanged": true,
+  "quantization": "original mixed K3/K4 3.25 bpw",
+  "complete_quality_gate": false,
+  "serving_throughput": false,
+  "tensorfold_serving": false,
+  "findings": {
+    "c4": "Packed operations more than double matched short HTTP aggregate throughput; all three timed rounds in both modes had zero new graph captures.",
+    "c1": "Code median regressed with always-packed dispatch; prose was effectively unchanged. Use scalar commands for one active request and qualify transitions to/from packed groups before promotion."
+  },
+  "raw_receipt_sha256": "f5be147c78439653ce44d094f8116e4aba506309f9a2a494c1d21d553e4e7fa8"
+}

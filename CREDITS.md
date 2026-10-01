@@ -73,3 +73,8 @@ TFP20 projection-plan ownership, numerical screening and matched full-model prob
 are Swoopp additions. Output-tile and pipeline tuning was informed by the official
 [Triton matmul tutorial](https://triton-lang.org/main/getting-started/tutorials/03-matrix-multiplication.html);
 its published performance numbers are not used as Spark measurements.
+
+TFP21 suspended request operations, packed TP6 execution, per-row cache ownership,
+grouped request commands and matched HTTP qualification are Swoopp additions to
+the existing TensorFold/Mia-derived port. Upstream model, kernel, runtime and
+recipe contributions remain attributed above.

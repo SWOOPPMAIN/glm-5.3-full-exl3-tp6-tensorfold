@@ -79,7 +79,7 @@ class GraphBackend(FullModelBackend):
         super().__init__(model,caches,table,workspace,sampler=sampler)
         if (not dist.is_initialized() or dist.get_world_size(group)!=6
                 or dist.get_backend(group)!='nccl' or dist.get_rank(group)!=model.weights.rank
-                or model.vocab.reduction.group is not group or max_rows>self.logit_rows):
+                or model.vocab.reduction.group is not group or max_rows>self.rows):
             raise ValueError('Graph backend requires the admitted TP6 group and row workspace')
         self.plan = graph_reserve(max_graphs,max_rows,capture_bytes)
         self.entries = OrderedDict()
@@ -98,16 +98,18 @@ class GraphBackend(FullModelBackend):
     def control_state(self):
         """Only deterministic host state: included in six-rank command agreement."""
         return dict(kind='full_tp6_graphs_v1',plan=self.plan,projections=asdict(self.projection_plan),
-                    entries=[asdict(k) for k in self.entries],captures=self.captures,
+                    packed=self.batch_counts,entries=[asdict(k) for k in self.entries],captures=self.captures,
                     replays=self.replays,evictions=self.evictions,eager=self.eager,closed=self.closed)
 
-    def _fill(self, entry, tokens, positions, extent, hidden):
+    def _fill(self, entry, tokens, positions, extent, hidden, *, bases=None):
         if entry.inputs is not None:
             if (len(tokens)!=entry.key.rows or len(positions)!=entry.key.rows
                     or max(positions)+1>entry.key.visible or entry.key.visible>self.capacity):
                 raise ValueError('Graph replay exceeds its captured logical context bound')
-            metadata = [list(tokens),positions,[extent.base]*len(tokens),
-                        [extent.base+p for p in positions]]
+            bases = [extent.base]*len(tokens) if bases is None else bases
+            if len(bases) != len(tokens):
+                raise ValueError('Packed cache bases do not match row count')
+            metadata = [list(tokens),positions,bases,[b+p for b,p in zip(bases,positions)]]
             # Blocking host copy keeps the temporary CPU packet alive until its
             # bytes are consumed, including consecutive target/MTP submissions.
             entry.inputs.copy_(torch.tensor(metadata,dtype=torch.int64),non_blocking=False)
@@ -130,14 +132,14 @@ class GraphBackend(FullModelBackend):
         self.retained_growth -= entry.growth
         self.evictions += 1
 
-    def _execute(self, key, *, tokens=None, positions=None, extent=None, hidden=None):
+    def _execute(self, key, *, tokens=None, positions=None, extent=None, hidden=None, bases=None):
         self._stream()
         entry = None
         try:
             if key in self.entries:
                 entry = self.entries.pop(key)
                 self.entries[key] = entry
-                self._fill(entry,tokens,positions,extent,hidden)
+                self._fill(entry,tokens,positions,extent,hidden,bases=bases)
             else:
                 if len(self.entries) >= self.plan['max_graphs']:
                     _,old = self.entries.popitem(last=False)
@@ -148,7 +150,7 @@ class GraphBackend(FullModelBackend):
                     entry.inputs = torch.empty((4,key.rows),dtype=torch.int64,device=self.device)
                 if key.operation != 'target':
                     entry.hidden = torch.empty((key.rows,6144),dtype=torch.bfloat16,device=self.device)
-                self._fill(entry,tokens,positions,extent,hidden)
+                self._fill(entry,tokens,positions,extent,hidden,bases=bases)
                 entry.graph,entry.output = self.runtime.capture(lambda: self._run(entry))
                 entry.growth = max(0,self.runtime.reserved()-before)
                 allowed = self.retained_growth+entry.growth <= self.plan['total']
@@ -208,6 +210,22 @@ class GraphBackend(FullModelBackend):
             return super().sample(hidden,positions,sampling)
         logits = self._execute(key,hidden=hidden)
         return self.sampler(logits,positions,sampling)
+
+    def _batch_forward(self, operation, metadata, hidden, visible):
+        tokens,positions,bases,_ = metadata
+        key = graph_key('target' if operation == 'target' else 'mtp_batch',len(tokens),
+                        self.capacity,visible=visible,max_rows=self.plan['max_rows'])
+        if key is None:
+            self.eager += 1
+            return super()._batch_forward(operation,metadata,hidden,visible)
+        return self._execute(key,tokens=tokens,positions=positions,bases=bases,hidden=hidden)
+
+    def _batch_logits(self, hidden):
+        key = graph_key('head',len(hidden),self.capacity,max_rows=self.plan['max_rows'])
+        if key is None:
+            self.eager += 1
+            return super()._batch_logits(hidden)
+        return self._execute(key,hidden=hidden)
 
     def close_graphs(self):
         """Call after all ranks stop requests, before destroying the communicator.

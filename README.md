@@ -26,16 +26,16 @@ Prefill here means prompt tokens divided by time to first token, including
 the first generation step and delivery. These are workload measurements,
 not a hardware ceiling. See [results and methodology](results/README.md).
 
-TensorFold remains experimental. Its latest exact-output projection test changed
-BF16 kernel tiles while keeping the original weights. Synthetic 3,072-token
-prefill improved from **8.84 to 8.16 seconds**
-(**8.4% more input tokens/s**). Short direct-controller
-code/prose generation measured **24.4 / 25.8 tok/s**.
-These workloads differ from the P24 serving measurements above.
+TensorFold remains experimental. It now packs compatible target, draft and
+vocabulary operations from concurrent requests into shared GPU passes.
+The latest short HTTP test measured **23.6 → 51.8 output tok/s
+combined across four clients**, with exact serial-reference answers.
+Single-request code regressed in this run, so dispatch tuning remains. These
+workloads differ from the P24 serving measurements above.
 
-See [projection results and exact configuration](recipes/tensorfold-tp6/PROJECTIONS.md),
-[profiling](recipes/tensorfold-tp6/DECODE_PROFILING.md), and
-[graph/HTTP qualification](recipes/tensorfold-tp6/DECODE_GRAPHS.md).
+See [packed request results and recipe](recipes/tensorfold-tp6/PACKED_REQUESTS.md),
+[projection tuning](recipes/tensorfold-tp6/PROJECTIONS.md), and
+[profiling](recipes/tensorfold-tp6/DECODE_PROFILING.md).
 
 ## Recipes
 
@@ -55,7 +55,7 @@ weights and compiled artifacts are downloaded or built separately.
 | --- | --- |
 | `weights/` | Pinned checkpoint manifest, lossless resharing and verification |
 | `runtime/vllm/` | Serving overlays, node entrypoint, memory guard, E3 sources |
-| `experimental/tensorfold/` | Source snapshot through BF16 projection qualification |
+| `experimental/tensorfold/` | Source snapshot through packed request and HTTP qualification |
 | `experiments/` | Completed attention experiment and next development steps |
 | `results/` | Serving measurements and separate TensorFold experiment results |
 | `provenance/` | Source revisions, import hashes, and local change records |

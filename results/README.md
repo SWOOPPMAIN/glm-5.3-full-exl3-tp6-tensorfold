@@ -133,3 +133,11 @@ performed 2970 comparisons and rejected 0 tiles across ranks.
 Synthetic full3,072-token prefill: 8.841 → 8.157 seconds.
 Short MTP4 direct-controller code/prose: 24.36 / 25.78 tok/s.
 Original weights preserved; broader API/long-context and serving promotion remain pending.
+
+## TensorFold: TFP21 packed requests
+
+[Summary](tfp21-tensorfold.json), [recipe and limits](../recipes/tensorfold-tp6/PACKED_REQUESTS.md).
+230 GPU checks and 119 CPU tests passed. Matched short HTTP C4 aggregate
+throughput: 23.61 → 51.77 output tok/s, including prefill and delivery.
+Original weights and TFP20 projection plan preserved; complete API/long-context
+qualification and serving promotion remain pending.
