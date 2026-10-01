@@ -1,0 +1,1182 @@
+{
+  "at": 1790894913.3865306,
+  "source_revision": "6f7660e16d01392150beabf5540532abe0891dbd",
+  "passed": true,
+  "cpu_checks": 103,
+  "checks": 306,
+  "exact_sequence_checks": 96,
+  "exact_tensor_checks": 108,
+  "scope": "Original79-layer mixed3.25bpw weights,804K resident cache. BF16 projection tile/pipeline screening on all six ranks, strict original-kernel BF16 and changed-input FP32 equality, immutable selected model plan, full target/MTP qualification, alternating3072 full-prefill timing and MTP4 direct-controller code/prose128-output runs.",
+  "cache_capacity_tokens": 804000,
+  "configuration": {
+    "expert_chunk_rows": 1024,
+    "bulk_min_rows": 256,
+    "attention_part_rows": 128,
+    "skip_empty_attention": true,
+    "max_graph_entries_per_backend": 12,
+    "max_graph_rows": 5,
+    "graph_capture_bytes_per_backend": 268435456,
+    "mtp_graph_rows": 1,
+    "projection_plan": {
+      "decode": {
+        "m": 16,
+        "n": 64,
+        "stages": 3
+      },
+      "prefill": {
+        "m": 64,
+        "n": 128,
+        "stages": 2
+      },
+      "bulk_min_rows": 256
+    }
+  },
+  "micro_screen": [
+    {
+      "rank": 0,
+      "decode": {
+        "16x64x2": {
+          "exact": true,
+          "score_ms": 77.7311352789402,
+          "checks": 63,
+          "rejections": []
+        },
+        "16x32x2": {
+          "exact": true,
+          "score_ms": 75.98937626928091,
+          "checks": 63,
+          "rejections": []
+        },
+        "16x128x2": {
+          "exact": true,
+          "score_ms": 77.40572748333216,
+          "checks": 63,
+          "rejections": []
+        },
+        "16x64x3": {
+          "exact": true,
+          "score_ms": 73.87868776917458,
+          "checks": 63,
+          "rejections": []
+        },
+        "16x128x3": {
+          "exact": true,
+          "score_ms": 74.41382370889187,
+          "checks": 63,
+          "rejections": []
+        }
+      },
+      "prefill": {
+        "16x64x2": {
+          "exact": true,
+          "score_ms": 1049.573624074459,
+          "checks": 36,
+          "rejections": []
+        },
+        "32x64x2": {
+          "exact": true,
+          "score_ms": 657.5344288945198,
+          "checks": 36,
+          "rejections": []
+        },
+        "32x128x2": {
+          "exact": true,
+          "score_ms": 590.593056678772,
+          "checks": 36,
+          "rejections": []
+        },
+        "64x64x2": {
+          "exact": true,
+          "score_ms": 523.2990687936544,
+          "checks": 36,
+          "rejections": []
+        },
+        "64x128x2": {
+          "exact": true,
+          "score_ms": 416.343171402812,
+          "checks": 36,
+          "rejections": []
+        }
+      },
+      "reference_fp64_samples": [
+        {
+          "matrix": "qkv",
+          "samples": 16,
+          "max_abs": 0.0016918193095989409,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "qb",
+          "samples": 16,
+          "max_abs": 0.002301470871316269,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "o",
+          "samples": 16,
+          "max_abs": 0.0006961616459193465,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "dense_up",
+          "samples": 16,
+          "max_abs": 0.0028387286292854697,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "dense_down",
+          "samples": 16,
+          "max_abs": 0.0014836910413578153,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "shared_up",
+          "samples": 16,
+          "max_abs": 0.006451800916693173,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "shared_down",
+          "samples": 16,
+          "max_abs": 0.0016041250491980463,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "index_q",
+          "samples": 16,
+          "max_abs": 0.017295241355895996,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "index_kw",
+          "samples": 16,
+          "max_abs": 0.022979278292041272,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "head",
+          "samples": 16,
+          "max_abs": 0.007060867771542689,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "eh",
+          "samples": 16,
+          "max_abs": 0.009415863256435841,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        }
+      ]
+    },
+    {
+      "rank": 1,
+      "decode": {
+        "16x64x2": {
+          "exact": true,
+          "score_ms": 75.96777684241533,
+          "checks": 63,
+          "rejections": []
+        },
+        "16x32x2": {
+          "exact": true,
+          "score_ms": 78.70563230663538,
+          "checks": 63,
+          "rejections": []
+        },
+        "16x128x2": {
+          "exact": true,
+          "score_ms": 77.39744032919407,
+          "checks": 63,
+          "rejections": []
+        },
+        "16x64x3": {
+          "exact": true,
+          "score_ms": 73.83049543201923,
+          "checks": 63,
+          "rejections": []
+        },
+        "16x128x3": {
+          "exact": true,
+          "score_ms": 74.345439940691,
+          "checks": 63,
+          "rejections": []
+        }
+      },
+      "prefill": {
+        "16x64x2": {
+          "exact": true,
+          "score_ms": 1044.6721933186054,
+          "checks": 36,
+          "rejections": []
+        },
+        "32x64x2": {
+          "exact": true,
+          "score_ms": 641.3173319399357,
+          "checks": 36,
+          "rejections": []
+        },
+        "32x128x2": {
+          "exact": true,
+          "score_ms": 579.2310658693314,
+          "checks": 36,
+          "rejections": []
+        },
+        "64x64x2": {
+          "exact": true,
+          "score_ms": 524.1775563508272,
+          "checks": 36,
+          "rejections": []
+        },
+        "64x128x2": {
+          "exact": true,
+          "score_ms": 406.0206769108772,
+          "checks": 36,
+          "rejections": []
+        }
+      },
+      "reference_fp64_samples": [
+        {
+          "matrix": "qkv",
+          "samples": 16,
+          "max_abs": 0.0016918193095989409,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "qb",
+          "samples": 16,
+          "max_abs": 0.001914428430609405,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "o",
+          "samples": 16,
+          "max_abs": 0.001283454810618423,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "dense_up",
+          "samples": 16,
+          "max_abs": 0.00562411017017439,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "dense_down",
+          "samples": 16,
+          "max_abs": 0.00299852759053465,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "shared_up",
+          "samples": 16,
+          "max_abs": 0.007000958386925049,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "shared_down",
+          "samples": 16,
+          "max_abs": 0.0009605470113456249,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "index_q",
+          "samples": 16,
+          "max_abs": 0.017295241355895996,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "index_kw",
+          "samples": 16,
+          "max_abs": 0.022979278292041272,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "head",
+          "samples": 16,
+          "max_abs": 0.005058162341811112,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "eh",
+          "samples": 16,
+          "max_abs": 0.009002353122923523,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "decode": {
+        "16x64x2": {
+          "exact": true,
+          "score_ms": 76.55695950984955,
+          "checks": 63,
+          "rejections": []
+        },
+        "16x32x2": {
+          "exact": true,
+          "score_ms": 75.50393489003181,
+          "checks": 63,
+          "rejections": []
+        },
+        "16x128x2": {
+          "exact": true,
+          "score_ms": 77.32518392801285,
+          "checks": 63,
+          "rejections": []
+        },
+        "16x64x3": {
+          "exact": true,
+          "score_ms": 74.13619174063206,
+          "checks": 63,
+          "rejections": []
+        },
+        "16x128x3": {
+          "exact": true,
+          "score_ms": 74.64073544740677,
+          "checks": 63,
+          "rejections": []
+        }
+      },
+      "prefill": {
+        "16x64x2": {
+          "exact": true,
+          "score_ms": 1059.7826779782772,
+          "checks": 36,
+          "rejections": []
+        },
+        "32x64x2": {
+          "exact": true,
+          "score_ms": 645.5874103009701,
+          "checks": 36,
+          "rejections": []
+        },
+        "32x128x2": {
+          "exact": true,
+          "score_ms": 573.613347530365,
+          "checks": 36,
+          "rejections": []
+        },
+        "64x64x2": {
+          "exact": true,
+          "score_ms": 535.1755211502314,
+          "checks": 36,
+          "rejections": []
+        },
+        "64x128x2": {
+          "exact": true,
+          "score_ms": 399.5719672590494,
+          "checks": 36,
+          "rejections": []
+        }
+      },
+      "reference_fp64_samples": [
+        {
+          "matrix": "qkv",
+          "samples": 16,
+          "max_abs": 0.0016918193095989409,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "qb",
+          "samples": 16,
+          "max_abs": 0.0023255690466612577,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "o",
+          "samples": 16,
+          "max_abs": 0.0009366688173031434,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "dense_up",
+          "samples": 16,
+          "max_abs": 0.004312632430810481,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "dense_down",
+          "samples": 16,
+          "max_abs": 0.0021771081956103444,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "shared_up",
+          "samples": 16,
+          "max_abs": 0.007651146035641432,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "shared_down",
+          "samples": 16,
+          "max_abs": 0.0012753522023558617,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "index_q",
+          "samples": 16,
+          "max_abs": 0.017295241355895996,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "index_kw",
+          "samples": 16,
+          "max_abs": 0.022979278292041272,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "head",
+          "samples": 16,
+          "max_abs": 0.004480747156776488,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "eh",
+          "samples": 16,
+          "max_abs": 0.012586106167873368,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "decode": {
+        "16x64x2": {
+          "exact": true,
+          "score_ms": 75.91664058715105,
+          "checks": 63,
+          "rejections": []
+        },
+        "16x32x2": {
+          "exact": true,
+          "score_ms": 75.18591972440481,
+          "checks": 63,
+          "rejections": []
+        },
+        "16x128x2": {
+          "exact": true,
+          "score_ms": 77.96748745441437,
+          "checks": 63,
+          "rejections": []
+        },
+        "16x64x3": {
+          "exact": true,
+          "score_ms": 72.72335933893919,
+          "checks": 63,
+          "rejections": []
+        },
+        "16x128x3": {
+          "exact": true,
+          "score_ms": 73.23955198377371,
+          "checks": 63,
+          "rejections": []
+        }
+      },
+      "prefill": {
+        "16x64x2": {
+          "exact": true,
+          "score_ms": 1080.2648735940456,
+          "checks": 36,
+          "rejections": []
+        },
+        "32x64x2": {
+          "exact": true,
+          "score_ms": 663.7863402664661,
+          "checks": 36,
+          "rejections": []
+        },
+        "32x128x2": {
+          "exact": true,
+          "score_ms": 597.6065322160721,
+          "checks": 36,
+          "rejections": []
+        },
+        "64x64x2": {
+          "exact": true,
+          "score_ms": 534.3844747692347,
+          "checks": 36,
+          "rejections": []
+        },
+        "64x128x2": {
+          "exact": true,
+          "score_ms": 446.0149427354336,
+          "checks": 36,
+          "rejections": []
+        }
+      },
+      "reference_fp64_samples": [
+        {
+          "matrix": "qkv",
+          "samples": 16,
+          "max_abs": 0.0016918193095989409,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "qb",
+          "samples": 16,
+          "max_abs": 0.0047830367111600935,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "o",
+          "samples": 16,
+          "max_abs": 0.0004826547502716494,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "dense_up",
+          "samples": 16,
+          "max_abs": 0.004307014576625079,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "dense_down",
+          "samples": 16,
+          "max_abs": 0.003090201997110853,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "shared_up",
+          "samples": 16,
+          "max_abs": 0.004555603896733373,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "shared_down",
+          "samples": 16,
+          "max_abs": 0.0015326967695727944,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "index_q",
+          "samples": 16,
+          "max_abs": 0.017295241355895996,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "index_kw",
+          "samples": 16,
+          "max_abs": 0.022979278292041272,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "head",
+          "samples": 16,
+          "max_abs": 0.0035169719740224537,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "eh",
+          "samples": 16,
+          "max_abs": 0.0077298994874581695,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "decode": {
+        "16x64x2": {
+          "exact": true,
+          "score_ms": 60.409248888492584,
+          "checks": 63,
+          "rejections": []
+        },
+        "16x32x2": {
+          "exact": true,
+          "score_ms": 60.11430435627699,
+          "checks": 63,
+          "rejections": []
+        },
+        "16x128x2": {
+          "exact": true,
+          "score_ms": 61.10790430009365,
+          "checks": 63,
+          "rejections": []
+        },
+        "16x64x3": {
+          "exact": true,
+          "score_ms": 59.502784200012684,
+          "checks": 63,
+          "rejections": []
+        },
+        "16x128x3": {
+          "exact": true,
+          "score_ms": 59.79023978114128,
+          "checks": 63,
+          "rejections": []
+        }
+      },
+      "prefill": {
+        "16x64x2": {
+          "exact": true,
+          "score_ms": 861.9285058379173,
+          "checks": 36,
+          "rejections": []
+        },
+        "32x64x2": {
+          "exact": true,
+          "score_ms": 526.658121407032,
+          "checks": 36,
+          "rejections": []
+        },
+        "32x128x2": {
+          "exact": true,
+          "score_ms": 476.6512493491173,
+          "checks": 36,
+          "rejections": []
+        },
+        "64x64x2": {
+          "exact": true,
+          "score_ms": 420.4758732318878,
+          "checks": 36,
+          "rejections": []
+        },
+        "64x128x2": {
+          "exact": true,
+          "score_ms": 322.8167068362236,
+          "checks": 36,
+          "rejections": []
+        }
+      },
+      "reference_fp64_samples": [
+        {
+          "matrix": "qkv",
+          "samples": 16,
+          "max_abs": 0.0016918193095989409,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "qb",
+          "samples": 16,
+          "max_abs": 0.001590787316672504,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "o",
+          "samples": 16,
+          "max_abs": 0.0007288090710062534,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "dense_up",
+          "samples": 16,
+          "max_abs": 0.007230917835840955,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "dense_down",
+          "samples": 16,
+          "max_abs": 0.0016876562003744766,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "shared_up",
+          "samples": 16,
+          "max_abs": 0.007105550117557868,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "shared_down",
+          "samples": 16,
+          "max_abs": 0.0013822117543895729,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "index_q",
+          "samples": 16,
+          "max_abs": 0.017295241355895996,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "index_kw",
+          "samples": 16,
+          "max_abs": 0.022979278292041272,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "head",
+          "samples": 16,
+          "max_abs": 0.006388681300450116,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "eh",
+          "samples": 16,
+          "max_abs": 0.005047984654083848,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "decode": {
+        "16x64x2": {
+          "exact": true,
+          "score_ms": 60.6758398860693,
+          "checks": 63,
+          "rejections": []
+        },
+        "16x32x2": {
+          "exact": true,
+          "score_ms": 60.33632009476423,
+          "checks": 63,
+          "rejections": []
+        },
+        "16x128x2": {
+          "exact": true,
+          "score_ms": 61.37702403217554,
+          "checks": 63,
+          "rejections": []
+        },
+        "16x64x3": {
+          "exact": true,
+          "score_ms": 58.69753636419773,
+          "checks": 63,
+          "rejections": []
+        },
+        "16x128x3": {
+          "exact": true,
+          "score_ms": 59.06870464980602,
+          "checks": 63,
+          "rejections": []
+        }
+      },
+      "prefill": {
+        "16x64x2": {
+          "exact": true,
+          "score_ms": 799.2912872135639,
+          "checks": 36,
+          "rejections": []
+        },
+        "32x64x2": {
+          "exact": true,
+          "score_ms": 501.0417687892914,
+          "checks": 36,
+          "rejections": []
+        },
+        "32x128x2": {
+          "exact": true,
+          "score_ms": 442.67231941223145,
+          "checks": 36,
+          "rejections": []
+        },
+        "64x64x2": {
+          "exact": true,
+          "score_ms": 399.1147170960903,
+          "checks": 36,
+          "rejections": []
+        },
+        "64x128x2": {
+          "exact": true,
+          "score_ms": 312.2430717051029,
+          "checks": 36,
+          "rejections": []
+        }
+      },
+      "reference_fp64_samples": [
+        {
+          "matrix": "qkv",
+          "samples": 16,
+          "max_abs": 0.0016918193095989409,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "qb",
+          "samples": 16,
+          "max_abs": 0.0019093004157184623,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "o",
+          "samples": 16,
+          "max_abs": 0.0006836636348452885,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "dense_up",
+          "samples": 16,
+          "max_abs": 0.003725280097569339,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "dense_down",
+          "samples": 16,
+          "max_abs": 0.0038144973514135927,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "shared_up",
+          "samples": 16,
+          "max_abs": 0.006545507507325965,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "shared_down",
+          "samples": 16,
+          "max_abs": 0.0009335695649497211,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "index_q",
+          "samples": 16,
+          "max_abs": 0.006042606197297573,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "index_kw",
+          "samples": 16,
+          "max_abs": 0.06246900420228485,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "head",
+          "samples": 16,
+          "max_abs": 0.0053304498142097145,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        },
+        {
+          "matrix": "eh",
+          "samples": 16,
+          "max_abs": 0.007568111061118543,
+          "caveat": "Characterizes baseline BF16 rounding; candidate qualification uses exact baseline equality."
+        }
+      ]
+    }
+  ],
+  "micro_checks": 2970,
+  "screen_rejections": 0,
+  "prefill": {
+    "reference_s": 8.841000842861831,
+    "candidate_s": 8.157160085160285,
+    "speedup": 1.08383319078727,
+    "reference_input_tok_s": 347.4719723028093,
+    "candidate_input_tok_s": 376.6016564500997
+  },
+  "comparison": {
+    "0": {
+      "reference_tok_s": 24.28625231092464,
+      "candidate_tok_s": 24.36211595169057,
+      "speedup": 1.0031237277697145
+    },
+    "1": {
+      "reference_tok_s": 24.43025859235543,
+      "candidate_tok_s": 25.775299155426993,
+      "speedup": 1.0550563375326876
+    }
+  },
+  "bulk_runs": [
+    {
+      "mode": "reference",
+      "repeat": 0,
+      "seconds": 8.799471431877464
+    },
+    {
+      "mode": "candidate",
+      "repeat": 0,
+      "seconds": 8.128245213069022
+    },
+    {
+      "mode": "candidate",
+      "repeat": 1,
+      "seconds": 8.162182713975199
+    },
+    {
+      "mode": "reference",
+      "repeat": 1,
+      "seconds": 8.846007651009131
+    },
+    {
+      "mode": "reference",
+      "repeat": 2,
+      "seconds": 8.841000842861831
+    },
+    {
+      "mode": "candidate",
+      "repeat": 2,
+      "seconds": 8.157160085160285
+    }
+  ],
+  "medians": {
+    "0": {
+      "reference": 24.28625231092464,
+      "candidate": 24.36211595169057
+    },
+    "1": {
+      "reference": 24.43025859235543,
+      "candidate": 25.775299155426993
+    }
+  },
+  "runs": [
+    {
+      "mode": "reference",
+      "fixture": 0,
+      "prefill_s": 0.29514858697075397,
+      "decode_s": 6.119199832028244,
+      "decode_tok_s": 20.75434754316646,
+      "rounds": 36,
+      "drafted": 140,
+      "accepted": 91,
+      "new_captures": 0,
+      "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6",
+      "repeat": 0
+    },
+    {
+      "mode": "reference",
+      "fixture": 1,
+      "prefill_s": 0.3282626389991492,
+      "decode_s": 5.118224337988067,
+      "decode_tok_s": 24.81329297299279,
+      "rounds": 35,
+      "drafted": 139,
+      "accepted": 92,
+      "new_captures": 0,
+      "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba",
+      "repeat": 0
+    },
+    {
+      "mode": "candidate",
+      "fixture": 0,
+      "prefill_s": 0.2895648599951528,
+      "decode_s": 5.868235714966431,
+      "decode_tok_s": 21.64193910549595,
+      "rounds": 36,
+      "drafted": 140,
+      "accepted": 91,
+      "new_captures": 0,
+      "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6",
+      "repeat": 0
+    },
+    {
+      "mode": "candidate",
+      "fixture": 1,
+      "prefill_s": 0.5595903520006686,
+      "decode_s": 4.927197905024514,
+      "decode_tok_s": 25.775299155426993,
+      "rounds": 35,
+      "drafted": 139,
+      "accepted": 92,
+      "new_captures": 0,
+      "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba",
+      "repeat": 0
+    },
+    {
+      "mode": "candidate",
+      "fixture": 1,
+      "prefill_s": 0.33769845799542964,
+      "decode_s": 4.76541689503938,
+      "decode_tok_s": 26.65034409312693,
+      "rounds": 35,
+      "drafted": 139,
+      "accepted": 92,
+      "new_captures": 0,
+      "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba",
+      "repeat": 1
+    },
+    {
+      "mode": "candidate",
+      "fixture": 0,
+      "prefill_s": 0.29033520101802424,
+      "decode_s": 5.065863451978657,
+      "decode_tok_s": 25.069763763647344,
+      "rounds": 36,
+      "drafted": 140,
+      "accepted": 91,
+      "new_captures": 0,
+      "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6",
+      "repeat": 1
+    },
+    {
+      "mode": "reference",
+      "fixture": 1,
+      "prefill_s": 0.3446533920359798,
+      "decode_s": 5.198471375973895,
+      "decode_tok_s": 24.43025859235543,
+      "rounds": 35,
+      "drafted": 139,
+      "accepted": 92,
+      "new_captures": 0,
+      "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba",
+      "repeat": 1
+    },
+    {
+      "mode": "reference",
+      "fixture": 0,
+      "prefill_s": 0.30160922603681684,
+      "decode_s": 5.22929591499269,
+      "decode_tok_s": 24.28625231092464,
+      "rounds": 36,
+      "drafted": 140,
+      "accepted": 91,
+      "new_captures": 0,
+      "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6",
+      "repeat": 1
+    },
+    {
+      "mode": "reference",
+      "fixture": 0,
+      "prefill_s": 0.2919448540196754,
+      "decode_s": 5.203543316980358,
+      "decode_tok_s": 24.40644619706918,
+      "rounds": 36,
+      "drafted": 140,
+      "accepted": 91,
+      "new_captures": 0,
+      "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6",
+      "repeat": 2
+    },
+    {
+      "mode": "reference",
+      "fixture": 1,
+      "prefill_s": 0.32237656897632405,
+      "decode_s": 5.412960630026646,
+      "decode_tok_s": 23.46220648557993,
+      "rounds": 35,
+      "drafted": 139,
+      "accepted": 92,
+      "new_captures": 0,
+      "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba",
+      "repeat": 2
+    },
+    {
+      "mode": "candidate",
+      "fixture": 0,
+      "prefill_s": 0.30157246201997623,
+      "decode_s": 5.213011885003652,
+      "decode_tok_s": 24.36211595169057,
+      "rounds": 36,
+      "drafted": 140,
+      "accepted": 91,
+      "new_captures": 0,
+      "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6",
+      "repeat": 2
+    },
+    {
+      "mode": "candidate",
+      "fixture": 1,
+      "prefill_s": 0.3414467749535106,
+      "decode_s": 5.110833113023546,
+      "decode_tok_s": 24.849177656843384,
+      "rounds": 35,
+      "drafted": 139,
+      "accepted": 92,
+      "new_captures": 0,
+      "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba",
+      "repeat": 2
+    }
+  ],
+  "warmups": [
+    {
+      "mode": "reference",
+      "fixture": 0,
+      "prefill_s": 0.8210296719917096,
+      "decode_s": 10.146801275026519,
+      "decode_tok_s": 12.516259711577733,
+      "rounds": 36,
+      "drafted": 140,
+      "accepted": 91,
+      "new_captures": 8,
+      "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+    },
+    {
+      "mode": "reference",
+      "fixture": 1,
+      "prefill_s": 0.7897545130108483,
+      "decode_s": 6.264737443998456,
+      "decode_tok_s": 20.272198337962987,
+      "rounds": 35,
+      "drafted": 139,
+      "accepted": 92,
+      "new_captures": 0,
+      "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+    },
+    {
+      "mode": "candidate",
+      "fixture": 0,
+      "prefill_s": 0.2961213209782727,
+      "decode_s": 6.715059540991206,
+      "decode_tok_s": 18.91271391187897,
+      "rounds": 36,
+      "drafted": 140,
+      "accepted": 91,
+      "new_captures": 8,
+      "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+    },
+    {
+      "mode": "candidate",
+      "fixture": 1,
+      "prefill_s": 0.3246646810439415,
+      "decode_s": 5.075044978992082,
+      "decode_tok_s": 25.02440875415109,
+      "rounds": 35,
+      "drafted": 139,
+      "accepted": 92,
+      "new_captures": 0,
+      "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+    }
+  ],
+  "fixtures": [
+    {
+      "text": "Write a complete Python LRU cache with get and put methods, type annotations, clear documentation, and unit tests covering eviction and updating existing keys. Explain the time complexity.",
+      "prompt_tokens": 46,
+      "prompt_sha256": "86d8efe0d9fb17e95946f4dc848092c1435da636bbc5dccb506196617ebfcac3",
+      "output_sha256": "70ae48553414eb6d6a86d393b37674b7380a4f160733ec4a7132dfb18622f9f6"
+    },
+    {
+      "text": "Explain how a transformer language model processes a prompt and generates an answer. Cover attention, key-value caching, speculative decoding, and the tradeoffs of splitting a model across several GPUs. Use clear paragraphs and concrete examples.",
+      "prompt_tokens": 56,
+      "prompt_sha256": "cd777e0fb5eb8a80a8f36c01927165f71955fade7af3d4bc62e5087693166959",
+      "output_sha256": "50ae811929a8195d1d7cee8b013af11ac858fd68e2cd25ee10f6f1809994edba"
+    }
+  ],
+  "execution_counts": {
+    "reference": {
+      "commands": 309,
+      "samples": 1408,
+      "captures": 8,
+      "replays": 2572,
+      "peak_graph_growth_bytes": 0
+    },
+    "candidate": {
+      "commands": 309,
+      "samples": 1408,
+      "captures": 8,
+      "replays": 2572,
+      "peak_graph_growth_bytes": 0
+    }
+  },
+  "maximum_torch_gib": 100.19689416885376,
+  "maximum_cgroup_gib": 57.98238754272461,
+  "minimum_host_available_gib": 10.69,
+  "limitations": [
+    "Microtimings use five CUDA-event samples, a64MiB write sweep and a weighted-shape ranking heuristic; they do not predict serving throughput or prove complete L2 flushing.",
+    "Strict exact equality applies to selected candidates. Rejected screening tiles are separately recorded and never called qualified.",
+    "Full3072 prefill uses synthetic token IDs and warm kernels; it is not authentic long-prompt prefill.",
+    "Decode timing uses short direct-controller code/prose fixtures, thinking disabled, greedy128outputs;127/decode_seconds excludes prefill and HTTP delivery. Three alternating repeats, no timed graph captures.",
+    "No production promotion: P24 retains its current quantized dense implementation; TensorFold retains original BF16 dense weights.",
+    "Family registration, packaged serving, packed batching, broader API and real long-context quality/performance gates remain incomplete."
+  ],
+  "all_exit0": true,
+  "all_oom_false": true,
+  "all_diagnostic_guards_clear": true,
+  "original_weights_unchanged": true,
+  "quantization": "original mixed K3/K4 3.25 bpw",
+  "complete_quality_gate": false,
+  "serving_throughput": false,
+  "tensorfold_serving": false,
+  "earlier_attempt": {
+    "source_revision": "d8ea87956b9cf332fab26316deb360a8306fd179",
+    "status": "failed_before_request_timing",
+    "cause": "Probe controller generation identifiers were too short; corrected and covered by a CPU regression. Full rerun required.",
+    "guards_clear": true,
+    "oom": false
+  },
+  "findings": {
+    "prefill": "Repeatable synthetic full-prefill improvement; authentic long-prompt validation still pending.",
+    "decode": "Prose median improves; code median is effectively unchanged and its runs vary. Do not claim a general decode speedup.",
+    "same_serial_outputs_as_tfp19": [
+      true,
+      true
+    ]
+  },
+  "raw_receipt_sha256": "6e3f7fa91e760fe970342896b1429f81c42698a3ceb3b4e52a99bfb70da0b8d9"
+}

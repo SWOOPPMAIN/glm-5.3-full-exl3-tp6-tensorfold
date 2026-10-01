@@ -97,7 +97,7 @@ class GraphBackend(FullModelBackend):
 
     def control_state(self):
         """Only deterministic host state: included in six-rank command agreement."""
-        return dict(kind='full_tp6_graphs_v1',plan=self.plan,
+        return dict(kind='full_tp6_graphs_v1',plan=self.plan,projections=asdict(self.projection_plan),
                     entries=[asdict(k) for k in self.entries],captures=self.captures,
                     replays=self.replays,evictions=self.evictions,eager=self.eager,closed=self.closed)
 

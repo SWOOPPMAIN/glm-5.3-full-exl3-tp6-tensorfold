@@ -26,16 +26,16 @@ Prefill here means prompt tokens divided by time to first token, including
 the first generation step and delivery. These are workload measurements,
 not a hardware ceiling. See [results and methodology](results/README.md).
 
-TensorFold remains experimental. Its full model, request controller, decode
-graphs and short HTTP/SSE paths pass exact-output checks. The latest diagnostic
-sweep tested seven draft depths up to eight, with 630 GPU checks passing. MTP4 led code at
-24.7 tok/s; MTP6 led prose at 25.6 tok/s. These are short direct-controller
-measurements, separate from the P24 serving workload above.
+TensorFold remains experimental. Its latest exact-output projection test changed
+BF16 kernel tiles while keeping the original weights. Synthetic 3,072-token
+prefill improved from **8.84 to 8.16 seconds**
+(**8.4% more input tokens/s**). Short direct-controller
+code/prose generation measured **24.4 / 25.8 tok/s**.
+These workloads differ from the P24 serving measurements above.
 
-Profiling points to BF16 dense projections as the main compute target.
-See [profiling and draft-depth results](recipes/tensorfold-tp6/DECODE_PROFILING.md),
-[graph/HTTP results](recipes/tensorfold-tp6/DECODE_GRAPHS.md), and
-[earlier attention work](results/tfp15-tensorfold.json).
+See [projection results and exact configuration](recipes/tensorfold-tp6/PROJECTIONS.md),
+[profiling](recipes/tensorfold-tp6/DECODE_PROFILING.md), and
+[graph/HTTP qualification](recipes/tensorfold-tp6/DECODE_GRAPHS.md).
 
 ## Recipes
 
@@ -55,7 +55,7 @@ weights and compiled artifacts are downloaded or built separately.
 | --- | --- |
 | `weights/` | Pinned checkpoint manifest, lossless resharing and verification |
 | `runtime/vllm/` | Serving overlays, node entrypoint, memory guard, E3 sources |
-| `experimental/tensorfold/` | Source snapshot through decode profiling and draft-depth qualification |
+| `experimental/tensorfold/` | Source snapshot through BF16 projection qualification |
 | `experiments/` | Completed attention experiment and next development steps |
 | `results/` | Serving measurements and separate TensorFold experiment results |
 | `provenance/` | Source revisions, import hashes, and local change records |

@@ -9,6 +9,7 @@ import torch
 from tensorfold.families.glm_moe_dsa.config import Config
 from tensorfold.families.glm_moe_dsa.decoder import TP6Reduction
 from tensorfold.families.glm_moe_dsa.model import MTPWeights,MTPScratch,TargetForward,FullModel
+from tensorfold.families.glm_moe_dsa.projection_plan import REFERENCE_PLAN
 from tensorfold.families.glm_moe_dsa.vocab import VocabWeights,VocabScratch
 
 
@@ -92,6 +93,7 @@ class ModelContracts(unittest.TestCase):
 
     def test_mtp_returns_once_normalized_recycle_and_uses_own_selection(self):
         model=FullModel.__new__(FullModel)
+        model._projections=REFERENCE_PLAN
         model.weights=NS(mtp=NS(norm=object()))
         model.vocab=NS(embed=Mock(return_value='embedding'))
         model.mix=NS(forward=Mock(return_value='mixed'))

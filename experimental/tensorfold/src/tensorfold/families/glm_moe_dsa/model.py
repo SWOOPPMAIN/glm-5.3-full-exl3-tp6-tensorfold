@@ -11,6 +11,7 @@ import triton.language as tl
 
 from .decoder import Decoder,DecoderWeights,DecoderWorkspace,TP6Reduction
 from .dense import linear
+from .projection_plan import ProjectionPlan,REFERENCE_PLAN,projection_scope
 from .mla import SelectionState
 from .norms import hidden_rms
 from .vocab import original_norm,VocabWeights,Vocabulary,VocabScratch
@@ -125,7 +126,10 @@ class TargetForward:
 
 
 class FullModel:
-    def __init__(self,weights,reduction):
+    def __init__(self,weights,reduction,*,projections=REFERENCE_PLAN):
+        if type(projections) is not ProjectionPlan:
+            raise ValueError('Full model requires an immutable projection plan')
+        self._projections=projections
         if len(weights.layers)!=79 or weights.layers[78].layer!=78:
             raise ValueError('Full model needs78 target layers and original MTP layer78')
         self.weights=weights
@@ -134,29 +138,36 @@ class FullModel:
         self.mix=MTPMix(weights.mtp,reduction)
         self.draft=Decoder(weights.layers[78],reduction)
 
+    @property
+    def projections(self):
+        return self._projections
+
     def _workspace(self,workspace,rows):
         if workspace.weights is not self.weights or not 1<=rows<=workspace.rows:
             raise ValueError('Model workspace belongs to another model or row capacity')
 
     def target_forward(self,token_ids,positions,bases,slots,caches,table,workspace,*,scope,visible_tokens=None):
-        self._workspace(workspace,len(token_ids))
-        embedding=self.vocab.embed(token_ids,workspace.vocab)
-        rows=len(token_ids)
-        return self.target.forward(embedding,positions,bases,slots,caches,table,workspace.decoder,
-            workspace.target_selection,workspace.hidden[:rows],workspace.residual[:rows],scope=scope,visible_tokens=visible_tokens)
+        with projection_scope(self.projections):
+            self._workspace(workspace,len(token_ids))
+            embedding=self.vocab.embed(token_ids,workspace.vocab)
+            rows=len(token_ids)
+            return self.target.forward(embedding,positions,bases,slots,caches,table,workspace.decoder,
+                workspace.target_selection,workspace.hidden[:rows],workspace.residual[:rows],scope=scope,visible_tokens=visible_tokens)
 
     def mtp_forward(self,token_ids,previous_hidden,positions,bases,slots,cache,table,workspace,*,scope,visible_tokens=None):
         """Return post-final-norm hidden for BOTH logits and the next draft step."""
-        self._workspace(workspace,len(token_ids))
-        embedding=self.vocab.embed(token_ids,workspace.vocab)
-        mixed=self.mix.forward(embedding,previous_hidden,positions,workspace.mtp)
-        workspace.decoder.bind(self.draft.weights)
-        hidden,residual=self.draft.forward(mixed,None,positions,bases,slots,cache,table,
-            workspace.decoder,workspace.mtp_selection,scope=scope,visible_tokens=visible_tokens)
-        rows=len(token_ids)
-        return hidden_rms(hidden,self.weights.mtp.norm,workspace.hidden[:rows],
-                           workspace.residual[:rows],residual=residual)[0]
+        with projection_scope(self.projections):
+            self._workspace(workspace,len(token_ids))
+            embedding=self.vocab.embed(token_ids,workspace.vocab)
+            mixed=self.mix.forward(embedding,previous_hidden,positions,workspace.mtp)
+            workspace.decoder.bind(self.draft.weights)
+            hidden,residual=self.draft.forward(mixed,None,positions,bases,slots,cache,table,
+                workspace.decoder,workspace.mtp_selection,scope=scope,visible_tokens=visible_tokens)
+            rows=len(token_ids)
+            return hidden_rms(hidden,self.weights.mtp.norm,workspace.hidden[:rows],
+                               workspace.residual[:rows],residual=residual)[0]
 
     def logits(self,normalized_hidden,workspace):
-        self._workspace(workspace,len(normalized_hidden))
-        return self.vocab.project(normalized_hidden,workspace.vocab)
+        with projection_scope(self.projections):
+            self._workspace(workspace,len(normalized_hidden))
+            return self.vocab.project(normalized_hidden,workspace.vocab)

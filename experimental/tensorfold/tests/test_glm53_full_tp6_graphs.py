@@ -14,6 +14,7 @@ from unittest.mock import Mock, patch
 import torch
 
 from tensorfold.families.glm_moe_dsa.graph_plan import graph_key,graph_reserve
+from tensorfold.families.glm_moe_dsa.projection_plan import REFERENCE_PLAN
 from tensorfold.families.glm_moe_dsa.graphs import GraphBackend
 from tensorfold.families.glm_moe_dsa.request import Extent
 
@@ -68,6 +69,7 @@ def backend(max_graphs=16,capture_bytes=512*2**20):
     b.device=torch.device('cpu');b.capacity,b.rows,b.logit_rows,b.vocab=16384,17,9,31
     b.model,b.caches,b.table,b.workspace=FakeModel(),tuple(range(79)),object(),object()
     b.sampler=lambda logits,positions,sampling: logits.argmax(-1).tolist()
+    b.projection_plan=REFERENCE_PLAN
     b.plan=graph_reserve(max_graphs,5,capture_bytes)
     b.entries=OrderedDict();b.thread=threading.get_ident();b.closed=False;b.broken=None
     b.captures=b.replays=b.evictions=b.eager=b.retained_growth=b.peak_retained_growth=0

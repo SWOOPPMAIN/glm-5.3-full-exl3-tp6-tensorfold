@@ -21,9 +21,12 @@
 - Seven-depth exact-output sweep and bounded all-rank decode profiling;
   dense BF16 projections identified as the main compute target.
 
+- BF16 projection tile screening and immutable per-model plans, qualified on
+  all six ranks against original-kernel tensors and serial request outputs.
+
 ## Next
 
-1. Tune BF16 projection tiles/layout, then gate outputs and compare matched workloads with P24.
+1. Carry the qualified projection plan into broader TensorFold tests and matched P24 comparisons.
 2. Pack concurrent requests into shared target passes and tune draft depth.
 3. Extend API checks to conversation history, tools, reasoning, stops and disconnects.
 4. Measure authentic code/prose and uncached 8K/32K/128K; qualify real 360K quality.

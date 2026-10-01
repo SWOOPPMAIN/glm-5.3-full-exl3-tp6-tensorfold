@@ -8,7 +8,7 @@ K3/K4 3.25 bpw expert fragments. Full-model target/MTP forward execution works;
 
 [`experimental/tensorfold/`](../../experimental/tensorfold/README.md) is a
 source snapshot of our qualified port revision
-`b049970f9a8e65c802a8d8d00ccd0118f62456a7`.
+`6f7660e16d01392150beabf5540532abe0891dbd`.
 The complete framework source is retained to preserve imports and upstream
 notices; the new family is under `src/tensorfold/families/glm_moe_dsa/`.
 
@@ -37,6 +37,8 @@ touched the entire 804,000-token cache. Earlier experiments cover hidden
 states, logits and changed-input graphs; TFP16 covers eager request execution
 against serial target generation.
 
+- `tools/glm53_tp6_projection_check.py`: immutable projection plan and full-model/request qualification.
+- `tools/glm53_tp6_projection_screen.py`: six-rank numerical screening and microbenchmark selection.
 - `tools/glm53_tp6_profile_check.py`: draft-depth sweep and bounded kernel traces.
 - `tools/glm53_tp6_graph_check.py`: decode graph and real local HTTP gate.
 - `tools/glm53_tp6_control_check.py`: distributed controller/scheduler gate.
@@ -93,3 +95,6 @@ applies while waiting, without active preemption.
 TFP19 then passed 630 checks while sweeping draft depths 0–8 and profiling
 warm decode. Dense BF16 projections lead compute time; draft depth alone offers
 only a small improvement on the prose fixture. [Method and next target](DECODE_PROFILING.md).
+
+TFP20 follows that profile with [BF16 projection tile qualification](PROJECTIONS.md),
+keeping the unchanged kernel as the reference and testing a fixed plan on all ranks.

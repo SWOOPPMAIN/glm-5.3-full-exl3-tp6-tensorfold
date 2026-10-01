@@ -2,8 +2,9 @@
 
 Use one existing admitted communicator/model/cache/workspace on every rank.
 This adapter deliberately does not launch workers or allocate another model.
-Graphs, command distribution and API scheduling are later integration layers.
+Graph replay, command distribution and API scheduling wrap this eager adapter.
 """
+from dataclasses import asdict
 import torch
 
 from tensorfold.cuda.sampling import sample_rows
@@ -30,12 +31,17 @@ class FullModelBackend:
         self.model, self.caches, self.table, self.workspace = model, tuple(caches), table, workspace
         self.rows, self.logit_rows = workspace.rows, workspace.vocab.logit_rows
         self.vocab, self.eos = cfg.vocab, cfg.eos
+        self.projection_plan = model.projections
         self.stream = torch.cuda.current_stream(self.device)
         self.sampler = sample_rows if sampler is None else sampler
 
     def _stream(self):
-        if torch.cuda.current_stream(self.device) != self.stream:
-            raise RuntimeError('The admitted request workspace has one CUDA stream owner')
+        if (torch.cuda.current_stream(self.device) != self.stream
+                or self.model.projections != self.projection_plan):
+            raise RuntimeError('The admitted workspace requires its owning stream and projection plan')
+
+    def control_state(self):
+        return dict(kind='full_tp6_eager_v1',projections=asdict(self.projection_plan))
 
     def _host_positions(self, tokens, start, extent):
         self._stream()

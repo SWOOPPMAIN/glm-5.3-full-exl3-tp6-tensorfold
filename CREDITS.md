@@ -68,3 +68,8 @@ and Mia framework. This is a local integration, not an upstream performance clai
 
 The TFP19 draft-depth sweep and trace summarizer are Swoopp additions, using
 PyTorch profiling APIs. Kernel timings describe this local port and workload.
+
+TFP20 projection-plan ownership, numerical screening and matched full-model probes
+are Swoopp additions. Output-tile and pipeline tuning was informed by the official
+[Triton matmul tutorial](https://triton-lang.org/main/getting-started/tutorials/03-matrix-multiplication.html);
+its published performance numbers are not used as Spark measurements.

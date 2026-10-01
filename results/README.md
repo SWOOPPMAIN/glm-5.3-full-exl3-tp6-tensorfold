@@ -124,3 +124,12 @@ code fixture at 24.72 tok/s; MTP6 led prose at 25.65 tok/s versus 24.98 for MTP4
 All 42 timed requests used warm graphs; each answer matched independent serial
 generation. Separate three-round traces identified dense BF16 projections as
 the largest compute category. This is not a serving promotion or broad quality gate.
+
+## TensorFold: TFP20 BF16 projection tiles
+
+[Summary](tfp20-tensorfold.json), [recipe and limits](../recipes/tensorfold-tp6/PROJECTIONS.md).
+306 strict GPU checks and 103 CPU checks passed. Separate component screening
+performed 2970 comparisons and rejected 0 tiles across ranks.
+Synthetic full3,072-token prefill: 8.841 → 8.157 seconds.
+Short MTP4 direct-controller code/prose: 24.36 / 25.78 tok/s.
+Original weights preserved; broader API/long-context and serving promotion remain pending.
