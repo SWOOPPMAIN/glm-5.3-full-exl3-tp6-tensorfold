@@ -50,4 +50,17 @@ understates unified GPU use.
 These are synthetic model-forward measurements with all 804K cache slots
 resident, not user-request generation or authentic 360K prompt benchmarks.
 They must not be compared directly with vLLM's input/output token rates.
-The attention candidate is still unmeasured on GPU.
+The later attention experiment is recorded below.
+
+## TensorFold: TFP15 attention tuning
+
+[Six-rank summary](tfp15-tensorfold.json). Fixed-loop 128-row control: **9.551 s**;
+best `skip128`: **8.805 s** (+8.5% throughput) for the same synthetic
+3,072-row full target. All **1,098 GPU checks** passed: 546 exact
+comparisons and 552 independent FP64 tolerance checks.
+CPU checks: 45. Peak PyTorch allocation: 100.27 GiB; minimum
+host-available memory: 10.67 GiB. All six guards clear.
+
+Three timed repeats per full-pass mode, control first; no interleaved rerun.
+The candidate is not serving. The same caution about synthetic timing and
+authentic long-context quality applies.

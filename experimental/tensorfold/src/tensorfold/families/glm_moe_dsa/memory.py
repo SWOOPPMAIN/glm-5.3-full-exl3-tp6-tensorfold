@@ -86,7 +86,7 @@ def tensor_storage_bytes(obj,*,device_type=None,skip=()):
     walk(obj);return total
 
 
-def workspace_plan(config,rank,rows,capacity,*,logit_rows=17,expert_chunk_rows=128,bulk_min_rows=None):
+def workspace_plan(config,rank,rows,capacity,*,logit_rows=17,expert_chunk_rows=128,bulk_min_rows=None,attention_part_rows=128,skip_empty_attention=False):
     """Instantiate actual scratch shapes on Torch's non-allocating meta device."""
     import torch
     from types import SimpleNamespace as NS
@@ -102,9 +102,11 @@ def workspace_plan(config,rank,rows,capacity,*,logit_rows=17,expert_chunk_rows=1
             ffn=NS(gate=torch.empty((256,6144),dtype=torch.bfloat16,device='meta'),shared=NS(weights=NS(width=512 if rank<4 else 0)),routed=ex)
         return NS(layer=index,rank=rank,input_norm=norm,attention=NS(weights=NS(real_heads=9 if rank==5 else 11)),ffn=NS(weights=ffn))
     weights=NS(layers=[layer(i) for i in range(79)],vocab=NS(norm=torch.empty(6144,device='meta')))
-    workspace=ModelWorkspace(weights,rows,capacity,logit_rows=logit_rows,expert_chunk_rows=expert_chunk_rows)
+    workspace=ModelWorkspace(weights,rows,capacity,logit_rows=logit_rows,expert_chunk_rows=expert_chunk_rows,
+                             attention_part_rows=attention_part_rows,skip_empty_attention=skip_empty_attention)
     scratch=tensor_storage_bytes(workspace,device_type='meta',skip=('weights','layer'))
     caches=capacity*(79*656+sum(config.indexer_source(i)==i for i in range(79))*132)
     collective=reduction_plan(rows,bulk_min_rows=bulk_min_rows)['total'];rope=capacity*64*2
-    return dict(rows=rows,capacity=capacity,logit_rows=logit_rows,expert_chunk_rows=expert_chunk_rows,bulk_min_rows=bulk_min_rows,workspace=scratch,cache=caches,
+    return dict(rows=rows,capacity=capacity,logit_rows=logit_rows,expert_chunk_rows=expert_chunk_rows,bulk_min_rows=bulk_min_rows,
+                attention_part_rows=attention_part_rows,skip_empty_attention=skip_empty_attention,workspace=scratch,cache=caches,
                 collective=collective,rope=rope,total=scratch+caches+collective+rope)

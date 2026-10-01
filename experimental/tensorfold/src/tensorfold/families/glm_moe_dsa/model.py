@@ -88,10 +88,11 @@ class ModelWeights:
 
 
 class ModelWorkspace:
-    def __init__(self,weights,rows,context_capacity,*,logit_rows=128,expert_chunk_rows=128):
+    def __init__(self,weights,rows,context_capacity,*,logit_rows=128,expert_chunk_rows=128,attention_part_rows=128,skip_empty_attention=False):
         device=weights.vocab.norm.device
         self.weights,self.rows=weights,rows
-        self.decoder=DecoderWorkspace(weights.layers[0],weights.layers[3],rows,context_capacity,expert_chunk_rows=expert_chunk_rows)
+        self.decoder=DecoderWorkspace(weights.layers[0],weights.layers[3],rows,context_capacity,expert_chunk_rows=expert_chunk_rows,
+                                      attention_part_rows=attention_part_rows,skip_empty_attention=skip_empty_attention)
         self.vocab=VocabScratch(rows,device,logit_rows=logit_rows)
         self.mtp=MTPScratch(rows,device)
         self.target_selection=SelectionState(rows,device)

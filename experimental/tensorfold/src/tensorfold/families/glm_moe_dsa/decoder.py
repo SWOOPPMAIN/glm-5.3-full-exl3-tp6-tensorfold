@@ -153,12 +153,13 @@ class DecoderWeights:
 
 class DecoderScratch:
     """One layer's execution buffers; not yet a whole-model memory planner."""
-    def __init__(self,weights,rows,context_capacity,*,expert_chunk_rows=EXPERT_CHUNK_ROWS):
+    def __init__(self,weights,rows,context_capacity,*,expert_chunk_rows=EXPERT_CHUNK_ROWS,attention_part_rows=128,skip_empty_attention=False):
         expert_chunk_rows=validate_chunk_rows(expert_chunk_rows)
         device=weights.input_norm.device
         self.weights,self.rows=weights,rows
         self.attention=MLAScratch(rows,context_capacity,device,
-                                  real_heads=weights.attention.weights.real_heads)
+                                  real_heads=weights.attention.weights.real_heads,
+                                  attention_part_rows=attention_part_rows,skip_empty_attention=skip_empty_attention)
         # Attention and both TP sums retain the full model batch. Once the
         # attention contribution has been reduced, its output buffer is dead
         # and can hold the local FFN result. Bound the other FFN temporaries to
@@ -180,13 +181,14 @@ class DecoderWorkspace(DecoderScratch):
     Concurrent passes/streams must have separate workspaces or be serialized.
     Returned layer outputs are borrowed until the next forward on this workspace.
     """
-    def __init__(self,dense_weights,moe_weights,rows,context_capacity,*,expert_chunk_rows=EXPERT_CHUNK_ROWS):
+    def __init__(self,dense_weights,moe_weights,rows,context_capacity,*,expert_chunk_rows=EXPERT_CHUNK_ROWS,attention_part_rows=128,skip_empty_attention=False):
         if (not 0<=dense_weights.layer<3 or not 3<=moe_weights.layer<=78
                 or dense_weights.rank!=moe_weights.rank
                 or dense_weights.input_norm.device!=moe_weights.input_norm.device
                 or dense_weights.attention.weights.real_heads!=moe_weights.attention.weights.real_heads):
             raise ValueError('Model workspace needs matching original dense and MoE rank weights')
-        super().__init__(dense_weights,rows,context_capacity,expert_chunk_rows=expert_chunk_rows)
+        super().__init__(dense_weights,rows,context_capacity,expert_chunk_rows=expert_chunk_rows,
+                         attention_part_rows=attention_part_rows,skip_empty_attention=skip_empty_attention)
         self.rank=dense_weights.rank
         self.dense=self.ffn
         self.moe=MoEScratch(moe_weights.ffn.weights,self.ffn_rows,expert_chunk_rows=expert_chunk_rows)

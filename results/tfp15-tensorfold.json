@@ -1,0 +1,3972 @@
+{
+  "at": 1790883348.3187773,
+  "source_revision": "8ca0fd95f49750b43cb73c9644e77c9c15a4f3e3",
+  "passed": true,
+  "checks": 1098,
+  "exact_checks": 546,
+  "fp64_tolerance_checks": 552,
+  "cpu_checks": 45,
+  "scope": "BF16 and compactFP8 selected attention compared with independent FP64 oracle at23 masking/boundary cases,9/11 real heads; candidate output exact vs fixed128 at259/3072 rows and changed-input graphs. Original79-layer target3072,changed2053,MTP3072,last logits and short17 graphs compare all five modes at804K resident cache. Synthetic forwards; request engine and authentic long-context quality remain incomplete.",
+  "timings": {
+    "fixed128": {
+      "target3072": {
+        "per_rank_median_ms": {
+          "0": 9550.8779296875,
+          "1": 9551.0185546875,
+          "2": 9550.8828125,
+          "3": 9550.87890625,
+          "4": 9550.814453125,
+          "5": 9551.048828125
+        },
+        "maximum_rank_median_ms": 9551.048828125
+      },
+      "mtp3072": {
+        "per_rank_median_ms": {
+          "0": 153.48159790039062,
+          "1": 153.47088623046875,
+          "2": 153.4813690185547,
+          "3": 153.4552001953125,
+          "4": 153.48191833496094,
+          "5": 153.45654296875
+        },
+        "maximum_rank_median_ms": 153.48191833496094
+      },
+      "short17_graph": {
+        "per_rank_median_ms": {
+          "0": 180.50936889648438,
+          "1": 180.470947265625,
+          "2": 180.47654724121094,
+          "3": 180.44166564941406,
+          "4": 180.48739624023438,
+          "5": 180.4911346435547
+        },
+        "maximum_rank_median_ms": 180.50936889648438
+      }
+    },
+    "skip128": {
+      "target3072": {
+        "per_rank_median_ms": {
+          "0": 8804.732421875,
+          "1": 8804.751953125,
+          "2": 8804.736328125,
+          "3": 8804.75390625,
+          "4": 8804.6572265625,
+          "5": 8804.7578125
+        },
+        "maximum_rank_median_ms": 8804.7578125
+      },
+      "mtp3072": {
+        "per_rank_median_ms": {
+          "0": 143.7487335205078,
+          "1": 143.7323455810547,
+          "2": 143.7455291748047,
+          "3": 143.7279052734375,
+          "4": 143.74169921875,
+          "5": 143.7316436767578
+        },
+        "maximum_rank_median_ms": 143.7487335205078
+      },
+      "short17_graph": {
+        "per_rank_median_ms": {
+          "0": 164.6033935546875,
+          "1": 164.57872009277344,
+          "2": 164.58090209960938,
+          "3": 164.56390380859375,
+          "4": 164.5851593017578,
+          "5": 164.5877685546875
+        },
+        "maximum_rank_median_ms": 164.6033935546875
+      }
+    },
+    "skip256": {
+      "target3072": {
+        "per_rank_median_ms": {
+          "0": 8838.3056640625,
+          "1": 8838.2275390625,
+          "2": 8838.158203125,
+          "3": 8838.1494140625,
+          "4": 8838.0927734375,
+          "5": 8838.2099609375
+        },
+        "maximum_rank_median_ms": 8838.3056640625
+      },
+      "mtp3072": {
+        "per_rank_median_ms": {
+          "0": 143.28048706054688,
+          "1": 143.2430419921875,
+          "2": 143.24546813964844,
+          "3": 143.31436157226562,
+          "4": 143.28265380859375,
+          "5": 143.272705078125
+        },
+        "maximum_rank_median_ms": 143.31436157226562
+      },
+      "short17_graph": {
+        "per_rank_median_ms": {
+          "0": 164.8318328857422,
+          "1": 164.79702758789062,
+          "2": 164.78265380859375,
+          "3": 164.76963806152344,
+          "4": 164.7890167236328,
+          "5": 164.7881317138672
+        },
+        "maximum_rank_median_ms": 164.8318328857422
+      }
+    },
+    "skip512": {
+      "target3072": {
+        "per_rank_median_ms": {
+          "0": 8868.1982421875,
+          "1": 8868.1904296875,
+          "2": 8868.17578125,
+          "3": 8868.201171875,
+          "4": 8868.1328125,
+          "5": 8868.22265625
+        },
+        "maximum_rank_median_ms": 8868.22265625
+      },
+      "mtp3072": {
+        "per_rank_median_ms": {
+          "0": 145.16819763183594,
+          "1": 145.1537628173828,
+          "2": 145.16879272460938,
+          "3": 145.1557159423828,
+          "4": 145.1675567626953,
+          "5": 145.15533447265625
+        },
+        "maximum_rank_median_ms": 145.16879272460938
+      },
+      "short17_graph": {
+        "per_rank_median_ms": {
+          "0": 164.01507568359375,
+          "1": 164.04739379882812,
+          "2": 164.02951049804688,
+          "3": 164.00537109375,
+          "4": 164.0708770751953,
+          "5": 164.0535430908203
+        },
+        "maximum_rank_median_ms": 164.0708770751953
+      }
+    },
+    "skip1024": {
+      "target3072": {
+        "per_rank_median_ms": {
+          "0": 8880.876953125,
+          "1": 8880.90625,
+          "2": 8880.869140625,
+          "3": 8880.875,
+          "4": 8880.81640625,
+          "5": 8880.9189453125
+        },
+        "maximum_rank_median_ms": 8880.9189453125
+      },
+      "mtp3072": {
+        "per_rank_median_ms": {
+          "0": 145.0826873779297,
+          "1": 145.07664489746094,
+          "2": 145.08787536621094,
+          "3": 145.06207275390625,
+          "4": 145.07212829589844,
+          "5": 145.070556640625
+        },
+        "maximum_rank_median_ms": 145.08787536621094
+      },
+      "short17_graph": {
+        "per_rank_median_ms": {
+          "0": 166.07472229003906,
+          "1": 166.04920959472656,
+          "2": 166.04013061523438,
+          "3": 166.0049591064453,
+          "4": 166.04473876953125,
+          "5": 166.0545654296875
+        },
+        "maximum_rank_median_ms": 166.07472229003906
+      }
+    }
+  },
+  "best_full_target_mode": "skip128",
+  "target_throughput_improvement_percent": 8.47599708609248,
+  "target_latency_reduction_percent": 7.81370746872736,
+  "target_input_tokens_per_second": 348.9022714104324,
+  "candidate_configuration": {
+    "expert_chunk_rows": 1024,
+    "bulk_min_rows": 256,
+    "attention_part_rows": 128,
+    "skip_empty": true
+  },
+  "defaults_unchanged": true,
+  "limitations": [
+    "Three full-pass repeats per mode, fixed128 control first, no interleaved control rerun.",
+    "Attention component tests use synthetic selected-key patterns; their timing mix is not a real prompt distribution.",
+    "CUDA event stage intervals include host gaps and stream waits; nested categories overlap and must not be summed.",
+    "Synthetic forward timing is not generation speed, serving prefill, or authentic360K quality.",
+    "All full-model modes reserve the largest1024-row attention scratch for a fair comparison; selected configuration can use less."
+  ],
+  "maximum_torch_gib": 100.27494144439697,
+  "minimum_host_available_gib": 10.67,
+  "memory_note": "Cgroup accounting understates unified GPU memory; retain host guards and actual CUDA admission.",
+  "all_exit0": true,
+  "all_oom_false": true,
+  "all_diagnostic_guards_clear": true,
+  "original_weights_unchanged": true,
+  "quantization": "original mixedK3/K4 3.25bpw",
+  "complete_quality_gate": false,
+  "serving_throughput": false,
+  "tensorfold_serving": false,
+  "cache_capacity_tokens": 804000,
+  "raw_receipt_sha256": "048add9eb1df6aa996bf71d8ea537e3a83ca159e589e37227c0cf099dd8f9b50",
+  "attention_component_timings": {
+    "compactFalse-heads9": {
+      "fixed128": {
+        "per_rank_median_ms": {
+          "0": 10.056863784790039,
+          "1": 10.051775932312012,
+          "2": 9.942208290100098,
+          "3": 10.58841609954834,
+          "4": 9.708671569824219,
+          "5": 10.191072463989258
+        },
+        "maximum_rank_median_ms": 10.58841609954834
+      },
+      "skip128": {
+        "per_rank_median_ms": {
+          "0": 5.697472095489502,
+          "1": 5.608992099761963,
+          "2": 5.388351917266846,
+          "3": 5.784575939178467,
+          "4": 5.553215980529785,
+          "5": 5.537439823150635
+        },
+        "maximum_rank_median_ms": 5.784575939178467
+      },
+      "skip256": {
+        "per_rank_median_ms": {
+          "0": 5.581696033477783,
+          "1": 5.592703819274902,
+          "2": 5.791615962982178,
+          "3": 5.9218878746032715,
+          "4": 5.554431915283203,
+          "5": 5.903039932250977
+        },
+        "maximum_rank_median_ms": 5.9218878746032715
+      },
+      "skip512": {
+        "per_rank_median_ms": {
+          "0": 6.108543872833252,
+          "1": 6.0029120445251465,
+          "2": 6.129759788513184,
+          "3": 6.239552021026611,
+          "4": 6.026368141174316,
+          "5": 6.090879917144775
+        },
+        "maximum_rank_median_ms": 6.239552021026611
+      },
+      "skip1024": {
+        "per_rank_median_ms": {
+          "0": 6.049856185913086,
+          "1": 6.040031909942627,
+          "2": 6.077888011932373,
+          "3": 6.263584136962891,
+          "4": 6.148064136505127,
+          "5": 6.117248058319092
+        },
+        "maximum_rank_median_ms": 6.263584136962891
+      }
+    },
+    "compactFalse-heads11": {
+      "fixed128": {
+        "per_rank_median_ms": {
+          "0": 9.944928169250488,
+          "1": 10.011136054992676,
+          "2": 10.28105640411377,
+          "3": 10.623711585998535,
+          "4": 9.806528091430664,
+          "5": 10.289376258850098
+        },
+        "maximum_rank_median_ms": 10.623711585998535
+      },
+      "skip128": {
+        "per_rank_median_ms": {
+          "0": 5.455455780029297,
+          "1": 5.463263988494873,
+          "2": 5.7017598152160645,
+          "3": 5.659071922302246,
+          "4": 5.555327892303467,
+          "5": 5.7354559898376465
+        },
+        "maximum_rank_median_ms": 5.7354559898376465
+      },
+      "skip256": {
+        "per_rank_median_ms": {
+          "0": 5.806399822235107,
+          "1": 5.617023944854736,
+          "2": 5.646592140197754,
+          "3": 5.848735809326172,
+          "4": 5.782815933227539,
+          "5": 5.8671040534973145
+        },
+        "maximum_rank_median_ms": 5.8671040534973145
+      },
+      "skip512": {
+        "per_rank_median_ms": {
+          "0": 6.166783809661865,
+          "1": 6.064288139343262,
+          "2": 6.707071781158447,
+          "3": 6.725152015686035,
+          "4": 6.119167804718018,
+          "5": 6.532832145690918
+        },
+        "maximum_rank_median_ms": 6.725152015686035
+      },
+      "skip1024": {
+        "per_rank_median_ms": {
+          "0": 6.039999961853027,
+          "1": 6.379712104797363,
+          "2": 6.18671989440918,
+          "3": 6.2238078117370605,
+          "4": 6.083744049072266,
+          "5": 6.0879998207092285
+        },
+        "maximum_rank_median_ms": 6.379712104797363
+      }
+    },
+    "compactTrue-heads9": {
+      "fixed128": {
+        "per_rank_median_ms": {
+          "0": 27.950176239013672,
+          "1": 27.872255325317383,
+          "2": 28.115968704223633,
+          "3": 29.501632690429688,
+          "4": 27.85036849975586,
+          "5": 28.531007766723633
+        },
+        "maximum_rank_median_ms": 29.501632690429688
+      },
+      "skip128": {
+        "per_rank_median_ms": {
+          "0": 12.590432167053223,
+          "1": 12.273183822631836,
+          "2": 12.789536476135254,
+          "3": 13.107135772705078,
+          "4": 12.75222396850586,
+          "5": 12.456512451171875
+        },
+        "maximum_rank_median_ms": 13.107135772705078
+      },
+      "skip256": {
+        "per_rank_median_ms": {
+          "0": 12.695615768432617,
+          "1": 12.667327880859375,
+          "2": 12.349151611328125,
+          "3": 13.228480339050293,
+          "4": 12.204575538635254,
+          "5": 13.011903762817383
+        },
+        "maximum_rank_median_ms": 13.228480339050293
+      },
+      "skip512": {
+        "per_rank_median_ms": {
+          "0": 12.231807708740234,
+          "1": 12.443743705749512,
+          "2": 12.287775993347168,
+          "3": 12.877056121826172,
+          "4": 12.684576034545898,
+          "5": 12.381183624267578
+        },
+        "maximum_rank_median_ms": 12.877056121826172
+      },
+      "skip1024": {
+        "per_rank_median_ms": {
+          "0": 12.339167594909668,
+          "1": 12.495488166809082,
+          "2": 12.275712013244629,
+          "3": 13.017919540405273,
+          "4": 12.098048210144043,
+          "5": 12.594367980957031
+        },
+        "maximum_rank_median_ms": 13.017919540405273
+      }
+    },
+    "compactTrue-heads11": {
+      "fixed128": {
+        "per_rank_median_ms": {
+          "0": 27.77529525756836,
+          "1": 27.814815521240234,
+          "2": 27.62041664123535,
+          "3": 29.53763198852539,
+          "4": 27.701759338378906,
+          "5": 28.38947105407715
+        },
+        "maximum_rank_median_ms": 29.53763198852539
+      },
+      "skip128": {
+        "per_rank_median_ms": {
+          "0": 12.511615753173828,
+          "1": 12.118687629699707,
+          "2": 12.662688255310059,
+          "3": 12.88479995727539,
+          "4": 12.476544380187988,
+          "5": 12.77843189239502
+        },
+        "maximum_rank_median_ms": 12.88479995727539
+      },
+      "skip256": {
+        "per_rank_median_ms": {
+          "0": 12.173664093017578,
+          "1": 12.154175758361816,
+          "2": 12.271967887878418,
+          "3": 12.701279640197754,
+          "4": 12.631199836730957,
+          "5": 12.771391868591309
+        },
+        "maximum_rank_median_ms": 12.771391868591309
+      },
+      "skip512": {
+        "per_rank_median_ms": {
+          "0": 12.47110366821289,
+          "1": 12.408960342407227,
+          "2": 12.639840126037598,
+          "3": 12.667391777038574,
+          "4": 12.531968116760254,
+          "5": 12.77785587310791
+        },
+        "maximum_rank_median_ms": 12.77785587310791
+      },
+      "skip1024": {
+        "per_rank_median_ms": {
+          "0": 12.090496063232422,
+          "1": 12.354144096374512,
+          "2": 12.166784286499023,
+          "3": 12.732704162597656,
+          "4": 12.001952171325684,
+          "5": 12.336064338684082
+        },
+        "maximum_rank_median_ms": 12.732704162597656
+      }
+    }
+  },
+  "profiles": {
+    "0": {
+      "fixed128": {
+        "tp6_sum_inclusive": {
+          "calls": 157,
+          "total_ms": 1302.3570880889893,
+          "mean_ms": 8.295268076999932
+        },
+        "decoder_norms": {
+          "calls": 156,
+          "total_ms": 101.13488009572029,
+          "mean_ms": 0.6483005134341044
+        },
+        "attention_projection": {
+          "calls": 234,
+          "total_ms": 782.8495675325394,
+          "mean_ms": 3.3455109723612795
+        },
+        "attention_norms": {
+          "calls": 156,
+          "total_ms": 9.088064027950168,
+          "mean_ms": 0.05825682069198825
+        },
+        "attention_rope": {
+          "calls": 78,
+          "total_ms": 12.486943781375885,
+          "mean_ms": 0.16008902283815238
+        },
+        "attention_cache_write": {
+          "calls": 78,
+          "total_ms": 2.589792024344206,
+          "mean_ms": 0.033202461850566745
+        },
+        "indexer_projection": {
+          "calls": 42,
+          "total_ms": 50.49539214372635,
+          "mean_ms": 1.202271241517294
+        },
+        "indexer_inclusive": {
+          "calls": 21,
+          "total_ms": 291.74291038513184,
+          "mean_ms": 13.892519542149135
+        },
+        "attention_absorb": {
+          "calls": 78,
+          "total_ms": 463.3080310821533,
+          "mean_ms": 5.939846552335299
+        },
+        "attention_selected": {
+          "calls": 78,
+          "total_ms": 2250.6511001586914,
+          "mean_ms": 28.85450128408579
+        },
+        "attention_expand": {
+          "calls": 78,
+          "total_ms": 409.18076848983765,
+          "mean_ms": 5.245907288331252
+        },
+        "attention_inclusive": {
+          "calls": 78,
+          "total_ms": 4240.279319763184,
+          "mean_ms": 54.36255538157928
+        },
+        "dense_shared_ffn": {
+          "calls": 234,
+          "total_ms": 229.75203198194504,
+          "mean_ms": 0.9818462905211326
+        },
+        "router_projection": {
+          "calls": 225,
+          "total_ms": 77.76582396030426,
+          "mean_ms": 0.34562588426801893
+        },
+        "router_top8": {
+          "calls": 225,
+          "total_ms": 5.482848063111305,
+          "mean_ms": 0.024368213613828023
+        },
+        "expert_grouping": {
+          "calls": 225,
+          "total_ms": 413.0279998779297,
+          "mean_ms": 1.8356799994574653
+        },
+        "expert_input_rotation": {
+          "calls": 225,
+          "total_ms": 188.18723154067993,
+          "mean_ms": 0.8363876957363553
+        },
+        "expert_gateup_compute": {
+          "calls": 225,
+          "total_ms": 1329.5039343833923,
+          "mean_ms": 5.908906375037299
+        },
+        "expert_gateup_epilogue": {
+          "calls": 225,
+          "total_ms": 96.92284807562828,
+          "mean_ms": 0.430768213669459
+        },
+        "expert_down_compute": {
+          "calls": 225,
+          "total_ms": 909.3320333957672,
+          "mean_ms": 4.041475703981187
+        },
+        "expert_down_combine": {
+          "calls": 225,
+          "total_ms": 391.82278406620026,
+          "mean_ms": 1.741434595849779
+        },
+        "moe_combine": {
+          "calls": 225,
+          "total_ms": 50.18604764342308,
+          "mean_ms": 0.2230491006374359
+        },
+        "final_norm": {
+          "calls": 1,
+          "total_ms": 0.6615359783172607,
+          "mean_ms": 0.6615359783172607
+        }
+      },
+      "skip128": {
+        "tp6_sum_inclusive": {
+          "calls": 157,
+          "total_ms": 1256.0441904067993,
+          "mean_ms": 8.000281467559232
+        },
+        "decoder_norms": {
+          "calls": 156,
+          "total_ms": 101.73142433166504,
+          "mean_ms": 0.6521245149465708
+        },
+        "attention_projection": {
+          "calls": 234,
+          "total_ms": 792.9318416118622,
+          "mean_ms": 3.388597613725907
+        },
+        "attention_norms": {
+          "calls": 156,
+          "total_ms": 9.20544002763927,
+          "mean_ms": 0.059009230946405575
+        },
+        "attention_rope": {
+          "calls": 78,
+          "total_ms": 12.58297584950924,
+          "mean_ms": 0.1613202031988364
+        },
+        "attention_cache_write": {
+          "calls": 78,
+          "total_ms": 2.639840040355921,
+          "mean_ms": 0.033844103081486165
+        },
+        "indexer_projection": {
+          "calls": 42,
+          "total_ms": 50.87376034259796,
+          "mean_ms": 1.2112800081570942
+        },
+        "indexer_inclusive": {
+          "calls": 21,
+          "total_ms": 289.48601245880127,
+          "mean_ms": 13.78504821232387
+        },
+        "attention_absorb": {
+          "calls": 78,
+          "total_ms": 466.28041410446167,
+          "mean_ms": 5.977954026980278
+        },
+        "attention_selected": {
+          "calls": 78,
+          "total_ms": 1524.5359344482422,
+          "mean_ms": 19.545332492926182
+        },
+        "attention_expand": {
+          "calls": 78,
+          "total_ms": 412.0047678947449,
+          "mean_ms": 5.282112408906985
+        },
+        "attention_inclusive": {
+          "calls": 78,
+          "total_ms": 3528.2365493774414,
+          "mean_ms": 45.233801915095405
+        },
+        "dense_shared_ffn": {
+          "calls": 234,
+          "total_ms": 228.59353655576706,
+          "mean_ms": 0.9768954553665259
+        },
+        "router_projection": {
+          "calls": 225,
+          "total_ms": 77.96563184261322,
+          "mean_ms": 0.3465139193005032
+        },
+        "router_top8": {
+          "calls": 225,
+          "total_ms": 5.524960057809949,
+          "mean_ms": 0.024555378034710883
+        },
+        "expert_grouping": {
+          "calls": 225,
+          "total_ms": 413.11142337322235,
+          "mean_ms": 1.836050770547655
+        },
+        "expert_input_rotation": {
+          "calls": 225,
+          "total_ms": 189.9350396990776,
+          "mean_ms": 0.8441557319959004
+        },
+        "expert_gateup_compute": {
+          "calls": 225,
+          "total_ms": 1341.5259141921997,
+          "mean_ms": 5.962337396409777
+        },
+        "expert_gateup_epilogue": {
+          "calls": 225,
+          "total_ms": 97.60073593258858,
+          "mean_ms": 0.43378104858928257
+        },
+        "expert_down_compute": {
+          "calls": 225,
+          "total_ms": 914.1635520458221,
+          "mean_ms": 4.062949120203654
+        },
+        "expert_down_combine": {
+          "calls": 225,
+          "total_ms": 391.8810557126999,
+          "mean_ms": 1.7416935809453329
+        },
+        "moe_combine": {
+          "calls": 225,
+          "total_ms": 50.26147158443928,
+          "mean_ms": 0.22338431815306345
+        },
+        "final_norm": {
+          "calls": 1,
+          "total_ms": 0.6594240069389343,
+          "mean_ms": 0.6594240069389343
+        }
+      },
+      "skip256": {
+        "tp6_sum_inclusive": {
+          "calls": 157,
+          "total_ms": 1251.9737315177917,
+          "mean_ms": 7.9743549778203295
+        },
+        "decoder_norms": {
+          "calls": 156,
+          "total_ms": 101.3596802353859,
+          "mean_ms": 0.6497415399704224
+        },
+        "attention_projection": {
+          "calls": 234,
+          "total_ms": 792.0545898675919,
+          "mean_ms": 3.3848486746478286
+        },
+        "attention_norms": {
+          "calls": 156,
+          "total_ms": 9.116032034158707,
+          "mean_ms": 0.058436102783068634
+        },
+        "attention_rope": {
+          "calls": 78,
+          "total_ms": 12.480543792247772,
+          "mean_ms": 0.16000697169548425
+        },
+        "attention_cache_write": {
+          "calls": 78,
+          "total_ms": 2.576896034181118,
+          "mean_ms": 0.033037128643347666
+        },
+        "indexer_projection": {
+          "calls": 42,
+          "total_ms": 51.201024144887924,
+          "mean_ms": 1.2190720034497124
+        },
+        "indexer_inclusive": {
+          "calls": 21,
+          "total_ms": 294.6346549987793,
+          "mean_ms": 14.030221666608538
+        },
+        "attention_absorb": {
+          "calls": 78,
+          "total_ms": 464.8022389411926,
+          "mean_ms": 5.959003063348623
+        },
+        "attention_selected": {
+          "calls": 78,
+          "total_ms": 1543.6741046905518,
+          "mean_ms": 19.790693649878868
+        },
+        "attention_expand": {
+          "calls": 78,
+          "total_ms": 410.87529706954956,
+          "mean_ms": 5.2676320137121735
+        },
+        "attention_inclusive": {
+          "calls": 78,
+          "total_ms": 3548.7228965759277,
+          "mean_ms": 45.49644739199908
+        },
+        "dense_shared_ffn": {
+          "calls": 234,
+          "total_ms": 228.71484810113907,
+          "mean_ms": 0.9774138807740986
+        },
+        "router_projection": {
+          "calls": 225,
+          "total_ms": 77.74364794790745,
+          "mean_ms": 0.345527324212922
+        },
+        "router_top8": {
+          "calls": 225,
+          "total_ms": 5.3371840454638,
+          "mean_ms": 0.023720817979839114
+        },
+        "expert_grouping": {
+          "calls": 225,
+          "total_ms": 413.2283194065094,
+          "mean_ms": 1.836570308473375
+        },
+        "expert_input_rotation": {
+          "calls": 225,
+          "total_ms": 189.615487575531,
+          "mean_ms": 0.8427355003356933
+        },
+        "expert_gateup_compute": {
+          "calls": 225,
+          "total_ms": 1334.4559721946716,
+          "mean_ms": 5.930915431976318
+        },
+        "expert_gateup_epilogue": {
+          "calls": 225,
+          "total_ms": 97.5019201040268,
+          "mean_ms": 0.43334186712900796
+        },
+        "expert_down_compute": {
+          "calls": 225,
+          "total_ms": 912.3108806610107,
+          "mean_ms": 4.054715025160048
+        },
+        "expert_down_combine": {
+          "calls": 225,
+          "total_ms": 392.6378880739212,
+          "mean_ms": 1.7450572803285387
+        },
+        "moe_combine": {
+          "calls": 225,
+          "total_ms": 50.40828762948513,
+          "mean_ms": 0.2240368339088228
+        },
+        "final_norm": {
+          "calls": 1,
+          "total_ms": 0.6624320149421692,
+          "mean_ms": 0.6624320149421692
+        }
+      },
+      "skip512": {
+        "tp6_sum_inclusive": {
+          "calls": 157,
+          "total_ms": 1282.9463639259338,
+          "mean_ms": 8.171632891247986
+        },
+        "decoder_norms": {
+          "calls": 156,
+          "total_ms": 101.83136028051376,
+          "mean_ms": 0.6527651300032934
+        },
+        "attention_projection": {
+          "calls": 234,
+          "total_ms": 791.0948802232742,
+          "mean_ms": 3.3807473513815136
+        },
+        "attention_norms": {
+          "calls": 156,
+          "total_ms": 9.261344043537974,
+          "mean_ms": 0.05936759002267932
+        },
+        "attention_rope": {
+          "calls": 78,
+          "total_ms": 12.65763184428215,
+          "mean_ms": 0.16227733133695063
+        },
+        "attention_cache_write": {
+          "calls": 78,
+          "total_ms": 2.636416018009186,
+          "mean_ms": 0.033800205359092124
+        },
+        "indexer_projection": {
+          "calls": 42,
+          "total_ms": 51.83071991801262,
+          "mean_ms": 1.2340647599526815
+        },
+        "indexer_inclusive": {
+          "calls": 21,
+          "total_ms": 292.6224021911621,
+          "mean_ms": 13.934400104341053
+        },
+        "attention_absorb": {
+          "calls": 78,
+          "total_ms": 465.15628957748413,
+          "mean_ms": 5.96354217407031
+        },
+        "attention_selected": {
+          "calls": 78,
+          "total_ms": 1558.9932117462158,
+          "mean_ms": 19.987092458284817
+        },
+        "attention_expand": {
+          "calls": 78,
+          "total_ms": 410.967679977417,
+          "mean_ms": 5.268816409966885
+        },
+        "attention_inclusive": {
+          "calls": 78,
+          "total_ms": 3561.9297485351562,
+          "mean_ms": 45.66576600686098
+        },
+        "dense_shared_ffn": {
+          "calls": 234,
+          "total_ms": 229.4973759651184,
+          "mean_ms": 0.9807580169449505
+        },
+        "router_projection": {
+          "calls": 225,
+          "total_ms": 76.44790408015251,
+          "mean_ms": 0.3397684625784556
+        },
+        "router_top8": {
+          "calls": 225,
+          "total_ms": 5.33980805799365,
+          "mean_ms": 0.023732480257749558
+        },
+        "expert_grouping": {
+          "calls": 225,
+          "total_ms": 413.31273555755615,
+          "mean_ms": 1.8369454913669163
+        },
+        "expert_input_rotation": {
+          "calls": 225,
+          "total_ms": 191.3289918899536,
+          "mean_ms": 0.8503510750664605
+        },
+        "expert_gateup_compute": {
+          "calls": 225,
+          "total_ms": 1339.105535030365,
+          "mean_ms": 5.951580155690511
+        },
+        "expert_gateup_epilogue": {
+          "calls": 225,
+          "total_ms": 97.68579187989235,
+          "mean_ms": 0.4341590750217438
+        },
+        "expert_down_compute": {
+          "calls": 225,
+          "total_ms": 912.1263349056244,
+          "mean_ms": 4.053894821802775
+        },
+        "expert_down_combine": {
+          "calls": 225,
+          "total_ms": 392.0132802724838,
+          "mean_ms": 1.7422812456554837
+        },
+        "moe_combine": {
+          "calls": 225,
+          "total_ms": 50.3552957624197,
+          "mean_ms": 0.2238013144996431
+        },
+        "final_norm": {
+          "calls": 1,
+          "total_ms": 0.668287992477417,
+          "mean_ms": 0.668287992477417
+        }
+      },
+      "skip1024": {
+        "tp6_sum_inclusive": {
+          "calls": 157,
+          "total_ms": 1241.330659866333,
+          "mean_ms": 7.906564712524414
+        },
+        "decoder_norms": {
+          "calls": 156,
+          "total_ms": 101.36752018332481,
+          "mean_ms": 0.6497917960469539
+        },
+        "attention_projection": {
+          "calls": 234,
+          "total_ms": 794.7083832025528,
+          "mean_ms": 3.3961896718057814
+        },
+        "attention_norms": {
+          "calls": 156,
+          "total_ms": 9.16480004042387,
+          "mean_ms": 0.05874871820784532
+        },
+        "attention_rope": {
+          "calls": 78,
+          "total_ms": 12.57689580321312,
+          "mean_ms": 0.1612422538873477
+        },
+        "attention_cache_write": {
+          "calls": 78,
+          "total_ms": 2.5845440216362476,
+          "mean_ms": 0.03313517976456728
+        },
+        "indexer_projection": {
+          "calls": 42,
+          "total_ms": 50.775967955589294,
+          "mean_ms": 1.2089516179902213
+        },
+        "indexer_inclusive": {
+          "calls": 21,
+          "total_ms": 290.5534076690674,
+          "mean_ms": 13.835876555669875
+        },
+        "attention_absorb": {
+          "calls": 78,
+          "total_ms": 464.75167989730835,
+          "mean_ms": 5.9583548704783125
+        },
+        "attention_selected": {
+          "calls": 78,
+          "total_ms": 1565.128345489502,
+          "mean_ms": 20.06574801909618
+        },
+        "attention_expand": {
+          "calls": 78,
+          "total_ms": 411.389919757843,
+          "mean_ms": 5.274229740485167
+        },
+        "attention_inclusive": {
+          "calls": 78,
+          "total_ms": 3569.519748687744,
+          "mean_ms": 45.763073701124924
+        },
+        "dense_shared_ffn": {
+          "calls": 234,
+          "total_ms": 228.1256321668625,
+          "mean_ms": 0.9748958639609508
+        },
+        "router_projection": {
+          "calls": 225,
+          "total_ms": 76.4280000180006,
+          "mean_ms": 0.33968000008000265
+        },
+        "router_top8": {
+          "calls": 225,
+          "total_ms": 5.296064056456089,
+          "mean_ms": 0.023538062473138173
+        },
+        "expert_grouping": {
+          "calls": 225,
+          "total_ms": 413.3309442996979,
+          "mean_ms": 1.8370264191097683
+        },
+        "expert_input_rotation": {
+          "calls": 225,
+          "total_ms": 187.6979203224182,
+          "mean_ms": 0.8342129792107477
+        },
+        "expert_gateup_compute": {
+          "calls": 225,
+          "total_ms": 1332.9513926506042,
+          "mean_ms": 5.924228411780463
+        },
+        "expert_gateup_epilogue": {
+          "calls": 225,
+          "total_ms": 97.31487986445427,
+          "mean_ms": 0.4325105771753523
+        },
+        "expert_down_compute": {
+          "calls": 225,
+          "total_ms": 913.1697297096252,
+          "mean_ms": 4.058532132042779
+        },
+        "expert_down_combine": {
+          "calls": 225,
+          "total_ms": 391.4300162792206,
+          "mean_ms": 1.7396889612409803
+        },
+        "moe_combine": {
+          "calls": 225,
+          "total_ms": 50.04649570584297,
+          "mean_ms": 0.22242886980374654
+        },
+        "final_norm": {
+          "calls": 1,
+          "total_ms": 0.6624959707260132,
+          "mean_ms": 0.6624959707260132
+        }
+      }
+    },
+    "1": {
+      "fixed128": {
+        "tp6_sum_inclusive": {
+          "calls": 157,
+          "total_ms": 1294.9336609840393,
+          "mean_ms": 8.247985101809167
+        },
+        "decoder_norms": {
+          "calls": 156,
+          "total_ms": 101.67737618088722,
+          "mean_ms": 0.6517780524415847
+        },
+        "attention_projection": {
+          "calls": 234,
+          "total_ms": 786.6502734422684,
+          "mean_ms": 3.3617533053088393
+        },
+        "attention_norms": {
+          "calls": 156,
+          "total_ms": 9.015584040433168,
+          "mean_ms": 0.057792205387392104
+        },
+        "attention_rope": {
+          "calls": 78,
+          "total_ms": 12.848991930484772,
+          "mean_ms": 0.1647306657754458
+        },
+        "attention_cache_write": {
+          "calls": 78,
+          "total_ms": 2.648480024188757,
+          "mean_ms": 0.03395487210498406
+        },
+        "indexer_projection": {
+          "calls": 42,
+          "total_ms": 50.712512254714966,
+          "mean_ms": 1.207440767969404
+        },
+        "indexer_inclusive": {
+          "calls": 21,
+          "total_ms": 294.3130226135254,
+          "mean_ms": 14.014905838739304
+        },
+        "attention_absorb": {
+          "calls": 78,
+          "total_ms": 461.87932777404785,
+          "mean_ms": 5.921529843257024
+        },
+        "attention_selected": {
+          "calls": 78,
+          "total_ms": 2254.775136947632,
+          "mean_ms": 28.907373550610664
+        },
+        "attention_expand": {
+          "calls": 78,
+          "total_ms": 406.1143674850464,
+          "mean_ms": 5.206594454936492
+        },
+        "attention_inclusive": {
+          "calls": 78,
+          "total_ms": 4247.386180877686,
+          "mean_ms": 54.45366898561135
+        },
+        "dense_shared_ffn": {
+          "calls": 234,
+          "total_ms": 227.29993605613708,
+          "mean_ms": 0.9713672481031499
+        },
+        "router_projection": {
+          "calls": 225,
+          "total_ms": 76.29993599653244,
+          "mean_ms": 0.3391108266512553
+        },
+        "router_top8": {
+          "calls": 225,
+          "total_ms": 5.45497602969408,
+          "mean_ms": 0.02424433790975147
+        },
+        "expert_grouping": {
+          "calls": 225,
+          "total_ms": 411.18774330616,
+          "mean_ms": 1.827501081360711
+        },
+        "expert_input_rotation": {
+          "calls": 225,
+          "total_ms": 188.65356796979904,
+          "mean_ms": 0.8384603020879957
+        },
+        "expert_gateup_compute": {
+          "calls": 225,
+          "total_ms": 1338.756191253662,
+          "mean_ms": 5.950027516682943
+        },
+        "expert_gateup_epilogue": {
+          "calls": 225,
+          "total_ms": 97.37273615598679,
+          "mean_ms": 0.43276771624883015
+        },
+        "expert_down_compute": {
+          "calls": 225,
+          "total_ms": 909.560863494873,
+          "mean_ms": 4.04249272664388
+        },
+        "expert_down_combine": {
+          "calls": 225,
+          "total_ms": 387.137792468071,
+          "mean_ms": 1.7206124109692045
+        },
+        "moe_combine": {
+          "calls": 225,
+          "total_ms": 49.8773435652256,
+          "mean_ms": 0.2216770825121138
+        },
+        "final_norm": {
+          "calls": 1,
+          "total_ms": 0.6878399848937988,
+          "mean_ms": 0.6878399848937988
+        }
+      },
+      "skip128": {
+        "tp6_sum_inclusive": {
+          "calls": 157,
+          "total_ms": 1258.874849319458,
+          "mean_ms": 8.018311142162153
+        },
+        "decoder_norms": {
+          "calls": 156,
+          "total_ms": 102.06307190656662,
+          "mean_ms": 0.6542504609395297
+        },
+        "attention_projection": {
+          "calls": 234,
+          "total_ms": 796.5465270280838,
+          "mean_ms": 3.4040449872995033
+        },
+        "attention_norms": {
+          "calls": 156,
+          "total_ms": 9.386336036026478,
+          "mean_ms": 0.060168820743759475
+        },
+        "attention_rope": {
+          "calls": 78,
+          "total_ms": 12.637535899877548,
+          "mean_ms": 0.16201969102407113
+        },
+        "attention_cache_write": {
+          "calls": 78,
+          "total_ms": 2.5474560149013996,
+          "mean_ms": 0.03265969249873589
+        },
+        "indexer_projection": {
+          "calls": 42,
+          "total_ms": 51.70950394868851,
+          "mean_ms": 1.2311786654449643
+        },
+        "indexer_inclusive": {
+          "calls": 21,
+          "total_ms": 291.86115169525146,
+          "mean_ms": 13.89815008072626
+        },
+        "attention_absorb": {
+          "calls": 78,
+          "total_ms": 463.4010863304138,
+          "mean_ms": 5.941039568338638
+        },
+        "attention_selected": {
+          "calls": 78,
+          "total_ms": 1526.9671039581299,
+          "mean_ms": 19.576501332796536
+        },
+        "attention_expand": {
+          "calls": 78,
+          "total_ms": 408.0432319641113,
+          "mean_ms": 5.231323486719376
+        },
+        "attention_inclusive": {
+          "calls": 78,
+          "total_ms": 3530.653450012207,
+          "mean_ms": 45.26478782066932
+        },
+        "dense_shared_ffn": {
+          "calls": 234,
+          "total_ms": 229.28112012147903,
+          "mean_ms": 0.9798338466729873
+        },
+        "router_projection": {
+          "calls": 225,
+          "total_ms": 77.49520009756088,
+          "mean_ms": 0.34442311154471505
+        },
+        "router_top8": {
+          "calls": 225,
+          "total_ms": 5.356672050431371,
+          "mean_ms": 0.023807431335250536
+        },
+        "expert_grouping": {
+          "calls": 225,
+          "total_ms": 411.43843126296997,
+          "mean_ms": 1.8286152500576442
+        },
+        "expert_input_rotation": {
+          "calls": 225,
+          "total_ms": 187.133056640625,
+          "mean_ms": 0.8317024739583333
+        },
+        "expert_gateup_compute": {
+          "calls": 225,
+          "total_ms": 1339.505343914032,
+          "mean_ms": 5.953357084062365
+        },
+        "expert_gateup_epilogue": {
+          "calls": 225,
+          "total_ms": 97.74140810966492,
+          "mean_ms": 0.4344062582651774
+        },
+        "expert_down_compute": {
+          "calls": 225,
+          "total_ms": 915.7035508155823,
+          "mean_ms": 4.069793559180366
+        },
+        "expert_down_combine": {
+          "calls": 225,
+          "total_ms": 390.304575920105,
+          "mean_ms": 1.7346870040893554
+        },
+        "moe_combine": {
+          "calls": 225,
+          "total_ms": 50.15484757721424,
+          "mean_ms": 0.22291043367650773
+        },
+        "final_norm": {
+          "calls": 1,
+          "total_ms": 0.6644799709320068,
+          "mean_ms": 0.6644799709320068
+        }
+      },
+      "skip256": {
+        "tp6_sum_inclusive": {
+          "calls": 157,
+          "total_ms": 1244.5112972259521,
+          "mean_ms": 7.926823549209886
+        },
+        "decoder_norms": {
+          "calls": 156,
+          "total_ms": 101.74342396855354,
+          "mean_ms": 0.6522014356958561
+        },
+        "attention_projection": {
+          "calls": 234,
+          "total_ms": 795.7720996141434,
+          "mean_ms": 3.40073546843651
+        },
+        "attention_norms": {
+          "calls": 156,
+          "total_ms": 9.269536018371582,
+          "mean_ms": 0.05942010268186911
+        },
+        "attention_rope": {
+          "calls": 78,
+          "total_ms": 12.87599991261959,
+          "mean_ms": 0.16507692195666143
+        },
+        "attention_cache_write": {
+          "calls": 78,
+          "total_ms": 2.6177600286900997,
+          "mean_ms": 0.03356102600884743
+        },
+        "indexer_projection": {
+          "calls": 42,
+          "total_ms": 51.210847705602646,
+          "mean_ms": 1.219305897752444
+        },
+        "indexer_inclusive": {
+          "calls": 21,
+          "total_ms": 291.81830501556396,
+          "mean_ms": 13.896109762645903
+        },
+        "attention_absorb": {
+          "calls": 78,
+          "total_ms": 462.50310468673706,
+          "mean_ms": 5.929526983163296
+        },
+        "attention_selected": {
+          "calls": 78,
+          "total_ms": 1551.3715476989746,
+          "mean_ms": 19.889378816653522
+        },
+        "attention_expand": {
+          "calls": 78,
+          "total_ms": 406.02172660827637,
+          "mean_ms": 5.205406751388159
+        },
+        "attention_inclusive": {
+          "calls": 78,
+          "total_ms": 3551.3770751953125,
+          "mean_ms": 45.53047532301683
+        },
+        "dense_shared_ffn": {
+          "calls": 234,
+          "total_ms": 230.69494396448135,
+          "mean_ms": 0.9858758289080399
+        },
+        "router_projection": {
+          "calls": 225,
+          "total_ms": 77.54716789722443,
+          "mean_ms": 0.3446540795432197
+        },
+        "router_top8": {
+          "calls": 225,
+          "total_ms": 5.4939200431108475,
+          "mean_ms": 0.02441742241382599
+        },
+        "expert_grouping": {
+          "calls": 225,
+          "total_ms": 411.43744027614594,
+          "mean_ms": 1.8286108456717598
+        },
+        "expert_input_rotation": {
+          "calls": 225,
+          "total_ms": 188.48214375972748,
+          "mean_ms": 0.8376984167098999
+        },
+        "expert_gateup_compute": {
+          "calls": 225,
+          "total_ms": 1341.4863080978394,
+          "mean_ms": 5.962161369323731
+        },
+        "expert_gateup_epilogue": {
+          "calls": 225,
+          "total_ms": 97.64268818497658,
+          "mean_ms": 0.43396750304434034
+        },
+        "expert_down_compute": {
+          "calls": 225,
+          "total_ms": 911.8011846542358,
+          "mean_ms": 4.052449709574382
+        },
+        "expert_down_combine": {
+          "calls": 225,
+          "total_ms": 389.4850878715515,
+          "mean_ms": 1.7310448349846734
+        },
+        "moe_combine": {
+          "calls": 225,
+          "total_ms": 50.41990365087986,
+          "mean_ms": 0.22408846067057717
+        },
+        "final_norm": {
+          "calls": 1,
+          "total_ms": 0.6700479984283447,
+          "mean_ms": 0.6700479984283447
+        }
+      },
+      "skip512": {
+        "tp6_sum_inclusive": {
+          "calls": 157,
+          "total_ms": 1283.7165431976318,
+          "mean_ms": 8.176538491704662
+        },
+        "decoder_norms": {
+          "calls": 156,
+          "total_ms": 101.57216021418571,
+          "mean_ms": 0.6511035911165751
+        },
+        "attention_projection": {
+          "calls": 234,
+          "total_ms": 799.2319059371948,
+          "mean_ms": 3.4155209655435677
+        },
+        "attention_norms": {
+          "calls": 156,
+          "total_ms": 9.126752018928528,
+          "mean_ms": 0.05850482063415723
+        },
+        "attention_rope": {
+          "calls": 78,
+          "total_ms": 12.72611191868782,
+          "mean_ms": 0.1631552810088182
+        },
+        "attention_cache_write": {
+          "calls": 78,
+          "total_ms": 2.629856012761593,
+          "mean_ms": 0.03371610272771273
+        },
+        "indexer_projection": {
+          "calls": 42,
+          "total_ms": 50.80479979515076,
+          "mean_ms": 1.2096380903607322
+        },
+        "indexer_inclusive": {
+          "calls": 21,
+          "total_ms": 289.8410539627075,
+          "mean_ms": 13.80195495060512
+        },
+        "attention_absorb": {
+          "calls": 78,
+          "total_ms": 463.69417428970337,
+          "mean_ms": 5.944797106278249
+        },
+        "attention_selected": {
+          "calls": 78,
+          "total_ms": 1561.8143711090088,
+          "mean_ms": 20.023261168064217
+        },
+        "attention_expand": {
+          "calls": 78,
+          "total_ms": 404.8736333847046,
+          "mean_ms": 5.190687607496213
+        },
+        "attention_inclusive": {
+          "calls": 78,
+          "total_ms": 3562.856632232666,
+          "mean_ms": 45.677649131188026
+        },
+        "dense_shared_ffn": {
+          "calls": 234,
+          "total_ms": 232.12080001831055,
+          "mean_ms": 0.991969230847481
+        },
+        "router_projection": {
+          "calls": 225,
+          "total_ms": 76.81526394188404,
+          "mean_ms": 0.3414011730750402
+        },
+        "router_top8": {
+          "calls": 225,
+          "total_ms": 5.282688040286303,
+          "mean_ms": 0.02347861351238357
+        },
+        "expert_grouping": {
+          "calls": 225,
+          "total_ms": 412.4973121881485,
+          "mean_ms": 1.8333213875028822
+        },
+        "expert_input_rotation": {
+          "calls": 225,
+          "total_ms": 187.44528049230576,
+          "mean_ms": 0.8330901355213589
+        },
+        "expert_gateup_compute": {
+          "calls": 225,
+          "total_ms": 1341.7638387680054,
+          "mean_ms": 5.963394838968913
+        },
+        "expert_gateup_epilogue": {
+          "calls": 225,
+          "total_ms": 97.40099203586578,
+          "mean_ms": 0.4328932979371813
+        },
+        "expert_down_compute": {
+          "calls": 225,
+          "total_ms": 913.6810545921326,
+          "mean_ms": 4.0608046870761445
+        },
+        "expert_down_combine": {
+          "calls": 225,
+          "total_ms": 389.92323207855225,
+          "mean_ms": 1.7329921425713433
+        },
+        "moe_combine": {
+          "calls": 225,
+          "total_ms": 50.10089564323425,
+          "mean_ms": 0.22267064730326336
+        },
+        "final_norm": {
+          "calls": 1,
+          "total_ms": 0.6686400175094604,
+          "mean_ms": 0.6686400175094604
+        }
+      },
+      "skip1024": {
+        "tp6_sum_inclusive": {
+          "calls": 157,
+          "total_ms": 1260.3227190971375,
+          "mean_ms": 8.027533242656926
+        },
+        "decoder_norms": {
+          "calls": 156,
+          "total_ms": 101.75644779205322,
+          "mean_ms": 0.6522849217439309
+        },
+        "attention_projection": {
+          "calls": 234,
+          "total_ms": 790.6155854463577,
+          "mean_ms": 3.378699083104093
+        },
+        "attention_norms": {
+          "calls": 156,
+          "total_ms": 9.068768030032516,
+          "mean_ms": 0.05813312839764433
+        },
+        "attention_rope": {
+          "calls": 78,
+          "total_ms": 12.739711955189705,
+          "mean_ms": 0.16332964045115006
+        },
+        "attention_cache_write": {
+          "calls": 78,
+          "total_ms": 2.564928036183119,
+          "mean_ms": 0.032883692771578446
+        },
+        "indexer_projection": {
+          "calls": 42,
+          "total_ms": 51.76329606771469,
+          "mean_ms": 1.232459430183683
+        },
+        "indexer_inclusive": {
+          "calls": 21,
+          "total_ms": 294.2917776107788,
+          "mean_ms": 14.013894171941848
+        },
+        "attention_absorb": {
+          "calls": 78,
+          "total_ms": 463.7162570953369,
+          "mean_ms": 5.945080219170986
+        },
+        "attention_selected": {
+          "calls": 78,
+          "total_ms": 1559.1523513793945,
+          "mean_ms": 19.989132709992237
+        },
+        "attention_expand": {
+          "calls": 78,
+          "total_ms": 404.8877754211426,
+          "mean_ms": 5.190868915655674
+        },
+        "attention_inclusive": {
+          "calls": 78,
+          "total_ms": 3556.120361328125,
+          "mean_ms": 45.59128668369391
+        },
+        "dense_shared_ffn": {
+          "calls": 234,
+          "total_ms": 230.18444871902466,
+          "mean_ms": 0.9836942252949772
+        },
+        "router_projection": {
+          "calls": 225,
+          "total_ms": 77.00694398581982,
+          "mean_ms": 0.3422530843814214
+        },
+        "router_top8": {
+          "calls": 225,
+          "total_ms": 5.416256036609411,
+          "mean_ms": 0.024072249051597383
+        },
+        "expert_grouping": {
+          "calls": 225,
+          "total_ms": 412.87369644641876,
+          "mean_ms": 1.8349942064285278
+        },
+        "expert_input_rotation": {
+          "calls": 225,
+          "total_ms": 187.08169585466385,
+          "mean_ms": 0.831474203798506
+        },
+        "expert_gateup_compute": {
+          "calls": 225,
+          "total_ms": 1326.6664299964905,
+          "mean_ms": 5.896295244428846
+        },
+        "expert_gateup_epilogue": {
+          "calls": 225,
+          "total_ms": 97.51004794239998,
+          "mean_ms": 0.43337799085511103
+        },
+        "expert_down_compute": {
+          "calls": 225,
+          "total_ms": 913.628160238266,
+          "mean_ms": 4.06056960105896
+        },
+        "expert_down_combine": {
+          "calls": 225,
+          "total_ms": 389.9989125728607,
+          "mean_ms": 1.7333285003238255
+        },
+        "moe_combine": {
+          "calls": 225,
+          "total_ms": 50.27132761478424,
+          "mean_ms": 0.2234281227323744
+        },
+        "final_norm": {
+          "calls": 1,
+          "total_ms": 0.666592001914978,
+          "mean_ms": 0.666592001914978
+        }
+      }
+    },
+    "2": {
+      "fixed128": {
+        "tp6_sum_inclusive": {
+          "calls": 157,
+          "total_ms": 1258.515709400177,
+          "mean_ms": 8.01602362675272
+        },
+        "decoder_norms": {
+          "calls": 156,
+          "total_ms": 101.50873610377312,
+          "mean_ms": 0.6506970263062379
+        },
+        "attention_projection": {
+          "calls": 234,
+          "total_ms": 799.5014742612839,
+          "mean_ms": 3.4166729669285636
+        },
+        "attention_norms": {
+          "calls": 156,
+          "total_ms": 9.103743985295296,
+          "mean_ms": 0.058357333239072405
+        },
+        "attention_rope": {
+          "calls": 78,
+          "total_ms": 12.671327874064445,
+          "mean_ms": 0.16245292146236467
+        },
+        "attention_cache_write": {
+          "calls": 78,
+          "total_ms": 2.594464033842087,
+          "mean_ms": 0.033262359408231884
+        },
+        "indexer_projection": {
+          "calls": 42,
+          "total_ms": 51.14419174194336,
+          "mean_ms": 1.2177188509986514
+        },
+        "indexer_inclusive": {
+          "calls": 21,
+          "total_ms": 288.92176055908203,
+          "mean_ms": 13.758179074242001
+        },
+        "attention_absorb": {
+          "calls": 78,
+          "total_ms": 466.91820764541626,
+          "mean_ms": 5.986130867248926
+        },
+        "attention_selected": {
+          "calls": 78,
+          "total_ms": 2261.279321670532,
+          "mean_ms": 28.99076053423759
+        },
+        "attention_expand": {
+          "calls": 78,
+          "total_ms": 402.3293442726135,
+          "mean_ms": 5.158068516315558
+        },
+        "attention_inclusive": {
+          "calls": 78,
+          "total_ms": 4261.796504974365,
+          "mean_ms": 54.63841673044058
+        },
+        "dense_shared_ffn": {
+          "calls": 234,
+          "total_ms": 228.80879998207092,
+          "mean_ms": 0.9778153845387646
+        },
+        "router_projection": {
+          "calls": 225,
+          "total_ms": 77.29529596865177,
+          "mean_ms": 0.3435346487495634
+        },
+        "router_top8": {
+          "calls": 225,
+          "total_ms": 5.314720068126917,
+          "mean_ms": 0.023620978080564074
+        },
+        "expert_grouping": {
+          "calls": 225,
+          "total_ms": 413.78147196769714,
+          "mean_ms": 1.8390287643008763
+        },
+        "expert_input_rotation": {
+          "calls": 225,
+          "total_ms": 188.1229117512703,
+          "mean_ms": 0.8361018300056458
+        },
+        "expert_gateup_compute": {
+          "calls": 225,
+          "total_ms": 1345.849057674408,
+          "mean_ms": 5.9815513674418135
+        },
+        "expert_gateup_epilogue": {
+          "calls": 225,
+          "total_ms": 98.95849603414536,
+          "mean_ms": 0.4398155379295349
+        },
+        "expert_down_compute": {
+          "calls": 225,
+          "total_ms": 914.9501132965088,
+          "mean_ms": 4.0664449479844835
+        },
+        "expert_down_combine": {
+          "calls": 225,
+          "total_ms": 390.1071044206619,
+          "mean_ms": 1.7338093529807197
+        },
+        "moe_combine": {
+          "calls": 225,
+          "total_ms": 49.85004784166813,
+          "mean_ms": 0.22155576818519168
+        },
+        "final_norm": {
+          "calls": 1,
+          "total_ms": 0.6698240041732788,
+          "mean_ms": 0.6698240041732788
+        }
+      },
+      "skip128": {
+        "tp6_sum_inclusive": {
+          "calls": 157,
+          "total_ms": 1246.4936656951904,
+          "mean_ms": 7.939450099969366
+        },
+        "decoder_norms": {
+          "calls": 156,
+          "total_ms": 101.9189441204071,
+          "mean_ms": 0.6533265648744045
+        },
+        "attention_projection": {
+          "calls": 234,
+          "total_ms": 798.1284475326538,
+          "mean_ms": 3.4108053313361273
+        },
+        "attention_norms": {
+          "calls": 156,
+          "total_ms": 9.149344023317099,
+          "mean_ms": 0.05864964117510961
+        },
+        "attention_rope": {
+          "calls": 78,
+          "total_ms": 12.598111882805824,
+          "mean_ms": 0.16151425490776697
+        },
+        "attention_cache_write": {
+          "calls": 78,
+          "total_ms": 2.550432041287422,
+          "mean_ms": 0.03269784668317208
+        },
+        "indexer_projection": {
+          "calls": 42,
+          "total_ms": 51.44428804516792,
+          "mean_ms": 1.2248640010754268
+        },
+        "indexer_inclusive": {
+          "calls": 21,
+          "total_ms": 291.50598430633545,
+          "mean_ms": 13.881237347920736
+        },
+        "attention_absorb": {
+          "calls": 78,
+          "total_ms": 467.10099172592163,
+          "mean_ms": 5.988474252896431
+        },
+        "attention_selected": {
+          "calls": 78,
+          "total_ms": 1529.9546642303467,
+          "mean_ms": 19.614803387568546
+        },
+        "attention_expand": {
+          "calls": 78,
+          "total_ms": 403.6725420951843,
+          "mean_ms": 5.175289001220312
+        },
+        "attention_inclusive": {
+          "calls": 78,
+          "total_ms": 3533.7405166625977,
+          "mean_ms": 45.304365598238434
+        },
+        "dense_shared_ffn": {
+          "calls": 234,
+          "total_ms": 229.8746879696846,
+          "mean_ms": 0.9823704614089086
+        },
+        "router_projection": {
+          "calls": 225,
+          "total_ms": 78.23481598496437,
+          "mean_ms": 0.3477102932665083
+        },
+        "router_top8": {
+          "calls": 225,
+          "total_ms": 5.346752054989338,
+          "mean_ms": 0.02376334246661928
+        },
+        "expert_grouping": {
+          "calls": 225,
+          "total_ms": 414.3229116201401,
+          "mean_ms": 1.841435162756178
+        },
+        "expert_input_rotation": {
+          "calls": 225,
+          "total_ms": 187.6217600107193,
+          "mean_ms": 0.8338744889365303
+        },
+        "expert_gateup_compute": {
+          "calls": 225,
+          "total_ms": 1339.4703369140625,
+          "mean_ms": 5.953201497395833
+        },
+        "expert_gateup_epilogue": {
+          "calls": 225,
+          "total_ms": 99.40259185433388,
+          "mean_ms": 0.4417892971303728
+        },
+        "expert_down_compute": {
+          "calls": 225,
+          "total_ms": 917.7531840801239,
+          "mean_ms": 4.078903040356106
+        },
+        "expert_down_combine": {
+          "calls": 225,
+          "total_ms": 391.46921586990356,
+          "mean_ms": 1.7398631816440158
+        },
+        "moe_combine": {
+          "calls": 225,
+          "total_ms": 49.983391761779785,
+          "mean_ms": 0.22214840783013237
+        },
+        "final_norm": {
+          "calls": 1,
+          "total_ms": 0.6644799709320068,
+          "mean_ms": 0.6644799709320068
+        }
+      },
+      "skip256": {
+        "tp6_sum_inclusive": {
+          "calls": 157,
+          "total_ms": 1221.9984021186829,
+          "mean_ms": 7.7834293128578524
+        },
+        "decoder_norms": {
+          "calls": 156,
+          "total_ms": 101.6824322938919,
+          "mean_ms": 0.651810463422384
+        },
+        "attention_projection": {
+          "calls": 234,
+          "total_ms": 798.8859852552414,
+          "mean_ms": 3.4140426720309462
+        },
+        "attention_norms": {
+          "calls": 156,
+          "total_ms": 9.131136026233435,
+          "mean_ms": 0.05853292324508612
+        },
+        "attention_rope": {
+          "calls": 78,
+          "total_ms": 12.709951922297478,
+          "mean_ms": 0.1629481015679164
+        },
+        "attention_cache_write": {
+          "calls": 78,
+          "total_ms": 2.578816032037139,
+          "mean_ms": 0.03306174400047614
+        },
+        "indexer_projection": {
+          "calls": 42,
+          "total_ms": 52.571712017059326,
+          "mean_ms": 1.251707428977603
+        },
+        "indexer_inclusive": {
+          "calls": 21,
+          "total_ms": 289.483904838562,
+          "mean_ms": 13.784947849455333
+        },
+        "attention_absorb": {
+          "calls": 78,
+          "total_ms": 467.3260807991028,
+          "mean_ms": 5.991360010244907
+        },
+        "attention_selected": {
+          "calls": 78,
+          "total_ms": 1554.9517440795898,
+          "mean_ms": 19.935278770251152
+        },
+        "attention_expand": {
+          "calls": 78,
+          "total_ms": 404.8320002555847,
+          "mean_ms": 5.1901538494305735
+        },
+        "attention_inclusive": {
+          "calls": 78,
+          "total_ms": 3558.5109481811523,
+          "mean_ms": 45.6219352330917
+        },
+        "dense_shared_ffn": {
+          "calls": 234,
+          "total_ms": 230.88537567853928,
+          "mean_ms": 0.9866896396518773
+        },
+        "router_projection": {
+          "calls": 225,
+          "total_ms": 78.60947190225124,
+          "mean_ms": 0.3493754306766722
+        },
+        "router_top8": {
+          "calls": 225,
+          "total_ms": 5.279872063547373,
+          "mean_ms": 0.023466098060210546
+        },
+        "expert_grouping": {
+          "calls": 225,
+          "total_ms": 415.8128638267517,
+          "mean_ms": 1.848057172563341
+        },
+        "expert_input_rotation": {
+          "calls": 225,
+          "total_ms": 188.82633584737778,
+          "mean_ms": 0.839228159321679
+        },
+        "expert_gateup_compute": {
+          "calls": 225,
+          "total_ms": 1344.8070712089539,
+          "mean_ms": 5.9769203164842395
+        },
+        "expert_gateup_epilogue": {
+          "calls": 225,
+          "total_ms": 98.93756809830666,
+          "mean_ms": 0.43972252488136293
+        },
+        "expert_down_compute": {
+          "calls": 225,
+          "total_ms": 915.8215653896332,
+          "mean_ms": 4.07031806839837
+        },
+        "expert_down_combine": {
+          "calls": 225,
+          "total_ms": 390.3775999546051,
+          "mean_ms": 1.7350115553538004
+        },
+        "moe_combine": {
+          "calls": 225,
+          "total_ms": 49.9052796959877,
+          "mean_ms": 0.22180124309327867
+        },
+        "final_norm": {
+          "calls": 1,
+          "total_ms": 0.6695039868354797,
+          "mean_ms": 0.6695039868354797
+        }
+      },
+      "skip512": {
+        "tp6_sum_inclusive": {
+          "calls": 157,
+          "total_ms": 1247.4502425193787,
+          "mean_ms": 7.945542945983304
+        },
+        "decoder_norms": {
+          "calls": 156,
+          "total_ms": 102.21478393673897,
+          "mean_ms": 0.655222973953455
+        },
+        "attention_projection": {
+          "calls": 234,
+          "total_ms": 803.1197121143341,
+          "mean_ms": 3.4321355218561287
+        },
+        "attention_norms": {
+          "calls": 156,
+          "total_ms": 9.331744018942118,
+          "mean_ms": 0.059818871916295625
+        },
+        "attention_rope": {
+          "calls": 78,
+          "total_ms": 12.832639917731285,
+          "mean_ms": 0.16452102458629853
+        },
+        "attention_cache_write": {
+          "calls": 78,
+          "total_ms": 2.603776026517153,
+          "mean_ms": 0.03338174392970709
+        },
+        "indexer_projection": {
+          "calls": 42,
+          "total_ms": 53.75017610192299,
+          "mean_ms": 1.279766097664833
+        },
+        "indexer_inclusive": {
+          "calls": 21,
+          "total_ms": 290.3840322494507,
+          "mean_ms": 13.827811059497652
+        },
+        "attention_absorb": {
+          "calls": 78,
+          "total_ms": 469.0484790802002,
+          "mean_ms": 6.013442039489746
+        },
+        "attention_selected": {
+          "calls": 78,
+          "total_ms": 1578.6454391479492,
+          "mean_ms": 20.239044091640373
+        },
+        "attention_expand": {
+          "calls": 78,
+          "total_ms": 401.4802236557007,
+          "mean_ms": 5.1471823545602655
+        },
+        "attention_inclusive": {
+          "calls": 78,
+          "total_ms": 3586.1860961914062,
+          "mean_ms": 45.976744822966744
+        },
+        "dense_shared_ffn": {
+          "calls": 234,
+          "total_ms": 232.51475131511688,
+          "mean_ms": 0.9936527833979354
+        },
+        "router_projection": {
+          "calls": 225,
+          "total_ms": 78.44451205432415,
+          "mean_ms": 0.34864227579699625
+        },
+        "router_top8": {
+          "calls": 225,
+          "total_ms": 5.414176050573587,
+          "mean_ms": 0.024063004669215945
+        },
+        "expert_grouping": {
+          "calls": 225,
+          "total_ms": 416.3142080307007,
+          "mean_ms": 1.8502853690253365
+        },
+        "expert_input_rotation": {
+          "calls": 225,
+          "total_ms": 187.50665616989136,
+          "mean_ms": 0.8333629163106283
+        },
+        "expert_gateup_compute": {
+          "calls": 225,
+          "total_ms": 1334.3814415931702,
+          "mean_ms": 5.930584184858534
+        },
+        "expert_gateup_epilogue": {
+          "calls": 225,
+          "total_ms": 99.03571182489395,
+          "mean_ms": 0.44015871922175087
+        },
+        "expert_down_compute": {
+          "calls": 225,
+          "total_ms": 923.2204511165619,
+          "mean_ms": 4.1032020049624975
+        },
+        "expert_down_combine": {
+          "calls": 225,
+          "total_ms": 391.8159351348877,
+          "mean_ms": 1.7414041561550564
+        },
+        "moe_combine": {
+          "calls": 225,
+          "total_ms": 49.84998382627964,
+          "mean_ms": 0.22155548367235395
+        },
+        "final_norm": {
+          "calls": 1,
+          "total_ms": 0.6745920181274414,
+          "mean_ms": 0.6745920181274414
+        }
+      },
+      "skip1024": {
+        "tp6_sum_inclusive": {
+          "calls": 157,
+          "total_ms": 1204.6894426345825,
+          "mean_ms": 7.6731811632775955
+        },
+        "decoder_norms": {
+          "calls": 156,
+          "total_ms": 101.89686426520348,
+          "mean_ms": 0.6531850273410479
+        },
+        "attention_projection": {
+          "calls": 234,
+          "total_ms": 800.2702753543854,
+          "mean_ms": 3.4199584416854076
+        },
+        "attention_norms": {
+          "calls": 156,
+          "total_ms": 9.301344010978937,
+          "mean_ms": 0.059624000070377804
+        },
+        "attention_rope": {
+          "calls": 78,
+          "total_ms": 12.580223962664604,
+          "mean_ms": 0.16128492259826416
+        },
+        "attention_cache_write": {
+          "calls": 78,
+          "total_ms": 2.5327680446207523,
+          "mean_ms": 0.032471385187445544
+        },
+        "indexer_projection": {
+          "calls": 42,
+          "total_ms": 50.766175508499146,
+          "mean_ms": 1.2087184644880749
+        },
+        "indexer_inclusive": {
+          "calls": 21,
+          "total_ms": 290.54419231414795,
+          "mean_ms": 13.83543772924514
+        },
+        "attention_absorb": {
+          "calls": 78,
+          "total_ms": 469.1670722961426,
+          "mean_ms": 6.014962465335161
+        },
+        "attention_selected": {
+          "calls": 78,
+          "total_ms": 1580.432481765747,
+          "mean_ms": 20.261954894432655
+        },
+        "attention_expand": {
+          "calls": 78,
+          "total_ms": 402.495005607605,
+          "mean_ms": 5.16019237958468
+        },
+        "attention_inclusive": {
+          "calls": 78,
+          "total_ms": 3586.0144996643066,
+          "mean_ms": 45.97454486749111
+        },
+        "dense_shared_ffn": {
+          "calls": 234,
+          "total_ms": 231.08275187015533,
+          "mean_ms": 0.9875331276502365
+        },
+        "router_projection": {
+          "calls": 225,
+          "total_ms": 78.62892818450928,
+          "mean_ms": 0.34946190304226343
+        },
+        "router_top8": {
+          "calls": 225,
+          "total_ms": 5.422240067273378,
+          "mean_ms": 0.024098844743437237
+        },
+        "expert_grouping": {
+          "calls": 225,
+          "total_ms": 416.67631936073303,
+          "mean_ms": 1.851894752714369
+        },
+        "expert_input_rotation": {
+          "calls": 225,
+          "total_ms": 187.41817569732666,
+          "mean_ms": 0.8329696697658963
+        },
+        "expert_gateup_compute": {
+          "calls": 225,
+          "total_ms": 1339.6864295005798,
+          "mean_ms": 5.954161908891466
+        },
+        "expert_gateup_epilogue": {
+          "calls": 225,
+          "total_ms": 99.05609619617462,
+          "mean_ms": 0.44024931642744275
+        },
+        "expert_down_compute": {
+          "calls": 225,
+          "total_ms": 914.2252807617188,
+          "mean_ms": 4.063223470052083
+        },
+        "expert_down_combine": {
+          "calls": 225,
+          "total_ms": 391.5983997583389,
+          "mean_ms": 1.740437332259284
+        },
+        "moe_combine": {
+          "calls": 225,
+          "total_ms": 50.006783574819565,
+          "mean_ms": 0.22225237144364252
+        },
+        "final_norm": {
+          "calls": 1,
+          "total_ms": 0.6644799709320068,
+          "mean_ms": 0.6644799709320068
+        }
+      }
+    },
+    "3": {
+      "fixed128": {
+        "tp6_sum_inclusive": {
+          "calls": 157,
+          "total_ms": 1189.1775999069214,
+          "mean_ms": 7.574379617241537
+        },
+        "decoder_norms": {
+          "calls": 156,
+          "total_ms": 102.13132825493813,
+          "mean_ms": 0.6546880016342188
+        },
+        "attention_projection": {
+          "calls": 234,
+          "total_ms": 798.1599378585815,
+          "mean_ms": 3.4109399053785534
+        },
+        "attention_norms": {
+          "calls": 156,
+          "total_ms": 9.251391999423504,
+          "mean_ms": 0.059303794868099384
+        },
+        "attention_rope": {
+          "calls": 78,
+          "total_ms": 12.679807871580124,
+          "mean_ms": 0.16256163937923235
+        },
+        "attention_cache_write": {
+          "calls": 78,
+          "total_ms": 2.609600033611059,
+          "mean_ms": 0.03345641068732127
+        },
+        "indexer_projection": {
+          "calls": 42,
+          "total_ms": 52.90857616066933,
+          "mean_ms": 1.2597280038254601
+        },
+        "indexer_inclusive": {
+          "calls": 21,
+          "total_ms": 294.39769649505615,
+          "mean_ms": 14.018937928336006
+        },
+        "attention_absorb": {
+          "calls": 78,
+          "total_ms": 481.2140464782715,
+          "mean_ms": 6.169410852285532
+        },
+        "attention_selected": {
+          "calls": 78,
+          "total_ms": 2321.1424617767334,
+          "mean_ms": 29.7582366894453
+        },
+        "attention_expand": {
+          "calls": 78,
+          "total_ms": 378.8491520881653,
+          "mean_ms": 4.857040411386734
+        },
+        "attention_inclusive": {
+          "calls": 78,
+          "total_ms": 4317.349094390869,
+          "mean_ms": 55.350629415267555
+        },
+        "dense_shared_ffn": {
+          "calls": 234,
+          "total_ms": 230.35900735855103,
+          "mean_ms": 0.9844402023869702
+        },
+        "router_projection": {
+          "calls": 225,
+          "total_ms": 78.14060778915882,
+          "mean_ms": 0.3472915901740392
+        },
+        "router_top8": {
+          "calls": 225,
+          "total_ms": 5.864128021523356,
+          "mean_ms": 0.026062791206770474
+        },
+        "expert_grouping": {
+          "calls": 225,
+          "total_ms": 426.8588156700134,
+          "mean_ms": 1.8971502918667262
+        },
+        "expert_input_rotation": {
+          "calls": 225,
+          "total_ms": 187.82659137248993,
+          "mean_ms": 0.8347848505443997
+        },
+        "expert_gateup_compute": {
+          "calls": 225,
+          "total_ms": 1345.5615372657776,
+          "mean_ms": 5.980273498959011
+        },
+        "expert_gateup_epilogue": {
+          "calls": 225,
+          "total_ms": 94.91360011696815,
+          "mean_ms": 0.4218382227420807
+        },
+        "expert_down_compute": {
+          "calls": 225,
+          "total_ms": 923.017825126648,
+          "mean_ms": 4.102301445007324
+        },
+        "expert_down_combine": {
+          "calls": 225,
+          "total_ms": 383.71737575531006,
+          "mean_ms": 1.705410558912489
+        },
+        "moe_combine": {
+          "calls": 225,
+          "total_ms": 50.189247727394104,
+          "mean_ms": 0.22306332323286268
+        },
+        "final_norm": {
+          "calls": 1,
+          "total_ms": 0.6478719711303711,
+          "mean_ms": 0.6478719711303711
+        }
+      },
+      "skip128": {
+        "tp6_sum_inclusive": {
+          "calls": 157,
+          "total_ms": 1188.1052150726318,
+          "mean_ms": 7.567549140590011
+        },
+        "decoder_norms": {
+          "calls": 156,
+          "total_ms": 102.33926433324814,
+          "mean_ms": 0.656020925213129
+        },
+        "attention_projection": {
+          "calls": 234,
+          "total_ms": 799.8834908008575,
+          "mean_ms": 3.418305516242981
+        },
+        "attention_norms": {
+          "calls": 156,
+          "total_ms": 9.115039993077517,
+          "mean_ms": 0.058429743545368694
+        },
+        "attention_rope": {
+          "calls": 78,
+          "total_ms": 12.544159889221191,
+          "mean_ms": 0.16082256268232298
+        },
+        "attention_cache_write": {
+          "calls": 78,
+          "total_ms": 2.5932480469346046,
+          "mean_ms": 0.03324676983249493
+        },
+        "indexer_projection": {
+          "calls": 42,
+          "total_ms": 51.75110399723053,
+          "mean_ms": 1.2321691427912032
+        },
+        "indexer_inclusive": {
+          "calls": 21,
+          "total_ms": 296.02300453186035,
+          "mean_ms": 14.096333549136208
+        },
+        "attention_absorb": {
+          "calls": 78,
+          "total_ms": 479.7906575202942,
+          "mean_ms": 6.151162275901208
+        },
+        "attention_selected": {
+          "calls": 78,
+          "total_ms": 1570.9021167755127,
+          "mean_ms": 20.13977072789119
+        },
+        "attention_expand": {
+          "calls": 78,
+          "total_ms": 382.87574529647827,
+          "mean_ms": 4.908663401236901
+        },
+        "attention_inclusive": {
+          "calls": 78,
+          "total_ms": 3572.633815765381,
+          "mean_ms": 45.8029976380177
+        },
+        "dense_shared_ffn": {
+          "calls": 234,
+          "total_ms": 233.92489635944366,
+          "mean_ms": 0.9996790442711267
+        },
+        "router_projection": {
+          "calls": 225,
+          "total_ms": 79.40351989865303,
+          "mean_ms": 0.35290453288290236
+        },
+        "router_top8": {
+          "calls": 225,
+          "total_ms": 5.76288004219532,
+          "mean_ms": 0.025612800187534757
+        },
+        "expert_grouping": {
+          "calls": 225,
+          "total_ms": 427.41299188137054,
+          "mean_ms": 1.8996132972505357
+        },
+        "expert_input_rotation": {
+          "calls": 225,
+          "total_ms": 189.0365116596222,
+          "mean_ms": 0.8401622740427653
+        },
+        "expert_gateup_compute": {
+          "calls": 225,
+          "total_ms": 1343.0987520217896,
+          "mean_ms": 5.969327786763509
+        },
+        "expert_gateup_epilogue": {
+          "calls": 225,
+          "total_ms": 95.4820162653923,
+          "mean_ms": 0.4243645167350769
+        },
+        "expert_down_compute": {
+          "calls": 225,
+          "total_ms": 922.3637776374817,
+          "mean_ms": 4.099394567277696
+        },
+        "expert_down_combine": {
+          "calls": 225,
+          "total_ms": 385.0930880308151,
+          "mean_ms": 1.7115248356925117
+        },
+        "moe_combine": {
+          "calls": 225,
+          "total_ms": 50.29059173166752,
+          "mean_ms": 0.22351374102963342
+        },
+        "final_norm": {
+          "calls": 1,
+          "total_ms": 0.6499519944190979,
+          "mean_ms": 0.6499519944190979
+        }
+      },
+      "skip256": {
+        "tp6_sum_inclusive": {
+          "calls": 157,
+          "total_ms": 1175.974175453186,
+          "mean_ms": 7.490281372313287
+        },
+        "decoder_norms": {
+          "calls": 156,
+          "total_ms": 102.80048003792763,
+          "mean_ms": 0.6589774361405617
+        },
+        "attention_projection": {
+          "calls": 234,
+          "total_ms": 795.9708154201508,
+          "mean_ms": 3.4015846812826958
+        },
+        "attention_norms": {
+          "calls": 156,
+          "total_ms": 9.164479993283749,
+          "mean_ms": 0.058746666623613775
+        },
+        "attention_rope": {
+          "calls": 78,
+          "total_ms": 12.62358383834362,
+          "mean_ms": 0.16184081844030282
+        },
+        "attention_cache_write": {
+          "calls": 78,
+          "total_ms": 2.598784014582634,
+          "mean_ms": 0.03331774377670044
+        },
+        "indexer_projection": {
+          "calls": 42,
+          "total_ms": 51.568224132061005,
+          "mean_ms": 1.2278148602871668
+        },
+        "indexer_inclusive": {
+          "calls": 21,
+          "total_ms": 295.9075241088867,
+          "mean_ms": 14.090834481375557
+        },
+        "attention_absorb": {
+          "calls": 78,
+          "total_ms": 479.6134705543518,
+          "mean_ms": 6.148890648132715
+        },
+        "attention_selected": {
+          "calls": 78,
+          "total_ms": 1595.444637298584,
+          "mean_ms": 20.454418426904923
+        },
+        "attention_expand": {
+          "calls": 78,
+          "total_ms": 382.37388706207275,
+          "mean_ms": 4.902229321308625
+        },
+        "attention_inclusive": {
+          "calls": 78,
+          "total_ms": 3592.5261611938477,
+          "mean_ms": 46.058027707613434
+        },
+        "dense_shared_ffn": {
+          "calls": 234,
+          "total_ms": 230.3517426252365,
+          "mean_ms": 0.9844091565181048
+        },
+        "router_projection": {
+          "calls": 225,
+          "total_ms": 78.86483198404312,
+          "mean_ms": 0.350510364373525
+        },
+        "router_top8": {
+          "calls": 225,
+          "total_ms": 5.751296002417803,
+          "mean_ms": 0.025561315566301347
+        },
+        "expert_grouping": {
+          "calls": 225,
+          "total_ms": 427.6517115831375,
+          "mean_ms": 1.9006742737028335
+        },
+        "expert_input_rotation": {
+          "calls": 225,
+          "total_ms": 188.54547208547592,
+          "mean_ms": 0.8379798759354485
+        },
+        "expert_gateup_compute": {
+          "calls": 225,
+          "total_ms": 1346.654049396515,
+          "mean_ms": 5.985129108428955
+        },
+        "expert_gateup_epilogue": {
+          "calls": 225,
+          "total_ms": 95.56847986578941,
+          "mean_ms": 0.4247487994035085
+        },
+        "expert_down_compute": {
+          "calls": 225,
+          "total_ms": 921.6685774326324,
+          "mean_ms": 4.096304788589477
+        },
+        "expert_down_combine": {
+          "calls": 225,
+          "total_ms": 386.99340856075287,
+          "mean_ms": 1.7199707047144572
+        },
+        "moe_combine": {
+          "calls": 225,
+          "total_ms": 50.36902365088463,
+          "mean_ms": 0.22386232733726502
+        },
+        "final_norm": {
+          "calls": 1,
+          "total_ms": 0.6573119759559631,
+          "mean_ms": 0.6573119759559631
+        }
+      },
+      "skip512": {
+        "tp6_sum_inclusive": {
+          "calls": 157,
+          "total_ms": 1205.000955581665,
+          "mean_ms": 7.675165322176211
+        },
+        "decoder_norms": {
+          "calls": 156,
+          "total_ms": 102.4839361011982,
+          "mean_ms": 0.656948308341014
+        },
+        "attention_projection": {
+          "calls": 234,
+          "total_ms": 797.967197060585,
+          "mean_ms": 3.4101162267546368
+        },
+        "attention_norms": {
+          "calls": 156,
+          "total_ms": 9.220223989337683,
+          "mean_ms": 0.059103999931651816
+        },
+        "attention_rope": {
+          "calls": 78,
+          "total_ms": 12.77276787161827,
+          "mean_ms": 0.16375343425151628
+        },
+        "attention_cache_write": {
+          "calls": 78,
+          "total_ms": 2.633024036884308,
+          "mean_ms": 0.03375671842159369
+        },
+        "indexer_projection": {
+          "calls": 42,
+          "total_ms": 51.46841633319855,
+          "mean_ms": 1.2254384841237749
+        },
+        "indexer_inclusive": {
+          "calls": 21,
+          "total_ms": 298.34307289123535,
+          "mean_ms": 14.206812994820732
+        },
+        "attention_absorb": {
+          "calls": 78,
+          "total_ms": 479.96870470046997,
+          "mean_ms": 6.153444932057307
+        },
+        "attention_selected": {
+          "calls": 78,
+          "total_ms": 1614.0703353881836,
+          "mean_ms": 20.693209428053635
+        },
+        "attention_expand": {
+          "calls": 78,
+          "total_ms": 379.9596161842346,
+          "mean_ms": 4.87127713056711
+        },
+        "attention_inclusive": {
+          "calls": 78,
+          "total_ms": 3614.025951385498,
+          "mean_ms": 46.333666043403824
+        },
+        "dense_shared_ffn": {
+          "calls": 234,
+          "total_ms": 233.24841618537903,
+          "mean_ms": 0.9967881033563206
+        },
+        "router_projection": {
+          "calls": 225,
+          "total_ms": 80.00368002057076,
+          "mean_ms": 0.3555719112025367
+        },
+        "router_top8": {
+          "calls": 225,
+          "total_ms": 5.805888028815389,
+          "mean_ms": 0.02580394679473506
+        },
+        "expert_grouping": {
+          "calls": 225,
+          "total_ms": 429.0573124885559,
+          "mean_ms": 1.9069213888380263
+        },
+        "expert_input_rotation": {
+          "calls": 225,
+          "total_ms": 189.32300794124603,
+          "mean_ms": 0.8414355908499823
+        },
+        "expert_gateup_compute": {
+          "calls": 225,
+          "total_ms": 1342.509952545166,
+          "mean_ms": 5.966710900200738
+        },
+        "expert_gateup_epilogue": {
+          "calls": 225,
+          "total_ms": 95.22671988606453,
+          "mean_ms": 0.4232298661602868
+        },
+        "expert_down_compute": {
+          "calls": 225,
+          "total_ms": 920.0486724376678,
+          "mean_ms": 4.089105210834079
+        },
+        "expert_down_combine": {
+          "calls": 225,
+          "total_ms": 386.83398401737213,
+          "mean_ms": 1.7192621511883206
+        },
+        "moe_combine": {
+          "calls": 225,
+          "total_ms": 50.612095698714256,
+          "mean_ms": 0.22494264754984114
+        },
+        "final_norm": {
+          "calls": 1,
+          "total_ms": 0.6611520051956177,
+          "mean_ms": 0.6611520051956177
+        }
+      },
+      "skip1024": {
+        "tp6_sum_inclusive": {
+          "calls": 157,
+          "total_ms": 1163.0919036865234,
+          "mean_ms": 7.408228685901423
+        },
+        "decoder_norms": {
+          "calls": 156,
+          "total_ms": 102.57311999797821,
+          "mean_ms": 0.6575199999870398
+        },
+        "attention_projection": {
+          "calls": 234,
+          "total_ms": 796.581692814827,
+          "mean_ms": 3.4041952684394317
+        },
+        "attention_norms": {
+          "calls": 156,
+          "total_ms": 9.276447992771864,
+          "mean_ms": 0.05946441021007605
+        },
+        "attention_rope": {
+          "calls": 78,
+          "total_ms": 12.566783830523491,
+          "mean_ms": 0.16111261321183962
+        },
+        "attention_cache_write": {
+          "calls": 78,
+          "total_ms": 2.560032045468688,
+          "mean_ms": 0.03282092365985497
+        },
+        "indexer_projection": {
+          "calls": 42,
+          "total_ms": 52.31961593031883,
+          "mean_ms": 1.2457051411980675
+        },
+        "indexer_inclusive": {
+          "calls": 21,
+          "total_ms": 297.5790071487427,
+          "mean_ms": 14.170428911844889
+        },
+        "attention_absorb": {
+          "calls": 78,
+          "total_ms": 481.6229748725891,
+          "mean_ms": 6.174653524007553
+        },
+        "attention_selected": {
+          "calls": 78,
+          "total_ms": 1613.8801288604736,
+          "mean_ms": 20.690770882826584
+        },
+        "attention_expand": {
+          "calls": 78,
+          "total_ms": 379.9438395500183,
+          "mean_ms": 4.871074866025876
+        },
+        "attention_inclusive": {
+          "calls": 78,
+          "total_ms": 3612.8643188476562,
+          "mean_ms": 46.31877331855969
+        },
+        "dense_shared_ffn": {
+          "calls": 234,
+          "total_ms": 231.07888036966324,
+          "mean_ms": 0.9875165827763386
+        },
+        "router_projection": {
+          "calls": 225,
+          "total_ms": 79.16252817213535,
+          "mean_ms": 0.3518334585428238
+        },
+        "router_top8": {
+          "calls": 225,
+          "total_ms": 5.76377603597939,
+          "mean_ms": 0.025616782382130623
+        },
+        "expert_grouping": {
+          "calls": 225,
+          "total_ms": 428.18563175201416,
+          "mean_ms": 1.903047252231174
+        },
+        "expert_input_rotation": {
+          "calls": 225,
+          "total_ms": 189.47398394346237,
+          "mean_ms": 0.8421065953042772
+        },
+        "expert_gateup_compute": {
+          "calls": 225,
+          "total_ms": 1341.7285118103027,
+          "mean_ms": 5.963237830268012
+        },
+        "expert_gateup_epilogue": {
+          "calls": 225,
+          "total_ms": 95.08390408754349,
+          "mean_ms": 0.42259512927797105
+        },
+        "expert_down_compute": {
+          "calls": 225,
+          "total_ms": 920.6375050544739,
+          "mean_ms": 4.091722244686551
+        },
+        "expert_down_combine": {
+          "calls": 225,
+          "total_ms": 386.8291199207306,
+          "mean_ms": 1.7192405329810247
+        },
+        "moe_combine": {
+          "calls": 225,
+          "total_ms": 50.749055698513985,
+          "mean_ms": 0.22555135866006215
+        },
+        "final_norm": {
+          "calls": 1,
+          "total_ms": 0.650048017501831,
+          "mean_ms": 0.650048017501831
+        }
+      }
+    },
+    "4": {
+      "fixed128": {
+        "tp6_sum_inclusive": {
+          "calls": 157,
+          "total_ms": 1506.1482548713684,
+          "mean_ms": 9.593300986441838
+        },
+        "decoder_norms": {
+          "calls": 156,
+          "total_ms": 101.85827222466469,
+          "mean_ms": 0.6529376424657993
+        },
+        "attention_projection": {
+          "calls": 234,
+          "total_ms": 790.2082554101944,
+          "mean_ms": 3.376958356453822
+        },
+        "attention_norms": {
+          "calls": 156,
+          "total_ms": 9.161984033882618,
+          "mean_ms": 0.058730666883862935
+        },
+        "attention_rope": {
+          "calls": 78,
+          "total_ms": 12.62156791985035,
+          "mean_ms": 0.16181497333141473
+        },
+        "attention_cache_write": {
+          "calls": 78,
+          "total_ms": 2.5183360390365124,
+          "mean_ms": 0.03228635947482708
+        },
+        "indexer_projection": {
+          "calls": 42,
+          "total_ms": 52.49734404683113,
+          "mean_ms": 1.2499367630197888
+        },
+        "indexer_inclusive": {
+          "calls": 21,
+          "total_ms": 300.6324806213379,
+          "mean_ms": 14.3158324105399
+        },
+        "attention_absorb": {
+          "calls": 78,
+          "total_ms": 455.81558418273926,
+          "mean_ms": 5.84378954080435
+        },
+        "attention_selected": {
+          "calls": 78,
+          "total_ms": 2240.0841579437256,
+          "mean_ms": 28.719027665945198
+        },
+        "attention_expand": {
+          "calls": 78,
+          "total_ms": 410.41660928726196,
+          "mean_ms": 5.261751401118743
+        },
+        "attention_inclusive": {
+          "calls": 78,
+          "total_ms": 4240.239658355713,
+          "mean_ms": 54.36204690199632
+        },
+        "dense_shared_ffn": {
+          "calls": 234,
+          "total_ms": 37.800096064805984,
+          "mean_ms": 0.16153887207182044
+        },
+        "router_projection": {
+          "calls": 225,
+          "total_ms": 76.47171196341515,
+          "mean_ms": 0.3398742753929562
+        },
+        "router_top8": {
+          "calls": 225,
+          "total_ms": 5.462976038455963,
+          "mean_ms": 0.024279893504248726
+        },
+        "expert_grouping": {
+          "calls": 225,
+          "total_ms": 409.88262462615967,
+          "mean_ms": 1.821700553894043
+        },
+        "expert_input_rotation": {
+          "calls": 225,
+          "total_ms": 186.3764484524727,
+          "mean_ms": 0.8283397708998786
+        },
+        "expert_gateup_compute": {
+          "calls": 225,
+          "total_ms": 1323.653408050537,
+          "mean_ms": 5.8829040357801645
+        },
+        "expert_gateup_epilogue": {
+          "calls": 225,
+          "total_ms": 97.30902427434921,
+          "mean_ms": 0.4324845523304409
+        },
+        "expert_down_compute": {
+          "calls": 225,
+          "total_ms": 904.101535320282,
+          "mean_ms": 4.01822904586792
+        },
+        "expert_down_combine": {
+          "calls": 225,
+          "total_ms": 390.56521570682526,
+          "mean_ms": 1.7358454031414456
+        },
+        "moe_combine": {
+          "calls": 225,
+          "total_ms": 50.031231731176376,
+          "mean_ms": 0.22236102991633944
+        },
+        "final_norm": {
+          "calls": 1,
+          "total_ms": 0.6653760075569153,
+          "mean_ms": 0.6653760075569153
+        }
+      },
+      "skip128": {
+        "tp6_sum_inclusive": {
+          "calls": 157,
+          "total_ms": 1469.6405448913574,
+          "mean_ms": 9.36076780185578
+        },
+        "decoder_norms": {
+          "calls": 156,
+          "total_ms": 102.50844806432724,
+          "mean_ms": 0.65710543630979
+        },
+        "attention_projection": {
+          "calls": 234,
+          "total_ms": 798.4462413787842,
+          "mean_ms": 3.4121634246956587
+        },
+        "attention_norms": {
+          "calls": 156,
+          "total_ms": 9.230048011988401,
+          "mean_ms": 0.05916697443582308
+        },
+        "attention_rope": {
+          "calls": 78,
+          "total_ms": 12.76172785460949,
+          "mean_ms": 0.16361189557191652
+        },
+        "attention_cache_write": {
+          "calls": 78,
+          "total_ms": 2.603200040757656,
+          "mean_ms": 0.033374359496893026
+        },
+        "indexer_projection": {
+          "calls": 42,
+          "total_ms": 51.63190442323685,
+          "mean_ms": 1.2293310576961154
+        },
+        "indexer_inclusive": {
+          "calls": 21,
+          "total_ms": 292.1896619796753,
+          "mean_ms": 13.913793427603585
+        },
+        "attention_absorb": {
+          "calls": 78,
+          "total_ms": 459.4523859024048,
+          "mean_ms": 5.890415203876985
+        },
+        "attention_selected": {
+          "calls": 78,
+          "total_ms": 1523.3375034332275,
+          "mean_ms": 19.529967992733685
+        },
+        "attention_expand": {
+          "calls": 78,
+          "total_ms": 412.22649669647217,
+          "mean_ms": 5.284955085852207
+        },
+        "attention_inclusive": {
+          "calls": 78,
+          "total_ms": 3528.92537689209,
+          "mean_ms": 45.24263303707807
+        },
+        "dense_shared_ffn": {
+          "calls": 234,
+          "total_ms": 37.61135971546173,
+          "mean_ms": 0.1607323064763322
+        },
+        "router_projection": {
+          "calls": 225,
+          "total_ms": 77.56275202333927,
+          "mean_ms": 0.3447233423259523
+        },
+        "router_top8": {
+          "calls": 225,
+          "total_ms": 5.324672045186162,
+          "mean_ms": 0.023665209089716276
+        },
+        "expert_grouping": {
+          "calls": 225,
+          "total_ms": 410.63193559646606,
+          "mean_ms": 1.8250308248731826
+        },
+        "expert_input_rotation": {
+          "calls": 225,
+          "total_ms": 186.45455992221832,
+          "mean_ms": 0.828686932987637
+        },
+        "expert_gateup_compute": {
+          "calls": 225,
+          "total_ms": 1326.967649936676,
+          "mean_ms": 5.89763399971856
+        },
+        "expert_gateup_epilogue": {
+          "calls": 225,
+          "total_ms": 97.20441615581512,
+          "mean_ms": 0.4320196273591783
+        },
+        "expert_down_compute": {
+          "calls": 225,
+          "total_ms": 907.4072639942169,
+          "mean_ms": 4.0329211733076304
+        },
+        "expert_down_combine": {
+          "calls": 225,
+          "total_ms": 391.2400641441345,
+          "mean_ms": 1.7388447295294867
+        },
+        "moe_combine": {
+          "calls": 225,
+          "total_ms": 49.9453756660223,
+          "mean_ms": 0.22197944740454356
+        },
+        "final_norm": {
+          "calls": 1,
+          "total_ms": 0.6644799709320068,
+          "mean_ms": 0.6644799709320068
+        }
+      },
+      "skip256": {
+        "tp6_sum_inclusive": {
+          "calls": 157,
+          "total_ms": 1457.2332158088684,
+          "mean_ms": 9.281740228081965
+        },
+        "decoder_norms": {
+          "calls": 156,
+          "total_ms": 102.32195273041725,
+          "mean_ms": 0.6559099534001106
+        },
+        "attention_projection": {
+          "calls": 234,
+          "total_ms": 797.6356825828552,
+          "mean_ms": 3.40869949821733
+        },
+        "attention_norms": {
+          "calls": 156,
+          "total_ms": 9.286464009433985,
+          "mean_ms": 0.059528615445089646
+        },
+        "attention_rope": {
+          "calls": 78,
+          "total_ms": 12.53577584028244,
+          "mean_ms": 0.1607150748754159
+        },
+        "attention_cache_write": {
+          "calls": 78,
+          "total_ms": 2.525120034813881,
+          "mean_ms": 0.03237333377966514
+        },
+        "indexer_projection": {
+          "calls": 42,
+          "total_ms": 52.483168095350266,
+          "mean_ms": 1.2495992403654825
+        },
+        "indexer_inclusive": {
+          "calls": 21,
+          "total_ms": 297.9419527053833,
+          "mean_ms": 14.187712033589682
+        },
+        "attention_absorb": {
+          "calls": 78,
+          "total_ms": 461.1820478439331,
+          "mean_ms": 5.912590356973501
+        },
+        "attention_selected": {
+          "calls": 78,
+          "total_ms": 1539.4551410675049,
+          "mean_ms": 19.73660437266032
+        },
+        "attention_expand": {
+          "calls": 78,
+          "total_ms": 410.92415952682495,
+          "mean_ms": 5.268258455472115
+        },
+        "attention_inclusive": {
+          "calls": 78,
+          "total_ms": 3550.1613235473633,
+          "mean_ms": 45.514888763427734
+        },
+        "dense_shared_ffn": {
+          "calls": 234,
+          "total_ms": 37.813920225948095,
+          "mean_ms": 0.16159794968353886
+        },
+        "router_projection": {
+          "calls": 225,
+          "total_ms": 77.97084791958332,
+          "mean_ms": 0.34653710186481473
+        },
+        "router_top8": {
+          "calls": 225,
+          "total_ms": 5.410112036392093,
+          "mean_ms": 0.024044942383964856
+        },
+        "expert_grouping": {
+          "calls": 225,
+          "total_ms": 410.6644481420517,
+          "mean_ms": 1.8251753250757854
+        },
+        "expert_input_rotation": {
+          "calls": 225,
+          "total_ms": 187.804063975811,
+          "mean_ms": 0.8346847287813822
+        },
+        "expert_gateup_compute": {
+          "calls": 225,
+          "total_ms": 1326.8578867912292,
+          "mean_ms": 5.897146163516575
+        },
+        "expert_gateup_epilogue": {
+          "calls": 225,
+          "total_ms": 96.99926406145096,
+          "mean_ms": 0.4311078402731154
+        },
+        "expert_down_compute": {
+          "calls": 225,
+          "total_ms": 905.8037133216858,
+          "mean_ms": 4.0257942814297145
+        },
+        "expert_down_combine": {
+          "calls": 225,
+          "total_ms": 390.6349118947983,
+          "mean_ms": 1.7361551639768813
+        },
+        "moe_combine": {
+          "calls": 225,
+          "total_ms": 49.83683171868324,
+          "mean_ms": 0.2214970298608144
+        },
+        "final_norm": {
+          "calls": 1,
+          "total_ms": 0.7596160173416138,
+          "mean_ms": 0.7596160173416138
+        }
+      },
+      "skip512": {
+        "tp6_sum_inclusive": {
+          "calls": 157,
+          "total_ms": 1491.9212155342102,
+          "mean_ms": 9.502682901491784
+        },
+        "decoder_norms": {
+          "calls": 156,
+          "total_ms": 102.31747227907181,
+          "mean_ms": 0.6558812325581526
+        },
+        "attention_projection": {
+          "calls": 234,
+          "total_ms": 803.4183338880539,
+          "mean_ms": 3.4334116832822814
+        },
+        "attention_norms": {
+          "calls": 156,
+          "total_ms": 9.367135997861624,
+          "mean_ms": 0.06004574357603605
+        },
+        "attention_rope": {
+          "calls": 78,
+          "total_ms": 12.611455857753754,
+          "mean_ms": 0.16168533150966352
+        },
+        "attention_cache_write": {
+          "calls": 78,
+          "total_ms": 2.5055360365659,
+          "mean_ms": 0.03212225687905
+        },
+        "indexer_projection": {
+          "calls": 42,
+          "total_ms": 50.433503836393356,
+          "mean_ms": 1.200797710390318
+        },
+        "indexer_inclusive": {
+          "calls": 21,
+          "total_ms": 289.57632064819336,
+          "mean_ms": 13.789348602294922
+        },
+        "attention_absorb": {
+          "calls": 78,
+          "total_ms": 461.3188500404358,
+          "mean_ms": 5.914344231287639
+        },
+        "attention_selected": {
+          "calls": 78,
+          "total_ms": 1563.0272407531738,
+          "mean_ms": 20.038810778886845
+        },
+        "attention_expand": {
+          "calls": 78,
+          "total_ms": 408.19469022750854,
+          "mean_ms": 5.233265259327033
+        },
+        "attention_inclusive": {
+          "calls": 78,
+          "total_ms": 3568.836597442627,
+          "mean_ms": 45.75431535182855
+        },
+        "dense_shared_ffn": {
+          "calls": 234,
+          "total_ms": 37.78672006726265,
+          "mean_ms": 0.16148170968915662
+        },
+        "router_projection": {
+          "calls": 225,
+          "total_ms": 77.27907192707062,
+          "mean_ms": 0.3434625418980916
+        },
+        "router_top8": {
+          "calls": 225,
+          "total_ms": 5.245824042707682,
+          "mean_ms": 0.023314773523145253
+        },
+        "expert_grouping": {
+          "calls": 225,
+          "total_ms": 410.5717760324478,
+          "mean_ms": 1.8247634490331015
+        },
+        "expert_input_rotation": {
+          "calls": 225,
+          "total_ms": 185.8452803492546,
+          "mean_ms": 0.825979023774465
+        },
+        "expert_gateup_compute": {
+          "calls": 225,
+          "total_ms": 1325.5704622268677,
+          "mean_ms": 5.891424276563856
+        },
+        "expert_gateup_epilogue": {
+          "calls": 225,
+          "total_ms": 97.08464008569717,
+          "mean_ms": 0.4314872892697652
+        },
+        "expert_down_compute": {
+          "calls": 225,
+          "total_ms": 907.9442253112793,
+          "mean_ms": 4.03530766805013
+        },
+        "expert_down_combine": {
+          "calls": 225,
+          "total_ms": 391.1743037700653,
+          "mean_ms": 1.7385524612002903
+        },
+        "moe_combine": {
+          "calls": 225,
+          "total_ms": 49.9381437599659,
+          "mean_ms": 0.22194730559984843
+        },
+        "final_norm": {
+          "calls": 1,
+          "total_ms": 0.6706240177154541,
+          "mean_ms": 0.6706240177154541
+        }
+      },
+      "skip1024": {
+        "tp6_sum_inclusive": {
+          "calls": 157,
+          "total_ms": 1443.1814351081848,
+          "mean_ms": 9.192238440179521
+        },
+        "decoder_norms": {
+          "calls": 156,
+          "total_ms": 102.03168040513992,
+          "mean_ms": 0.6540492333662815
+        },
+        "attention_projection": {
+          "calls": 234,
+          "total_ms": 800.382399559021,
+          "mean_ms": 3.420437604953081
+        },
+        "attention_norms": {
+          "calls": 156,
+          "total_ms": 9.10435201972723,
+          "mean_ms": 0.05836123089568737
+        },
+        "attention_rope": {
+          "calls": 78,
+          "total_ms": 12.633375838398933,
+          "mean_ms": 0.16196635690255043
+        },
+        "attention_cache_write": {
+          "calls": 78,
+          "total_ms": 2.539392052218318,
+          "mean_ms": 0.032556308361773305
+        },
+        "indexer_projection": {
+          "calls": 42,
+          "total_ms": 52.00131240487099,
+          "mean_ms": 1.2381264858302616
+        },
+        "indexer_inclusive": {
+          "calls": 21,
+          "total_ms": 293.77750301361084,
+          "mean_ms": 13.98940490541004
+        },
+        "attention_absorb": {
+          "calls": 78,
+          "total_ms": 460.05724906921387,
+          "mean_ms": 5.898169859861716
+        },
+        "attention_selected": {
+          "calls": 78,
+          "total_ms": 1564.2604484558105,
+          "mean_ms": 20.054621134048855
+        },
+        "attention_expand": {
+          "calls": 78,
+          "total_ms": 410.28614377975464,
+          "mean_ms": 5.260078766407111
+        },
+        "attention_inclusive": {
+          "calls": 78,
+          "total_ms": 3571.898750305176,
+          "mean_ms": 45.79357372186123
+        },
+        "dense_shared_ffn": {
+          "calls": 234,
+          "total_ms": 39.06428810209036,
+          "mean_ms": 0.16694140214568529
+        },
+        "router_projection": {
+          "calls": 225,
+          "total_ms": 77.6332159936428,
+          "mean_ms": 0.34503651552730136
+        },
+        "router_top8": {
+          "calls": 225,
+          "total_ms": 5.420768033713102,
+          "mean_ms": 0.02409230237205823
+        },
+        "expert_grouping": {
+          "calls": 225,
+          "total_ms": 411.4962877035141,
+          "mean_ms": 1.828872389793396
+        },
+        "expert_input_rotation": {
+          "calls": 225,
+          "total_ms": 186.15782403945923,
+          "mean_ms": 0.827368106842041
+        },
+        "expert_gateup_compute": {
+          "calls": 225,
+          "total_ms": 1323.4327068328857,
+          "mean_ms": 5.881923141479493
+        },
+        "expert_gateup_epilogue": {
+          "calls": 225,
+          "total_ms": 97.12851241230965,
+          "mean_ms": 0.4316822773880429
+        },
+        "expert_down_compute": {
+          "calls": 225,
+          "total_ms": 905.4083507061005,
+          "mean_ms": 4.024037114249335
+        },
+        "expert_down_combine": {
+          "calls": 225,
+          "total_ms": 390.6436483860016,
+          "mean_ms": 1.7361939928266736
+        },
+        "moe_combine": {
+          "calls": 225,
+          "total_ms": 49.84844779968262,
+          "mean_ms": 0.2215486568874783
+        },
+        "final_norm": {
+          "calls": 1,
+          "total_ms": 0.6625919938087463,
+          "mean_ms": 0.6625919938087463
+        }
+      }
+    },
+    "5": {
+      "fixed128": {
+        "tp6_sum_inclusive": {
+          "calls": 157,
+          "total_ms": 1525.6315779685974,
+          "mean_ms": 9.717398585787244
+        },
+        "decoder_norms": {
+          "calls": 156,
+          "total_ms": 101.66822361946106,
+          "mean_ms": 0.6517193821760324
+        },
+        "attention_projection": {
+          "calls": 234,
+          "total_ms": 726.6365129947662,
+          "mean_ms": 3.105284243567377
+        },
+        "attention_norms": {
+          "calls": 156,
+          "total_ms": 8.916287982836366,
+          "mean_ms": 0.057155692197669014
+        },
+        "attention_rope": {
+          "calls": 78,
+          "total_ms": 11.369824066758156,
+          "mean_ms": 0.14576697521484816
+        },
+        "attention_cache_write": {
+          "calls": 78,
+          "total_ms": 2.6277120411396027,
+          "mean_ms": 0.03368861591204619
+        },
+        "indexer_projection": {
+          "calls": 42,
+          "total_ms": 51.98332816362381,
+          "mean_ms": 1.2376982896100908
+        },
+        "indexer_inclusive": {
+          "calls": 21,
+          "total_ms": 294.5169906616211,
+          "mean_ms": 14.024618602934337
+        },
+        "attention_absorb": {
+          "calls": 78,
+          "total_ms": 453.8666567802429,
+          "mean_ms": 5.818803292054397
+        },
+        "attention_selected": {
+          "calls": 78,
+          "total_ms": 2294.583486557007,
+          "mean_ms": 29.417737007141113
+        },
+        "attention_expand": {
+          "calls": 78,
+          "total_ms": 374.108286857605,
+          "mean_ms": 4.796260087918013
+        },
+        "attention_inclusive": {
+          "calls": 78,
+          "total_ms": 4184.183673858643,
+          "mean_ms": 53.64338043408516
+        },
+        "dense_shared_ffn": {
+          "calls": 234,
+          "total_ms": 37.94915196672082,
+          "mean_ms": 0.16217586310564452
+        },
+        "router_projection": {
+          "calls": 225,
+          "total_ms": 77.49452796578407,
+          "mean_ms": 0.3444201242923737
+        },
+        "router_top8": {
+          "calls": 225,
+          "total_ms": 5.463104046881199,
+          "mean_ms": 0.024280462430583107
+        },
+        "expert_grouping": {
+          "calls": 225,
+          "total_ms": 420.95078444480896,
+          "mean_ms": 1.870892375310262
+        },
+        "expert_input_rotation": {
+          "calls": 225,
+          "total_ms": 185.8026883006096,
+          "mean_ms": 0.825789725780487
+        },
+        "expert_gateup_compute": {
+          "calls": 225,
+          "total_ms": 1342.3214082717896,
+          "mean_ms": 5.965872925652398
+        },
+        "expert_gateup_epilogue": {
+          "calls": 225,
+          "total_ms": 96.78928002715111,
+          "mean_ms": 0.4301745778984494
+        },
+        "expert_down_compute": {
+          "calls": 225,
+          "total_ms": 912.5804808139801,
+          "mean_ms": 4.055913248062134
+        },
+        "expert_down_combine": {
+          "calls": 225,
+          "total_ms": 389.6140478849411,
+          "mean_ms": 1.7316179905997382
+        },
+        "moe_combine": {
+          "calls": 225,
+          "total_ms": 50.226559549570084,
+          "mean_ms": 0.2232291535536448
+        },
+        "final_norm": {
+          "calls": 1,
+          "total_ms": 0.7160959839820862,
+          "mean_ms": 0.7160959839820862
+        }
+      },
+      "skip128": {
+        "tp6_sum_inclusive": {
+          "calls": 157,
+          "total_ms": 1503.2403178215027,
+          "mean_ms": 9.574779094404475
+        },
+        "decoder_norms": {
+          "calls": 156,
+          "total_ms": 101.75235202908516,
+          "mean_ms": 0.65225866685311
+        },
+        "attention_projection": {
+          "calls": 234,
+          "total_ms": 732.642594575882,
+          "mean_ms": 3.13095125887129
+        },
+        "attention_norms": {
+          "calls": 156,
+          "total_ms": 9.037247961387038,
+          "mean_ms": 0.057931076675557934
+        },
+        "attention_rope": {
+          "calls": 78,
+          "total_ms": 11.39286407828331,
+          "mean_ms": 0.14606235997799116
+        },
+        "attention_cache_write": {
+          "calls": 78,
+          "total_ms": 2.667136024683714,
+          "mean_ms": 0.034194051598509155
+        },
+        "indexer_projection": {
+          "calls": 42,
+          "total_ms": 51.17599976062775,
+          "mean_ms": 1.218476184776851
+        },
+        "indexer_inclusive": {
+          "calls": 21,
+          "total_ms": 291.6405429840088,
+          "mean_ms": 13.88764490400042
+        },
+        "attention_absorb": {
+          "calls": 78,
+          "total_ms": 455.8587851524353,
+          "mean_ms": 5.844343399390196
+        },
+        "attention_selected": {
+          "calls": 78,
+          "total_ms": 1572.1515216827393,
+          "mean_ms": 20.155788739522297
+        },
+        "attention_expand": {
+          "calls": 78,
+          "total_ms": 376.4834899902344,
+          "mean_ms": 4.82671141013121
+        },
+        "attention_inclusive": {
+          "calls": 78,
+          "total_ms": 3469.8153533935547,
+          "mean_ms": 44.48481222299429
+        },
+        "dense_shared_ffn": {
+          "calls": 234,
+          "total_ms": 38.614240150898695,
+          "mean_ms": 0.16501812030298588
+        },
+        "router_projection": {
+          "calls": 225,
+          "total_ms": 77.45475198328495,
+          "mean_ms": 0.3442433421479331
+        },
+        "router_top8": {
+          "calls": 225,
+          "total_ms": 5.309984037652612,
+          "mean_ms": 0.02359992905623383
+        },
+        "expert_grouping": {
+          "calls": 225,
+          "total_ms": 422.2856310606003,
+          "mean_ms": 1.8768250269360012
+        },
+        "expert_input_rotation": {
+          "calls": 225,
+          "total_ms": 185.7688325047493,
+          "mean_ms": 0.8256392555766635
+        },
+        "expert_gateup_compute": {
+          "calls": 225,
+          "total_ms": 1335.3353567123413,
+          "mean_ms": 5.934823807610406
+        },
+        "expert_gateup_epilogue": {
+          "calls": 225,
+          "total_ms": 96.66406390070915,
+          "mean_ms": 0.42961806178092954
+        },
+        "expert_down_compute": {
+          "calls": 225,
+          "total_ms": 914.4194548130035,
+          "mean_ms": 4.0640864658355715
+        },
+        "expert_down_combine": {
+          "calls": 225,
+          "total_ms": 390.4637107849121,
+          "mean_ms": 1.735394270155165
+        },
+        "moe_combine": {
+          "calls": 225,
+          "total_ms": 50.46947178244591,
+          "mean_ms": 0.22430876347753737
+        },
+        "final_norm": {
+          "calls": 1,
+          "total_ms": 0.6665599942207336,
+          "mean_ms": 0.6665599942207336
+        }
+      },
+      "skip256": {
+        "tp6_sum_inclusive": {
+          "calls": 157,
+          "total_ms": 1480.2362904548645,
+          "mean_ms": 9.428256627101048
+        },
+        "decoder_norms": {
+          "calls": 156,
+          "total_ms": 101.89670440554619,
+          "mean_ms": 0.653184002599655
+        },
+        "attention_projection": {
+          "calls": 234,
+          "total_ms": 732.8705898523331,
+          "mean_ms": 3.131925597659543
+        },
+        "attention_norms": {
+          "calls": 156,
+          "total_ms": 9.039903979748487,
+          "mean_ms": 0.05794810243428518
+        },
+        "attention_rope": {
+          "calls": 78,
+          "total_ms": 11.341280043125153,
+          "mean_ms": 0.1454010261939122
+        },
+        "attention_cache_write": {
+          "calls": 78,
+          "total_ms": 2.6371520310640335,
+          "mean_ms": 0.03380964142389786
+        },
+        "indexer_projection": {
+          "calls": 42,
+          "total_ms": 51.26959979534149,
+          "mean_ms": 1.2207047570319403
+        },
+        "indexer_inclusive": {
+          "calls": 21,
+          "total_ms": 292.3085775375366,
+          "mean_ms": 13.919456073216029
+        },
+        "attention_absorb": {
+          "calls": 78,
+          "total_ms": 457.02428579330444,
+          "mean_ms": 5.859285715298775
+        },
+        "attention_selected": {
+          "calls": 78,
+          "total_ms": 1596.7265319824219,
+          "mean_ms": 20.470852974133614
+        },
+        "attention_expand": {
+          "calls": 78,
+          "total_ms": 374.85254526138306,
+          "mean_ms": 4.805801862325424
+        },
+        "attention_inclusive": {
+          "calls": 78,
+          "total_ms": 3494.5489349365234,
+          "mean_ms": 44.80190942226312
+        },
+        "dense_shared_ffn": {
+          "calls": 234,
+          "total_ms": 38.02732781693339,
+          "mean_ms": 0.1625099479356128
+        },
+        "router_projection": {
+          "calls": 225,
+          "total_ms": 78.15747214853764,
+          "mean_ms": 0.3473665428823895
+        },
+        "router_top8": {
+          "calls": 225,
+          "total_ms": 5.417504010722041,
+          "mean_ms": 0.024077795603209072
+        },
+        "expert_grouping": {
+          "calls": 225,
+          "total_ms": 423.0093755722046,
+          "mean_ms": 1.880041669209798
+        },
+        "expert_input_rotation": {
+          "calls": 225,
+          "total_ms": 185.49654400348663,
+          "mean_ms": 0.8244290844599406
+        },
+        "expert_gateup_compute": {
+          "calls": 225,
+          "total_ms": 1342.6627173423767,
+          "mean_ms": 5.967389854855008
+        },
+        "expert_gateup_epilogue": {
+          "calls": 225,
+          "total_ms": 96.75753569602966,
+          "mean_ms": 0.4300334919823541
+        },
+        "expert_down_compute": {
+          "calls": 225,
+          "total_ms": 912.6368935108185,
+          "mean_ms": 4.056163971159194
+        },
+        "expert_down_combine": {
+          "calls": 225,
+          "total_ms": 390.0280964374542,
+          "mean_ms": 1.7334582063886854
+        },
+        "moe_combine": {
+          "calls": 225,
+          "total_ms": 50.33449564874172,
+          "mean_ms": 0.22370886954996322
+        },
+        "final_norm": {
+          "calls": 1,
+          "total_ms": 0.7736960053443909,
+          "mean_ms": 0.7736960053443909
+        }
+      },
+      "skip512": {
+        "tp6_sum_inclusive": {
+          "calls": 157,
+          "total_ms": 1515.9851217269897,
+          "mean_ms": 9.655956189343884
+        },
+        "decoder_norms": {
+          "calls": 156,
+          "total_ms": 101.90038433670998,
+          "mean_ms": 0.6532075919019871
+        },
+        "attention_projection": {
+          "calls": 234,
+          "total_ms": 734.040798664093,
+          "mean_ms": 3.1369264900174914
+        },
+        "attention_norms": {
+          "calls": 156,
+          "total_ms": 9.301728002727032,
+          "mean_ms": 0.05962646155594251
+        },
+        "attention_rope": {
+          "calls": 78,
+          "total_ms": 11.52873608469963,
+          "mean_ms": 0.1478043087782004
+        },
+        "attention_cache_write": {
+          "calls": 78,
+          "total_ms": 2.654496021568775,
+          "mean_ms": 0.034032000276522756
+        },
+        "indexer_projection": {
+          "calls": 42,
+          "total_ms": 51.59817564487457,
+          "mean_ms": 1.2285279915446328
+        },
+        "indexer_inclusive": {
+          "calls": 21,
+          "total_ms": 291.18710231781006,
+          "mean_ms": 13.866052491324288
+        },
+        "attention_absorb": {
+          "calls": 78,
+          "total_ms": 458.38476610183716,
+          "mean_ms": 5.876727770536374
+        },
+        "attention_selected": {
+          "calls": 78,
+          "total_ms": 1608.109504699707,
+          "mean_ms": 20.616788521791115
+        },
+        "attention_expand": {
+          "calls": 78,
+          "total_ms": 373.8012475967407,
+          "mean_ms": 4.792323687137702
+        },
+        "attention_inclusive": {
+          "calls": 78,
+          "total_ms": 3506.972396850586,
+          "mean_ms": 44.961184575007515
+        },
+        "dense_shared_ffn": {
+          "calls": 234,
+          "total_ms": 38.24297605827451,
+          "mean_ms": 0.16343152161655772
+        },
+        "router_projection": {
+          "calls": 225,
+          "total_ms": 77.56092803180218,
+          "mean_ms": 0.34471523569689855
+        },
+        "router_top8": {
+          "calls": 225,
+          "total_ms": 5.55190403200686,
+          "mean_ms": 0.0246751290311416
+        },
+        "expert_grouping": {
+          "calls": 225,
+          "total_ms": 423.54828774929047,
+          "mean_ms": 1.882436834441291
+        },
+        "expert_input_rotation": {
+          "calls": 225,
+          "total_ms": 186.54732769727707,
+          "mean_ms": 0.8290992342101203
+        },
+        "expert_gateup_compute": {
+          "calls": 225,
+          "total_ms": 1340.0336351394653,
+          "mean_ms": 5.95570504506429
+        },
+        "expert_gateup_epilogue": {
+          "calls": 225,
+          "total_ms": 97.35171195864677,
+          "mean_ms": 0.43267427537176345
+        },
+        "expert_down_compute": {
+          "calls": 225,
+          "total_ms": 914.4091203212738,
+          "mean_ms": 4.064040534761217
+        },
+        "expert_down_combine": {
+          "calls": 225,
+          "total_ms": 391.87891268730164,
+          "mean_ms": 1.7416840563880072
+        },
+        "moe_combine": {
+          "calls": 225,
+          "total_ms": 50.586623787879944,
+          "mean_ms": 0.2248294390572442
+        },
+        "final_norm": {
+          "calls": 1,
+          "total_ms": 0.665727972984314,
+          "mean_ms": 0.665727972984314
+        }
+      },
+      "skip1024": {
+        "tp6_sum_inclusive": {
+          "calls": 157,
+          "total_ms": 1466.1805782318115,
+          "mean_ms": 9.338729797654851
+        },
+        "decoder_norms": {
+          "calls": 156,
+          "total_ms": 102.10380816459656,
+          "mean_ms": 0.6545115907986959
+        },
+        "attention_projection": {
+          "calls": 234,
+          "total_ms": 729.4287351369858,
+          "mean_ms": 3.1172168168247256
+        },
+        "attention_norms": {
+          "calls": 156,
+          "total_ms": 9.066239967942238,
+          "mean_ms": 0.0581169228714246
+        },
+        "attention_rope": {
+          "calls": 78,
+          "total_ms": 11.283232063055038,
+          "mean_ms": 0.14465682132121843
+        },
+        "attention_cache_write": {
+          "calls": 78,
+          "total_ms": 2.6544320210814476,
+          "mean_ms": 0.034031179757454455
+        },
+        "indexer_projection": {
+          "calls": 42,
+          "total_ms": 50.810432344675064,
+          "mean_ms": 1.2097721986827397
+        },
+        "indexer_inclusive": {
+          "calls": 21,
+          "total_ms": 295.09692668914795,
+          "mean_ms": 14.05223460424514
+        },
+        "attention_absorb": {
+          "calls": 78,
+          "total_ms": 457.8528642654419,
+          "mean_ms": 5.869908516223614
+        },
+        "attention_selected": {
+          "calls": 78,
+          "total_ms": 1610.9338493347168,
+          "mean_ms": 20.652998068393806
+        },
+        "attention_expand": {
+          "calls": 78,
+          "total_ms": 376.0168972015381,
+          "mean_ms": 4.82072945130177
+        },
+        "attention_inclusive": {
+          "calls": 78,
+          "total_ms": 3510.148593902588,
+          "mean_ms": 45.00190505003318
+        },
+        "dense_shared_ffn": {
+          "calls": 234,
+          "total_ms": 38.88873580470681,
+          "mean_ms": 0.16619117865259322
+        },
+        "router_projection": {
+          "calls": 225,
+          "total_ms": 78.50880016386509,
+          "mean_ms": 0.3489280007282893
+        },
+        "router_top8": {
+          "calls": 225,
+          "total_ms": 5.39897602237761,
+          "mean_ms": 0.023995448988344933
+        },
+        "expert_grouping": {
+          "calls": 225,
+          "total_ms": 423.5135678052902,
+          "mean_ms": 1.8822825235790677
+        },
+        "expert_input_rotation": {
+          "calls": 225,
+          "total_ms": 185.73219227790833,
+          "mean_ms": 0.825476410124037
+        },
+        "expert_gateup_compute": {
+          "calls": 225,
+          "total_ms": 1336.6635565757751,
+          "mean_ms": 5.9407269181145566
+        },
+        "expert_gateup_epilogue": {
+          "calls": 225,
+          "total_ms": 96.9087039232254,
+          "mean_ms": 0.4307053507698907
+        },
+        "expert_down_compute": {
+          "calls": 225,
+          "total_ms": 916.4049608707428,
+          "mean_ms": 4.072910937203301
+        },
+        "expert_down_combine": {
+          "calls": 225,
+          "total_ms": 392.03318321704865,
+          "mean_ms": 1.7423697031868828
+        },
+        "moe_combine": {
+          "calls": 225,
+          "total_ms": 50.371999725699425,
+          "mean_ms": 0.22387555433644188
+        },
+        "final_norm": {
+          "calls": 1,
+          "total_ms": 0.6666880249977112,
+          "mean_ms": 0.6666880249977112
+        }
+      }
+    }
+  }
+}

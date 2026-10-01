@@ -8,7 +8,7 @@ K3/K4 3.25 bpw expert fragments. Full-model target/MTP forward execution works;
 
 [`experimental/tensorfold/`](../../experimental/tensorfold/README.md) is a
 source snapshot of our qualified port revision
-`e69eb5f82c0467e2b07fc41d0ee8429ae7342dbe`.
+`8ca0fd95f49750b43cb73c9644e77c9c15a4f3e3`.
 The complete framework source is retained to preserve imports and upstream
 notices; the new family is under `src/tensorfold/families/glm_moe_dsa/`.
 
@@ -35,7 +35,8 @@ The qualified run loaded all 79 target/MTP layers on each assigned rank,
 touched the entire 804,000-token cache, and compared target hidden states,
 logits, MTP, uneven input lengths, and changed-input CUDA graphs.
 
-- `tools/glm53_tp6_bulk_reduction_check.py`: the full six-rank experiment.
+- `tools/glm53_tp6_attention_tuning_check.py`: the latest full six-rank experiment.
+- `tools/glm53_tp6_bulk_reduction_check.py`: the preceding reduction experiment.
 - `tools/glm53_tp6_reduction_check.py`: independent rank-order reduction oracle.
 - `tools/glm53_tp6_compile_experts.py`: bounded CPU-only extension build.
 - `src/tensorfold/families/glm_moe_dsa/experts-sm121.json`: qualified binary
@@ -57,12 +58,14 @@ Our site controller is not exported; prepare its portable replacement before
 attempting this experiment on a new fleet. The source and past results are
 available for review without launching it.
 
-## Latest result and next experiment
+## Latest result and next work
 
-At 3,072 synthetic input tokens, 1,024-row expert chunks and a fully resident
-804K cache, row-sharded reductions improved the full pass from 11.07 to 9.62 s.
-All 618 GPU comparisons were exact. See [the evidence](../../results/tfp14-tensorfold.json).
+The five attention modes passed 1,098 GPU checks, including original
+full-model target/MTP outputs and changed-input graphs. `skip128` led the
+synthetic target pass: **9.55 → 8.80 seconds** (+8.5% throughput).
+See [the evidence](../../results/tfp15-tensorfold.json). Defaults remain unchanged;
+use explicit candidate settings recorded there.
 
-[Attention tuning](../../experiments/README.md) is preserved separately as an
-unapplied patch. Request scheduling, recursive MTP acceptance, authentic
-long-context quality, and application integration remain on the roadmap.
+`tools/glm53_tp6_attention_tuning_check.py` is the latest full experiment.
+Request scheduling, recursive MTP acceptance, authentic long-context quality,
+and application integration remain on the roadmap.

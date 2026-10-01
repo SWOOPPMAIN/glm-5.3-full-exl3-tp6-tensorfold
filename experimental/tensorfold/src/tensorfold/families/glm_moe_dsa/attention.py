@@ -14,6 +14,13 @@ NOPE = tl.constexpr(192)
 VALUE = tl.constexpr(256)
 CHUNK = tl.constexpr(512)
 TILE = tl.constexpr(32)
+ATTENTION_ROW_OPTIONS = (128, 256, 512, 1024)
+
+
+def validate_attention_options(part_rows, skip_empty):
+    if type(part_rows) is not int or part_rows not in ATTENTION_ROW_OPTIONS or type(skip_empty) is not bool:
+        raise ValueError('Attention needs128/256/512/1024 row chunks and a boolean empty-tile option')
+    return part_rows, skip_empty
 
 
 def load_head_weights(reader, layer, rank, device='cuda'):
@@ -129,7 +136,8 @@ def _projection_check(x, w, out, xs, ws, os, real):
 @triton.jit
 def _attention_chunks(QA, QR, LC, KC, LS, TOKENS, COUNTS, POS, BASE, PO, PM, PL,
                       ROWS: tl.constexpr, H: tl.constexpr, REAL: tl.constexpr,
-                      CAP: tl.constexpr, WIDTH: tl.constexpr, COMPACT: tl.constexpr):
+                      CAP: tl.constexpr, WIDTH: tl.constexpr, COMPACT: tl.constexpr,
+                      SKIP_EMPTY: tl.constexpr):
     r, chunk = tl.program_id(0), tl.program_id(1)
     hh = tl.arange(0, 16)
     d = tl.arange(0, 512)
@@ -142,7 +150,13 @@ def _attention_chunks(QA, QR, LC, KC, LS, TOKENS, COUNTS, POS, BASE, PO, PM, PL,
     m = tl.full((16,), float('-inf'), tl.float32)
     z = tl.zeros((16,), tl.float32)
     o = tl.zeros((16, 512), tl.float32)
-    for tile in range(CHUNK//TILE):
+    tiles = CHUNK//TILE
+    if SKIP_EMPTY:
+        # Selection count is device data and may change on every graph replay.
+        # Skip only wholly empty trailing tiles; keep all active tile arithmetic
+        # and the four-chunk merge order identical to the fixed-loop path.
+        tiles = tl.minimum(tl.cdiv(tl.maximum(count-chunk*CHUNK, 0), TILE), CHUNK//TILE)
+    for tile in range(tiles):
         i = chunk*CHUNK+tile*TILE+tl.arange(0, TILE)
         tok = tl.load(TOKENS+r*WIDTH+i, (i < count) & (i < WIDTH), -1).to(tl.int64)
         slot = base+tok
@@ -189,10 +203,11 @@ def _attention_merge(PO, PM, PL, OUT, ROWS: tl.constexpr, H: tl.constexpr, NCH: 
 
 
 class AttentionScratch:
-    def __init__(self, rows, device, real_heads=11):
+    def __init__(self, rows, device, real_heads=11, *, part_rows=128, skip_empty=False):
         if type(rows) is not int or not 1 <= rows <= 3072 or real_heads not in (9, 11):
             raise ValueError('Expected TP6 heads and1..3072 rows')
-        self.rows, self.part_rows, self.real_heads = rows, min(rows, 128), real_heads
+        part_rows, self.skip_empty = validate_attention_options(part_rows, skip_empty)
+        self.rows, self.part_rows, self.real_heads = rows, min(rows, part_rows), real_heads
         n = 4*self.part_rows*11
         self.po = torch.empty((n, 512), dtype=torch.float32, device=device)
         self.pm = torch.empty(n, dtype=torch.float32, device=device)
@@ -232,7 +247,7 @@ def attend(qa, q_rope, latent_cache, rope_cache, tokens, counts, positions, base
         _attention_chunks[(n, 4)](qa[start:stop], q_rope[start:stop], latent_cache, rope_cache,
             latent_scales if compact else latent_cache,
             tokens[start:stop], counts[start:stop], positions[start:stop], bases[start:stop],
-            scratch.po, scratch.pm, scratch.pl, n, 11, scratch.real_heads, cap, 2048, compact,
+            scratch.po, scratch.pm, scratch.pl, n, 11, scratch.real_heads, cap, 2048, compact, scratch.skip_empty,
             num_warps=8, num_stages=1, enable_fp_fusion=False)
         _attention_merge[(n, 11)](scratch.po, scratch.pm, scratch.pl, out[start:stop], n, 11, 4,
                                   num_warps=4, enable_fp_fusion=False)

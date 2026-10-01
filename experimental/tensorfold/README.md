@@ -6,7 +6,7 @@ full-model port. Start with [the TP6 recipe](../../recipes/tensorfold-tp6/README
 - Base: [Ash Hart / TensorFold](https://github.com/ashhart/TensorFold), v0.5.0.
 - Patched baseline: [MiaAI-Lab](https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks-TensorFold).
 - Swoopp port: `src/tensorfold/families/glm_moe_dsa/`.
-- Snapshot: `e69eb5f82c0467e2b07fc41d0ee8429ae7342dbe`.
+- Snapshot: `8ca0fd95f49750b43cb73c9644e77c9c15a4f3e3`.
 
 Source under `src/` matches the qualified revision byte for byte. GPU probe
 scripts replace one private head address with `MASTER_ADDR`; those portability

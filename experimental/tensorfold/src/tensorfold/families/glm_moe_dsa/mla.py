@@ -70,7 +70,7 @@ class SelectionState:
 
 
 class MLAScratch:
-    def __init__(self,rows,context_capacity,device,*,real_heads=11):
+    def __init__(self,rows,context_capacity,device,*,real_heads=11,attention_part_rows=128,skip_empty_attention=False):
         if type(rows) is not int or not 1<=rows<=3072 or real_heads not in (9,11):
             raise ValueError('Invalid full GLM TP6 MLA scratch geometry')
         self.rows,self.real_heads=rows,real_heads
@@ -80,7 +80,7 @@ class MLAScratch:
         self.k_rope=bf(rows,64);self.k_rotated=bf(rows,64);self.q_rope=bf(rows,11,64)
         self.q_absorbed=bf(rows,11,512);self.attended=bf(rows,11,512);self.expanded=bf(rows,11,256)
         self.o_input=bf(rows,real_heads*256);self.output=bf(rows,6144)
-        self.attention=AttentionScratch(rows,device,real_heads)
+        self.attention=AttentionScratch(rows,device,real_heads,part_rows=attention_part_rows,skip_empty=skip_empty_attention)
         self.indexer=IndexerForwardScratch(rows,context_capacity,device)
 
 

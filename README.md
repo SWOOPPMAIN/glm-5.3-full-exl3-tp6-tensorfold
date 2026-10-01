@@ -25,10 +25,12 @@ Prefill here means prompt tokens divided by time to first token, including
 the first generation step and delivery. These are workload measurements,
 not a hardware ceiling. See [results and methodology](results/README.md).
 
-The latest TensorFold experiment improved a synthetic 3,072-token full-model
-pass from **11.07 to 9.62 seconds** (+15.1% throughput), with **618 exact GPU
-checks passing** and an **804,000-token resident test cache**. This is a
-separate test configuration; the improvement is not deployed to vLLM.
+The latest TensorFold attention experiment improved a synthetic 3,072-token
+full-model pass from **9.55 to 8.80 seconds** (+8.5% throughput),
+with **1,098 GPU checks passing** (546 exact comparisons and
+552 FP64 reference checks). The resident test cache holds
+**804,000 tokens**. This is a separate test configuration; the improvement is
+not deployed to vLLM. [Detailed result](results/tfp15-tensorfold.json).
 
 ## Recipes
 
@@ -48,8 +50,8 @@ weights and compiled artifacts are downloaded or built separately.
 | --- | --- |
 | `weights/` | Pinned checkpoint manifest, lossless resharing and verification |
 | `runtime/vllm/` | Serving overlays, node entrypoint, memory guard, E3 sources |
-| `experimental/tensorfold/` | Source snapshot through the qualified bulk-reduction experiment |
-| `experiments/` | Attention tuning candidate, explicitly awaiting GPU qualification |
+| `experimental/tensorfold/` | Source snapshot through the qualified attention experiment |
+| `experiments/` | Completed attention experiment and next development steps |
 | `results/` | Serving measurements and separate TensorFold experiment results |
 | `provenance/` | Source revisions, import hashes, and local change records |
 
