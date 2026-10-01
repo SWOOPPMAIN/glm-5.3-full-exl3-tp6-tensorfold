@@ -11,5 +11,6 @@ jobs:
         with:
           python-version: '3.12'
       - run: python3 scripts/check-repository.py
+      - run: python3 -m pip install -r requirements-check.txt
       - run: python3 -m unittest discover -s weights -p 'test_placement.py'
       - run: bash -n runtime/vllm/node.sh

@@ -45,5 +45,6 @@ another rank's `TP6_VERIFIED.json`.
 CPU geometry checks:
 
 ```bash
+python3 -m pip install -r requirements-check.txt
 python3 -m unittest discover -s weights -p 'test_placement.py'
 ```

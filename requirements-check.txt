@@ -1,0 +1,2 @@
+# CPU placement tests; matches the environment used for the exported checks.
+numpy==2.4.2

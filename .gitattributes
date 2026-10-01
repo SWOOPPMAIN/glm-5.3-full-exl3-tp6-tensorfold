@@ -1,0 +1,6 @@
+# Preserve original upstream bytes and valid unified-diff context lines.
+experimental/tensorfold/src/** whitespace=-blank-at-eof
+LICENSES/AGPL-3.0.txt whitespace=-blank-at-eof
+runtime/vllm/e3/amos_e3/LICENSE.mia whitespace=-blank-at-eof
+runtime/vllm/e3/amos_e3/grouped_fragments.cu whitespace=-blank-at-eof
+*.patch -whitespace
