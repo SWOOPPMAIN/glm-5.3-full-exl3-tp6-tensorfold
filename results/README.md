@@ -115,3 +115,12 @@ and prose 23.75 → 23.64 tok/s. One C4 run per mode measured 22.34 → 23.11 to
 combined, including prefill. All outputs matched independent serial decoding.
 These runs compare TensorFold eager and graphs, not the separate P24 workload.
 They do not qualify broad API behavior, long-context quality or production deployment.
+
+## TensorFold: TFP19 draft depth and kernel profiling
+
+[Summary](tfp19-tensorfold.json), [method and interpretation](../recipes/tensorfold-tp6/DECODE_PROFILING.md).
+630 GPU checks and 95 CPU checks passed. MTP4 led the short direct-controller
+code fixture at 24.72 tok/s; MTP6 led prose at 25.65 tok/s versus 24.98 for MTP4.
+All 42 timed requests used warm graphs; each answer matched independent serial
+generation. Separate three-round traces identified dense BF16 projections as
+the largest compute category. This is not a serving promotion or broad quality gate.

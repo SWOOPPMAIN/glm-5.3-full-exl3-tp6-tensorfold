@@ -56,3 +56,7 @@ See [the complete summary](../../results/tfp18-tensorfold.json). The 804K reside
 cache does not establish long-context quality. Packed batching, broader API
 regressions, production routing and a portable image remain pending. P24 remains
 the serving backend.
+
+The subsequent [draft-depth/profile experiment](DECODE_PROFILING.md) uses up to
+24 graph entries and nine target/head rows for depth-eight verification.
+It preserves the one-row MTP graph path and the underlying model kernels.

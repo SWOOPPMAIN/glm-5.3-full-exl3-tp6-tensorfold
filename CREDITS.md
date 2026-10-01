@@ -65,3 +65,6 @@ Please report missing or incorrect attribution through an issue.
 Swoopp also implemented the full-TP6 bounded decode graph adapter and HTTP
 qualification harness, using PyTorch CUDA graphs and the retained TensorFold
 and Mia framework. This is a local integration, not an upstream performance claim.
+
+The TFP19 draft-depth sweep and trace summarizer are Swoopp additions, using
+PyTorch profiling APIs. Kernel timings describe this local port and workload.

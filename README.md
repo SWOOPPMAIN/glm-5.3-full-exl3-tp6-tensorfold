@@ -26,22 +26,16 @@ Prefill here means prompt tokens divided by time to first token, including
 the first generation step and delivery. These are workload measurements,
 not a hardware ceiling. See [results and methodology](results/README.md).
 
-The latest TensorFold attention experiment improved a synthetic 3,072-token
-full-model pass from **9.55 to 8.80 seconds** (+8.5% throughput),
-with **1,098 GPU checks passing** (546 exact comparisons and
-552 FP64 reference checks). The resident test cache holds
-**804,000 tokens**. This is a separate test configuration; the improvement is
-not deployed to vLLM. [Detailed result](results/tfp15-tensorfold.json).
+TensorFold remains experimental. Its full model, request controller, decode
+graphs and short HTTP/SSE paths pass exact-output checks. The latest diagnostic
+sweep tested seven draft depths up to eight, with 630 GPU checks passing. MTP4 led code at
+24.7 tok/s; MTP6 led prose at 25.6 tok/s. These are short direct-controller
+measurements, separate from the P24 serving workload above.
 
-The request core also passed **102 checks across six ranks**. Four interleaved
-requests and a retained-prefix follow-up matched serial generation exactly
-on every rank. [Scope and limits](results/tfp16-tensorfold.json). The distributed controller
-and scheduler also pass serial parity with concurrent clients, prefix reuse and
-cancellation. [TFP17](results/tfp17-tensorfold.json). Decode graphs and local HTTP
-then passed **329 GPU checks**; short code generation improved **22.8 → 24.5 tok/s**
-versus TensorFold eager execution, while prose was unchanged. These 128-token
-diagnostic runs are separate from the P24 measurements above.
-[TFP18 results and limits](results/tfp18-tensorfold.json).
+Profiling points to BF16 dense projections as the main compute target.
+See [profiling and draft-depth results](recipes/tensorfold-tp6/DECODE_PROFILING.md),
+[graph/HTTP results](recipes/tensorfold-tp6/DECODE_GRAPHS.md), and
+[earlier attention work](results/tfp15-tensorfold.json).
 
 ## Recipes
 
@@ -61,7 +55,7 @@ weights and compiled artifacts are downloaded or built separately.
 | --- | --- |
 | `weights/` | Pinned checkpoint manifest, lossless resharing and verification |
 | `runtime/vllm/` | Serving overlays, node entrypoint, memory guard, E3 sources |
-| `experimental/tensorfold/` | Source snapshot through decode graph and short HTTP qualification |
+| `experimental/tensorfold/` | Source snapshot through decode profiling and draft-depth qualification |
 | `experiments/` | Completed attention experiment and next development steps |
 | `results/` | Serving measurements and separate TensorFold experiment results |
 | `provenance/` | Source revisions, import hashes, and local change records |

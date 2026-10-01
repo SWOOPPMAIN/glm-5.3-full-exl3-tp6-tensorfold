@@ -18,9 +18,12 @@
 - Bounded decode graphs and actual checkpoint chat-template HTTP C1/C4/SSE,
   with exact serial output checks and separate short-context timing.
 
+- Seven-depth exact-output sweep and bounded all-rank decode profiling;
+  dense BF16 projections identified as the main compute target.
+
 ## Next
 
-1. Profile remaining TensorFold HTTP decode costs and compare matched workloads with P24.
+1. Tune BF16 projection tiles/layout, then gate outputs and compare matched workloads with P24.
 2. Pack concurrent requests into shared target passes and tune draft depth.
 3. Extend API checks to conversation history, tools, reasoning, stops and disconnects.
 4. Measure authentic code/prose and uncached 8K/32K/128K; qualify real 360K quality.

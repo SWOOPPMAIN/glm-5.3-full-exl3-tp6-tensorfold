@@ -6,7 +6,7 @@ the snapshot as imported; update a file's record when intentionally changing it.
 | Component | Pin |
 | --- | --- |
 | Swoopp serving source | `amos-recipes` commit `173f4c5449a38d05057e1c342d1b44655b024ab8` |
-| Swoopp TensorFold GPU-qualified source | `ab21e2c61d20c399b12a139a81ecb85e70b9ccfc` |
+| Swoopp TensorFold GPU-qualified source | `b049970f9a8e65c802a8d8d00ccd0118f62456a7` |
 | TensorFold base | `9cd52ab4daba68ddd09be89be8f23ad43175e821` (v0.5.0) |
 | Imported Mia recipe | `ed026ef92d1650120dada1294a112acb6c8f2f48` (52 patches) |
 | Kindling E3 import | `0ecf21ebcccd924f7f7c47eda0333282d8e177f5` |
@@ -14,11 +14,11 @@ the snapshot as imported; update a file's record when intentionally changing it.
 
 The source revision is distinct from a metadata-only ledger commit. Each
 experiment identifies its executed source revision in the results; the
-current snapshot matches TFP18.
+current snapshot matches TFP19.
 
 TensorFold files under `src/` are byte-identical to the qualified revision.
 Earlier GPU probe scripts replace a private fabric address with `MASTER_ADDR`;
-TFP16, TFP17 and TFP18 already used that environment variable in their executed source.
+TFP16 through TFP19 already used that environment variable in their executed source.
 The benchmark client's default endpoint is loopback. No GPU or serving
 benchmark was rerun as part of this export.
 
