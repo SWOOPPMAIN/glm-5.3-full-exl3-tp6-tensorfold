@@ -64,3 +64,24 @@ host-available memory: 10.67 GiB. All six guards clear.
 Three timed repeats per full-pass mode, control first; no interleaved rerun.
 The candidate is not serving. The same caution about synthetic timing and
 authentic long-context quality applies.
+
+## TensorFold: TFP16 request execution
+
+[Six-rank summary](tfp16-tensorfold.json). All 17 checks on each rank passed
+(102 total), including five exact output-sequence comparisons per rank
+(30 total) against independent serial target generation.
+Four short requests used greedy, keyed top-k and
+top-p/min-p sampling, followed by retained-prefix continuation and exact-prompt
+replay. Every sample asserted agreement across ranks.
+
+The four requests accepted 26 of 55 MTP proposals (47.3%), yielding 44 output
+tokens across 18 target verification passes (2.44 per pass), excluding the
+initial prompt-head samples. These short-fixture counts are not wall-clock speed.
+
+64 CPU checks passed. Peak PyTorch allocation: 99.92 GiB;
+minimum host-available memory: 11.06 GiB. All guards clear.
+GPU cancellation coverage is before a forward; deeper cancellation paths and
+all four rejection positions are covered by CPU state-machine tests.
+
+This was eager execution with raw-text prompts, not an API or speed benchmark.
+The 804K cache was resident; authentic long-context quality remains unqualified.

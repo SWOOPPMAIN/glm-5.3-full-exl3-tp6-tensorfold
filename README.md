@@ -5,8 +5,9 @@ mixed K3/K4 EXL3 weights**. This is Swoopp's private working repository for the
 serving recipe, measured optimizations, and ongoing TensorFold port.
 
 **Status — October 1, 2026:** vLLM serves the model today. TensorFold can run
-the full target and MTP forward passes on all six ranks; its request engine
-and application integration are still in development.
+the full target/MTP model and an eager request core with recursive drafting
+on all six ranks. Distributed scheduling and application integration remain
+in development.
 
 ## Performance
 
@@ -32,6 +33,10 @@ with **1,098 GPU checks passing** (546 exact comparisons and
 **804,000 tokens**. This is a separate test configuration; the improvement is
 not deployed to vLLM. [Detailed result](results/tfp15-tensorfold.json).
 
+The request core also passed **102 checks across six ranks**. Four interleaved
+requests and a retained-prefix follow-up matched serial generation exactly
+on every rank. [Scope and limits](results/tfp16-tensorfold.json).
+
 ## Recipes
 
 1. [Prepare and verify the original weights](recipes/weights/README.md)
@@ -50,7 +55,7 @@ weights and compiled artifacts are downloaded or built separately.
 | --- | --- |
 | `weights/` | Pinned checkpoint manifest, lossless resharing and verification |
 | `runtime/vllm/` | Serving overlays, node entrypoint, memory guard, E3 sources |
-| `experimental/tensorfold/` | Source snapshot through the qualified attention experiment |
+| `experimental/tensorfold/` | Source snapshot through short-request serial parity |
 | `experiments/` | Completed attention experiment and next development steps |
 | `results/` | Serving measurements and separate TensorFold experiment results |
 | `provenance/` | Source revisions, import hashes, and local change records |

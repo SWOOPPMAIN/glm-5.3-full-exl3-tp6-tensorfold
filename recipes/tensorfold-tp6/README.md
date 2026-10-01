@@ -8,7 +8,7 @@ K3/K4 3.25 bpw expert fragments. Full-model target/MTP forward execution works;
 
 [`experimental/tensorfold/`](../../experimental/tensorfold/README.md) is a
 source snapshot of our qualified port revision
-`8ca0fd95f49750b43cb73c9644e77c9c15a4f3e3`.
+`95c45806bc54867b6e8f16d8769f2c27071f5e51`.
 The complete framework source is retained to preserve imports and upstream
 notices; the new family is under `src/tensorfold/families/glm_moe_dsa/`.
 
@@ -27,15 +27,18 @@ PYTHONPATH=src python3 -m unittest discover -s tests -p 'test_glm53_full_tp6_*.p
 ```
 
 These exercise shard geometry, exact arithmetic references, workspace sizing,
-and input contracts. They do not substitute for six-GPU qualification.
+input contracts, and request state transitions against an independent serial
+oracle. They do not substitute for six-GPU qualification.
 
 ## GPU qualification contract
 
-The qualified run loaded all 79 target/MTP layers on each assigned rank,
-touched the entire 804,000-token cache, and compared target hidden states,
-logits, MTP, uneven input lengths, and changed-input CUDA graphs.
+The qualified runs loaded all 79 target/MTP layers on each assigned rank and
+touched the entire 804,000-token cache. Earlier experiments cover hidden
+states, logits and changed-input graphs; TFP16 covers eager request execution
+against serial target generation.
 
-- `tools/glm53_tp6_attention_tuning_check.py`: the latest full six-rank experiment.
+- `tools/glm53_tp6_request_check.py`: latest short-request parity experiment.
+- `tools/glm53_tp6_attention_tuning_check.py`: attention comparison and graphs.
 - `tools/glm53_tp6_bulk_reduction_check.py`: the preceding reduction experiment.
 - `tools/glm53_tp6_reduction_check.py`: independent rank-order reduction oracle.
 - `tools/glm53_tp6_compile_experts.py`: bounded CPU-only extension build.
@@ -66,6 +69,10 @@ synthetic target pass: **9.55 → 8.80 seconds** (+8.5% throughput).
 See [the evidence](../../results/tfp15-tensorfold.json). Defaults remain unchanged;
 use explicit candidate settings recorded there.
 
-`tools/glm53_tp6_attention_tuning_check.py` is the latest full experiment.
-Request scheduling, recursive MTP acceptance, authentic long-context quality,
-and application integration remain on the roadmap.
+The eager request core then passed 102 checks across six ranks, including
+30 exact sequence comparisons with an independent serial
+loop. See [TFP16](../../results/tfp16-tensorfold.json) and the
+[request execution contract](REQUEST_ENGINE.md).
+
+Distributed request/cancellation transport, decode graphs, continuous batch
+packing, authentic long-context quality and API integration remain unfinished.

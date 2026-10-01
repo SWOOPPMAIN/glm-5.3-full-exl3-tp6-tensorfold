@@ -9,5 +9,6 @@ qualified implementation; do not apply this patch to it. The
 
 All five attention modes passed the recorded component and full-model checks.
 The selected settings remain explicit options; serving integration is still
-incomplete. Next: use the detailed profile and complete the full-model request
-engine, recursive MTP acceptance, cache ownership and client integration.
+incomplete. The full-model request core subsequently passed short-request
+serial parity in [TFP16](../results/tfp16-tensorfold.json). Distributed request
+commands, graph acceleration and client integration remain next.

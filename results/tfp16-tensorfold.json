@@ -1,0 +1,85 @@
+{
+  "at": 1790885439.7898252,
+  "source_revision": "95c45806bc54867b6e8f16d8769f2c27071f5e51",
+  "passed": true,
+  "checks": 102,
+  "exact_sequence_checks": 30,
+  "cpu_checks": 64,
+  "scope": "Original 79-layer weights, 804K resident cache, independent serial target decoding versus recursive MTP4 request execution. Four interleaved short requests include greedy, keyed top-k and top-p/min-p sampling. Retained-prefix follow-up, exact-prompt replay, cancellation before forward and full lease reclamation. Every sample asserts agreement across all six ranks.",
+  "cache_capacity_tokens": 804000,
+  "candidate_configuration": {
+    "expert_chunk_rows": 1024,
+    "bulk_min_rows": 256,
+    "attention_part_rows": 128,
+    "skip_empty_attention": true
+  },
+  "fixture_output_sha256": [
+    "13be0150fb0614c23632ae34447d7f118397fde42e600e0597a9c346dbd80d18",
+    "d430feaaa231c109351d0f905e5b39762881b1b3812440f2ed4c1a53742f3fd7",
+    "a939a7bf43c65165f7d63373264d432bf32a62dc3107b6d7fd6ea7a8442bc0c3",
+    "c49fc70c510878f71125ca75e152e9534241028d8061c742e3f0a0acf6735573"
+  ],
+  "cross_rank_sample_checks": {
+    "0": 145,
+    "1": 145,
+    "2": 145,
+    "3": 145,
+    "4": 145,
+    "5": 145
+  },
+  "acceptance": [
+    {
+      "case": "serial-parity-request-0",
+      "rounds": 4,
+      "drafted": 12,
+      "accepted": 7
+    },
+    {
+      "case": "serial-parity-request-1",
+      "rounds": 6,
+      "drafted": 18,
+      "accepted": 5
+    },
+    {
+      "case": "serial-parity-request-2",
+      "rounds": 4,
+      "drafted": 13,
+      "accepted": 7
+    },
+    {
+      "case": "serial-parity-request-3",
+      "rounds": 4,
+      "drafted": 12,
+      "accepted": 7
+    }
+  ],
+  "limitations": [
+    "Short raw-text prompts; no authentic long-context or full chat-template quality gate yet.",
+    "Eager execution without CUDA graphs; no generation-speed comparison is claimed.",
+    "Four requests interleave through one workspace; continuous batch packing and distributed command/cancellation transport remain to be integrated.",
+    "GPU cancellation test is before a forward; mid-forward cancellation and all rejection positions are CPU state-machine tests.",
+    "Kept conversation leases count toward four total request slots and cache capacity; an API scheduler must evict terminal leases deliberately when admitting new conversations.",
+    "Sampler uses the existing TensorFold CUDA keyed sampling path; serial-token equality for these fixtures is not universal quality proof."
+  ],
+  "maximum_torch_gib": 99.91864109039307,
+  "maximum_cgroup_gib": 58.215431213378906,
+  "minimum_host_available_gib": 11.06,
+  "all_exit0": true,
+  "all_oom_false": true,
+  "all_diagnostic_guards_clear": true,
+  "original_weights_unchanged": true,
+  "quantization": "original mixed K3/K4 3.25 bpw",
+  "complete_quality_gate": false,
+  "serving_throughput": false,
+  "tensorfold_serving": false,
+  "acceptance_summary": {
+    "proposed": 55,
+    "accepted": 26,
+    "rate": 0.4727272727272727,
+    "verification_passes": 18,
+    "verified_output_tokens": 44,
+    "output_tokens_per_verification_pass": 2.4444444444444446,
+    "scope": "Four short raw-text requests,12 output tokens each; excludes first prompt-head sample. Counts only, not wall-clock speed."
+  },
+  "raw_receipt_sha256": "19bc8227bc60f8252cd9ebc49da59ba6a989305fe84e871fa02648488b6886de"
+}

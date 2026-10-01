@@ -9,18 +9,17 @@
   and fully resident 804K test cache on all six ranks.
 - Expert chunk tuning and fixed-order bulk reductions with exact GPU comparisons.
 - Attention tile skipping and row-batch comparisons, with FP64 reference checks.
+- Eager request core: recursive MTP, keyed target verification, four interleaved
+  requests and retained-prefix continuation against serial target generation.
 
 ## Next
 
-1. Use the qualified attention options and detailed stage profile in the
-   full-engine candidate.
-2. Complete the TensorFold request engine: recursive MTP, accepted-prefix cache
-   commit/reclaim, cancellation, sampling, and four-request scheduling.
-3. Preserve conversation prefixes; test tool calls, reasoning, streaming, and usage.
-4. Measure authentic code/prose and long prompts against the same weights and fixtures.
-5. Package and qualify the backend, then integrate it through Max/Pi-router/Code.
-6. Publish a clean-machine image build and portable fleet launcher when verified.
+1. Integrate six-rank request/cancellation commands and the API scheduler.
+2. Capture decode graphs and pack concurrent requests into shared target passes.
+3. Qualify chat templates, conversation history, tools, reasoning, streaming and usage.
+4. Measure authentic code/prose and uncached 8K/32K/128K; qualify real 360K quality.
+5. Package the backend and promote measured gains through Max/Pi-router/Code.
+6. Publish a verified clean-machine image build and portable fleet launcher.
 
-The attention options passed component and full-forward GPU checks; a higher
-generation speed is still unmeasured. The original task includes end-to-end
-integration; component checks alone do not complete it.
+Short-request parity does not establish serving throughput or long-context
+quality. Full application integration remains part of the original goal.

@@ -110,3 +110,24 @@ def workspace_plan(config,rank,rows,capacity,*,logit_rows=17,expert_chunk_rows=1
     return dict(rows=rows,capacity=capacity,logit_rows=logit_rows,expert_chunk_rows=expert_chunk_rows,bulk_min_rows=bulk_min_rows,
                 attention_part_rows=attention_part_rows,skip_empty_attention=skip_empty_attention,workspace=scratch,cache=caches,
                 collective=collective,rope=rope,total=scratch+caches+collective+rope)
+
+
+def request_plan(rows, logit_rows, *, max_requests=4):
+    """Conservative request-owned tensor reserve, additional to workspace_plan.
+
+    Includes failed/cancelled requests retaining an unfinished prompt chunk,
+    temporary copies during MTP absorption and the full-vocabulary nucleus
+    sampler fallback. This is an admission reserve, not predicted live usage;
+    allocator/driver overhead still needs the separate runtime reserve/guard.
+    """
+    if (any(type(n) is not int for n in (rows, logit_rows, max_requests))
+            or not 1 <= logit_rows <= min(rows, 128) or not 1 <= rows <= 3072
+            or not 1 <= max_requests <= 4):
+        raise ValueError('Invalid request memory geometry')
+    hidden_retained = max_requests*(rows+logit_rows+1)*6144*2
+    hidden_temporary = (4*rows+4*logit_rows)*6144*2
+    sampler_reserve = logit_rows*154880*128
+    metadata = rows*4*8
+    return dict(hidden_retained=hidden_retained, hidden_temporary=hidden_temporary,
+                sampler_reserve=sampler_reserve, metadata=metadata,
+                total=hidden_retained+hidden_temporary+sampler_reserve+metadata)
