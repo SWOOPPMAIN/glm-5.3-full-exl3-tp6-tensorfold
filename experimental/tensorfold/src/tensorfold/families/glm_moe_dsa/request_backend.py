@@ -13,7 +13,7 @@ from .request import Extent
 
 
 class FullModelBackend:
-    def __init__(self, model, caches, table, workspace):
+    def __init__(self, model, caches, table, workspace, *, sampler=None):
         if not isinstance(model, FullModel) or workspace.weights is not model.weights:
             raise ValueError('Request backend needs its admitted full-model workspace')
         cfg = model.weights.config
@@ -31,6 +31,7 @@ class FullModelBackend:
         self.rows, self.logit_rows = workspace.rows, workspace.vocab.logit_rows
         self.vocab, self.eos = cfg.vocab, cfg.eos
         self.stream = torch.cuda.current_stream(self.device)
+        self.sampler = sample_rows if sampler is None else sampler
 
     def _stream(self):
         if torch.cuda.current_stream(self.device) != self.stream:
@@ -71,7 +72,7 @@ class FullModelBackend:
             raise ValueError('Sample rows exceed the admitted vocabulary workspace')
         # Vocabulary.project gathers in original global token order and removes
         # TP6 padding. Every rank uses the same seed and absolute positions.
-        return sample_rows(self.model.logits(hidden.contiguous(), self.workspace), positions, sampling)
+        return self.sampler(self.model.logits(hidden.contiguous(), self.workspace), positions, sampling)
 
     def synchronize(self):
         self._stream()

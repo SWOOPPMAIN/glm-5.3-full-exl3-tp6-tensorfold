@@ -8,7 +8,7 @@ K3/K4 3.25 bpw expert fragments. Full-model target/MTP forward execution works;
 
 [`experimental/tensorfold/`](../../experimental/tensorfold/README.md) is a
 source snapshot of our qualified port revision
-`95c45806bc54867b6e8f16d8769f2c27071f5e51`.
+`f06e85fe20ef8b626f5c1054b24d4b84410b9567`.
 The complete framework source is retained to preserve imports and upstream
 notices; the new family is under `src/tensorfold/families/glm_moe_dsa/`.
 
@@ -37,7 +37,8 @@ touched the entire 804,000-token cache. Earlier experiments cover hidden
 states, logits and changed-input graphs; TFP16 covers eager request execution
 against serial target generation.
 
-- `tools/glm53_tp6_request_check.py`: latest short-request parity experiment.
+- `tools/glm53_tp6_control_check.py`: distributed controller/scheduler gate.
+- `tools/glm53_tp6_request_check.py`: preceding request-core parity gate.
 - `tools/glm53_tp6_attention_tuning_check.py`: attention comparison and graphs.
 - `tools/glm53_tp6_bulk_reduction_check.py`: the preceding reduction experiment.
 - `tools/glm53_tp6_reduction_check.py`: independent rank-order reduction oracle.
@@ -74,5 +75,10 @@ The eager request core then passed 102 checks across six ranks, including
 loop. See [TFP16](../../results/tfp16-tensorfold.json) and the
 [request execution contract](REQUEST_ENGINE.md).
 
-Distributed request/cancellation transport, decode graphs, continuous batch
-packing, authentic long-context quality and API integration remain unfinished.
+The distributed controller, leader-only sampler and concurrent-client scheduler
+passed 28 checks across six ranks, including 6 client output comparisons
+against independent serial decoding. See [TFP17](../../results/tfp17-tensorfold.json).
+
+Decode graphs, packed GPU batches, authentic long-context quality and API
+integration remain unfinished. The scheduler currently interleaves eager steps;
+background priority applies while waiting, without active preemption.

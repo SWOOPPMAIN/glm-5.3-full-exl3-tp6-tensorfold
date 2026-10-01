@@ -12,6 +12,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 import math
 import threading
+from copy import copy
 from typing import Callable
 
 import torch
@@ -200,6 +201,25 @@ class RequestEngine:
             resume.pending_hidden = resume.last_hidden = None
         self.requests[key] = r
         return r
+
+    def preview_start(self, *args, **kwargs):
+        """Validate admission using the same code without changing any owner.
+
+        Only small host objects are copied. Tensor storage stays borrowed, and
+        start never executes a forward or modifies the retained hidden tensors.
+        This lets all ranks agree on admission before any rank mutates state.
+        """
+        self._worker()
+        trial = copy(self)
+        trial.pool = copy(self.pool)
+        trial.pool.free = list(self.pool.free)
+        trial.pool.leases = dict(self.pool.leases)
+        trial.requests = {key: copy(request) for key, request in self.requests.items()}
+        resume = kwargs.get('resume')
+        if resume is not None:
+            self._owned(resume)
+            kwargs['resume'] = trial.requests[resume.key]
+        return trial.start(*args, **kwargs).extent
 
     def drop(self, request):
         self._worker()

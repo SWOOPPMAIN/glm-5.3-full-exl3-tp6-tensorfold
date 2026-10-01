@@ -6,8 +6,8 @@ serving recipe, measured optimizations, and ongoing TensorFold port.
 
 **Status — October 1, 2026:** vLLM serves the model today. TensorFold can run
 the full target/MTP model and an eager request core with recursive drafting
-on all six ranks. Distributed scheduling and application integration remain
-in development.
+on all six ranks. Its distributed request controller and concurrent-client
+scheduler now pass original-weight checks. API integration remains in development.
 
 ## Performance
 
@@ -35,7 +35,9 @@ not deployed to vLLM. [Detailed result](results/tfp15-tensorfold.json).
 
 The request core also passed **102 checks across six ranks**. Four interleaved
 requests and a retained-prefix follow-up matched serial generation exactly
-on every rank. [Scope and limits](results/tfp16-tensorfold.json).
+on every rank. [Scope and limits](results/tfp16-tensorfold.json). The distributed controller
+and scheduler also pass serial parity with concurrent clients, prefix reuse and
+cancellation. [TFP17](results/tfp17-tensorfold.json).
 
 ## Recipes
 
@@ -55,7 +57,7 @@ weights and compiled artifacts are downloaded or built separately.
 | --- | --- |
 | `weights/` | Pinned checkpoint manifest, lossless resharing and verification |
 | `runtime/vllm/` | Serving overlays, node entrypoint, memory guard, E3 sources |
-| `experimental/tensorfold/` | Source snapshot through short-request serial parity |
+| `experimental/tensorfold/` | Source snapshot through distributed request qualification |
 | `experiments/` | Completed attention experiment and next development steps |
 | `results/` | Serving measurements and separate TensorFold experiment results |
 | `provenance/` | Source revisions, import hashes, and local change records |

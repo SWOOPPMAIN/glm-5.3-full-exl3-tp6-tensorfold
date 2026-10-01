@@ -12,9 +12,12 @@
 - Eager request core: recursive MTP, keyed target verification, four interleaved
   requests and retained-prefix continuation against serial target generation.
 
+- Distributed TP6 request controller, leader-only sampler and bounded
+  concurrent-client scheduler, qualified against original-weight serial output.
+
 ## Next
 
-1. Integrate six-rank request/cancellation commands and the API scheduler.
+1. Connect the qualified request scheduler to the real App/HTTP frontend.
 2. Capture decode graphs and pack concurrent requests into shared target passes.
 3. Qualify chat templates, conversation history, tools, reasoning, streaming and usage.
 4. Measure authentic code/prose and uncached 8K/32K/128K; qualify real 360K quality.

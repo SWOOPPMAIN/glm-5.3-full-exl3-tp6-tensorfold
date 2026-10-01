@@ -1,0 +1,332 @@
+{
+  "at": 1790888061.1362028,
+  "source_revision": "f06e85fe20ef8b626f5c1054b24d4b84410b9567",
+  "passed": true,
+  "checks": 28,
+  "exact_sequence_checks": 6,
+  "cpu_checks": 82,
+  "scope": "Original 79-layer weights with 804K resident cache. Four concurrent client threads use six-rank TCPStore request commands, leader-only sampling over the existing NCCL group, eager round-robin scheduling and retained conversation prefixes. Independent serial target outputs match for greedy, keyed top-k and top-p/min-p fixtures and follow-up. Invalid requests, idle wake, client cancellation, subsequent healthy requests and ordered shutdown exercised.",
+  "cache_capacity_tokens": 804000,
+  "candidate_configuration": {
+    "expert_chunk_rows": 1024,
+    "bulk_min_rows": 256,
+    "attention_part_rows": 128,
+    "skip_empty_attention": true
+  },
+  "commands_completed_per_rank": 43,
+  "leader_sampling_decisions_per_rank": 106,
+  "fixture_output_sha256": [
+    "13be0150fb0614c23632ae34447d7f118397fde42e600e0597a9c346dbd80d18",
+    "d430feaaa231c109351d0f905e5b39762881b1b3812440f2ed4c1a53742f3fd7",
+    "a939a7bf43c65165f7d63373264d432bf32a62dc3107b6d7fd6ea7a8442bc0c3",
+    "c49fc70c510878f71125ca75e152e9534241028d8061c742e3f0a0acf6735573"
+  ],
+  "client_cases": [
+    {
+      "case": "concurrent-client-serial-parity-0",
+      "passed": true,
+      "exact_tokens": true,
+      "expected_tokens": [
+        9428,
+        6119,
+        198,
+        750,
+        2629,
+        3575,
+        643,
+        40629,
+        46916,
+        982,
+        7129,
+        5152
+      ],
+      "actual_tokens": [
+        9428,
+        6119,
+        198,
+        750,
+        2629,
+        3575,
+        643,
+        40629,
+        46916,
+        982,
+        7129,
+        5152
+      ],
+      "stats": {
+        "cached": 0,
+        "prefill_s": 0.9404,
+        "decode_s": 4.8319,
+        "rounds": 4,
+        "drafted": 12,
+        "accepted": 7,
+        "min_rows": 1,
+        "drafts": true,
+        "reason": "length"
+      }
+    },
+    {
+      "case": "concurrent-client-serial-parity-1",
+      "passed": true,
+      "exact_tokens": true,
+      "expected_tokens": [
+        19565,
+        21321,
+        15921,
+        1894,
+        374,
+        264,
+        24768,
+        429,
+        21451,
+        279,
+        4622,
+        6176
+      ],
+      "actual_tokens": [
+        19565,
+        21321,
+        15921,
+        1894,
+        374,
+        264,
+        24768,
+        429,
+        21451,
+        279,
+        4622,
+        6176
+      ],
+      "stats": {
+        "cached": 0,
+        "prefill_s": 0.6457,
+        "decode_s": 4.1622,
+        "rounds": 6,
+        "drafted": 18,
+        "accepted": 5,
+        "min_rows": 1,
+        "drafts": true,
+        "reason": "length"
+      }
+    },
+    {
+      "case": "concurrent-client-serial-parity-2",
+      "passed": true,
+      "exact_tokens": true,
+      "expected_tokens": [
+        525,
+        220,
+        17,
+        11,
+        220,
+        18,
+        11,
+        220,
+        20,
+        11,
+        220,
+        22
+      ],
+      "actual_tokens": [
+        525,
+        220,
+        17,
+        11,
+        220,
+        18,
+        11,
+        220,
+        20,
+        11,
+        220,
+        22
+      ],
+      "stats": {
+        "cached": 0,
+        "prefill_s": 0.2148,
+        "decode_s": 3.6952,
+        "rounds": 4,
+        "drafted": 13,
+        "accepted": 7,
+        "min_rows": 2,
+        "drafts": true,
+        "reason": "length"
+      }
+    },
+    {
+      "case": "concurrent-client-serial-parity-3",
+      "passed": true,
+      "exact_tokens": true,
+      "expected_tokens": [
+        807,
+        525,
+        279,
+        1429,
+        4363,
+        2530,
+        315,
+        22492,
+        13,
+        10344,
+        5048,
+        525
+      ],
+      "actual_tokens": [
+        807,
+        525,
+        279,
+        1429,
+        4363,
+        2530,
+        315,
+        22492,
+        13,
+        10344,
+        5048,
+        525
+      ],
+      "stats": {
+        "cached": 0,
+        "prefill_s": 0.2823,
+        "decode_s": 5.6729,
+        "rounds": 4,
+        "drafted": 12,
+        "accepted": 7,
+        "min_rows": 2,
+        "drafts": true,
+        "reason": "length"
+      }
+    },
+    {
+      "case": "idle-no-gpu-command",
+      "passed": true
+    },
+    {
+      "case": "invalid-client-no-rank-wakeup",
+      "passed": true
+    },
+    {
+      "case": "retained-followup-serial-parity",
+      "passed": true,
+      "exact_tokens": true,
+      "expected_tokens": [
+        9428,
+        6119,
+        198,
+        750,
+        2629,
+        3575,
+        643,
+        40629
+      ],
+      "actual_tokens": [
+        9428,
+        6119,
+        198,
+        750,
+        2629,
+        3575,
+        643,
+        40629
+      ],
+      "stats": {
+        "cached": 28,
+        "prefill_s": 0.2657,
+        "decode_s": 0.2819,
+        "rounds": 2,
+        "drafted": 7,
+        "accepted": 5,
+        "min_rows": 4,
+        "drafts": true,
+        "reason": "length"
+      }
+    },
+    {
+      "case": "retained-prefix-reused",
+      "passed": true,
+      "cached": 28
+    },
+    {
+      "case": "client-cancellation-coordinated",
+      "passed": true,
+      "stats": {
+        "cached": 0,
+        "prefill_s": 2.8779,
+        "decode_s": 0.0229,
+        "rounds": 0,
+        "drafted": 0,
+        "accepted": 0,
+        "min_rows": 0,
+        "drafts": true,
+        "reason": "cancelled"
+      },
+      "callback_token_count": 0
+    },
+    {
+      "case": "healthy-client-after-cancellation",
+      "passed": true,
+      "exact_tokens": true,
+      "expected_tokens": [
+        525,
+        220,
+        17,
+        11,
+        220,
+        18,
+        11,
+        220,
+        20,
+        11,
+        220,
+        22
+      ],
+      "actual_tokens": [
+        525,
+        220,
+        17,
+        11,
+        220,
+        18,
+        11,
+        220,
+        20,
+        11,
+        220,
+        22
+      ]
+    },
+    {
+      "case": "close-reclaims-all-extents",
+      "passed": true
+    },
+    {
+      "case": "transport-healthy-terminal",
+      "passed": true
+    },
+    {
+      "case": "all-rank-command-and-sample-counts",
+      "passed": true
+    }
+  ],
+  "diagnostic_concurrent_seconds": 6.883713117975276,
+  "limitations": [
+    "Short raw-text fixtures; HTTP/chat templates, tools/reasoning/streaming/usage and long-context quality remain unqualified.",
+    "Eager execution without decode graphs or packed continuous GPU batches; diagnostic time is not a serving throughput comparison.",
+    "CPU tests cover slow consumers, eight clients queueing, temporary cache exhaustion, all-rank fault latching and malformed commands. GPU test covers four clients, retained follow-up and callback cancellation.",
+    "Background requests receive waiting priority only; active background preemption is not implemented.",
+    "Command state/result hashes and fixed leader token decisions check agreement, not independent numerical quality of every hidden state."
+  ],
+  "maximum_torch_gib": 99.91864156723022,
+  "maximum_cgroup_gib": 58.096195220947266,
+  "minimum_host_available_gib": 11.08,
+  "all_exit0": true,
+  "all_oom_false": true,
+  "all_diagnostic_guards_clear": true,
+  "original_weights_unchanged": true,
+  "quantization": "original mixed K3/K4 3.25 bpw",
+  "complete_quality_gate": false,
+  "serving_throughput": false,
+  "tensorfold_serving": false,
+  "raw_receipt_sha256": "7540fb4c7cc900fa0191c0c32896860c2d5af3161ec154fc08b777097abbb056"
+}

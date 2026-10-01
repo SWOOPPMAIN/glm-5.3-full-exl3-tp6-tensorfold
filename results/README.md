@@ -85,3 +85,20 @@ all four rejection positions are covered by CPU state-machine tests.
 
 This was eager execution with raw-text prompts, not an API or speed benchmark.
 The 804K cache was resident; authentic long-context quality remains unqualified.
+
+## TensorFold: TFP17 distributed requests
+
+[Six-rank summary](tfp17-tensorfold.json). All 28 checks passed, including
+6 client output comparisons against independent serial generation. Four clients
+used the actual six-rank command channel, leader sampling and eager scheduler.
+Retained follow-up, invalid input, idle wake, callback cancellation, a healthy
+request after cancellation and full shutdown were checked.
+
+Each rank completed 43 identical commands and
+106 leader-owned sampling decisions.
+82 CPU checks passed. Peak PyTorch allocation: 99.92 GiB;
+minimum host-available memory: 11.08 GiB. Guards stayed clear.
+
+This qualifies distributed request mechanics using short raw-text fixtures.
+It does not establish serving throughput, long-context quality or HTTP/chat API
+compatibility. The production model remains vLLM P24.

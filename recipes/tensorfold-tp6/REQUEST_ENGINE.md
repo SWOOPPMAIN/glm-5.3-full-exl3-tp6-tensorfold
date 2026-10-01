@@ -11,15 +11,29 @@ Under `experimental/tensorfold/src/tensorfold/families/glm_moe_dsa/`:
 - `request_backend.py`: connects the qualified full model to eager request steps.
 - `request.py`: chunked prefill, recursive MTP, target verification, cache leases
   and retained-prefix reuse.
+- `control.py`: prepare/execute/result agreement over the existing TCPStore.
+- `control_sampling.py`: rank-zero token decisions on the existing NCCL group.
+- `scheduler.py`: bounded client queues, one model worker, cancellation and
+  deliberate eviction/reuse of terminal prefixes; `ServingEngine` matches the
+  CUDA App call interface, but HTTP integration is still unqualified.
 - `memory.py`: `request_plan` reserves additional request buffers and sampler
   temporaries, above model/cache/workspace storage and the runtime reserve.
 
 ## Execution rules
 
 One worker serializes model passes. Every rank must receive identical start,
-step, resume, cancel and drop commands. The six-rank command bus and HTTP
-scheduler are not yet provided. Per-rank independent cancellation callbacks
-would break collective ordering.
+step, resume, cancel and drop commands. `RequestController` now distributes
+these through the existing TCPStore, with six-rank prepare/result agreement.
+Rank zero broadcasts each sampled token decision before EOS or draft branching.
+Idle followers block on CPU doorbell keys. Failed exchanges latch; there is no
+automatic command retry or worker replacement.
+
+Construct the backend, core and rank-zero controller inside the scheduler
+worker factory. On followers, construct them in the owning thread and call
+`controller.follow()`. Client callbacks run in client threads, and cancellation
+is frozen at each distributed step boundary. A long prefill/verify step may
+finish before a disconnect takes effect. Waiting/output queues are bounded;
+a slow consumer cancels only its own request.
 
 The target cache records input tokens. MTP position `p` combines target hidden
 state `p` with token `p+1`; further draft steps consume normalized MTP hidden
@@ -45,7 +59,10 @@ replay retains the final hidden row and samples it under the new settings.
 
 Growth requires adjacent free space. A nonmatching prompt or failed growth
 leaves the old conversation intact; no silent eviction or cache copying occurs.
-An API scheduler must choose terminal-prefix eviction deliberately.
+The scheduler explicitly evicts terminal leases to make room, preferring the
+longest matching finished prefix. Active leases are never evicted. If active
+requests consume the needed capacity, admission waits while those requests
+continue. Invalid requests are rejected before any retained state is evicted.
 
 ## Evidence and remaining work
 
@@ -58,3 +75,8 @@ after target, during sampling and mid-draft.
 This does not qualify chat templates, long-context reasoning, API cancellation,
 streaming/tool/reasoning formatting, continuous batches, or generation speed.
 The serving deployment remains vLLM P24.
+
+[TFP17](../../results/tfp17-tensorfold.json) exercises this controller and scheduler
+with four concurrent real client threads on all six GPUs, plus retained follow-up,
+invalid input, idle wake, callback cancellation and ordered shutdown. CPU
+regressions also cover eight queued clients, slow consumers and rank faults.

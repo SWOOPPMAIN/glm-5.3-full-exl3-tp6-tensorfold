@@ -53,7 +53,9 @@ These are research references, not a claim that each project's code is installed
 - Workload/phase-aware MTP scheduling, projection work, shared-expert fixes,
   deterministic arithmetic repairs, and native/E3 prefill dispatch in vLLM.
 - The `glm_moe_dsa` TensorFold family: original checkpoint reader, full target
-  and MTP assembly, bounded memory, sparse attention/indexing, and TP6 reductions.
+  and MTP assembly, bounded memory, sparse attention/indexing, TP6 reductions,
+  and distributed request scheduling. It uses TensorFold's keyed sampling;
+  the per-follower CPU doorbells adapt MiaAI-Lab's idle-worker store design.
 - Six-rank numerical and performance qualification, host protection, and application integration.
 - This repository's recipes, measurement summaries, source inventory, and documentation.
 
