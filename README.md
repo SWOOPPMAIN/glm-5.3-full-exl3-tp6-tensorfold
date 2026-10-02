@@ -37,6 +37,9 @@ See [packed request results and recipe](recipes/tensorfold-tp6/PACKED_REQUESTS.m
 [projection tuning](recipes/tensorfold-tp6/PROJECTIONS.md), and
 [profiling](recipes/tensorfold-tp6/DECODE_PROFILING.md).
 
+The next [scheduling candidate](experiments/README.md#pending-tfp22-scheduling-and-host-memory-diagnosis)
+passed CPU and 8K output checks; GPU qualification is pending after a host-memory guard stop.
+
 ## Recipes
 
 1. [Prepare and verify the original weights](recipes/weights/README.md)

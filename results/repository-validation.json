@@ -4,7 +4,7 @@
   "qualified_tensorfold_cpu_checks": 119,
   "pending_attention_cpu_checks": null,
   "weight_placement_checks": 4,
-  "import_hashes_verified": 596,
+  "import_hashes_verified": 598,
   "qualified_tensorfold_source_files_byte_identical": 435,
   "node_shell_syntax_passed": true,
   "local_document_links_passed": true,
@@ -15,5 +15,7 @@
     "Pattern scanning cannot prove absence of every possible secret.",
     "Portable image build and general fleet controller are not included.",
     "TensorFold full-model serving integration remains incomplete."
-  ]
+  ],
+  "pending_scheduling_cpu_checks": 125,
+  "pending_scheduling_source_revision": "82b24104bf7fefea69788d5d493eeae5c5493d45"
 }

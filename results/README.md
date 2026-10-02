@@ -141,3 +141,10 @@ Original weights preserved; broader API/long-context and serving promotion remai
 throughput: 23.61 → 51.77 output tok/s, including prefill and delivery.
 Original weights and TFP20 projection plan preserved; complete API/long-context
 qualification and serving promotion remain pending.
+
+## TensorFold: TFP22 incomplete scheduling run
+
+[Recorded evidence](tfp22-tensorfold.json). 349 checks passed before a
+host-memory guard stop during the final automatic HTTP concurrency measurements.
+The 125 CPU tests and 8,218-token scheduling parity passed; the complete GPU
+qualification and throughput result remain pending. Qualified source remains TFP21.

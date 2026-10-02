@@ -19,3 +19,23 @@ and matched HTTP C1/C4 in [TFP21](../results/tfp21-tensorfold.json).
 
 Next: select scalar or packed dispatch by active client count, bound prompt work
 per round, and complete broader API/long-context qualification before promotion.
+
+## Pending: TFP22 scheduling and host-memory diagnosis
+
+[Candidate patch](pending/tfp22-scheduling.patch) against the qualified TFP21
+source; [incomplete GPU evidence](../results/tfp22-tensorfold.json).
+The source snapshot remains TFP21. The candidate passed 125 CPU tests and
+six-rank output parity for an 8,218-token prompt alongside decoding,
+cancellation, a new arrival and retained continuation. It uses scalar execution
+for one live client and shared 3072/256-row prompt budgets for grouped work.
+
+The final automatic-mode HTTP concurrency run stopped when one host's available
+memory reached 4.86 GiB for two seconds. Its exact-container guard killed that
+worker; the controller stopped the remaining test peers. No worker was
+OOM-killed. The transient allocation is not yet attributed, so there is no
+qualified TFP22 throughput claim. The same P24 configuration reopened and
+passed native and Code/Chat checks.
+
+Next: collect bounded host/process memory samples and graph-capture observations,
+repair the memory budget or allocation cause, and complete the remaining gates.
+Do not lower guards to make the candidate pass.

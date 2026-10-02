@@ -1,0 +1,322 @@
+{
+  "at": 1790899477.1511283,
+  "source_revision": "82b24104bf7fefea69788d5d493eeae5c5493d45",
+  "status": "incomplete_guard_stopped",
+  "passed": false,
+  "cpu_checks": 125,
+  "recorded_passed_checks": 349,
+  "recorded_exact_sequence_checks": 103,
+  "scope": "Original3.25bpw full GLM TP6,804K resident cache; automatic scalar/group dispatch and shared prompt budgets. GPU qualification stopped during final automatic-mode HTTP C4 measurements.",
+  "long_fixture": {
+    "prompt_tokens": 8218,
+    "prompt_sha256": "a569798936f78d5a55b97f47e1828a7f40f138780d74f0f86af613a715ed5c8e",
+    "complete_code_records": 258,
+    "target_output_sha256": "f51c01206522657531bfb78d3af4baeca1728bc3833a9245819902c7afcdb066",
+    "independent_reference_chunk_rows": 3072,
+    "quality_scope": "Deterministic scheduling parity, not broad long-context quality"
+  },
+  "long_schedule": {
+    "rounds": [
+      {
+        "turn": 0,
+        "elapsed_s": 1.1777849170030095,
+        "prefill_rows": 256,
+        "mixed": true,
+        "decoding_clients": 1
+      },
+      {
+        "turn": 1,
+        "elapsed_s": 1.3640584269887768,
+        "prefill_rows": 256,
+        "mixed": true,
+        "decoding_clients": 1
+      },
+      {
+        "turn": 2,
+        "elapsed_s": 0.9806996210245416,
+        "prefill_rows": 256,
+        "mixed": true,
+        "decoding_clients": 1
+      },
+      {
+        "turn": 3,
+        "elapsed_s": 1.3327659679926,
+        "prefill_rows": 256,
+        "mixed": true,
+        "decoding_clients": 2
+      },
+      {
+        "turn": 4,
+        "elapsed_s": 1.551066631975118,
+        "prefill_rows": 256,
+        "mixed": true,
+        "decoding_clients": 2
+      },
+      {
+        "turn": 5,
+        "elapsed_s": 0.9184412419563159,
+        "prefill_rows": 256,
+        "mixed": true,
+        "decoding_clients": 2
+      },
+      {
+        "turn": 6,
+        "elapsed_s": 0.9492693400243297,
+        "prefill_rows": 256,
+        "mixed": true,
+        "decoding_clients": 2
+      },
+      {
+        "turn": 7,
+        "elapsed_s": 1.0055733759654686,
+        "prefill_rows": 256,
+        "mixed": true,
+        "decoding_clients": 1
+      },
+      {
+        "turn": 8,
+        "elapsed_s": 1.8875002869754098,
+        "prefill_rows": 256,
+        "mixed": true,
+        "decoding_clients": 1
+      },
+      {
+        "turn": 9,
+        "elapsed_s": 1.0929061510250904,
+        "prefill_rows": 256,
+        "mixed": true,
+        "decoding_clients": 1
+      },
+      {
+        "turn": 10,
+        "elapsed_s": 0.9307994269765913,
+        "prefill_rows": 256,
+        "mixed": true,
+        "decoding_clients": 1
+      },
+      {
+        "turn": 11,
+        "elapsed_s": 1.0815078819869086,
+        "prefill_rows": 256,
+        "mixed": true,
+        "decoding_clients": 1
+      },
+      {
+        "turn": 12,
+        "elapsed_s": 0.9438675590208732,
+        "prefill_rows": 256,
+        "mixed": true,
+        "decoding_clients": 1
+      },
+      {
+        "turn": 13,
+        "elapsed_s": 1.0719099970301613,
+        "prefill_rows": 256,
+        "mixed": true,
+        "decoding_clients": 1
+      },
+      {
+        "turn": 14,
+        "elapsed_s": 0.9577092899708077,
+        "prefill_rows": 256,
+        "mixed": true,
+        "decoding_clients": 1
+      },
+      {
+        "turn": 15,
+        "elapsed_s": 1.4571484350017272,
+        "prefill_rows": 256,
+        "mixed": true,
+        "decoding_clients": 1
+      },
+      {
+        "turn": 16,
+        "elapsed_s": 1.9588346229866147,
+        "prefill_rows": 256,
+        "mixed": true,
+        "decoding_clients": 1
+      },
+      {
+        "turn": 17,
+        "elapsed_s": 1.0446139889536425,
+        "prefill_rows": 256,
+        "mixed": true,
+        "decoding_clients": 1
+      },
+      {
+        "turn": 18,
+        "elapsed_s": 0.9784554749494419,
+        "prefill_rows": 256,
+        "mixed": true,
+        "decoding_clients": 1
+      },
+      {
+        "turn": 19,
+        "elapsed_s": 1.1067925869720057,
+        "prefill_rows": 256,
+        "mixed": true,
+        "decoding_clients": 1
+      },
+      {
+        "turn": 20,
+        "elapsed_s": 0.9839739910094067,
+        "prefill_rows": 256,
+        "mixed": true,
+        "decoding_clients": 1
+      },
+      {
+        "turn": 21,
+        "elapsed_s": 1.0984167830320075,
+        "prefill_rows": 256,
+        "mixed": true,
+        "decoding_clients": 1
+      },
+      {
+        "turn": 22,
+        "elapsed_s": 0.961817400995642,
+        "prefill_rows": 256,
+        "mixed": true,
+        "decoding_clients": 1
+      },
+      {
+        "turn": 23,
+        "elapsed_s": 1.0498944480204955,
+        "prefill_rows": 256,
+        "mixed": true,
+        "decoding_clients": 1
+      },
+      {
+        "turn": 24,
+        "elapsed_s": 0.9316878499812447,
+        "prefill_rows": 256,
+        "mixed": true,
+        "decoding_clients": 1
+      },
+      {
+        "turn": 25,
+        "elapsed_s": 1.041577682015486,
+        "prefill_rows": 256,
+        "mixed": true,
+        "decoding_clients": 1
+      },
+      {
+        "turn": 26,
+        "elapsed_s": 0.9836306719807908,
+        "prefill_rows": 256,
+        "mixed": true,
+        "decoding_clients": 1
+      },
+      {
+        "turn": 27,
+        "elapsed_s": 1.124084091046825,
+        "prefill_rows": 256,
+        "mixed": true,
+        "decoding_clients": 1
+      },
+      {
+        "turn": 28,
+        "elapsed_s": 0.9383650720119476,
+        "prefill_rows": 256,
+        "mixed": true,
+        "decoding_clients": 1
+      },
+      {
+        "turn": 29,
+        "elapsed_s": 1.0772616590256803,
+        "prefill_rows": 256,
+        "mixed": true,
+        "decoding_clients": 1
+      },
+      {
+        "turn": 30,
+        "elapsed_s": 0.9657097649760544,
+        "prefill_rows": 256,
+        "mixed": true,
+        "decoding_clients": 1
+      },
+      {
+        "turn": 31,
+        "elapsed_s": 1.0962591849965975,
+        "prefill_rows": 256,
+        "mixed": true,
+        "decoding_clients": 1
+      },
+      {
+        "turn": 32,
+        "elapsed_s": 2.6812841710052453,
+        "prefill_rows": 160,
+        "mixed": true,
+        "decoding_clients": 1
+      },
+      {
+        "turn": 33,
+        "elapsed_s": 0.6961461510509253,
+        "prefill_rows": 0,
+        "mixed": false,
+        "decoding_clients": 2
+      },
+      {
+        "turn": 34,
+        "elapsed_s": 0.19407423899974674,
+        "prefill_rows": 0,
+        "mixed": false,
+        "decoding_clients": 2
+      },
+      {
+        "turn": 35,
+        "elapsed_s": 0.7247110809548758,
+        "prefill_rows": 0,
+        "mixed": false,
+        "decoding_clients": 2
+      },
+      {
+        "turn": 36,
+        "elapsed_s": 0.4430553159909323,
+        "prefill_rows": 0,
+        "mixed": false,
+        "decoding_clients": 1
+      }
+    ],
+    "counts": {
+      "scalar_rounds": 4,
+      "packed_rounds": 37,
+      "prefill_rows": 8371,
+      "max_prefill_rows": 256,
+      "mixed_rounds": 33,
+      "max_mixed_prefill_rows": 256
+    },
+    "max_mixed_round_s": 2.6812841710052453
+  },
+  "cancel_command_s": 1.3640584269887768,
+  "completed_gates": [
+    "125 CPU tests passed.",
+    "Mixed sampling/depths, cancellation, replacement and retained-prefix direct-controller outputs matched independent serial targets on all6ranks.",
+    "8218-token rendered code prompt, existing decoder, cancelled member, newcomer and retained followup matched independent serial targets on all6ranks.",
+    "All mixed rounds processed at most256 new prompt tokens and every active decoder progressed.",
+    "Scalar-mode HTTP gate completed. Automatic-mode C1 exact-output and zero-packed-groups checks passed. Two C4 warmups and one timed C4 round passed output checks before interruption."
+  ],
+  "incomplete_gates": [
+    "Remaining automatic C4 repeats, return-to-scalar SSE, automatic HTTP cancellation/history and final clean all-rank shutdown did not complete.",
+    "No qualified TFP22 throughput result or deployment promotion."
+  ],
+  "guard_trips": [
+    {
+      "rank": 2,
+      "reason": "MemAvailable 4.86 GiB < floor for 2.0s",
+      "minimum_available_gib": 4.86,
+      "exit_code": 137,
+      "oom": false
+    }
+  ],
+  "all_oom_false": true,
+  "failure_analysis": {
+    "observed": "Rank2 host MemAvailable fell to4.86GiB for2s; exact-CID guard killed that worker and controller stopped remaining test peers.",
+    "root_cause": "Not attributed. Last saved framework allocation was about99.9GiB; host samples are too sparse to identify the transient allocation.",
+    "next": "Add bounded per-process/host memory sampling and capture-boundary observations before another diagnostic. Recompute runtime/headroom admission from the observed peak; do not lower guards or declare qualification from partial results."
+  },
+  "original_weights_unchanged": true,
+  "quantization": "original mixed K3/K4 3.25 bpw",
+  "tensorfold_serving": false,
+  "qualified_source_remains": "c79902ec67c9e516e67b9aca82a851c9b7a49c91",
+  "raw_receipt_sha256": "9c7cc3820753915c23fcfaf67e8ae2b227caf04773ab0282d9af3a7c89a98e3d"
+}

@@ -1,0 +1,789 @@
+diff --git a/src/tensorfold/families/glm_moe_dsa/control.py b/src/tensorfold/families/glm_moe_dsa/control.py
+index 09bd9a0..c83fa74 100644
+--- a/src/tensorfold/families/glm_moe_dsa/control.py
++++ b/src/tensorfold/families/glm_moe_dsa/control.py
+@@ -97,6 +97,8 @@ class Replica:
+         return digest(dict(closed=self.closed, requests=state, free=self.core.pool.free,
+                            generation=self.core.pool.generation, context=self.core.context_limit,
+                            capacity=self.core.pool.capacity, max_requests=self.core.max_requests,
++                           prefill_plan=asdict(self.core.prefill_plan),prefill_cursor=self.core.prefill_cursor,
++                           schedule_counts=self.core.schedule_counts,
+                            backend=self.core.backend.control_state() if hasattr(self.core.backend,'control_state') else None))
+ 
+     def prepare(self, command):
+diff --git a/src/tensorfold/families/glm_moe_dsa/request.py b/src/tensorfold/families/glm_moe_dsa/request.py
+index b8664f3..906890b 100644
+--- a/src/tensorfold/families/glm_moe_dsa/request.py
++++ b/src/tensorfold/families/glm_moe_dsa/request.py
+@@ -19,6 +19,7 @@ import torch
+ 
+ from tensorfold.engine.exact_sampling import Sampling
+ from .request_ops import Call
++from .schedule_plan import PrefillPlan,prompt_quotas
+ 
+ 
+ @dataclass(frozen=True)
+@@ -137,11 +138,18 @@ class RequestEngine:
+     This is the execution core, not the HTTP scheduler or a six-rank command bus.
+     """
+ 
+-    def __init__(self, backend, *, context_limit=360000, max_requests=4):
++    def __init__(self, backend, *, context_limit=360000, max_requests=4, prefill_plan=None):
+         if (type(context_limit) is not int or not 1 <= context_limit <= backend.capacity
+                 or type(max_requests) is not int or not 1 <= max_requests <= 4
+                 or not 1 <= backend.logit_rows <= backend.rows <= 3072):
+             raise ValueError('Invalid admitted request engine geometry')
++        prefill_plan = PrefillPlan(backend.rows,min(256,backend.rows)) if prefill_plan is None else prefill_plan
++        if type(prefill_plan) is not PrefillPlan or prefill_plan.rows > backend.rows:
++            raise ValueError('Prompt plan exceeds the admitted backend workspace')
++        self.prefill_plan = prefill_plan
++        self.prefill_cursor = 0
++        self.schedule_counts = dict(scalar_rounds=0,packed_rounds=0,prefill_rows=0,
++            max_prefill_rows=0,mixed_rounds=0,max_mixed_prefill_rows=0)
+         self.backend = backend
+         self.pool = CachePool(backend.capacity)
+         self.context_limit, self.max_requests = context_limit, max_requests
+@@ -276,12 +284,16 @@ class RequestEngine:
+         """One scalar round, retaining the same boundary cancellation semantics."""
+         self._worker(); self._active(request)
+         self.busy = True
+-        routine = self._round(request, cancelled)
++        before = len(request.tokens)
++        is_prefill = request.status == 'prefill'
++        routine = self._round(request, cancelled, self.prefill_plan.rows)
+         value = None
+         try:
+             while True:
+                 try: call = routine.send(value)
+-                except StopIteration as done: return done.value
++                except StopIteration as done:
++                    self._record_schedule(False,len(request.tokens)-before if is_prefill else 0,False)
++                    return done.value
+                 value = getattr(self.backend, call.operation)(*call.args)
+         except Exception:
+             request.status, request.finish_reason = 'failed', 'error'
+@@ -290,6 +302,15 @@ class RequestEngine:
+             routine.close()
+             self.busy = False
+ 
++    def _record_schedule(self, packed, rows, mixed):
++        counts = self.schedule_counts
++        counts['packed_rounds' if packed else 'scalar_rounds'] += 1
++        counts['prefill_rows'] += rows
++        counts['max_prefill_rows'] = max(counts['max_prefill_rows'],rows)
++        if mixed:
++            counts['mixed_rounds'] += 1
++            counts['max_mixed_prefill_rows'] = max(counts['max_mixed_prefill_rows'],rows)
++
+     def preview_many(self, requests, cancellations):
+         self._worker()
+         if (not 1 <= len(requests) <= self.max_requests or len(requests) != len(cancellations)
+@@ -307,8 +328,14 @@ class RequestEngine:
+         Partial failures retain all extents and are fatal to this command bus.
+         """
+         self.preview_many(requests, cancellations)
++        needs = [len(r.prompt)-len(r.tokens) if r.status == 'prefill' and not c else 0
++                 for r,c in zip(requests,cancellations)]
++        mixed = any(needs) and any(r.status == 'decode' and not c for r,c in zip(requests,cancellations))
++        budget = self.prefill_plan.mixed_rows if mixed else self.prefill_plan.rows
++        quotas = prompt_quotas(needs,budget,self.prefill_cursor)
++        before = [len(r.tokens) for r in requests]
+         self.busy = True
+-        routines = {i:self._round(r, lambda c=c:c) for i,(r,c) in enumerate(zip(requests,cancellations))}
++        routines = {i:self._round(r, lambda c=c:c, quotas[i]) for i,(r,c) in enumerate(zip(requests,cancellations))}
+         pending, results = {}, {}
+         def advance(i, value):
+             try: pending[i] = routines[i].send(value)
+@@ -328,6 +355,11 @@ class RequestEngine:
+                 if len(values) != len(group): raise RuntimeError('Packed result cardinality differs')
+                 # Backend retains each tensor before shared workspace reuse.
+                 for i,value in zip(group,values): advance(i,value)
++            used = sum(len(r.tokens)-n for r,n,need in zip(requests,before,needs) if need)
++            if used != sum(quotas) or used > budget:
++                raise RuntimeError('Committed prompt work differs from its admitted round quota')
++            self.prefill_cursor += int(used > 0)
++            self._record_schedule(True,used,mixed)
+             return [results[i] for i in range(len(requests))]
+         except Exception:
+             for request in requests:
+@@ -337,7 +369,7 @@ class RequestEngine:
+             for routine in routines.values(): routine.close()
+             self.busy = False
+ 
+-    def _round(self, request, cancelled):
++    def _round(self, request, cancelled, prefill_rows):
+         """The single request algorithm, suspended only at model operations."""
+         def stopped():
+             if not cancelled():
+@@ -350,7 +382,9 @@ class RequestEngine:
+         if request.status == 'prefill':
+             start = len(request.tokens)
+             if start < len(request.prompt):
+-                part = request.prompt[start:start+self.backend.rows]
++                if prefill_rows == 0:
++                    return Step()  # no quota this round; its lease and hidden state remain owned
++                part = request.prompt[start:start+prefill_rows]
+                 hidden = yield Call('target', (part, start, request.extent))
+                 if stopped():
+                     return Step(finished=True, reason='cancelled')
+diff --git a/src/tensorfold/families/glm_moe_dsa/schedule_plan.py b/src/tensorfold/families/glm_moe_dsa/schedule_plan.py
+new file mode 100644
+index 0000000..8d9a52c
+--- /dev/null
++++ b/src/tensorfold/families/glm_moe_dsa/schedule_plan.py
+@@ -0,0 +1,40 @@
++"""Host-only, deterministic prompt quotas for one distributed request round."""
++from dataclasses import dataclass
++
++
++@dataclass(frozen=True)
++class PrefillPlan:
++    rows: int
++    mixed_rows: int
++
++    def __post_init__(self):
++        if (type(self.rows) is not int or type(self.mixed_rows) is not int
++                or not 1 <= self.mixed_rows <= self.rows <= 3072):
++            raise ValueError('Invalid prompt row budgets')
++
++
++def prompt_quotas(needs, budget, cursor):
++    """Water-fill a shared token budget; rotate indivisible remainder priority.
++
++    Zero needs represent decoders, cancellations or already-complete prompts.
++    Unused shares from short prompts are reassigned within this same budget.
++    The caller advances its cursor only after successfully executing the round.
++    """
++    if (not isinstance(needs, list) or not 1 <= len(needs) <= 4
++            or any(type(n) is not int or n < 0 for n in needs)
++            or type(budget) is not int or not 1 <= budget <= 3072
++            or type(cursor) is not int or cursor < 0):
++        raise ValueError('Invalid prompt quota inputs')
++    quotas = [0]*len(needs)
++    active = [i for i,n in enumerate(needs) if n]
++    if not active: return quotas
++    offset = cursor%len(active)
++    active = active[offset:]+active[:offset]
++    remaining = min(budget, sum(needs))
++    while remaining:
++        share = max(1,remaining//len(active))
++        for i in active:
++            take = min(share,needs[i]-quotas[i],remaining)
++            quotas[i] += take; remaining -= take
++        active = [i for i in active if quotas[i] < needs[i]]
++    return quotas
+diff --git a/src/tensorfold/families/glm_moe_dsa/scheduler.py b/src/tensorfold/families/glm_moe_dsa/scheduler.py
+index 9568f52..ffd4588 100644
+--- a/src/tensorfold/families/glm_moe_dsa/scheduler.py
++++ b/src/tensorfold/families/glm_moe_dsa/scheduler.py
+@@ -3,7 +3,7 @@
+ The factory runs in the owning worker and must construct rank zero's backend,
+ RequestEngine and RequestController there. Followers run controller.follow().
+ Callbacks run on client threads; only the worker emits collective commands.
+-Packed mode combines compatible operations across active requests; scalar mode remains available for matched measurements.
++Packed mode combines compatible operations when at least two clients are live. A lone client uses scalar execution; grouped prompt work has a shared budget.
+ """
+ from dataclasses import dataclass, field
+ import heapq
+@@ -223,8 +223,10 @@ class RequestScheduler:
+                     current = None
+                 batch = list(self.active)
+                 group_start = time.perf_counter()
++                flags = [t.cancel.is_set() for t in batch]
++                combine = self.packed and sum(not c for c in flags) > 1
+                 grouped = self.controller.dispatch(dict(op='step_many', args=dict(
+-                    keys=[t.key for t in batch], cancelled=[t.cancel.is_set() for t in batch]))) if self.packed and batch else None
++                    keys=[t.key for t in batch], cancelled=flags))) if combine else None
+                 for current in batch:
+                     start = group_start if grouped is not None else time.perf_counter()
+                     result = grouped[current.key] if grouped is not None else self.controller.dispatch(dict(op='step', args=dict(
+diff --git a/tests/test_glm53_full_tp6_scheduling.py b/tests/test_glm53_full_tp6_scheduling.py
+new file mode 100644
+index 0000000..090bbb3
+--- /dev/null
++++ b/tests/test_glm53_full_tp6_scheduling.py
+@@ -0,0 +1,131 @@
++"""Prompt bounds and live-client transitions, against independent causal output."""
++from dataclasses import FrozenInstanceError
++from concurrent.futures import ThreadPoolExecutor
++from itertools import product
++import threading
++import unittest
++
++from tensorfold.families.glm_moe_dsa.schedule_plan import PrefillPlan,prompt_quotas
++from tensorfold.families.glm_moe_dsa.request import RequestEngine
++from tensorfold.families.glm_moe_dsa.control import Replica
++from test_glm53_full_tp6_request import CausalBackend,serial
++from test_glm53_full_tp6_packed import enable_batch
++from test_glm53_full_tp6_scheduler import ScheduledFleet
++from test_glm53_full_tp6_control import Fleet
++
++
++class Quotas(unittest.TestCase):
++    def test_all_small_demands_conserve_budget_and_never_overfill(self):
++        for needs in product((0,1,3,11),repeat=4):
++            for budget in (1,3,7,11):
++                for cursor in (0,1,7):
++                    got=prompt_quotas(list(needs),budget,cursor)
++                    self.assertEqual(sum(got),min(sum(needs),budget))
++                    self.assertTrue(all(0<=x<=n for x,n in zip(got,needs)))
++        served=[prompt_quotas([20]*4,1,i).index(1) for i in range(4)]
++        self.assertEqual(set(served),{0,1,2,3})
++        self.assertEqual(sorted(prompt_quotas([1,100,100,0],10,0)),[0,1,4,5])
++
++    def test_plan_bounds_and_immutability(self):
++        p=PrefillPlan(3072,256)
++        with self.assertRaises(FrozenInstanceError):p.mixed_rows=3072
++        for args in [(0,1),(3073,256),(256,257),(True,1),(256,False)]:
++            with self.assertRaises(ValueError):PrefillPlan(*args)
++        for args in [([1],0,0),([True],1,0),([1],1,-1),([1]*5,1,0)]:
++            with self.assertRaises(ValueError):prompt_quotas(*args)
++        with self.assertRaises(ValueError):RequestEngine(CausalBackend(),context_limit=128,prefill_plan=PrefillPlan(12,4))
++
++    def test_mixed_prefill_is_bounded_while_decode_makes_progress(self):
++        e=RequestEngine(enable_batch(CausalBackend()),context_limit=128,prefill_plan=PrefillPlan(10,4))
++        active=e.start('decode',[2,3],max_tokens=60,ignore_eos=True)
++        e.step(active)
++        prompts=[[7,3,1]*25,[5,9]*39]
++        queued=[e.start(str(i),p,max_tokens=8,ignore_eos=True) for i,p in enumerate(prompts)]
++        for round_index in range(200):
++            requests=[r for r in (active,*queued) if r.status in ('prefill','decode')]
++            if not requests:break
++            prefills=[r for r in requests if r.status=='prefill']
++            before={r.key:len(r.tokens) for r in prefills};had_decode=any(r.status=='decode' for r in requests)
++            outputs=len(active.output)
++            e.step_many(requests,[False]*len(requests))
++            added=sum(len(r.tokens)-before[r.key] for r in prefills)
++            self.assertLessEqual(added,4 if had_decode and prefills else 10)
++            if active in requests:self.assertGreater(len(active.output),outputs)
++        self.assertEqual(active.output,serial([2,3],60,None))
++        for p,r in zip(prompts,queued):self.assertEqual(r.output,serial(p,8,None))
++        self.assertGreater(e.schedule_counts['mixed_rounds'],0)
++        self.assertLessEqual(e.schedule_counts['max_mixed_prefill_rows'],4)
++
++    def test_tiny_budget_rotates_without_losing_prefixes_or_cancellation(self):
++        e=RequestEngine(enable_batch(CausalBackend()),context_limit=128,prefill_plan=PrefillPlan(1,1))
++        rs=[e.start(str(i),[i+1,2,5],max_tokens=5,ignore_eos=True) for i in range(4)]
++        for _ in range(4):e.step_many(rs,[False]*4)
++        self.assertEqual([len(r.tokens) for r in rs],[1]*4)
++        for _ in range(80):
++            active=[r for r in rs if r.status in ('prefill','decode')]
++            if not active:break
++            e.step_many(active,[r is rs[3] for r in active])
++        self.assertEqual(rs[3].status,'cancelled');self.assertFalse(rs[3].output)
++        for i,r in enumerate(rs[:3]):self.assertEqual(r.output,serial([i+1,2,5],5,None))
++        self.assertEqual(e.schedule_counts['max_prefill_rows'],1)
++
++    def test_budget_and_cursor_participate_in_rank_fingerprint(self):
++        def configure(rank,core):
++            enable_batch(core.backend);core.prefill_plan=PrefillPlan(10,4)
++        f=Fleet(configure=configure);self.addCleanup(f.close)
++        from tensorfold.families.glm_moe_dsa.control import start_command
++        for i in range(3):f.dispatch(start_command(str(i),[i+1,2,5]*5,max_tokens=8))
++        f.dispatch(dict(op='step_many',args=dict(keys=['0','1','2'],cancelled=[False]*3)))
++        fingerprints={c.replica.fingerprint() for c in f.controllers.values()}
++        self.assertEqual(len(fingerprints),1)
++        for c in f.controllers.values():
++            self.assertEqual(sum(len(r.tokens) for r in c.replica.core.requests.values()),10)
++            self.assertEqual(c.replica.core.prefill_cursor,1)
++        c=f.controllers[2].replica.core
++        before=f.controllers[2].replica.fingerprint();c.prefill_plan=PrefillPlan(10,3)
++        self.assertNotEqual(f.controllers[2].replica.fingerprint(),before)
++        c.prefill_plan=PrefillPlan(10,4)
++        # The temporary host-only mutation never executes a request command.
++
++
++class LivePolicy(unittest.TestCase):
++    def test_join_leave_and_lone_client_never_use_packing(self):
++        entered,release=threading.Event(),threading.Event()
++        def configure(rank,b):
++            enable_batch(b)
++            original=b.target
++            first=True
++            def target(*args):
++                nonlocal first
++                if rank==0 and first:
++                    first=False;entered.set()
++                    if not release.wait(4):raise TimeoutError('test release missing')
++                return original(*args)
++            b.target=target
++        f=ScheduledFleet(configure=configure,packed=True)
++        try:
++            def run(prompt,count):
++                out=[];f.engine.generate(prompt,count,None,lambda t:out.extend(t));return out
++            with ThreadPoolExecutor(max_workers=3) as pool:
++                lone=pool.submit(run,[2,3],60)
++                self.assertTrue(entered.wait(3))
++                first=pool.submit(run,[4,7],8);second=pool.submit(run,[8,9,2],12)
++                with f.scheduler.condition:
++                    self.assertTrue(f.scheduler.condition.wait_for(lambda:len(f.scheduler.waiting)==2,timeout=3))
++                self.assertTrue(all(not b.groups for b in f.backends.values()))
++                release.set()
++                self.assertEqual(first.result(4),serial([4,7],8,None))
++                self.assertEqual(second.result(4),serial([8,9,2],12,None))
++                self.assertEqual(lone.result(4),serial([2,3],60,None))
++            counts=[len(b.groups) for b in f.backends.values()]
++            self.assertTrue(all(n>0 for n in counts))
++            self.assertEqual(run([7,1,3],9),serial([7,1,3],9,None))
++            self.assertEqual([len(b.groups) for b in f.backends.values()],counts)
++            for c in f.controllers.values():
++                self.assertGreater(c.replica.core.schedule_counts['scalar_rounds'],0)
++                self.assertGreater(c.replica.core.schedule_counts['packed_rounds'],0)
++        finally:
++            release.set();f.close()
++        self.assertFalse(f.errors)
++
++if __name__=='__main__':unittest.main()
+diff --git a/tools/glm53_tp6_scheduling_check.py b/tools/glm53_tp6_scheduling_check.py
+new file mode 100644
+index 0000000..cd4fe21
+--- /dev/null
++++ b/tools/glm53_tp6_scheduling_check.py
+@@ -0,0 +1,447 @@
++#!/usr/bin/env python3
++"""Original-weight TP6 shared-prefill and automatic dispatch qualification.
++
++Uses original3.25bpw weights, resident804K cache, bounded independent CUDA graph
++pools and the existing6-rank group. Checks an approximately8K rendered code prompt while another request decodes,
++cancellation and joining/leaving clients, then matched HTTP C1/C4/SSE against
++independent serial targets. Scheduling diagnostic; not full long-context quality or promotion.
++"""
++import argparse, faulthandler, hashlib, json, os, time, threading
++from concurrent.futures import ThreadPoolExecutor
++from datetime import timedelta
++from pathlib import Path
++
++
++def main():
++    p = argparse.ArgumentParser(description=__doc__)
++    p.add_argument('--rank', type=int, required=True)
++    p.add_argument('--port', type=int, required=True)
++    for name in ('model', 'manifest', 'output', 'admission'):
++        p.add_argument('--'+name, type=Path, required=True)
++    a = p.parse_args()
++    assert 0 <= a.rank < 6 and not a.output.exists()
++    assert int(Path('/sys/fs/cgroup/memory.max').read_text()) <= 108*2**30
++    def available():
++        return int(next(s.split()[1] for s in Path('/proc/meminfo').read_text().splitlines()
++                        if s.startswith('MemAvailable:')))*1024
++    assert available() >= 110*2**30
++    manifest = json.loads(a.manifest.read_text())
++    for path, digest in manifest.items():
++        assert hashlib.sha256(Path(path).read_bytes()).hexdigest() == digest, path
++    deadline = time.monotonic()+90
++    while not a.admission.exists():
++        assert time.monotonic() < deadline, 'Missing exact-CID guard admission'
++        time.sleep(.1)
++    import torch
++    import torch.distributed as dist
++    from tokenizers import Tokenizer
++    from tensorfold.engine.exact_sampling import Sampling
++    from tensorfold.families.glm_moe_dsa.checkpoint import RankPieces
++    from tensorfold.families.glm_moe_dsa.compiled import load_experts
++    from tensorfold.families.glm_moe_dsa.decoder import TP6Reduction
++    from tensorfold.families.glm_moe_dsa.model import ModelWeights, ModelWorkspace, FullModel
++    from tensorfold.families.glm_moe_dsa.memory import weight_plan, workspace_plan, request_plan, tensor_storage_bytes
++    from tensorfold.families.glm_moe_dsa.cache import LayerCache
++    from tensorfold.families.glm_moe_dsa.attention import rope_table
++    from tensorfold.families.glm_moe_dsa.request import RequestEngine, CachePool
++    from tensorfold.families.glm_moe_dsa.request_backend import FullModelBackend
++    from tensorfold.families.glm_moe_dsa.graph_plan import graph_reserve
++    from tensorfold.families.glm_moe_dsa.packed_backend import packed_reserve
++    from tensorfold.families.glm_moe_dsa.projection_plan import LinearTile,ProjectionPlan
++    torch.set_num_threads(1)
++    torch.cuda.set_device(0)
++    torch.manual_seed(530622)
++    assert torch.cuda.get_device_capability() == (12, 1)
++    torch.cuda.set_per_process_memory_fraction(104*2**30/torch.cuda.get_device_properties(0).total_memory)
++    capacity = 804000
++    report = dict(passed=False, rank=a.rank, cases=[], started_at=time.time(), source_manifest=manifest,
++                  scope=__doc__, cache_capacity=capacity, model_rows=3072, expert_chunk_rows=1024,
++                  minimum_available_gib=available()/2**30, full_quality_gate=False, serving_throughput=False)
++    def save(phase):
++        free = available()/2**30
++        report.update(phase=phase, updated_at=time.time(), peak_cuda_allocated_gib=torch.cuda.max_memory_allocated()/2**30,
++                      cuda_allocated_gib=torch.cuda.memory_allocated()/2**30,
++                      cuda_reserved_gib=torch.cuda.memory_reserved()/2**30, available_gib=free,
++                      minimum_available_gib=min(free, report['minimum_available_gib']),
++                      cgroup_peak_gib=int(Path('/sys/fs/cgroup/memory.peak').read_text())/2**30)
++        tmp = a.output.with_suffix('.tmp')
++        tmp.write_text(json.dumps(report, indent=2)+'\n')
++        tmp.replace(a.output)
++        print(json.dumps({'rank': a.rank, 'phase': phase, 'checks': len(report['cases']), 'available_gib': free}), flush=True)
++    def check(ok, name, **details):
++        report['cases'].append(dict(case=name, passed=bool(ok), **details))
++        save(name)
++        assert ok, name
++    def digest(tokens):
++        return hashlib.sha256(json.dumps(list(tokens)).encode()).hexdigest()
++    faulthandler.dump_traceback_later(600, repeat=True)
++    active_component = None
++    try:
++        store = dist.TCPStore(os.environ['MASTER_ADDR'], a.port, 6, a.rank == 0, timedelta(seconds=240))
++        dist.init_process_group('nccl', store=store, rank=a.rank, world_size=6, timeout=timedelta(seconds=240))
++        reader = RankPieces(a.model, a.rank)
++        plan = weight_plan(reader)
++        wp = workspace_plan(reader.config, a.rank, 3072, capacity, logit_rows=17, expert_chunk_rows=1024,
++                            bulk_min_rows=256, attention_part_rows=128, skip_empty_attention=True)
++        rp = request_plan(3072, 17)
++        gp=graph_reserve(64,32)
++        extra=packed_reserve(3072)
++        report['packed_temporary_reserve']=extra
++        assert plan['total']+wp['total']+rp['total']+gp['total']+extra+4*2**30 < 104*2**30
++        report['graph_reserve']=gp
++        report.update(weight_plan=plan, workspace_plan=wp, request_reserve=rp)
++        reduction = TP6Reduction(dist.group.WORLD, a.rank).prepare(3072, 'cuda', bulk_min_rows=256)
++        assert tensor_storage_bytes(reduction, device_type='cuda', skip=('group',)) == wp['collective']
++        load_experts()
++        def progress(layer):
++            assert available() >= 12*2**30
++            if layer % 4 == 0 or layer == 78:
++                save(f'loaded-layer-{layer}')
++        weights = ModelWeights(reader, on_layer=progress)
++        report['retained_weight_bytes'] = tensor_storage_bytes(weights, device_type='cuda')
++        assert report['retained_weight_bytes'] == plan['total']
++        model = FullModel(weights, reduction, projections=ProjectionPlan(LinearTile(16,64,3),LinearTile(64,128,2)))
++        torch.cuda.synchronize()
++        torch.cuda.empty_cache()
++        caches = []
++        for layer in range(79):
++            cache = LayerCache(layer, capacity, 'cuda', indexer=reader.config.indexer_source(layer) == layer)
++            cache.latent.zero_()
++            cache.scales.fill_(1)
++            cache.rope.zero_()
++            if cache.index_keys is not None:
++                cache.index_keys.zero_()
++                cache.index_scales.fill_(1)
++            caches.append(cache)
++            if layer % 8 == 0:
++                torch.cuda.synchronize()
++                assert available() >= 10*2**30
++                save(f'cache-resident-layer-{layer}')
++        table = rope_table(capacity, 'cuda')
++        torch.cuda.synchronize()
++        torch.cuda.empty_cache()
++        assert sum(c.nbytes() for c in caches) == wp['cache']
++        arena = ModelWorkspace(weights, 3072, capacity, logit_rows=17, expert_chunk_rows=1024,
++                               attention_part_rows=128, skip_empty_attention=True)
++        assert tensor_storage_bytes(arena, device_type='cuda', skip=('weights', 'layer')) == wp['workspace']
++        class CheckedBackend(FullModelBackend):
++            samples = 0
++            def sample(self, hidden, positions, sampling):
++                result = super().sample(hidden, positions, sampling)
++                local = torch.tensor(result, dtype=torch.int64, device='cuda')
++                gathered = torch.empty((6*len(result),), dtype=torch.int64, device='cuda')
++                dist.all_gather_into_tensor(gathered, local)
++                assert torch.equal(gathered.view(6, -1), local.expand(6, -1)), 'Ranks sampled different tokens'
++                self.samples += 1
++                return result
++        backend = CheckedBackend(model, caches, table, arena)
++        tokenizer = Tokenizer.from_file(str(a.model/'tokenizer.json'))
++        texts = [
++            'Write a Python function that returns the sum of the squares of a list of integers.\n',
++            'Explain in simple terms why leaves change color in autumn.\n',
++            'The first five prime numbers are',
++            'A careful programmer checks edge cases because',
++        ]
++        prompts = [tokenizer.encode(t, add_special_tokens=False).ids for t in texts]
++        report['fixtures'] = [dict(text=t, tokens=p) for t, p in zip(texts, prompts)]
++        samplings = [None, Sampling(5316, .8, 20, .95), Sampling(619, .9, 0, .9, .03), None]
++        def serial(prompt, count, sampling):
++            # Independent loop: no RequestEngine, MTP state or speculative commits.
++            pool = CachePool(capacity)
++            extent = pool.allocate(len(prompt)+count)
++            for offset in range(0,len(prompt),backend.rows):
++                hidden = backend.target(prompt[offset:offset+backend.rows], offset, extent)
++            result = backend.sample(hidden[-1:], [len(prompt)], sampling)
++            for i in range(1, count):
++                hidden = backend.target([result[-1]], len(prompt)+i-1, extent)
++                result.extend(backend.sample(hidden, [len(prompt)+i], sampling))
++            backend.synchronize()
++            pool.release(extent)
++            return result
++        expected = []
++        for i, (prompt, sampling) in enumerate(zip(prompts, samplings)):
++            save(f'serial-reference-{i}')
++            expected.append(serial(prompt, 12, sampling))
++        from tensorfold.families.glm_moe_dsa.graphs import GraphBackend
++        from tensorfold.families.glm_moe_dsa.control import Replica,RequestController,start_command
++        from tensorfold.families.glm_moe_dsa.control_sampling import RankZeroSampler
++        from tensorfold.families.glm_moe_dsa.scheduler import RequestScheduler,ServingEngine
++        from tensorfold.cuda.chat_template import ChatTemplate
++        from tensorfold.cuda.server import App,Server,make_handler
++        import urllib.request,urllib.error,statistics
++        # Mixed sampling/depths, cancellation, changed membership and retained
++        # continuation over the actual six-rank command bus.
++        follow_prompt=prompts[0]+expected[0][:-1]+[5,6]
++        follow_expected=serial(follow_prompt,8,None)
++        leader=RankZeroSampler(dist.group.WORLD,'cuda:0',17)
++        adapter=GraphBackend(model,caches,table,arena,group=dist.group.WORLD,sampler=leader,max_graphs=64,max_rows=32)
++        active_component=adapter
++        controller=RequestController(Replica(RequestEngine(adapter)),store,a.rank,generation='tfp22_packed_mixed_qualification',timeout=timedelta(seconds=240))
++        def command(packet):
++            if a.rank==0:return controller.dispatch(packet)
++            controller.follow_once()
++        for i in range(4):command(start_command(str(i),prompts[i],max_tokens=12,sampling=samplings[i],draft_tokens=[0,1,4,8][i],ignore_eos=True))
++        command(dict(op='step_many',args=dict(keys=['0','1','2','3'],cancelled=[False,False,False,True])))
++        check(controller.replica.core.requests['3'].status=='cancelled' and not controller.replica.core.requests['3'].output,'cancelled-member-not-committed')
++        command(dict(op='drop',args=dict(key='3')))
++        command(start_command('3b',prompts[3],max_tokens=12,sampling=samplings[3],draft_tokens=8,ignore_eos=True))
++        while True:
++            keys=[k for k,r in controller.replica.core.requests.items() if r.status in ('prefill','decode')]
++            if not keys:break
++            command(dict(op='step_many',args=dict(keys=list(reversed(keys)),cancelled=[False]*len(keys))))
++        for i,key in enumerate(['0','1','2','3b']):
++            check(controller.replica.core.requests[key].output==expected[i],f'mixed-packed-request-{i}-serial',exact_tokens=True)
++        for key in ('1','2','3b'):command(dict(op='drop',args=dict(key=key)))
++        kept=len(controller.replica.core.requests['0'].tokens)
++        command(start_command('continued',follow_prompt,max_tokens=8,draft_tokens=4,ignore_eos=True,resume='0'))
++        while controller.replica.core.requests['continued'].status in ('prefill','decode'):
++            command(dict(op='step_many',args=dict(keys=['continued'],cancelled=[False])))
++        check(controller.replica.core.requests['continued'].output==follow_expected and controller.replica.core.requests['continued'].reused_tokens==kept,'packed-retained-prefix-serial',exact_tokens=True)
++        report['mixed_batch_counts']=adapter.batch_counts
++        check(all(v['multi_request_groups']>0 for v in adapter.batch_counts.values()),'target-mtp-head-actually-packed')
++        command(dict(op='close',args={}))
++        check(controller.replica.closed and not controller.replica.core.pool.leases and adapter.closed,'mixed-packed-clean-close')
++        active_component=None
++        del controller,adapter,leader
++        torch.cuda.synchronize();torch.cuda.empty_cache();dist.barrier()
++        template = ChatTemplate(a.model)
++        # Render complete code records through the original template. The last
++        # record is complete; report the actual count instead of padding tokens.
++        records=[]
++        for i in range(300):
++            records.append(f'def scale_{i:03d}(value: int) -> int:\n    """Multiply an integer by {i+1}; zero remains zero."""\n    return value * {i+1}\n')
++            long_text='Review these Python helpers.\n'+ '\n'.join(records)+'\nWhich helper multiplies its input by 73? Explain briefly.'
++            long_prompt=tokenizer.encode(template.render([dict(role='user',content=long_text)],tools=None,enable_thinking=False),add_special_tokens=False).ids
++            if len(long_prompt)>=8192:break
++        assert 8192<=len(long_prompt)<8400
++        save('long-scheduling-independent-reference')
++        long_expected=serial(long_prompt,16,None)
++        decoder_expected=serial(prompts[0],128,None)
++        long_follow=long_prompt+long_expected[:-1]+[5,6]
++        long_follow_expected=serial(long_follow,8,None)
++        report['long_fixture']=dict(prompt_tokens=len(long_prompt),prompt_sha256=digest(long_prompt),
++            complete_code_records=len(records),target_output_sha256=digest(long_expected),
++            independent_reference_chunk_rows=3072,quality_scope='Deterministic scheduling parity, not broad long-context quality')
++        leader=RankZeroSampler(dist.group.WORLD,'cuda:0',17)
++        adapter=GraphBackend(model,caches,table,arena,group=dist.group.WORLD,sampler=leader,max_graphs=64,max_rows=32)
++        active_component=adapter
++        controller=RequestController(Replica(RequestEngine(adapter)),store,a.rank,generation='tfp22_shared_prefill_8k_qualification',timeout=timedelta(seconds=240))
++        core=controller.replica.core
++        command(start_command('decoder',prompts[0],max_tokens=128,draft_tokens=4,ignore_eos=True))
++        command(dict(op='step',args=dict(key='decoder',cancelled=False)))
++        command(start_command('long',long_prompt,max_tokens=16,draft_tokens=4,ignore_eos=True))
++        command(start_command('cancel',long_prompt,max_tokens=16,draft_tokens=4,ignore_eos=True))
++        rounds=[]
++        for turn in range(200):
++            keys=[k for k,r in core.requests.items() if r.status in ('prefill','decode')]
++            if not keys:break
++            keys=keys[turn%len(keys):]+keys[:turn%len(keys)]
++            flags=[k=='cancel' and turn>=1 for k in keys]
++            prefills={k:len(core.requests[k].tokens) for k,c in zip(keys,flags) if core.requests[k].status=='prefill' and not c}
++            decoders={k:len(core.requests[k].output) for k,c in zip(keys,flags) if core.requests[k].status=='decode' and not c}
++            mixed=bool(prefills and decoders)
++            begin=time.perf_counter()
++            command(dict(op='step_many',args=dict(keys=keys,cancelled=flags)))
++            elapsed=time.perf_counter()-begin
++            added=sum(len(core.requests[k].tokens)-n for k,n in prefills.items())
++            check(added<=(256 if mixed else 3072) and all(len(core.requests[k].output)>n for k,n in decoders.items()),
++                  f'long-scheduling-round-{turn}-budget-and-decode-progress',prefill_rows=added,mixed=mixed)
++            rounds.append(dict(turn=turn,elapsed_s=elapsed,prefill_rows=added,mixed=mixed,decoding_clients=len(decoders)))
++            if turn==1:
++                cancelled=core.requests['cancel']
++                check(cancelled.status=='cancelled' and not cancelled.output and len(cancelled.tokens)==128,
++                      'long-mid-prefill-cancellation-no-extra-commit',committed_prompt_tokens=len(cancelled.tokens))
++                report['cancel_command_s']=elapsed
++                command(dict(op='drop',args=dict(key='cancel')))
++                command(start_command('newcomer',prompts[2],max_tokens=12,sampling=samplings[2],draft_tokens=4,ignore_eos=True))
++        check(core.requests['long'].output==long_expected,'long-budgeted-prefill-serial-parity',exact_tokens=True)
++        check(core.requests['decoder'].output==decoder_expected,'decoder-along-long-prefill-serial-parity',exact_tokens=True)
++        check(core.requests['newcomer'].output==expected[2],'newcomer-along-long-prefill-serial-parity',exact_tokens=True)
++        for key in ('decoder','newcomer'):command(dict(op='drop',args=dict(key=key)))
++        kept=len(core.requests['long'].tokens)
++        command(start_command('long-follow',long_follow,max_tokens=8,draft_tokens=4,ignore_eos=True,resume='long'))
++        while core.requests['long-follow'].status in ('prefill','decode'):
++            command(dict(op='step',args=dict(key='long-follow',cancelled=False)))
++        check(core.requests['long-follow'].output==long_follow_expected and core.requests['long-follow'].reused_tokens==kept,
++              'long-retained-followup-serial-parity',exact_tokens=True)
++        report['long_schedule']=dict(rounds=rounds,counts=dict(core.schedule_counts),
++            max_mixed_round_s=max(r['elapsed_s'] for r in rounds if r['mixed']))
++        command(dict(op='close',args={}))
++        check(controller.replica.closed and not core.pool.leases and adapter.closed,'long-scheduling-clean-close')
++        active_component=None
++        del controller,core,adapter,leader
++        torch.cuda.synchronize();torch.cuda.empty_cache();dist.barrier()
++        chat_texts = [
++            'Write a complete Python LRU cache with get and put methods, type annotations, clear documentation, and unit tests covering eviction and updating existing keys. Explain the time complexity.',
++            'Explain how a transformer language model processes a prompt and generates an answer. Cover attention, key-value caching, speculative decoding, and the tradeoffs of splitting a model across several GPUs. Use clear paragraphs and concrete examples.',
++        ]
++        bodies = [dict(model='glm-5.3',messages=[dict(role='user',content=text)],temperature=0,
++                       max_tokens=128,ignore_eos=True,return_token_ids=True,
++                       chat_template_kwargs=dict(enable_thinking=False)) for text in chat_texts]
++        chat_prompts = [tokenizer.encode(template.render(b['messages'],tools=None,enable_thinking=False),
++                                        add_special_tokens=False).ids for b in bodies]
++        references = []
++        for i,prompt in enumerate(chat_prompts):
++            save(f'chat-independent-serial-{i}')
++            references.append(serial(prompt,128,None))
++        report['chat_fixtures'] = [dict(body=b,prompt_tokens=len(p),prompt_sha256=digest(p),
++                                      output_sha256=digest(ref)) for b,p,ref in zip(bodies,chat_prompts,references)]
++        report['modes'] = {}
++        for mode in ('scalar','automatic'):
++            torch.cuda.synchronize();dist.barrier()
++            controllers,adapters,samplers = [],[],[]
++            def factory():
++                torch.cuda.set_device(0)
++                sampler = RankZeroSampler(dist.group.WORLD,'cuda:0',17)
++                klass = GraphBackend
++                extra = dict(group=dist.group.WORLD,max_graphs=64,max_rows=32)
++                adapter = klass(model,caches,table,arena,sampler=sampler,**extra)
++                controller = RequestController(Replica(RequestEngine(adapter)),store,a.rank,
++                    generation='original_weights_tfp22_http_'+mode,timeout=timedelta(seconds=240),
++                    idle_timeout=timedelta(seconds=900))
++                controllers.append(controller);adapters.append(adapter);samplers.append(sampler)
++                return controller
++            save('http-mode-'+mode)
++            data = dict(c1=[],c4=[],c4_warmups=[])
++            if a.rank==0:
++                scheduler = RequestScheduler(factory,packed=mode=='automatic')
++                engine = ServingEngine(scheduler)
++                server = thread = None
++                try:
++                    app = App(engine,a.model,'glm-5.3',default_thinking=False,max_tokens=128,context_window=360000)
++                    server = Server(('127.0.0.1',0),make_handler(app))
++                    thread = threading.Thread(target=server.serve_forever,daemon=True);thread.start()
++                    endpoint = 'http://127.0.0.1:'+str(server.server_address[1])
++                    def post(body):
++                        request = urllib.request.Request(endpoint+'/v1/chat/completions',data=json.dumps(body).encode(),
++                            headers={'Content-Type':'application/json'})
++                        begin=time.perf_counter()
++                        with urllib.request.urlopen(request,timeout=180) as response:
++                            payload=json.load(response)
++                        elapsed=time.perf_counter()-begin
++                        assert 'error' not in payload,payload.get('error')
++                        return payload,elapsed
++                    def validate(payload,i):
++                        return (payload['tensorfold']['token_ids']==references[i]
++                            and payload['usage']['completion_tokens']==128
++                            and payload['usage']['prompt_tokens']==len(chat_prompts[i]))
++                    expected_content = {}
++                    for i,body in enumerate(bodies):
++                        payload,_=post(body)
++                        expected_content[i] = payload['choices'][0]['message'].get('content') or ''
++                        check(validate(payload,i),f'{mode}-http-warmup-{i}-serial-parity',exact_tokens=True)
++                    for repeat in range(3):
++                        for i,body in enumerate(bodies):
++                            captures=getattr(adapters[0],'captures',0)
++                            payload,elapsed=post(body)
++                            check(validate(payload,i),f'{mode}-http-c1-{i}-{repeat}-serial-parity',exact_tokens=True)
++                            stats=payload['tensorfold']
++                            data['c1'].append(dict(fixture=i,repeat=repeat,output_tokens=128,elapsed_s=elapsed,
++                                decode_tok_s=127/stats['decode_s'],prefill_s=stats['prefill_s'],decode_s=stats['decode_s'],
++                                new_captures=getattr(adapters[0],'captures',0)-captures,output_sha256=digest(stats['token_ids'])))
++                    check(all(v['groups']==0 for v in adapters[0].batch_counts.values()),mode+'-c1-exclusively-scalar')
++                    barrier=threading.Barrier(4)
++                    def client(i):
++                        barrier.wait(10)
++                        payload,elapsed=post(bodies[i%2])
++                        assert validate(payload,i%2),'Concurrent HTTP output differs from independent serial target'
++                        return dict(fixture=i%2,elapsed_s=elapsed,output_sha256=digest(payload['tensorfold']['token_ids']))
++                    for repeat in range(5):
++                        # Two warmups, then three timed rounds; all capture
++                        # counts are reported, including any dynamic new shape.
++                        captures=adapters[0].captures
++                        begin=time.perf_counter()
++                        with ThreadPoolExecutor(max_workers=4) as clients:
++                            concurrent=list(clients.map(client,range(4)))
++                        elapsed=time.perf_counter()-begin
++                        item=dict(clients=concurrent,wall_s=elapsed,output_tokens=512,
++                                  aggregate_tok_s=512/elapsed,new_captures=adapters[0].captures-captures)
++                        data['c4_warmups' if repeat<2 else 'c4'].append(item)
++                        check(True,f'{mode}-http-four-client-{repeat}-serial-parity',exact_sequences=4)
++                    packed_before_sse={k:v['groups'] for k,v in adapters[0].batch_counts.items()}
++                    # Real SSE route: collect final token IDs and visible content.
++                    request=urllib.request.Request(endpoint+'/v1/chat/completions',data=json.dumps({**bodies[0],'stream':True}).encode(),
++                                                   headers={'Content-Type':'application/json'})
++                    events=[];done=False
++                    with urllib.request.urlopen(request,timeout=180) as response:
++                        for line in response:
++                            if not line.startswith(b'data: '):continue
++                            raw=line[6:].strip()
++                            if raw==b'[DONE]':done=True;break
++                            event=json.loads(raw);assert 'error' not in event,event;events.append(event)
++                    terminal=next(e for e in reversed(events) if 'tensorfold' in e)
++                    content=''.join(c.get('delta',{}).get('content') or '' for e in events for c in e.get('choices',[]))
++                    check(done and validate(terminal,0) and content==expected_content[0],
++                          f'{mode}-http-stream-serial-parity',exact_tokens=True,stream_content_parity=True)
++                    check(packed_before_sse=={k:v['groups'] for k,v in adapters[0].batch_counts.items()},mode+'-returns-to-scalar-after-concurrency')
++                    before=controllers[0].completed
++                    rejected=False
++                    try:post({**bodies[0],'max_tokens':360001})
++                    except urllib.error.HTTPError as exc:
++                        rejected=exc.code==400
++                        exc.close()
++                    check(rejected and controllers[0].completed==before,f'{mode}-http-context-rejection')
++                    # Existing core/controller cancellation and retained-prefix
++                    # mechanisms are exercised again with graph execution enabled.
++                    follow_prompt=chat_prompts[0]+references[0]+tokenizer.encode('\nContinue with edge cases.\n',add_special_tokens=False).ids
++                    follow=[]
++                    stats=engine.generate(follow_prompt,8,None,lambda t:follow.extend(t),stop_eos=False)
++                    check(stats['cached']==len(chat_prompts[0])+127,f'{mode}-retained-chat-prefix',cached=stats['cached'])
++                    data['followup_tokens']=follow
++                    cancelled=engine.generate(chat_prompts[1]*8,12,None,lambda _:True)
++                    check(cancelled['reason']=='cancelled',f'{mode}-callback-cancellation')
++                finally:
++                    try:
++                        if server is not None:
++                            if thread is not None and thread.is_alive():server.shutdown()
++                            server.server_close()
++                        if thread is not None:thread.join(10)
++                    finally:
++                        engine.close()
++            else:
++                factory().follow()
++            controller,adapter=controllers[0],adapters[0]
++            check(controller.replica.closed and not controller.replica.core.pool.leases,
++                  mode+'-ordered-clean-shutdown')
++            counts=[controller.completed,samplers[0].decisions,getattr(adapter,'captures',0),getattr(adapter,'replays',0)]
++            local=torch.tensor(counts,dtype=torch.int64,device='cuda');all_counts=torch.empty(24,dtype=torch.int64,device='cuda')
++            dist.all_gather_into_tensor(all_counts,local)
++            check(torch.equal(all_counts.view(6,4),local.expand(6,4)),mode+'-all-rank-execution-counts')
++            data.update(schedule_counts=dict(controller.replica.core.schedule_counts),batch_counts=adapter.batch_counts,commands=counts[0],samples=counts[1],captures=counts[2],replays=counts[3],
++                        peak_graph_growth_bytes=getattr(adapter,'peak_retained_growth',0))
++            report['modes'][mode]=data
++            save(mode+'-complete')
++        if a.rank==0:
++            check(report['modes']['scalar']['followup_tokens']==report['modes']['automatic']['followup_tokens'],
++                  'retained-chat-followup-scalar-automatic-parity',exact_tokens=True)
++            for mode,data in report['modes'].items():
++                data['median_decode_tok_s']={str(i):statistics.median(x['decode_tok_s'] for x in data['c1'] if x['fixture']==i)
++                                             for i in range(2)}
++                data['median_c4_aggregate_tok_s']=statistics.median(x['aggregate_tok_s'] for x in data['c4'])
++                check(all(x['new_captures']==0 for x in data['c1']),mode+'-timed-c1-no-new-captures')
++        if a.rank==0:
++            check(all(v['multi_request_groups']>0 for v in report['modes']['automatic']['batch_counts'].values()),'http-target-mtp-head-actually-packed')
++        report['fixture_output_sha256']=[digest(t) for t in expected]
++        report['cross_rank_reference_sample_checks']=backend.samples
++        save('numerical_checks_complete')
++        torch.cuda.synchronize()
++        dist.barrier()
++        dist.destroy_process_group()
++        report.update(passed=True, communicator_destroyed=True, finished_at=time.time())
++        save('complete')
++    except Exception as exc:
++        report['error'] = type(exc).__name__+': '+str(exc)
++        save('failed')
++        raise
++    finally:
++        faulthandler.cancel_dump_traceback_later()
++        try:
++            if active_component is not None:
++                active_component.close_graphs()
++        finally:
++            if dist.is_initialized():
++                dist.destroy_process_group()
++
++
++if __name__ == '__main__':
++    main()

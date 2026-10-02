@@ -3576,6 +3576,18 @@
       "sha256": "6d855b3a684b5370e21cc60e9952af63b69987c4cdd2cca2b177d52d61e08b02",
       "origin": "TFP21 six-rank packed request qualification, extracted summary",
       "change": null
+    },
+    {
+      "path": "results/tfp22-tensorfold.json",
+      "sha256": "6f2ff019e44bc476535cbda2110c2cab89b18cb97627ef32bc066c9434ee7a43",
+      "origin": "TFP22 incomplete six-rank scheduling run; guard-stopped, not qualified",
+      "change": null
+    },
+    {
+      "path": "experiments/pending/tfp22-scheduling.patch",
+      "sha256": "5d43feb13acd077642350634abdf50f180e439ec44cfd7d5213f24523d2f1999",
+      "origin": "tensorfold-port candidate 82b24104bf7fefea69788d5d493eeae5c5493d45 diff from qualified c79902ec67c9e516e67b9aca82a851c9b7a49c91",
+      "change": null
     }
   ]
 }

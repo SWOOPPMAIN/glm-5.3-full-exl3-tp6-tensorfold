@@ -29,9 +29,9 @@
 
 ## Next
 
-1. Use scalar commands for one active client, qualify transitions to packed groups, and bound total prompt work per round.
-2. Compare matched production workloads with P24, including concurrent latency.
-3. Extend API checks to conversation history, tools, reasoning, stops and disconnects.
+1. Diagnose the TFP22 transient host-memory peak and finish automatic dispatch/shared-prefill qualification.
+2. Screen larger EXL3 expert chunks using TensorFold 0.6.1 shared-memory opt-in; compare matched workloads with P24.
+3. Adapt Mia complete tool-call/keepalive fixes and 0.6.1 HTTP/reasoning fixes; extend conversation/fork cache reuse and API checks.
 4. Measure authentic code/prose and uncached 8K/32K/128K; qualify real 360K quality.
 5. Package the backend and promote measured gains through Max/Pi-router/Code.
 6. Publish a verified clean-machine image build and portable fleet launcher.
