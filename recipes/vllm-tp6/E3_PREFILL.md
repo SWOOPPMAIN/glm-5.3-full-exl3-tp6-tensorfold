@@ -156,6 +156,80 @@ CPU control checks:
 PYTHONPATH=runtime/vllm python3 benchmarks/test_e3_rows_policy.py
 ```
 
+## Native/E3 crossover comparison (E34)
+
+The follow-up component comparison is complete. **The serving boundary is still
+512 rows.** The next full-model candidate is native through 32 rows and row32 E3
+above 32; it has not been promoted or measured in full-model serving.
+
+All six serving ranks were stopped for these probes. Native, row64 E3 and row32
+E3 used the same original weights and captured code/prose operands, including
+their shorter prefixes, on ranks 0–5 and layers 3/40/77. Native retained its real
+3072-capacity prefill plan. Row32 and row64 shared one E3 scratch arena.
+
+**1,296 bitwise comparisons passed**, including changing-input graph replays at
+256 and 513 rows. All three arms passed before timing. Eight rotated/reversed
+repetitions per arm/cell yielded **7,776 timed calls across 324 cells**. The
+64 MiB cache flush was outside timing; routing and epilogues were included.
+
+| Input rows | Row32 / native speed ratio, geometric mean | Faster cell medians |
+| --- | ---: | ---: |
+| 33 | 1.307× | 36 / 36 |
+| 65 | 1.280× | 36 / 36 |
+| 128 | 1.272× | 36 / 36 |
+| 256 | 1.241× | 36 / 36 |
+| 384 | 1.240× | 36 / 36 |
+| 512 | 1.239× | 36 / 36 |
+| 513 | 1.236× | 36 / 36 |
+| 768 | 1.258× | 36 / 36 |
+| 1024 | 1.258× | 36 / 36 |
+
+Row32 was faster in all 324 medians; observed sample ranges were disjoint in
+313 cells. These ranges are not confidence intervals. Comparing the slowest
+rank median per layer/prompt/row count also favored row32 in all 54 comparisons;
+the smallest such ratio was 1.169×. Ranks were not synchronized for each timed
+call, so these maxima approximate component critical-path costs, not distributed
+latency. Three layers and two synthetic captures do not cover every workload.
+
+The joint native/E3 comparison used a predeclared 3 GiB Torch budget, a 4 GiB
+container limit and a 280-second deadline. The native and E3 scratch buffers
+must coexist for alternating measurements; this differs from E32's two-E3-arm
+2 GiB budget. Peak Torch allocation was **2.115 GiB**. Each exact-container guard
+was fresh and clear with at least 12 GiB available before release; the unchanged
+8 GiB / 2-second floor and pressure protections remained active. Rank 0/layer 3
+passed the joint-memory screen before the other probes were released.
+
+The selected `b498…` row32 image was explicitly resumed after all probes stopped.
+Fresh functional, native, Pi-router, Code and Chat checks passed, along with all
+six policy acknowledgments and exclusive GPU ownership. The existing numerical
+qualification for that exact image, tuning and row policy was reused, not rerun.
+Minimum available RAM at closeout was **13.33 GiB**; this snapshot is not a new
+memory-footprint claim. Serving weights, precision, capacity and dispatch are unchanged.
+
+[Results and closeout](../../results/e3-crossover-component.json) ·
+[Every timing sample and scalar quality check](../../results/e3-crossover-samples.json)
+
+Recompute all medians, ratios and comparison counts without GPUs:
+
+```sh
+python3 benchmarks/analyze_e3_crossover_samples.py --samples results/e3-crossover-samples.json
+```
+
+The public check validates exported comparison results; it cannot independently
+recompute model outputs without the private captured tensors. To repeat the GPU
+probe, stage [e3_crossover_check.py](../../benchmarks/e3_crossover_check.py) and
+the existing loader helper with the [exact staged manifest](../../results/e3-crossover-manifest.json).
+It records installed source/binary pins and private capture hashes. Use the same exclusive stopped-
+fleet and exact-container guard procedure described above. This probe uses the
+installed native and both installed E3 kernels; preserve all source/binary pins
+and original capture hashes. Do not run it alongside serving.
+
+The next full-model test must use one boundary rule for both generation and
+teacher scoring, preserve native decode through 32 rows, pass the existing
+short/long gates, and compare short prefills and chunk tails with repeated
+matched workloads. **These isolated ratios are not an additional 24–31% serving
+throughput gain.** The full-model measurements above remain the latest serving results.
+
 ## Historical diagnostic capture (E31)
 
 A source-only diagnostic image is qualified:

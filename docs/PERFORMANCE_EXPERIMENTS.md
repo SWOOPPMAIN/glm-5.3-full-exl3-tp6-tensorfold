@@ -14,7 +14,8 @@ is complete: about 26.5% of the 64-row tile capacity is unused padding. A 32-row
 candidate passed 468 exact comparisons and was 13.5% faster at 3072 rows in the
 isolated six-rank component comparison. Full-model row32 now passes the same
 numerical gates and is selected: cold prefill improves 3.94% / 3.28% at 8K/32K.
-The native/E3 crossover follow-up and copy drafting remain.
+The native/E3 component crossover comparison is complete; full-model boundary
+qualification and copy drafting remain.
 Keep full GLM, TP6, the original 3.25 bpw experts and the current dense precision.
 Start from [P27 measurements](../results/p27-serving.json), with production serving
 remaining the priority. No numerical speedup promise is supported for this list.
@@ -86,8 +87,13 @@ Full-model gates passed for both row policies. Across four alternating visits,
 row32 improved cold prefill 3.94% / 3.28%, with non-overlapping observed ranges.
 It is selected with native/router/Code/Chat acceptance. The cached matrix improved
 1.84% overall, but short/32K C4 medians fell about 2.5%; preserve that limitation.
-The diagnostic hook is inactive, and the native boundary remains 512 pending
-a separate actual-route crossover comparison.
+The diagnostic hook is inactive. A separate actual-route native/E3 comparison
+passed 1,296 exact checks across six ranks and layers 3/40/77. Row32 beat native
+in all 324 cell medians, with 1.236–1.307 geometric-mean speed ratios across
+33–1024 rows. All 54 maximum-rank-median comparisons also favored row32.
+The serving boundary remains 512; a native-through32 candidate now needs
+full-model numerical gates and repeated short-prefill/tail timing. These component
+ratios are not full-model throughput gains.
 
 **Copy drafting:** no new drafter weights are required. Full target verification is
 mandatory. First validate compatibility with the pinned TP6 scheduler; combining it

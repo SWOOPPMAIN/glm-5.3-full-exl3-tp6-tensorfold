@@ -2,6 +2,168 @@
   "date": "2026-10-03",
   "files": [
     {
+      "path": "LICENSES/AGPL-3.0.txt",
+      "sha256": "8d56b405468aad11f87ab5763f901e276e08d9646ff5c8481b1762b6b789e9ed",
+      "origin": "AGPL-3.0.txt",
+      "change": null
+    },
+    {
+      "path": "LICENSES/Apache-2.0.txt",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "origin": "Apache-2.0.txt",
+      "change": null
+    },
+    {
+      "path": "LICENSES/Kindling-MIT.txt",
+      "sha256": "728e532008755b24d2656e5aa0ee12b50767c76c77e24c26c048a9e0e56511b3",
+      "origin": "LICENSE",
+      "change": null
+    },
+    {
+      "path": "LICENSES/TensorFold-MIT.txt",
+      "sha256": "be6a9ee4462784a762b21790954b8e76c4dcacc9fb6da2a40d03a8a9bddec93e",
+      "origin": "LICENSE",
+      "change": null
+    },
+    {
+      "path": "benchmarks/analyze_e3_crossover_samples.py",
+      "sha256": "37722035b8989708ed7715e87ee9411e052c0f68a8371494de3294d19b0c28ca",
+      "origin": "amos-recipes@f41feacb6280b17994b3e7f43389d2678bfaf3cd:analyze_e3_crossover_samples.py",
+      "change": null
+    },
+    {
+      "path": "benchmarks/analyze_e3_public_samples.py",
+      "sha256": "cb90d905d2573807f8e85d0fe23acf1f73e9575f66f53fbcb18890d1b0350a35",
+      "origin": "amos-recipes@1ec92c9d2a3ce7c556884fb662f1ea6f1da1027c:analyze_e3_public_samples.py",
+      "change": null
+    },
+    {
+      "path": "benchmarks/analyze_e3_routes.py",
+      "sha256": "1505aa60447a506802a11e80e20f7e21fadcab9556fc5541917659fc5af7a63f",
+      "origin": "amos-recipes@c367d0b4a6bf35b0dd9f8ee607b4060b85e3465a:analyze_e3_routes.py",
+      "change": null
+    },
+    {
+      "path": "benchmarks/analyze_e3_rows.py",
+      "sha256": "3e93168262602b8665f3c0ac273850dd6727bd2b4285f069842c329a7269ed9f",
+      "origin": "amos-recipes@79a2358b90fdcb5ed58bee399eb42294cd87e6ae:analyze_e3_rows.py",
+      "change": null
+    },
+    {
+      "path": "benchmarks/analyze_mtp_matrix.py",
+      "sha256": "d521a7610a2c8809a4a48eae89d744b3e802597caf8ffca0290e9fd6774a816a",
+      "origin": "amos-recipes@d0486aaf699729638c36fafa1e46e3fe74fe3dd0:runtime/exl3-tp6/analyze_mtp_matrix.py",
+      "change": null
+    },
+    {
+      "path": "benchmarks/cache_fixtures.py",
+      "sha256": "00c90d385b736df6d111f1ede0e19caefdc0e276509e9a9d172280ded0bed44d",
+      "origin": "serving-runtime@1e5912b:cache_reuse.py",
+      "change": "Seven fixture definitions copied exactly; public CLI accepts base and credential-file arguments. Actual8K fixture equivalence verified."
+    },
+    {
+      "path": "benchmarks/comm_sizes_host.py",
+      "sha256": "46618bd5ab97aed1cb6b544e5f27c7839c376d5e72099b2c628910da4cd7e679",
+      "origin": "amos-recipes@963f633371eee9f3ef2e0f9715401422d6c64ea5:comm_sizes_host.py",
+      "change": null
+    },
+    {
+      "path": "benchmarks/e3-row32.patch",
+      "sha256": "02fc237759cf613bffee31a8e802ed8c7034f456bf622db5dd308d5e848157ea",
+      "origin": "amos-recipes@79a2358b90fdcb5ed58bee399eb42294cd87e6ae:e3-row32.patch",
+      "change": null
+    },
+    {
+      "path": "benchmarks/e3_crossover_check.py",
+      "sha256": "f7886c71c6795a37ee9c9dde761be582678a3732144034426edf1e0079627538",
+      "origin": "amos-recipes@f41feacb6280b17994b3e7f43389d2678bfaf3cd:e3_crossover_check.py",
+      "change": null
+    },
+    {
+      "path": "benchmarks/e3_rows_check.py",
+      "sha256": "3f5e34ea47a1137a6b57cc29ce58769362df87d05efcbdf03bb58357a8e2e750",
+      "origin": "amos-recipes@79a2358b90fdcb5ed58bee399eb42294cd87e6ae:e3_rows_check.py",
+      "change": null
+    },
+    {
+      "path": "benchmarks/fit_mtp_costs.py",
+      "sha256": "429d4347595958abc8fdccaf6959fbcbe75eb9ec66d8528e7a9d7362f5c3bdb0",
+      "origin": "amos-recipes@d0486aaf699729638c36fafa1e46e3fe74fe3dd0:runtime/exl3-tp6/fit_mtp_costs.py",
+      "change": "Import control validation through portable mtp_matrix; fit math unchanged."
+    },
+    {
+      "path": "benchmarks/grouped_prefill_kernel_check.py",
+      "sha256": "4e4250febb544b7582842d1814c2ff76f9b3170764324502cbbd41cbf1ecca46",
+      "origin": "amos-recipes@79a2358b90fdcb5ed58bee399eb42294cd87e6ae:grouped_prefill_kernel_check.py",
+      "change": null
+    },
+    {
+      "path": "benchmarks/long_context.py",
+      "sha256": "990fc12968736fa230ffa23c4f9b2cdca4f407ab4be238d6361cf07ba478317c",
+      "origin": "amos-recipes@173f4c5:long_context.py",
+      "change": "Loopback endpoint default"
+    },
+    {
+      "path": "benchmarks/mtp-fixtures.json",
+      "sha256": "542ce05b3bdc49d352097b31a9553f152ee1cf597445570858fd15d35681aadd",
+      "origin": "amos-recipes@e788e69b84038f213ec3623b3eb86312ee4122b3:qualification/serving-optimization-20261003/mtp-fixtures.json",
+      "change": null
+    },
+    {
+      "path": "benchmarks/mtp_costs.py",
+      "sha256": "012ff965baa58dd16303809421f05e690d7408aa64971c5d0b138b61924538df",
+      "origin": "amos-recipes@d0486aaf699729638c36fafa1e46e3fe74fe3dd0:runtime/exl3-tp6/{mtp_cost_round.py,mtp_overlap_cost.py}",
+      "change": "Portable one-policy calibration CLI; external operator applies/acknowledges policy and owns host guards. Verify frozen render hashes; preserve warmups/cells/counters and failed-cell retention."
+    },
+    {
+      "path": "benchmarks/mtp_matrix.py",
+      "sha256": "a81f2502f3bc9516e0495897afa7102c73fc23bf38cdc76c3e32a814ab6fb155",
+      "origin": "amos-recipes@d0486aaf699729638c36fafa1e46e3fe74fe3dd0:runtime/exl3-tp6/{mtp_trials.py,cache_reuse.py,mixed_prefill.py}",
+      "change": "Portable API/key-file client; external operator owns policy/image/guard verification. Add18-cell C1..C4 candidate matrix; measurement bodies unchanged."
+    },
+    {
+      "path": "benchmarks/mtp_overlap_cost.py",
+      "sha256": "41f10410541c336db8344b1fb785011769229c41231569eade5f469b0eafc8cd",
+      "origin": "amos-recipes@d0486aaf699729638c36fafa1e46e3fe74fe3dd0:runtime/exl3-tp6/mtp_overlap_cost.py",
+      "change": "Use portable stream/idle imports and external host guards; identical native-counter timing math, memory field null."
+    },
+    {
+      "path": "benchmarks/ngram_source_check.py",
+      "sha256": "77485e2950a6983b308f32f173e534d686d17ad5d0326654340371e2907ef973",
+      "origin": "amos-recipes@1ec92c9d2a3ce7c556884fb662f1ea6f1da1027c:ngram_source_check.py",
+      "change": null
+    },
+    {
+      "path": "benchmarks/ngram_tensor_cpu_check.py",
+      "sha256": "a34adab02c2beb0e7fbbe2571bd74ccdf8ab7f3e47cdc675800ce4974af9ca51",
+      "origin": "amos-recipes@1ec92c9d2a3ce7c556884fb662f1ea6f1da1027c:ngram_tensor_cpu_check.py",
+      "change": null
+    },
+    {
+      "path": "benchmarks/performance.py",
+      "sha256": "329d83656ffc914b539ff52c4f958711fbc663d35663b29b869d8008a9f71bb2",
+      "origin": "amos-recipes@173f4c5:performance.py",
+      "change": "Loopback endpoint default"
+    },
+    {
+      "path": "benchmarks/qualify.py",
+      "sha256": "1732f1c2a7bc429cd0736b1b8bdbae62ba9c713c7af9e4d85472c7c2a9b6c4ed",
+      "origin": "amos-recipes@173f4c5:qualify.py",
+      "change": "Loopback endpoint default"
+    },
+    {
+      "path": "benchmarks/test_e3_capture.py",
+      "sha256": "ccc5049b65534889837ab310ddc7fa5559707c4e657a0ef3650babec16606329",
+      "origin": "amos-recipes@c367d0b4a6bf35b0dd9f8ee607b4060b85e3465a:test_e3_capture.py",
+      "change": "Resolve the published runtime directory for standalone CPU tests."
+    },
+    {
+      "path": "benchmarks/test_e3_rows_policy.py",
+      "sha256": "f6528278ece28b807c5bc8ea824a47ab5a385151f54fc18340b10efb5d3f100e",
+      "origin": "amos-recipes@1ec92c9d2a3ce7c556884fb662f1ea6f1da1027c:test_e3_rows_policy.py",
+      "change": null
+    },
+    {
       "path": "experimental/tensorfold/LICENSE",
       "sha256": "be6a9ee4462784a762b21790954b8e76c4dcacc9fb6da2a40d03a8a9bddec93e",
       "origin": "tensorfold-port@e69eb5f82c0467e2b07fc41d0ee8429ae7342dbe:LICENSE",
@@ -1202,6 +1364,18 @@
       "change": null
     },
     {
+      "path": "experimental/tensorfold/src/tensorfold/families/glm_moe_dsa/control.py",
+      "sha256": "217dd825d4ff6f11bbf0d51f529eb9e1b90cfa818a4597c96c353fa84341da54",
+      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:src/tensorfold/families/glm_moe_dsa/control.py",
+      "change": null
+    },
+    {
+      "path": "experimental/tensorfold/src/tensorfold/families/glm_moe_dsa/control_sampling.py",
+      "sha256": "2e19e974795ceda187258f5da62b86918789cbb62efcbc76a5e621d1261bdfa6",
+      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:src/tensorfold/families/glm_moe_dsa/control_sampling.py",
+      "change": null
+    },
+    {
       "path": "experimental/tensorfold/src/tensorfold/families/glm_moe_dsa/decoder.py",
       "sha256": "ffa16679bd8c3b16bfa3986c449fa01bdce79d700c272755c8ccdfc2f41d6504",
       "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:src/tensorfold/families/glm_moe_dsa/decoder.py",
@@ -1229,6 +1403,18 @@
       "path": "experimental/tensorfold/src/tensorfold/families/glm_moe_dsa/experts.py",
       "sha256": "7b1f79fc65fc473dd5eec0ad5b11ececed2d3939a458c6d95d0ebf0dab49c9cb",
       "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:src/tensorfold/families/glm_moe_dsa/experts.py",
+      "change": null
+    },
+    {
+      "path": "experimental/tensorfold/src/tensorfold/families/glm_moe_dsa/graph_plan.py",
+      "sha256": "08cfe3d7d0460d4cde4399ee0a146a517a6603d62a52c75847a2a3d450a330bb",
+      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:src/tensorfold/families/glm_moe_dsa/graph_plan.py",
+      "change": null
+    },
+    {
+      "path": "experimental/tensorfold/src/tensorfold/families/glm_moe_dsa/graphs.py",
+      "sha256": "c93a5f620249158f6899abd33822bd63a3e35577ccb34326c7e40b84379916af",
+      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:src/tensorfold/families/glm_moe_dsa/graphs.py",
       "change": null
     },
     {
@@ -1274,9 +1460,45 @@
       "change": null
     },
     {
+      "path": "experimental/tensorfold/src/tensorfold/families/glm_moe_dsa/packed_backend.py",
+      "sha256": "98f8e60e44178f0cdeabacf2c64edbf1b98c9160117cd16f7f62dbdce47fd6a8",
+      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:src/tensorfold/families/glm_moe_dsa/packed_backend.py",
+      "change": null
+    },
+    {
+      "path": "experimental/tensorfold/src/tensorfold/families/glm_moe_dsa/projection_plan.py",
+      "sha256": "03e635d727c5133bef1b14c84a172c69788a08acca3262508fd3e39f418297f9",
+      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:src/tensorfold/families/glm_moe_dsa/projection_plan.py",
+      "change": null
+    },
+    {
       "path": "experimental/tensorfold/src/tensorfold/families/glm_moe_dsa/reduction_plan.py",
       "sha256": "401ccf05917f6e0171420ba0847364aee422ba1a852ea5f9d971af121cf8e237",
       "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:src/tensorfold/families/glm_moe_dsa/reduction_plan.py",
+      "change": null
+    },
+    {
+      "path": "experimental/tensorfold/src/tensorfold/families/glm_moe_dsa/request.py",
+      "sha256": "e3c45637753cb899bc717fe8741f0707b98dcf357de125d878e37725dcc4c638",
+      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:src/tensorfold/families/glm_moe_dsa/request.py",
+      "change": null
+    },
+    {
+      "path": "experimental/tensorfold/src/tensorfold/families/glm_moe_dsa/request_backend.py",
+      "sha256": "cfbc77ebbff82df41d068c0167a71335c7fbf55fc69b923af27863072c4aa077",
+      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:src/tensorfold/families/glm_moe_dsa/request_backend.py",
+      "change": null
+    },
+    {
+      "path": "experimental/tensorfold/src/tensorfold/families/glm_moe_dsa/request_ops.py",
+      "sha256": "540e0e620442cadc511f611f3b14b9e1f4da44e1c3dbc1b3a42403ae8785fc7c",
+      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:src/tensorfold/families/glm_moe_dsa/request_ops.py",
+      "change": null
+    },
+    {
+      "path": "experimental/tensorfold/src/tensorfold/families/glm_moe_dsa/scheduler.py",
+      "sha256": "b7ae5acd992a074ab91dfdfed63130a3c8309b8052dc65fd876900733eeabb93",
+      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:src/tensorfold/families/glm_moe_dsa/scheduler.py",
       "change": null
     },
     {
@@ -2624,9 +2846,27 @@
       "change": null
     },
     {
+      "path": "experimental/tensorfold/tests/test_glm53_full_tp6_attention_options.py",
+      "sha256": "97f72e790b82a91130578e7ba86cb85057aee8c988d2a98ca5b9d90e63115d2c",
+      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tests/test_glm53_full_tp6_attention_options.py",
+      "change": null
+    },
+    {
       "path": "experimental/tensorfold/tests/test_glm53_full_tp6_checkpoint.py",
       "sha256": "9680aca01fcccca8c779ceb9a118c20d52ceb95e014ec3d33644b89d9f55504c",
       "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tests/test_glm53_full_tp6_checkpoint.py",
+      "change": null
+    },
+    {
+      "path": "experimental/tensorfold/tests/test_glm53_full_tp6_control.py",
+      "sha256": "1dd7c5fa60791104c802e3e46dc1bcec051bc8e24aa4bf4c4af7a5486cf1b2bf",
+      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tests/test_glm53_full_tp6_control.py",
+      "change": null
+    },
+    {
+      "path": "experimental/tensorfold/tests/test_glm53_full_tp6_control_sampling.py",
+      "sha256": "ef4b4b33c5cc29e8ac432f97752eb0e6d56231fccc297db4e14fc94301f2154c",
+      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tests/test_glm53_full_tp6_control_sampling.py",
       "change": null
     },
     {
@@ -2648,6 +2888,12 @@
       "change": null
     },
     {
+      "path": "experimental/tensorfold/tests/test_glm53_full_tp6_graphs.py",
+      "sha256": "d4c3af07ebd1287381cb9ada65eb01a33d1498715d402b8e43bbb51a79a3bb76",
+      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tests/test_glm53_full_tp6_graphs.py",
+      "change": null
+    },
+    {
       "path": "experimental/tensorfold/tests/test_glm53_full_tp6_indexer_plan.py",
       "sha256": "3ea5aafe911824c86734ec38eef56db12a2000da4d83863785c5df4653526d45",
       "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tests/test_glm53_full_tp6_indexer_plan.py",
@@ -2666,6 +2912,30 @@
       "change": null
     },
     {
+      "path": "experimental/tensorfold/tests/test_glm53_full_tp6_packed.py",
+      "sha256": "b127c13f67dfd18cf90f565cc6f662cd0eef386e91f7bd6f8ae77b152a4ff32e",
+      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tests/test_glm53_full_tp6_packed.py",
+      "change": null
+    },
+    {
+      "path": "experimental/tensorfold/tests/test_glm53_full_tp6_profile_metrics.py",
+      "sha256": "5edff0e0283d9969af9c0232113d78fef69b61c7ea2eb778bc7a66e92a4d8efd",
+      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tests/test_glm53_full_tp6_profile_metrics.py",
+      "change": null
+    },
+    {
+      "path": "experimental/tensorfold/tests/test_glm53_full_tp6_projection_plan.py",
+      "sha256": "8d9ad6ce9a128581cd30a26c66fe8ede46575e3786fa3fb48c034c84fb58cdb0",
+      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tests/test_glm53_full_tp6_projection_plan.py",
+      "change": null
+    },
+    {
+      "path": "experimental/tensorfold/tests/test_glm53_full_tp6_projection_screen.py",
+      "sha256": "a4bd317609d5adc1c20ba56dbacffeb91ec1a14e3e964365a3c1ce3ea40d1054",
+      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tests/test_glm53_full_tp6_projection_screen.py",
+      "change": null
+    },
+    {
       "path": "experimental/tensorfold/tests/test_glm53_full_tp6_reduction.py",
       "sha256": "b84a6709f1abb8de22f1ad71c7759f3d05446b196b605d3a4ef630080fcd0a9d",
       "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tests/test_glm53_full_tp6_reduction.py",
@@ -2675,6 +2945,24 @@
       "path": "experimental/tensorfold/tests/test_glm53_full_tp6_reference.py",
       "sha256": "b86c1a3e3848b457d614fd71d35cd104bb54d4a35a9da81c9d6cb48109437c20",
       "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tests/test_glm53_full_tp6_reference.py",
+      "change": null
+    },
+    {
+      "path": "experimental/tensorfold/tests/test_glm53_full_tp6_request.py",
+      "sha256": "d9a1a659f7b025810a130e4c6da83a8600febffad36d000b7486c3b8c270e7da",
+      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tests/test_glm53_full_tp6_request.py",
+      "change": null
+    },
+    {
+      "path": "experimental/tensorfold/tests/test_glm53_full_tp6_request_backend.py",
+      "sha256": "3fd5b3af59e5b2af4b439c1ed34305a36b44fe7f8a1fe3aefff9fff2da736248",
+      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tests/test_glm53_full_tp6_request_backend.py",
+      "change": null
+    },
+    {
+      "path": "experimental/tensorfold/tests/test_glm53_full_tp6_scheduler.py",
+      "sha256": "68739cf14cbbcf4073906f484a0fdec8e8bad23dbabf5f0ff2732a59bec39a0e",
+      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tests/test_glm53_full_tp6_scheduler.py",
       "change": null
     },
     {
@@ -2688,6 +2976,18 @@
       "sha256": "3b35fe4b79accc00b667dad3a15a227afca24fcbab0aea419a9631efdc2b2ea5",
       "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tools/glm53_tp6_attention_check.py",
       "change": null
+    },
+    {
+      "path": "experimental/tensorfold/tools/glm53_tp6_attention_options_check.py",
+      "sha256": "de1eef5be992aa0cc23f67b095efb2c937e97a2c9ea2479f06f4f3c1c385d991",
+      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tools/glm53_tp6_attention_options_check.py",
+      "change": null
+    },
+    {
+      "path": "experimental/tensorfold/tools/glm53_tp6_attention_tuning_check.py",
+      "sha256": "649af69ad4533d47a4067ab65ca831f6555944eb190e788c022ade9aaab4e8ce",
+      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tools/glm53_tp6_attention_tuning_check.py",
+      "change": "Probe master address supplied through MASTER_ADDR; no kernel changes."
     },
     {
       "path": "experimental/tensorfold/tools/glm53_tp6_bulk_reduction_check.py",
@@ -2705,6 +3005,12 @@
       "path": "experimental/tensorfold/tools/glm53_tp6_compile_experts.py",
       "sha256": "b371d5e9132563daec10cf8942eab5d849e0922be724d4d73123c7c206b57d26",
       "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tools/glm53_tp6_compile_experts.py",
+      "change": null
+    },
+    {
+      "path": "experimental/tensorfold/tools/glm53_tp6_control_check.py",
+      "sha256": "0a066e7867085d55c35c174651cbdbb8f675099bc31c1c8ddc200adbdbeee37f",
+      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tools/glm53_tp6_control_check.py",
       "change": null
     },
     {
@@ -2730,6 +3036,12 @@
       "sha256": "b823c9317d00dc21452e3f550391e921e6d041a160344def0f1f2f55c5655f18",
       "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tools/glm53_tp6_full_model_check.py",
       "change": "Probe master address supplied through MASTER_ADDR; no kernel changes."
+    },
+    {
+      "path": "experimental/tensorfold/tools/glm53_tp6_graph_check.py",
+      "sha256": "963498b73975552843eb744d8c0bb5da47df11bb5df5dda48f658cc3f220d65a",
+      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tools/glm53_tp6_graph_check.py",
+      "change": null
     },
     {
       "path": "experimental/tensorfold/tools/glm53_tp6_indexer_check.py",
@@ -2762,6 +3074,36 @@
       "change": null
     },
     {
+      "path": "experimental/tensorfold/tools/glm53_tp6_packed_check.py",
+      "sha256": "560c7023918e4ccbd3985a103d05065db1d97b6c7191b0f1dccc442c45598d76",
+      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tools/glm53_tp6_packed_check.py",
+      "change": null
+    },
+    {
+      "path": "experimental/tensorfold/tools/glm53_tp6_profile_check.py",
+      "sha256": "eca293cbaf3e99285a88cb2b35617c2cda39b5033a2b5dc2893e9e28f54197d5",
+      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tools/glm53_tp6_profile_check.py",
+      "change": null
+    },
+    {
+      "path": "experimental/tensorfold/tools/glm53_tp6_profile_metrics.py",
+      "sha256": "cbbf18da04d46b7459401936a8405b3f8055bacbdab768000c6783351b6b82ad",
+      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tools/glm53_tp6_profile_metrics.py",
+      "change": null
+    },
+    {
+      "path": "experimental/tensorfold/tools/glm53_tp6_projection_check.py",
+      "sha256": "e13b77fa9814a4fb65263706ffe2c58a56729211ac1987ac0346e5ab628ebe51",
+      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tools/glm53_tp6_projection_check.py",
+      "change": null
+    },
+    {
+      "path": "experimental/tensorfold/tools/glm53_tp6_projection_screen.py",
+      "sha256": "947b486492e99b0eb4450b9d1c93aa8694000ae847daf244df7b7ef018731513",
+      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tools/glm53_tp6_projection_screen.py",
+      "change": null
+    },
+    {
       "path": "experimental/tensorfold/tools/glm53_tp6_reduction_check.py",
       "sha256": "28ed733e969b07e9789ffea4439c3a6cbec00a67e1142812d4370721032e53fe",
       "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tools/glm53_tp6_reduction_check.py",
@@ -2771,6 +3113,12 @@
       "path": "experimental/tensorfold/tools/glm53_tp6_reference.py",
       "sha256": "6c72aa4b29936a460893226ad6c804d056622b0debf0215002d087464334e6fa",
       "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tools/glm53_tp6_reference.py",
+      "change": null
+    },
+    {
+      "path": "experimental/tensorfold/tools/glm53_tp6_request_check.py",
+      "sha256": "239fe8d7cf38a8715d59a60d3fca5816742ca8890ac5aa21965db0fb70fa9bd9",
+      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tools/glm53_tp6_request_check.py",
       "change": null
     },
     {
@@ -2786,45 +3134,255 @@
       "change": null
     },
     {
+      "path": "experiments/completed/tfp15-attention-tuning.patch",
+      "sha256": "210a729aa6a360e679f5b1678de1e9e77305ee9260a732567102a277697e94bc",
+      "origin": "uncommitted attention candidate; GPU unqualified",
+      "change": "MASTER_ADDR replaces private fabric address"
+    },
+    {
+      "path": "experiments/pending/tfp22-scheduling.patch",
+      "sha256": "5d43feb13acd077642350634abdf50f180e439ec44cfd7d5213f24523d2f1999",
+      "origin": "tensorfold-port candidate 82b24104bf7fefea69788d5d493eeae5c5493d45 diff from qualified c79902ec67c9e516e67b9aca82a851c9b7a49c91",
+      "change": null
+    },
+    {
+      "path": "recipes/vllm-tp6/tuning.json",
+      "sha256": "48ea2b58cf0f2d3754067b14fac9fecaae3b919d7b8031d6d77b1898edcf28c4",
+      "origin": "amos-recipes@c69f8b66c6c5ca72a00b732c589bc2a55bd89c3e:qualification/serving-optimization-20261003/comm2-dual-roce-tuning.json",
+      "change": null
+    },
+    {
+      "path": "results/cache-reuse-samples.json",
+      "sha256": "4cbebacd02418e892347552d97aa4196267611eb8429b8e1d3d23570d5ad9e99",
+      "origin": "serving-runtime:qualification/serving-optimization-20261003/cache-{8k-r3,32k-r1,128k-r1}.json",
+      "change": "Selected72 synthetic per-request timing,cache,fidelity andcounter records; generated text/site information omitted."
+    },
+    {
+      "path": "results/cache-reuse.json",
+      "sha256": "fe921da3e2fa154465c8c35ce0b9a0b44a6d30b94b959220290609ae2ae5d48e",
+      "origin": "serving-runtime:qualification/serving-optimization-20261003/cache-summary.json",
+      "change": "Selected measured summary with fixture and original-receipt hashes; no private site metadata."
+    },
+    {
+      "path": "results/communication-dual-roce.json",
+      "sha256": "8dca3419eb764860010da7e471fbef8e54f609ac10b40304c14d493e13485c5a",
+      "origin": "amos-recipes@c69f8b66c6c5ca72a00b732c589bc2a55bd89c3e:qualification/serving-optimization-20261003/comm2-balanced-comparison.json",
+      "change": "Sanitized selected metrics, numerical summary, acceptance flags and original receipt hashes; no host mappings or response bodies."
+    },
+    {
+      "path": "results/communication-outcome.json",
+      "sha256": "926188d7f372bdee87ac6de5f88bfecc94b3df655da06c4936a96d4106f2a06a",
+      "origin": "amos-recipes@3e692ad3be63e06a7f2cde03c0870373288fa391:qualification/serving-optimization-20261003/communication-outcome.json",
+      "change": "Add local source revision; selected numerical/profile/acceptance fields and original receipt hashes only."
+    },
+    {
+      "path": "results/communication-profile.json",
+      "sha256": "cee739f5b4a3ad0a568fc171482c27494be8aee5c03a6d8aae01b7ac7bb9e2e6",
+      "origin": "amos-recipes@c69f8b66c6c5ca72a00b732c589bc2a55bd89c3e:qualification/serving-optimization-20261003/comm1-summary.json",
+      "change": "Selected per-case rank summaries and limitations; raw traces and host inventory excluded."
+    },
+    {
+      "path": "results/communication-samples.json",
+      "sha256": "96383547aa508103cb7234b8651086b15570be7d39bd60e0fbaa2d59c966358c",
+      "origin": "amos-recipes@c69f8b66c6c5ca72a00b732c589bc2a55bd89c3e:qualification/serving-optimization-20261003/comm2-balanced-comparison.json",
+      "change": "Selected scalar samples from the eight source receipts identified inside; verified exported medians reproduce the local summary."
+    },
+    {
+      "path": "results/communication-sizes.json",
+      "sha256": "31b9791e956a9134be7e34264704c83eb80c3e3546b942ef4b1f8f7028a17030",
+      "origin": "amos-recipes@3e692ad3be63e06a7f2cde03c0870373288fa391:qualification/serving-optimization-20261003/comm4-size-summary-final.json",
+      "change": "Add local source revision; selected numerical/profile/acceptance fields and original receipt hashes only."
+    },
+    {
+      "path": "results/copy-drafting-cpu.json",
+      "sha256": "57672f8a5ee51d021c6ee6b9b0f53ce9aaff9b4669cba9527264e4064f81c5da",
+      "origin": "amos-recipes@1ec92c9d2a3ce7c556884fb662f1ea6f1da1027c:qualification/serving-optimization-20261003/ngram1-cpu-source-checks.json",
+      "change": null
+    },
+    {
+      "path": "results/copy-drafting-source-review.json",
+      "sha256": "cb4deecd3daff9c6b7cd37c0c2e207afe55992983948178838cc33220aa7d028",
+      "origin": "amos-recipes@1ec92c9d2a3ce7c556884fb662f1ea6f1da1027c:qualification/serving-optimization-20261003/ngram1-source-review.json",
+      "change": null
+    },
+    {
+      "path": "results/copy-drafting-tensor-cpu.json",
+      "sha256": "b2a316d6c7f39e71c94da1183d6cd28be4d4ea7496c756e2424010325f2f6b9d",
+      "origin": "amos-recipes@1ec92c9d2a3ce7c556884fb662f1ea6f1da1027c:qualification/serving-optimization-20261003/ngram1-tensor-cpu-checks.json",
+      "change": null
+    },
+    {
+      "path": "results/e3-crossover-component.json",
+      "sha256": "5547cb3b68686f04109962e315579b8af949f6740ecd239b0b5acfc20f922aeb",
+      "origin": "amos-recipes@f41feacb6280b17994b3e7f43389d2678bfaf3cd:qualification/serving-optimization-20261003/e34-component-summary.json",
+      "change": "Allowlisted scalar results and quality checks; sample recomputation matches all private medians and ratios. Captured tensors, host identities, container IDs and private paths omitted."
+    },
+    {
+      "path": "results/e3-crossover-manifest.json",
+      "sha256": "5f6e8140c9c7c971b925f01848cd1907adeea7560f664a05c270543560645e88",
+      "origin": "amos-recipes@ed9c456d6fd8a14ee7adcccd98e92757714f2acc:qualification/serving-optimization-20261003/e34-probe-manifest.json",
+      "change": null
+    },
+    {
+      "path": "results/e3-crossover-samples.json",
+      "sha256": "82d7c29fdc81265a4257be90e736bb8eb1d1e2c9f93067beea27c99ef8815f74",
+      "origin": "amos-recipes@f41feacb6280b17994b3e7f43389d2678bfaf3cd:qualification/serving-optimization-20261003/e34-component-summary.json",
+      "change": "Allowlisted scalar results and quality checks; sample recomputation matches all private medians and ratios. Captured tensors, host identities, container IDs and private paths omitted."
+    },
+    {
+      "path": "results/e3-row32-serving-samples.json",
+      "sha256": "7e63f5a4b4b457e09ffd1ecc66374435d92a177e89c4bc6524d7eb525d70b0d8",
+      "origin": "amos-recipes@1ec92c9d2a3ce7c556884fb662f1ea6f1da1027c:qualification/serving-optimization-20261003/e33-comparison.json",
+      "change": "All scalar timing samples and synthetic stream metadata from the source receipts; private identities and generated text omitted; standalone recomputation matches private analysis."
+    },
+    {
+      "path": "results/e3-row32-serving.json",
+      "sha256": "9c2fc5fbcbaea7ced06a308172045e8fa2205566c0d0dc444d636009a249078e",
+      "origin": "amos-recipes@1ec92c9d2a3ce7c556884fb662f1ea6f1da1027c:qualification/serving-optimization-20261003/e33-comparison.json",
+      "change": "Allowlisted comparison, quality and selected-serving fields, with original receipt hashes; private identities and generated text omitted."
+    },
+    {
+      "path": "results/mtp-calibrated-cost-fit.json",
+      "sha256": "71c4ff2667f98847c4d6d451e473798d8eafebf87b08b511913c50acde228bc0",
+      "origin": "amos-recipes@d0486aaf699729638c36fafa1e46e3fe74fe3dd0:qualification/serving-optimization-20261003/mtp-calibrated-cost-fit.json",
+      "change": "Add source revision."
+    },
+    {
+      "path": "results/mtp-calibration-observations.json",
+      "sha256": "df2c5587d92effa96cb97293a0a0d97193260315e2f6f02a0095f551a6dabb73",
+      "origin": "amos-recipes@d0486aaf699729638c36fafa1e46e3fe74fe3dd0:qualification/serving-optimization-20261003/mtp{5,6,7}-cost-r{0,1,2}-fixed*-bench.json",
+      "change": "Select counter observations, overlap bounds, client timing/token hashes and eligibility checks from72 cells; preserve source receipt hashes; omit response streams and private operator state."
+    },
+    {
+      "path": "results/mtp-calibration.json",
+      "sha256": "2592cd500895571e0dc7a745afa8e9af0ef4ec2ff9eaab9cf61acb3f0cc6cfdc",
+      "origin": "amos-recipes@d0486aaf699729638c36fafa1e46e3fe74fe3dd0:qualification/serving-optimization-20261003/mtp-calibration-summary.json",
+      "change": "Add source revision."
+    },
+    {
+      "path": "results/mtp-candidate-screen.json",
+      "sha256": "01f0c9e0f75caca3bbea329f08963be64ae6eccec2c2b184413bbfcca9a42bc4",
+      "origin": "amos-recipes@e24ee612a65f4e94006e45a6ab7edf52a69b054b:qualification/serving-optimization-20261003/mtp8-screen-summary.json",
+      "change": "Add local source revision; selected synthetic summary only, no private host mappings or response bodies."
+    },
+    {
+      "path": "results/mtp-first-pass.json",
+      "sha256": "775fb2a489321e41031f8ce04ccc536af9b665d6ecd8256d97adbf81b55e0b11",
+      "origin": "amos-recipes@e788e69b84038f213ec3623b3eb86312ee4122b3:qualification/serving-optimization-20261003/mtp-first-pass.json",
+      "change": "Add source revision; selected timing/quality metadata only."
+    },
+    {
+      "path": "results/mtp-outcome.json",
+      "sha256": "232a31d5150f39e594635a5b1330783513b732cdab6d578fa6e08c18a8252f6b",
+      "origin": "amos-recipes@e24ee612a65f4e94006e45a6ab7edf52a69b054b:qualification/serving-optimization-20261003/mtp-outcome.json",
+      "change": "Add local source revision; selected synthetic summary only, no private host mappings or response bodies."
+    },
+    {
+      "path": "results/mtp-repeated-matrix.json",
+      "sha256": "fe997b3ceb962aef1211380ac5d7a7abe75306d38204f3bacca12b79b3fb5e35",
+      "origin": "amos-recipes@d0486aaf699729638c36fafa1e46e3fe74fe3dd0:qualification/serving-optimization-20261003/mtp-three-visits-summary.json",
+      "change": "Add source revision."
+    },
+    {
+      "path": "results/p24-decode-samples.json",
+      "sha256": "aca0f3241767ca98f8489e64264ecc9828bcf92bff2b13de680ab2c567c12e37",
+      "origin": "p24-warm-decode.json; generated text omitted",
+      "change": null
+    },
+    {
+      "path": "results/p24-serving.json",
+      "sha256": "c7c3204b88a5477dc9ad81376cfafe16d884783f96983227a21790902db0af00",
+      "origin": "p24-performance-summary.json, with cache clarification",
+      "change": null
+    },
+    {
+      "path": "results/p27-serving.json",
+      "sha256": "9c0e8ee79ae7c1e3d8aef1447e743b25749a2d3a6b5268762cf29e5b34862595",
+      "origin": "amos-recipes@bb49dce1a426a80e7c8c638a5b247b1e865dfb69: selected fields from tfp38-after-summary.json, tfp38-after-strict-summary.json, tfp38-after-long-summary.json",
+      "change": "Public measurement fields only; private fleet mappings, paths, IDs and application data omitted."
+    },
+    {
+      "path": "results/prefill-budgets.json",
+      "sha256": "bf0f14dceac8b760d107b8fa7e10081e1c5d1acfc0cc2d9e2d60f0ac01cb7a0a",
+      "origin": "amos-recipes@5bd4d47ce20866232283569ed2803b460728de8d:qualification/serving-optimization-20261003/prefill-budget-summary.json",
+      "change": "Selected public summary plus source revision and packaging metadata; source receipt hashes retained. No raw application records or site mappings."
+    },
+    {
+      "path": "results/production-hardening.json",
+      "sha256": "84d41c4d3b47d7f2e08bf41ae2e4c2b44e4685d59258e64a054e0aed46d4908c",
+      "origin": "amos-recipes@bb49dce1a426a80e7c8c638a5b247b1e865dfb69: selected fields from hardening1-summary.json, hardening1-reboot.json, hardening1-controller-restart.json, hardening1-application-acceptance.json, hardening1-observation.json, hardening1-exclusive-gpu.json",
+      "change": "Public measurement fields only; private fleet mappings, paths, IDs and application data omitted."
+    },
+    {
+      "path": "results/tensorfold-latest.json",
+      "sha256": "d72fef89c1dd61210cdb80f2fb429c26ca937fd34aa5eb248dc05daa609b5d9f",
+      "origin": "amos-recipes@bb49dce1a426a80e7c8c638a5b247b1e865dfb69: selected fields from tfp54-benchmark-summary.json, tfp49-quality-summary.json, tfp56-expert-summary.json, tfp57-latent-summary.json, p25r2-component-summary.json",
+      "change": "Public measurement fields only; private fleet mappings, paths, IDs and application data omitted."
+    },
+    {
+      "path": "results/tfp14-tensorfold.json",
+      "sha256": "f4134dc428958b274ec932c4637f316e1fb5ea4c8f7a3d1de0a5fd1f0a702ef4",
+      "origin": "TFP14 six-rank qualification, extracted summary",
+      "change": null
+    },
+    {
+      "path": "results/tfp15-tensorfold.json",
+      "sha256": "23d252b88e8a178c3662fa22afbc310deb98e0a725c80b46182540ec6a6cb2ee",
+      "origin": "TFP15 six-rank qualification, extracted summary",
+      "change": null
+    },
+    {
+      "path": "results/tfp16-tensorfold.json",
+      "sha256": "2b1539883c0578f53cff1b690fd4f0a415a074b24c45443fe72e83fb391eefe8",
+      "origin": "TFP16 six-rank request qualification, extracted summary",
+      "change": null
+    },
+    {
+      "path": "results/tfp17-tensorfold.json",
+      "sha256": "3eaef7f57289d0930df3a066cdeb4f56e5f32573a91d18ca758d4121679ea7f4",
+      "origin": "TFP17 six-rank transport qualification, extracted summary",
+      "change": null
+    },
+    {
+      "path": "results/tfp18-tensorfold.json",
+      "sha256": "c39b7a6a51668d9da70e762f9116b29e690a338a684deadc7e227fd4288f34eb",
+      "origin": "TFP18 six-rank decode graph/HTTP qualification, extracted summary",
+      "change": null
+    },
+    {
+      "path": "results/tfp19-tensorfold.json",
+      "sha256": "8b828c305e5b9c2ad41ca37c1cb979d36af9105ea07bd6b72c5d155511b7bd0b",
+      "origin": "TFP19 six-rank draft-depth and decode profiling qualification, extracted summary",
+      "change": null
+    },
+    {
+      "path": "results/tfp20-tensorfold.json",
+      "sha256": "ba588d785a49b7b0b467aecee7227cdb15da795f0e90881807d725f740a3b40d",
+      "origin": "TFP20 six-rank BF16 projection qualification, extracted summary",
+      "change": null
+    },
+    {
+      "path": "results/tfp21-tensorfold.json",
+      "sha256": "6d855b3a684b5370e21cc60e9952af63b69987c4cdd2cca2b177d52d61e08b02",
+      "origin": "TFP21 six-rank packed request qualification, extracted summary",
+      "change": null
+    },
+    {
+      "path": "results/tfp22-tensorfold.json",
+      "sha256": "6f2ff019e44bc476535cbda2110c2cab89b18cb97627ef32bc066c9434ee7a43",
+      "origin": "TFP22 incomplete six-rank scheduling run; guard-stopped, not qualified",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/Dockerfile.prefill-budget",
+      "sha256": "c99b683b8e295a07c5cf3baf8df6c1d5a7949cf5a2ba994458f7d7300e62e234",
+      "origin": "amos-recipes@5bd4d47ce20866232283569ed2803b460728de8d:runtime/exl3-tp6/Dockerfile.prefill-budget",
+      "change": null
+    },
+    {
       "path": "runtime/vllm/amos_chat_boundaries.py",
       "sha256": "babd5e8ddaeddea711738568076de8f03fabce102e6c89ba441ee33286303a2d",
       "origin": "amos-recipes@173f4c5:amos_chat_boundaries.py",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/amos_shared_zero_elision.py",
-      "sha256": "3453625c23a80423b9488b51eea5f30c6308f269fe9a2ee3fb7ef6ec274bbf57",
-      "origin": "amos-recipes@173f4c5:amos_shared_zero_elision.py",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/amos_stable_prefill_reduce.py",
-      "sha256": "d62a842696906229ee9542b00f1d233749a55e4f1f69eb6f1a6abeee2326c513",
-      "origin": "amos-recipes@173f4c5:amos_stable_prefill_reduce.py",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/amos_exl3_tp6.py",
-      "sha256": "3756c20c7d4aaffac30e22f218621f96264c14f8a23c9f5a1bb3a276a5e77693",
-      "origin": "amos-recipes@173f4c5:amos_exl3_tp6.py",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/amos_dynamic_graphs.py",
-      "sha256": "7ee03ca15070e1e96f2f033d02b4d7ba6e6ab9f2597eca030454301a579fbb00",
-      "origin": "amos-recipes@173f4c5:amos_dynamic_graphs.py",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/amos_decode_projections.py",
-      "sha256": "87936b8255b072c5c1fe504f0b3435d415c46c7533ce49fde700babeef17a6d3",
-      "origin": "amos-recipes@173f4c5:amos_decode_projections.py",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/amos_tp6_projection.py",
-      "sha256": "27006d7264d739089f82b16f9291ba4775fb106b1e481db2ef2d2525cfd55b1f",
-      "origin": "amos-recipes@173f4c5:amos_tp6_projection.py",
       "change": null
     },
     {
@@ -2834,21 +3392,9 @@
       "change": null
     },
     {
-      "path": "runtime/vllm/amos_stable_attention_norm.py",
-      "sha256": "ec8a8cc65707409525d1bb4d272f5d51a2f88a86078a9436eb4d643a9bc145c5",
-      "origin": "amos-recipes@173f4c5:amos_stable_attention_norm.py",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/amos_tp6_argmax.py",
-      "sha256": "cf815b1bceb326a35640502e84b6419129c806982fc490ff9295d991d842c6f6",
-      "origin": "amos-recipes@173f4c5:amos_tp6_argmax.py",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/amos_shared_expert_padding.py",
-      "sha256": "04979570134066bfb86cf0e4f6ad92e0f74acb282e4e2715dca5954c14cebe3f",
-      "origin": "amos-recipes@173f4c5:amos_shared_expert_padding.py",
+      "path": "runtime/vllm/amos_decode_projections.py",
+      "sha256": "87936b8255b072c5c1fe504f0b3435d415c46c7533ce49fde700babeef17a6d3",
+      "origin": "amos-recipes@173f4c5:amos_decode_projections.py",
       "change": null
     },
     {
@@ -2858,15 +3404,27 @@
       "change": null
     },
     {
-      "path": "runtime/vllm/amos_shared_audit.py",
-      "sha256": "150f7a9b2f352eeebb530dd128497c4448bc8bdc473e22cc47470ca1ff3232cc",
-      "origin": "amos-recipes@173f4c5:amos_shared_audit.py",
+      "path": "runtime/vllm/amos_dynamic_graphs.py",
+      "sha256": "7ee03ca15070e1e96f2f033d02b4d7ba6e6ab9f2597eca030454301a579fbb00",
+      "origin": "amos-recipes@173f4c5:amos_dynamic_graphs.py",
       "change": null
     },
     {
-      "path": "runtime/vllm/amos_request_phase_mtp.py",
-      "sha256": "b7730101518d7afe84b8b03d42640ce5a8ff83c341ed9114cee80f17bd36708b",
-      "origin": "amos-recipes@173f4c5:amos_request_phase_mtp.py",
+      "path": "runtime/vllm/amos_e3_capture.py",
+      "sha256": "3550bf30820b7a60015a2919f4b56b9a43a25a76f2f4721829c89af121197549",
+      "origin": "amos-recipes@c367d0b4a6bf35b0dd9f8ee607b4060b85e3465a:amos_e3_capture.py",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/amos_e3_policy.py",
+      "sha256": "dfb452cf7e46f5e77b97498ecf14671e154c45ee810f3a7b6aa88101e121504e",
+      "origin": "amos-recipes@1ec92c9d2a3ce7c556884fb662f1ea6f1da1027c:amos_e3_policy.py",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/amos_exl3_tp6.py",
+      "sha256": "3756c20c7d4aaffac30e22f218621f96264c14f8a23c9f5a1bb3a276a5e77693",
+      "origin": "amos-recipes@173f4c5:amos_exl3_tp6.py",
       "change": null
     },
     {
@@ -2876,159 +3434,87 @@
       "change": null
     },
     {
-      "path": "runtime/vllm/patch_indexer_warmup.py",
-      "sha256": "8c843c96699ed6da1053c7cc1292a7b739fead44d2649adc7dd41e78b4fb58de",
-      "origin": "amos-recipes@173f4c5:patch_indexer_warmup.py",
+      "path": "runtime/vllm/amos_mtp_costs.json",
+      "sha256": "bc00bb014bfc46ac5cdfa8fe5d717c44ec456f19191dae5af447da7b5074fd7f",
+      "origin": "amos-recipes@e788e69b84038f213ec3623b3eb86312ee4122b3:runtime/exl3-tp6/amos_mtp_costs.json",
       "change": null
     },
     {
-      "path": "runtime/vllm/patch_grouped_prefill.py",
-      "sha256": "9d9dddba41e645dd690d780ba5a7331dc8b30d7d2ccb5b09f03dc59f42b7397d",
-      "origin": "amos-recipes@173f4c5:patch_grouped_prefill.py",
+      "path": "runtime/vllm/amos_mtp_tuning.py",
+      "sha256": "22ec81965900bda062dad9b74f13e4f464c1b74e88741c066ecaf73c5e320c07",
+      "origin": "amos-recipes@e788e69b84038f213ec3623b3eb86312ee4122b3:runtime/exl3-tp6/amos_mtp_tuning.py",
       "change": null
     },
     {
-      "path": "runtime/vllm/patch_cost_aware_mtp.py",
-      "sha256": "24bfdf9f31aed35c9c2d82d3b958cf1b3c53891b0ee071717cb4e44c34e4d0bf",
-      "origin": "amos-recipes@173f4c5:patch_cost_aware_mtp.py",
+      "path": "runtime/vllm/amos_prefill_budget.py",
+      "sha256": "5899084d9222bb12419bb7ff207f1a977637730a1117d69af8bf1dfafccf98f6",
+      "origin": "amos-recipes@5bd4d47ce20866232283569ed2803b460728de8d:runtime/exl3-tp6/amos_prefill_budget.py",
       "change": null
     },
     {
-      "path": "runtime/vllm/patch_canonical_index_topk.py",
-      "sha256": "b4eac6a4764325808d4b24e9b40c63c9542c30dd82daf8e6ea19c47e2f215904",
-      "origin": "amos-recipes@173f4c5:patch_canonical_index_topk.py",
+      "path": "runtime/vllm/amos_request_phase_mtp.py",
+      "sha256": "b7730101518d7afe84b8b03d42640ce5a8ff83c341ed9114cee80f17bd36708b",
+      "origin": "amos-recipes@173f4c5:amos_request_phase_mtp.py",
       "change": null
     },
     {
-      "path": "runtime/vllm/patch_rocenante.py",
-      "sha256": "64f0b238b650870476f239c293d3d49a48c84f5bdb8a69f22bb91b66d2291784",
-      "origin": "amos-recipes@173f4c5:patch_rocenante.py",
+      "path": "runtime/vllm/amos_shared_audit.py",
+      "sha256": "150f7a9b2f352eeebb530dd128497c4448bc8bdc473e22cc47470ca1ff3232cc",
+      "origin": "amos-recipes@173f4c5:amos_shared_audit.py",
       "change": null
     },
     {
-      "path": "runtime/vllm/patch_stable_attention_norm.py",
-      "sha256": "4521b56552c45dc185138f1ae7d78cb258989e6251d16be60dcf15c521bb4d54",
-      "origin": "amos-recipes@173f4c5:patch_stable_attention_norm.py",
+      "path": "runtime/vllm/amos_shared_expert_padding.py",
+      "sha256": "04979570134066bfb86cf0e4f6ad92e0f74acb282e4e2715dca5954c14cebe3f",
+      "origin": "amos-recipes@173f4c5:amos_shared_expert_padding.py",
       "change": null
     },
     {
-      "path": "runtime/vllm/patch_runtime.py",
-      "sha256": "99127daf09de171750650ddb69f18dc077ca0289203599067c71dad23c67a5d3",
-      "origin": "amos-recipes@173f4c5:patch_runtime.py",
+      "path": "runtime/vllm/amos_shared_zero_elision.py",
+      "sha256": "3453625c23a80423b9488b51eea5f30c6308f269fe9a2ee3fb7ef6ec274bbf57",
+      "origin": "amos-recipes@173f4c5:amos_shared_zero_elision.py",
       "change": null
     },
     {
-      "path": "runtime/vllm/patch_request_phase_mtp.py",
-      "sha256": "34ab101341449e165a0edce905567a3d3f3a73f96edafbc1a00ef3d7789a729d",
-      "origin": "amos-recipes@173f4c5:patch_request_phase_mtp.py",
+      "path": "runtime/vllm/amos_stable_attention_norm.py",
+      "sha256": "ec8a8cc65707409525d1bb4d272f5d51a2f88a86078a9436eb4d643a9bc145c5",
+      "origin": "amos-recipes@173f4c5:amos_stable_attention_norm.py",
       "change": null
     },
     {
-      "path": "runtime/vllm/patch_tma_store_order.py",
-      "sha256": "182286c06035566db6cb33d7b64c11d6813906ed61bbcf582353b056470a904e",
-      "origin": "amos-recipes@173f4c5:patch_tma_store_order.py",
+      "path": "runtime/vllm/amos_stable_prefill_reduce.py",
+      "sha256": "d62a842696906229ee9542b00f1d233749a55e4f1f69eb6f1a6abeee2326c513",
+      "origin": "amos-recipes@173f4c5:amos_stable_prefill_reduce.py",
       "change": null
     },
     {
-      "path": "runtime/vllm/patch_shared_zero_elision.py",
-      "sha256": "7c505894806e8f75e8d4f10c1a171c9b8bcb67823720f7297fb1b815ac61203c",
-      "origin": "amos-recipes@173f4c5:patch_shared_zero_elision.py",
+      "path": "runtime/vllm/amos_tp6_argmax.py",
+      "sha256": "cf815b1bceb326a35640502e84b6419129c806982fc490ff9295d991d842c6f6",
+      "origin": "amos-recipes@173f4c5:amos_tp6_argmax.py",
       "change": null
     },
     {
-      "path": "runtime/vllm/patch_indexer_profile_inputs.py",
-      "sha256": "3d1dbfda44439acb97aa1efe2bb31d536c189e8b7950d1d655915f86cdb14b4b",
-      "origin": "amos-recipes@173f4c5:patch_indexer_profile_inputs.py",
+      "path": "runtime/vllm/amos_tp6_projection.py",
+      "sha256": "27006d7264d739089f82b16f9291ba4775fb106b1e481db2ef2d2525cfd55b1f",
+      "origin": "amos-recipes@173f4c5:amos_tp6_projection.py",
       "change": null
     },
     {
-      "path": "runtime/vllm/patch_shared_early.py",
-      "sha256": "d464c3adccd5e47c724b0ae4d11cf2e9ff3152b7428204d7f896082c8e01b550",
-      "origin": "amos-recipes@173f4c5:patch_shared_early.py",
+      "path": "runtime/vllm/build_e3_capture.py",
+      "sha256": "4f14f260b94c8cc7bb13c757134e17235e6d92ea265106ccc8a314fc9128aa02",
+      "origin": "amos-recipes@c367d0b4a6bf35b0dd9f8ee607b4060b85e3465a:build_e3_capture.py",
       "change": null
     },
     {
-      "path": "runtime/vllm/patch_shared_expert_padding.py",
-      "sha256": "5ca5a79e2b8eee33d4ef82edef5715d3f25475f6a2a2ab357182fe285ff65cb9",
-      "origin": "amos-recipes@173f4c5:patch_shared_expert_padding.py",
+      "path": "runtime/vllm/build_e3_rows.py",
+      "sha256": "74e31c2ba3b6b4de7987ed3d8139a69cd88cb890d014e0746650c34546e8d89c",
+      "origin": "amos-recipes@1ec92c9d2a3ce7c556884fb662f1ea6f1da1027c:build_e3_rows.py",
       "change": null
     },
     {
-      "path": "runtime/vllm/patch_shared_audit.py",
-      "sha256": "9d5d13ba0d55ec8a77ea287f39503ed22cc69a894ffedf227ae3f23c40d3af25",
-      "origin": "amos-recipes@173f4c5:patch_shared_audit.py",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/patch_stable_prefill_reduce.py",
-      "sha256": "79ada112193c4460d3e2e0f155d29d17e66aaafd8099ce1f750d056ca98519bb",
-      "origin": "amos-recipes@173f4c5:patch_stable_prefill_reduce.py",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/patch_dynamic_graphs.py",
-      "sha256": "8332a1fe6f800b8cbff1542afa511def55143e5410d4a2fe2382afd22cb15ae7",
-      "origin": "amos-recipes@173f4c5:patch_dynamic_graphs.py",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/patch_draft_eh.py",
-      "sha256": "e13ee656ce6120f9d5d8767481fbb84b9b228c059a7bb4ac2455c0b1e03dbb65",
-      "origin": "amos-recipes@173f4c5:patch_draft_eh.py",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/patch_decode_projections.py",
-      "sha256": "fa3df592f27b90b40fb10e9a55f0bc756c282e5b9449cb592d0d613d21571efc",
-      "origin": "amos-recipes@173f4c5:patch_decode_projections.py",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/patch_chat_boundaries.py",
-      "sha256": "c9a2a3a4a2edf5554c82916491e963caa8642ef0a991efb3cb0c0c31270b0386",
-      "origin": "amos-recipes@173f4c5:patch_chat_boundaries.py",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/install_shared_audit_geometry.py",
-      "sha256": "1cbae0ae55629db2e0951c218958fbb80aab35b07d8f21bc95e193152fb67abe",
-      "origin": "amos-recipes@173f4c5:install_shared_audit_geometry.py",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/install_grouped_prefill_numerics.py",
-      "sha256": "f3839fe40d22faa06d329594fcb89132429625c6084dee1bc09c8c9b73a520d0",
-      "origin": "amos-recipes@173f4c5:install_grouped_prefill_numerics.py",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/install_index_oracle.py",
-      "sha256": "5b11b3841cae29453505501284f91b0849f9bdfa9cce7a3d20ae3436a24ffc3a",
-      "origin": "amos-recipes@173f4c5:install_index_oracle.py",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/install_grouped_prefill_epilogues.py",
-      "sha256": "705730a268530bcabfde08ed38d0cd2a8a7446555b449b76bf5d826b86bd1d5e",
-      "origin": "amos-recipes@173f4c5:install_grouped_prefill_epilogues.py",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/install_prefill_dispatch.py",
-      "sha256": "3e001076d6ee831b0ac1a34ce16d397812f2e0f19a3386b7c9f4d02c769740eb",
-      "origin": "amos-recipes@173f4c5:install_prefill_dispatch.py",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/canonical_index_topk_check.py",
-      "sha256": "f0c641884440ee9d6721e65382bbe51f8ceb496dd79a9070f37880b60cb54e5c",
-      "origin": "amos-recipes@173f4c5:canonical_index_topk_check.py",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/canonical_index_topk.py",
-      "sha256": "8b8d7290b793000942b6233f3bae3707cb93cef87c24806297d9e3d068ca84ae",
-      "origin": "amos-recipes@173f4c5:canonical_index_topk.py",
+      "path": "runtime/vllm/build_mtp_tuning.py",
+      "sha256": "ca3828007974c12967a6c38c12cffba50f13b06caa202ce87492df1436a29577",
+      "origin": "amos-recipes@e788e69b84038f213ec3623b3eb86312ee4122b3:runtime/exl3-tp6/build_mtp_tuning.py",
       "change": null
     },
     {
@@ -3038,9 +3524,15 @@
       "change": null
     },
     {
-      "path": "runtime/vllm/runtime-source-lock.json",
-      "sha256": "be4f14f18243461e8acda59fad9e23fec445fea0148104b5c380150c2cd2d699",
-      "origin": "amos-recipes@173f4c5:runtime-source-lock.json",
+      "path": "runtime/vllm/canonical_index_topk.py",
+      "sha256": "8b8d7290b793000942b6233f3bae3707cb93cef87c24806297d9e3d068ca84ae",
+      "origin": "amos-recipes@173f4c5:canonical_index_topk.py",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/canonical_index_topk_check.py",
+      "sha256": "f0c641884440ee9d6721e65382bbe51f8ceb496dd79a9070f37880b60cb54e5c",
+      "origin": "amos-recipes@173f4c5:canonical_index_topk_check.py",
       "change": null
     },
     {
@@ -3050,188 +3542,26 @@
       "change": null
     },
     {
-      "path": "runtime/vllm/node.sh",
-      "sha256": "9d828fa67dc96e76256de66a120c457ac9adb4316efc75de91c1ed407e638939",
-      "origin": "amos-recipes@173f4c5:node.sh",
+      "path": "runtime/vllm/e3/amos_e3/LICENSE.mia",
+      "sha256": "8d56b405468aad11f87ab5763f901e276e08d9646ff5c8481b1762b6b789e9ed",
+      "origin": "Kindling E3 plus Swoopp native epilogues; upstream 0ecf21ebcccd924f7f7c47eda0333282d8e177f5",
       "change": null
     },
     {
-      "path": "runtime/vllm/memguard.py",
-      "sha256": "dfb647b89daa1c481a7456a0fd92cc4b12cb50490726fd082a97ad45418bb452",
-      "origin": "amos-recipes@173f4c5:memguard.py",
+      "path": "runtime/vllm/e3/amos_e3/__init__.py",
+      "sha256": "05ee127b7da2b519c3418b404d830f398517cae9e67802b1ac0005745010ed78",
+      "origin": "Kindling E3 plus Swoopp native epilogues; upstream 0ecf21ebcccd924f7f7c47eda0333282d8e177f5",
       "change": null
     },
     {
-      "path": "runtime/vllm/rocenante/b12x_roce_all_reduce.py",
-      "sha256": "ea8a0f8515c82b7d57f4c085287f4dc106de745fbf2dd5721403072aeaf75114",
-      "origin": "b12x/vllm import; see adjacent PROVENANCE.md",
+      "path": "runtime/vllm/e3/amos_e3/diagnostic_capture.py",
+      "sha256": "3550bf30820b7a60015a2919f4b56b9a43a25a76f2f4721829c89af121197549",
+      "origin": "amos-recipes@c367d0b4a6bf35b0dd9f8ee607b4060b85e3465a:amos_e3_capture.py",
       "change": null
-    },
-    {
-      "path": "runtime/vllm/rocenante/UPSTREAM.md",
-      "sha256": "ed7299eb87a76701b888fe096a674da8fb4b2a563e4054c997f57faab0db74e6",
-      "origin": "b12x/vllm import; see adjacent PROVENANCE.md",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/rocenante/PROVENANCE.md",
-      "sha256": "5093ba0c9f98e38e825045c2e1d1b7cb48106fb506814cc6f4d9c66d1e4949da",
-      "origin": "b12x/vllm import; see adjacent PROVENANCE.md",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/rocenante/worker-health-methods.txt",
-      "sha256": "ce7769f9ca4891c57ed45f567eb874106ae068192101294e90ad4a7222f8438e",
-      "origin": "b12x/vllm import; see adjacent PROVENANCE.md",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/rocenante/worker-health-class.txt",
-      "sha256": "f22919c26accae9dbd8f5a305947bd158e1eb0ef582eb4d50a12b322f1bb1b5c",
-      "origin": "b12x/vllm import; see adjacent PROVENANCE.md",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/rocenante/source-lock.json",
-      "sha256": "5c97499655cd58b8476297b8c52b9a3e4dccc7066eeb56b0fdb8871d0fd99cf0",
-      "origin": "b12x/vllm import; see adjacent PROVENANCE.md",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/rocenante/test_b12x_roce_health.py",
-      "sha256": "1d2e255457687d59c8a67ee073cccde5d1e509bf15125c51a9596ccf87a12fa1",
-      "origin": "b12x/vllm import; see adjacent PROVENANCE.md",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/rocenante/LICENSE-APACHE-2.0",
-      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
-      "origin": "b12x/vllm import; see adjacent PROVENANCE.md",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/rocenante/roce/_cute_intrinsics.py",
-      "sha256": "11737796a80a0966c04ee347d5ef83a662bde16dc188022134d2cbaa1567410b",
-      "origin": "b12x/vllm import; see adjacent PROVENANCE.md",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/rocenante/roce/_oneshot_cute.py",
-      "sha256": "a2328b66d64a81484b78aa946bf37032cd997d6594c2047448b42886ada0a02d",
-      "origin": "b12x/vllm import; see adjacent PROVENANCE.md",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/rocenante/roce/api.py",
-      "sha256": "aaa3dac7a1e06cd8ee54ac1d722dfa1a58d1c1a02118f12b54ed9b763d6fed68",
-      "origin": "b12x/vllm import; see adjacent PROVENANCE.md",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/rocenante/roce/_allgather_cute.py",
-      "sha256": "377ebaf078a5877f8cfbd90de9ba0fb9f65e7a2fa103ea29b1b2841e63a31eeb",
-      "origin": "b12x/vllm import; see adjacent PROVENANCE.md",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/rocenante/roce/roce_oneshot.py",
-      "sha256": "3e97805f64428cfc4cea352e77e8c2bd982fcff317a3973c826f0e98ef731ed9",
-      "origin": "b12x/vllm import; see adjacent PROVENANCE.md",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/rocenante/roce/__init__.py",
-      "sha256": "17070372720121037728d2a3fdd9f53739929c751f1e17f16a124ce8991c589e",
-      "origin": "b12x/vllm import; see adjacent PROVENANCE.md",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/rocenante/roce/_proxy.py",
-      "sha256": "6f951679abd73e76d394eaa23803fe54eb70263fcec688635074455ee10c166c",
-      "origin": "b12x/vllm import; see adjacent PROVENANCE.md",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/rocenante/roce/_roce_proxy.c",
-      "sha256": "5e09786ebe98981f8ea1b50cc5a914bce98c379a33072f6ae0a20046f601544d",
-      "origin": "b12x/vllm import; see adjacent PROVENANCE.md",
-      "change": null
-    },
-    {
-      "path": "weights/download_checkpoint.py",
-      "sha256": "2cdb52ca8b8db03cd2c1cc749ef9a953e31abd3d689dad59d4201409beace5d4",
-      "origin": "amos-recipes@173f4c5:download_checkpoint.py",
-      "change": null
-    },
-    {
-      "path": "weights/shard_checkpoint.py",
-      "sha256": "2ae98ab343260cbbf43840d9a065520531e1d1d0e4cc0475625c8a0bc95c970d",
-      "origin": "amos-recipes@173f4c5:shard_checkpoint.py",
-      "change": null
-    },
-    {
-      "path": "weights/verify_shard.py",
-      "sha256": "8115504fa8c91b8bb0539e8401e09a467fab178e28bfa074b481958d9d3af9a7",
-      "origin": "amos-recipes@173f4c5:verify_shard.py",
-      "change": null
-    },
-    {
-      "path": "weights/amos_exl3_tp6.py",
-      "sha256": "3756c20c7d4aaffac30e22f218621f96264c14f8a23c9f5a1bb3a276a5e77693",
-      "origin": "amos-recipes@173f4c5:amos_exl3_tp6.py",
-      "change": null
-    },
-    {
-      "path": "weights/checkpoint-manifest.json",
-      "sha256": "a69b3ea8f972c374bdaf67a6202ab0381ff5e3bdfcf0e27aa630426bfb50c602",
-      "origin": "amos-recipes@173f4c5:checkpoint-manifest.json",
-      "change": null
-    },
-    {
-      "path": "weights/test_placement.py",
-      "sha256": "39bb07dc30da3f91be5d49ff2a3ed806df25ca302a2dbcafa7c9e45e5ed36093",
-      "origin": "amos-recipes@173f4c5:test_placement.py",
-      "change": null
-    },
-    {
-      "path": "benchmarks/performance.py",
-      "sha256": "329d83656ffc914b539ff52c4f958711fbc663d35663b29b869d8008a9f71bb2",
-      "origin": "amos-recipes@173f4c5:performance.py",
-      "change": "Loopback endpoint default"
-    },
-    {
-      "path": "benchmarks/qualify.py",
-      "sha256": "1732f1c2a7bc429cd0736b1b8bdbae62ba9c713c7af9e4d85472c7c2a9b6c4ed",
-      "origin": "amos-recipes@173f4c5:qualify.py",
-      "change": "Loopback endpoint default"
-    },
-    {
-      "path": "benchmarks/long_context.py",
-      "sha256": "990fc12968736fa230ffa23c4f9b2cdca4f407ab4be238d6361cf07ba478317c",
-      "origin": "amos-recipes@173f4c5:long_context.py",
-      "change": "Loopback endpoint default"
-    },
-    {
-      "path": "runtime/vllm/e3/amos_e3/runtime.py",
-      "sha256": "81ec16e93229a1e2305f01ea8f04a17a639122ce8a9b007375f5d8d197816eba",
-      "origin": "amos-recipes@c367d0b4a6bf35b0dd9f8ee607b4060b85e3465a:build_e3_capture.py",
-      "change": "Pinned original E3 runtime plus bounded diagnostic capture call; output returned unchanged."
     },
     {
       "path": "runtime/vllm/e3/amos_e3/geometry.py",
       "sha256": "096e373105f40fca132c6aee89980cb236b2b009ba5c6bc234487da1f40caf50",
-      "origin": "Kindling E3 plus Swoopp native epilogues; upstream 0ecf21ebcccd924f7f7c47eda0333282d8e177f5",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/e3/amos_e3/native_epilogues.py",
-      "sha256": "2277e652b9a56d36e609393a9b051c449313d40efd470936acfe6fc9df279212",
-      "origin": "Kindling E3 plus Swoopp native epilogues; upstream 0ecf21ebcccd924f7f7c47eda0333282d8e177f5",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/e3/amos_e3/LICENSE.mia",
-      "sha256": "8d56b405468aad11f87ab5763f901e276e08d9646ff5c8481b1762b6b789e9ed",
       "origin": "Kindling E3 plus Swoopp native epilogues; upstream 0ecf21ebcccd924f7f7c47eda0333282d8e177f5",
       "change": null
     },
@@ -3242,8 +3572,20 @@
       "change": null
     },
     {
-      "path": "runtime/vllm/e3/amos_e3/__init__.py",
-      "sha256": "05ee127b7da2b519c3418b404d830f398517cae9e67802b1ac0005745010ed78",
+      "path": "runtime/vllm/e3/amos_e3/native_epilogues.py",
+      "sha256": "2277e652b9a56d36e609393a9b051c449313d40efd470936acfe6fc9df279212",
+      "origin": "Kindling E3 plus Swoopp native epilogues; upstream 0ecf21ebcccd924f7f7c47eda0333282d8e177f5",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/e3/amos_e3/runtime.py",
+      "sha256": "81ec16e93229a1e2305f01ea8f04a17a639122ce8a9b007375f5d8d197816eba",
+      "origin": "amos-recipes@c367d0b4a6bf35b0dd9f8ee607b4060b85e3465a:build_e3_capture.py",
+      "change": "Pinned original E3 runtime plus bounded diagnostic capture call; output returned unchanged."
+    },
+    {
+      "path": "runtime/vllm/e3/amos_e3/vendor/LICENSE.exllamav3",
+      "sha256": "27a32b6263fcd96c79d3beeecf221c4366780bdf15ad51986f48650bd7369bff",
       "origin": "Kindling E3 plus Swoopp native epilogues; upstream 0ecf21ebcccd924f7f7c47eda0333282d8e177f5",
       "change": null
     },
@@ -3260,24 +3602,6 @@
       "change": null
     },
     {
-      "path": "runtime/vllm/e3/amos_e3/vendor/util.cuh",
-      "sha256": "0106a3929ac1fd119a824ca359596c075005c7eaa230abfebd56cbb0ce13ccf1",
-      "origin": "Kindling E3 plus Swoopp native epilogues; upstream 0ecf21ebcccd924f7f7c47eda0333282d8e177f5",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/e3/amos_e3/vendor/LICENSE.exllamav3",
-      "sha256": "27a32b6263fcd96c79d3beeecf221c4366780bdf15ad51986f48650bd7369bff",
-      "origin": "Kindling E3 plus Swoopp native epilogues; upstream 0ecf21ebcccd924f7f7c47eda0333282d8e177f5",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/e3/amos_e3/vendor/quant/hadamard_inner.cuh",
-      "sha256": "e511fea96a77d7cc678e6a9082d7d08b9d487d57c85bd5e22ec2e578b54dd958",
-      "origin": "Kindling E3 plus Swoopp native epilogues; upstream 0ecf21ebcccd924f7f7c47eda0333282d8e177f5",
-      "change": null
-    },
-    {
       "path": "runtime/vllm/e3/amos_e3/vendor/quant/codebook.cuh",
       "sha256": "8df85381f971244effff63c6b3552cabc1d6285df5d436f39a4bc4d22094be6f",
       "origin": "Kindling E3 plus Swoopp native epilogues; upstream 0ecf21ebcccd924f7f7c47eda0333282d8e177f5",
@@ -3290,381 +3614,117 @@
       "change": null
     },
     {
+      "path": "runtime/vllm/e3/amos_e3/vendor/quant/hadamard_inner.cuh",
+      "sha256": "e511fea96a77d7cc678e6a9082d7d08b9d487d57c85bd5e22ec2e578b54dd958",
+      "origin": "Kindling E3 plus Swoopp native epilogues; upstream 0ecf21ebcccd924f7f7c47eda0333282d8e177f5",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/e3/amos_e3/vendor/util.cuh",
+      "sha256": "0106a3929ac1fd119a824ca359596c075005c7eaa230abfebd56cbb0ce13ccf1",
+      "origin": "Kindling E3 plus Swoopp native epilogues; upstream 0ecf21ebcccd924f7f7c47eda0333282d8e177f5",
+      "change": null
+    },
+    {
       "path": "runtime/vllm/e3/build.sh",
       "sha256": "ce5f4aad48d16ccd2b3516dc6e288d5a86fcb6cfc66a1d724a6d036b2efc37d2",
       "origin": "build.sh",
       "change": null
     },
     {
-      "path": "LICENSES/AGPL-3.0.txt",
-      "sha256": "8d56b405468aad11f87ab5763f901e276e08d9646ff5c8481b1762b6b789e9ed",
-      "origin": "AGPL-3.0.txt",
+      "path": "runtime/vllm/install_grouped_prefill_epilogues.py",
+      "sha256": "705730a268530bcabfde08ed38d0cd2a8a7446555b449b76bf5d826b86bd1d5e",
+      "origin": "amos-recipes@173f4c5:install_grouped_prefill_epilogues.py",
       "change": null
     },
     {
-      "path": "LICENSES/TensorFold-MIT.txt",
-      "sha256": "be6a9ee4462784a762b21790954b8e76c4dcacc9fb6da2a40d03a8a9bddec93e",
-      "origin": "LICENSE",
+      "path": "runtime/vllm/install_grouped_prefill_numerics.py",
+      "sha256": "f3839fe40d22faa06d329594fcb89132429625c6084dee1bc09c8c9b73a520d0",
+      "origin": "amos-recipes@173f4c5:install_grouped_prefill_numerics.py",
       "change": null
     },
     {
-      "path": "LICENSES/Apache-2.0.txt",
-      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
-      "origin": "Apache-2.0.txt",
+      "path": "runtime/vllm/install_index_oracle.py",
+      "sha256": "5b11b3841cae29453505501284f91b0849f9bdfa9cce7a3d20ae3436a24ffc3a",
+      "origin": "amos-recipes@173f4c5:install_index_oracle.py",
       "change": null
     },
     {
-      "path": "LICENSES/Kindling-MIT.txt",
-      "sha256": "728e532008755b24d2656e5aa0ee12b50767c76c77e24c26c048a9e0e56511b3",
-      "origin": "LICENSE",
+      "path": "runtime/vllm/install_prefill_dispatch.py",
+      "sha256": "3e001076d6ee831b0ac1a34ce16d397812f2e0f19a3386b7c9f4d02c769740eb",
+      "origin": "amos-recipes@173f4c5:install_prefill_dispatch.py",
       "change": null
     },
     {
-      "path": "results/p24-serving.json",
-      "sha256": "c7c3204b88a5477dc9ad81376cfafe16d884783f96983227a21790902db0af00",
-      "origin": "p24-performance-summary.json, with cache clarification",
+      "path": "runtime/vllm/install_shared_audit_geometry.py",
+      "sha256": "1cbae0ae55629db2e0951c218958fbb80aab35b07d8f21bc95e193152fb67abe",
+      "origin": "amos-recipes@173f4c5:install_shared_audit_geometry.py",
       "change": null
     },
     {
-      "path": "results/tfp14-tensorfold.json",
-      "sha256": "f4134dc428958b274ec932c4637f316e1fb5ea4c8f7a3d1de0a5fd1f0a702ef4",
-      "origin": "TFP14 six-rank qualification, extracted summary",
+      "path": "runtime/vllm/memguard.py",
+      "sha256": "dfb647b89daa1c481a7456a0fd92cc4b12cb50490726fd082a97ad45418bb452",
+      "origin": "amos-recipes@173f4c5:memguard.py",
       "change": null
     },
     {
-      "path": "results/p24-decode-samples.json",
-      "sha256": "aca0f3241767ca98f8489e64264ecc9828bcf92bff2b13de680ab2c567c12e37",
-      "origin": "p24-warm-decode.json; generated text omitted",
+      "path": "runtime/vllm/node.sh",
+      "sha256": "9d828fa67dc96e76256de66a120c457ac9adb4316efc75de91c1ed407e638939",
+      "origin": "amos-recipes@173f4c5:node.sh",
       "change": null
     },
     {
-      "path": "recipes/vllm-tp6/tuning.json",
-      "sha256": "48ea2b58cf0f2d3754067b14fac9fecaae3b919d7b8031d6d77b1898edcf28c4",
-      "origin": "amos-recipes@c69f8b66c6c5ca72a00b732c589bc2a55bd89c3e:qualification/serving-optimization-20261003/comm2-dual-roce-tuning.json",
+      "path": "runtime/vllm/patch_canonical_index_topk.py",
+      "sha256": "b4eac6a4764325808d4b24e9b40c63c9542c30dd82daf8e6ea19c47e2f215904",
+      "origin": "amos-recipes@173f4c5:patch_canonical_index_topk.py",
       "change": null
     },
     {
-      "path": "experimental/tensorfold/tests/test_glm53_full_tp6_attention_options.py",
-      "sha256": "97f72e790b82a91130578e7ba86cb85057aee8c988d2a98ca5b9d90e63115d2c",
-      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tests/test_glm53_full_tp6_attention_options.py",
+      "path": "runtime/vllm/patch_chat_boundaries.py",
+      "sha256": "c9a2a3a4a2edf5554c82916491e963caa8642ef0a991efb3cb0c0c31270b0386",
+      "origin": "amos-recipes@173f4c5:patch_chat_boundaries.py",
       "change": null
     },
     {
-      "path": "experimental/tensorfold/tools/glm53_tp6_attention_options_check.py",
-      "sha256": "de1eef5be992aa0cc23f67b095efb2c937e97a2c9ea2479f06f4f3c1c385d991",
-      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tools/glm53_tp6_attention_options_check.py",
+      "path": "runtime/vllm/patch_cost_aware_mtp.py",
+      "sha256": "24bfdf9f31aed35c9c2d82d3b958cf1b3c53891b0ee071717cb4e44c34e4d0bf",
+      "origin": "amos-recipes@173f4c5:patch_cost_aware_mtp.py",
       "change": null
     },
     {
-      "path": "experimental/tensorfold/tools/glm53_tp6_attention_tuning_check.py",
-      "sha256": "649af69ad4533d47a4067ab65ca831f6555944eb190e788c022ade9aaab4e8ce",
-      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tools/glm53_tp6_attention_tuning_check.py",
-      "change": "Probe master address supplied through MASTER_ADDR; no kernel changes."
-    },
-    {
-      "path": "experiments/completed/tfp15-attention-tuning.patch",
-      "sha256": "210a729aa6a360e679f5b1678de1e9e77305ee9260a732567102a277697e94bc",
-      "origin": "uncommitted attention candidate; GPU unqualified",
-      "change": "MASTER_ADDR replaces private fabric address"
-    },
-    {
-      "path": "results/tfp15-tensorfold.json",
-      "sha256": "23d252b88e8a178c3662fa22afbc310deb98e0a725c80b46182540ec6a6cb2ee",
-      "origin": "TFP15 six-rank qualification, extracted summary",
+      "path": "runtime/vllm/patch_decode_projections.py",
+      "sha256": "fa3df592f27b90b40fb10e9a55f0bc756c282e5b9449cb592d0d613d21571efc",
+      "origin": "amos-recipes@173f4c5:patch_decode_projections.py",
       "change": null
     },
     {
-      "path": "experimental/tensorfold/src/tensorfold/families/glm_moe_dsa/request.py",
-      "sha256": "e3c45637753cb899bc717fe8741f0707b98dcf357de125d878e37725dcc4c638",
-      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:src/tensorfold/families/glm_moe_dsa/request.py",
+      "path": "runtime/vllm/patch_draft_eh.py",
+      "sha256": "e13ee656ce6120f9d5d8767481fbb84b9b228c059a7bb4ac2455c0b1e03dbb65",
+      "origin": "amos-recipes@173f4c5:patch_draft_eh.py",
       "change": null
     },
     {
-      "path": "experimental/tensorfold/src/tensorfold/families/glm_moe_dsa/request_backend.py",
-      "sha256": "cfbc77ebbff82df41d068c0167a71335c7fbf55fc69b923af27863072c4aa077",
-      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:src/tensorfold/families/glm_moe_dsa/request_backend.py",
+      "path": "runtime/vllm/patch_dynamic_graphs.py",
+      "sha256": "8332a1fe6f800b8cbff1542afa511def55143e5410d4a2fe2382afd22cb15ae7",
+      "origin": "amos-recipes@173f4c5:patch_dynamic_graphs.py",
       "change": null
     },
     {
-      "path": "experimental/tensorfold/tests/test_glm53_full_tp6_request.py",
-      "sha256": "d9a1a659f7b025810a130e4c6da83a8600febffad36d000b7486c3b8c270e7da",
-      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tests/test_glm53_full_tp6_request.py",
+      "path": "runtime/vllm/patch_grouped_prefill.py",
+      "sha256": "9d9dddba41e645dd690d780ba5a7331dc8b30d7d2ccb5b09f03dc59f42b7397d",
+      "origin": "amos-recipes@173f4c5:patch_grouped_prefill.py",
       "change": null
     },
     {
-      "path": "experimental/tensorfold/tests/test_glm53_full_tp6_request_backend.py",
-      "sha256": "3fd5b3af59e5b2af4b439c1ed34305a36b44fe7f8a1fe3aefff9fff2da736248",
-      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tests/test_glm53_full_tp6_request_backend.py",
+      "path": "runtime/vllm/patch_indexer_profile_inputs.py",
+      "sha256": "3d1dbfda44439acb97aa1efe2bb31d536c189e8b7950d1d655915f86cdb14b4b",
+      "origin": "amos-recipes@173f4c5:patch_indexer_profile_inputs.py",
       "change": null
     },
     {
-      "path": "experimental/tensorfold/tools/glm53_tp6_request_check.py",
-      "sha256": "239fe8d7cf38a8715d59a60d3fca5816742ca8890ac5aa21965db0fb70fa9bd9",
-      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tools/glm53_tp6_request_check.py",
-      "change": null
-    },
-    {
-      "path": "results/tfp16-tensorfold.json",
-      "sha256": "2b1539883c0578f53cff1b690fd4f0a415a074b24c45443fe72e83fb391eefe8",
-      "origin": "TFP16 six-rank request qualification, extracted summary",
-      "change": null
-    },
-    {
-      "path": "experimental/tensorfold/src/tensorfold/families/glm_moe_dsa/control.py",
-      "sha256": "217dd825d4ff6f11bbf0d51f529eb9e1b90cfa818a4597c96c353fa84341da54",
-      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:src/tensorfold/families/glm_moe_dsa/control.py",
-      "change": null
-    },
-    {
-      "path": "experimental/tensorfold/src/tensorfold/families/glm_moe_dsa/control_sampling.py",
-      "sha256": "2e19e974795ceda187258f5da62b86918789cbb62efcbc76a5e621d1261bdfa6",
-      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:src/tensorfold/families/glm_moe_dsa/control_sampling.py",
-      "change": null
-    },
-    {
-      "path": "experimental/tensorfold/src/tensorfold/families/glm_moe_dsa/scheduler.py",
-      "sha256": "b7ae5acd992a074ab91dfdfed63130a3c8309b8052dc65fd876900733eeabb93",
-      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:src/tensorfold/families/glm_moe_dsa/scheduler.py",
-      "change": null
-    },
-    {
-      "path": "experimental/tensorfold/tests/test_glm53_full_tp6_control.py",
-      "sha256": "1dd7c5fa60791104c802e3e46dc1bcec051bc8e24aa4bf4c4af7a5486cf1b2bf",
-      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tests/test_glm53_full_tp6_control.py",
-      "change": null
-    },
-    {
-      "path": "experimental/tensorfold/tests/test_glm53_full_tp6_control_sampling.py",
-      "sha256": "ef4b4b33c5cc29e8ac432f97752eb0e6d56231fccc297db4e14fc94301f2154c",
-      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tests/test_glm53_full_tp6_control_sampling.py",
-      "change": null
-    },
-    {
-      "path": "experimental/tensorfold/tests/test_glm53_full_tp6_scheduler.py",
-      "sha256": "68739cf14cbbcf4073906f484a0fdec8e8bad23dbabf5f0ff2732a59bec39a0e",
-      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tests/test_glm53_full_tp6_scheduler.py",
-      "change": null
-    },
-    {
-      "path": "experimental/tensorfold/tools/glm53_tp6_control_check.py",
-      "sha256": "0a066e7867085d55c35c174651cbdbb8f675099bc31c1c8ddc200adbdbeee37f",
-      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tools/glm53_tp6_control_check.py",
-      "change": null
-    },
-    {
-      "path": "results/tfp17-tensorfold.json",
-      "sha256": "3eaef7f57289d0930df3a066cdeb4f56e5f32573a91d18ca758d4121679ea7f4",
-      "origin": "TFP17 six-rank transport qualification, extracted summary",
-      "change": null
-    },
-    {
-      "path": "experimental/tensorfold/src/tensorfold/families/glm_moe_dsa/graph_plan.py",
-      "sha256": "08cfe3d7d0460d4cde4399ee0a146a517a6603d62a52c75847a2a3d450a330bb",
-      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:src/tensorfold/families/glm_moe_dsa/graph_plan.py",
-      "change": null
-    },
-    {
-      "path": "experimental/tensorfold/src/tensorfold/families/glm_moe_dsa/graphs.py",
-      "sha256": "c93a5f620249158f6899abd33822bd63a3e35577ccb34326c7e40b84379916af",
-      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:src/tensorfold/families/glm_moe_dsa/graphs.py",
-      "change": null
-    },
-    {
-      "path": "experimental/tensorfold/tests/test_glm53_full_tp6_graphs.py",
-      "sha256": "d4c3af07ebd1287381cb9ada65eb01a33d1498715d402b8e43bbb51a79a3bb76",
-      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tests/test_glm53_full_tp6_graphs.py",
-      "change": null
-    },
-    {
-      "path": "experimental/tensorfold/tools/glm53_tp6_graph_check.py",
-      "sha256": "963498b73975552843eb744d8c0bb5da47df11bb5df5dda48f658cc3f220d65a",
-      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tools/glm53_tp6_graph_check.py",
-      "change": null
-    },
-    {
-      "path": "results/tfp18-tensorfold.json",
-      "sha256": "c39b7a6a51668d9da70e762f9116b29e690a338a684deadc7e227fd4288f34eb",
-      "origin": "TFP18 six-rank decode graph/HTTP qualification, extracted summary",
-      "change": null
-    },
-    {
-      "path": "experimental/tensorfold/tests/test_glm53_full_tp6_profile_metrics.py",
-      "sha256": "5edff0e0283d9969af9c0232113d78fef69b61c7ea2eb778bc7a66e92a4d8efd",
-      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tests/test_glm53_full_tp6_profile_metrics.py",
-      "change": null
-    },
-    {
-      "path": "experimental/tensorfold/tools/glm53_tp6_profile_check.py",
-      "sha256": "eca293cbaf3e99285a88cb2b35617c2cda39b5033a2b5dc2893e9e28f54197d5",
-      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tools/glm53_tp6_profile_check.py",
-      "change": null
-    },
-    {
-      "path": "experimental/tensorfold/tools/glm53_tp6_profile_metrics.py",
-      "sha256": "cbbf18da04d46b7459401936a8405b3f8055bacbdab768000c6783351b6b82ad",
-      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tools/glm53_tp6_profile_metrics.py",
-      "change": null
-    },
-    {
-      "path": "results/tfp19-tensorfold.json",
-      "sha256": "8b828c305e5b9c2ad41ca37c1cb979d36af9105ea07bd6b72c5d155511b7bd0b",
-      "origin": "TFP19 six-rank draft-depth and decode profiling qualification, extracted summary",
-      "change": null
-    },
-    {
-      "path": "experimental/tensorfold/src/tensorfold/families/glm_moe_dsa/projection_plan.py",
-      "sha256": "03e635d727c5133bef1b14c84a172c69788a08acca3262508fd3e39f418297f9",
-      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:src/tensorfold/families/glm_moe_dsa/projection_plan.py",
-      "change": null
-    },
-    {
-      "path": "experimental/tensorfold/tests/test_glm53_full_tp6_projection_plan.py",
-      "sha256": "8d9ad6ce9a128581cd30a26c66fe8ede46575e3786fa3fb48c034c84fb58cdb0",
-      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tests/test_glm53_full_tp6_projection_plan.py",
-      "change": null
-    },
-    {
-      "path": "experimental/tensorfold/tests/test_glm53_full_tp6_projection_screen.py",
-      "sha256": "a4bd317609d5adc1c20ba56dbacffeb91ec1a14e3e964365a3c1ce3ea40d1054",
-      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tests/test_glm53_full_tp6_projection_screen.py",
-      "change": null
-    },
-    {
-      "path": "experimental/tensorfold/tools/glm53_tp6_projection_check.py",
-      "sha256": "e13b77fa9814a4fb65263706ffe2c58a56729211ac1987ac0346e5ab628ebe51",
-      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tools/glm53_tp6_projection_check.py",
-      "change": null
-    },
-    {
-      "path": "experimental/tensorfold/tools/glm53_tp6_projection_screen.py",
-      "sha256": "947b486492e99b0eb4450b9d1c93aa8694000ae847daf244df7b7ef018731513",
-      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tools/glm53_tp6_projection_screen.py",
-      "change": null
-    },
-    {
-      "path": "results/tfp20-tensorfold.json",
-      "sha256": "ba588d785a49b7b0b467aecee7227cdb15da795f0e90881807d725f740a3b40d",
-      "origin": "TFP20 six-rank BF16 projection qualification, extracted summary",
-      "change": null
-    },
-    {
-      "path": "experimental/tensorfold/src/tensorfold/families/glm_moe_dsa/packed_backend.py",
-      "sha256": "98f8e60e44178f0cdeabacf2c64edbf1b98c9160117cd16f7f62dbdce47fd6a8",
-      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:src/tensorfold/families/glm_moe_dsa/packed_backend.py",
-      "change": null
-    },
-    {
-      "path": "experimental/tensorfold/src/tensorfold/families/glm_moe_dsa/request_ops.py",
-      "sha256": "540e0e620442cadc511f611f3b14b9e1f4da44e1c3dbc1b3a42403ae8785fc7c",
-      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:src/tensorfold/families/glm_moe_dsa/request_ops.py",
-      "change": null
-    },
-    {
-      "path": "experimental/tensorfold/tests/test_glm53_full_tp6_packed.py",
-      "sha256": "b127c13f67dfd18cf90f565cc6f662cd0eef386e91f7bd6f8ae77b152a4ff32e",
-      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tests/test_glm53_full_tp6_packed.py",
-      "change": null
-    },
-    {
-      "path": "experimental/tensorfold/tools/glm53_tp6_packed_check.py",
-      "sha256": "560c7023918e4ccbd3985a103d05065db1d97b6c7191b0f1dccc442c45598d76",
-      "origin": "tensorfold-port@c79902ec67c9e516e67b9aca82a851c9b7a49c91:tools/glm53_tp6_packed_check.py",
-      "change": null
-    },
-    {
-      "path": "results/tfp21-tensorfold.json",
-      "sha256": "6d855b3a684b5370e21cc60e9952af63b69987c4cdd2cca2b177d52d61e08b02",
-      "origin": "TFP21 six-rank packed request qualification, extracted summary",
-      "change": null
-    },
-    {
-      "path": "results/tfp22-tensorfold.json",
-      "sha256": "6f2ff019e44bc476535cbda2110c2cab89b18cb97627ef32bc066c9434ee7a43",
-      "origin": "TFP22 incomplete six-rank scheduling run; guard-stopped, not qualified",
-      "change": null
-    },
-    {
-      "path": "experiments/pending/tfp22-scheduling.patch",
-      "sha256": "5d43feb13acd077642350634abdf50f180e439ec44cfd7d5213f24523d2f1999",
-      "origin": "tensorfold-port candidate 82b24104bf7fefea69788d5d493eeae5c5493d45 diff from qualified c79902ec67c9e516e67b9aca82a851c9b7a49c91",
-      "change": null
-    },
-    {
-      "path": "results/p27-serving.json",
-      "sha256": "9c0e8ee79ae7c1e3d8aef1447e743b25749a2d3a6b5268762cf29e5b34862595",
-      "origin": "amos-recipes@bb49dce1a426a80e7c8c638a5b247b1e865dfb69: selected fields from tfp38-after-summary.json, tfp38-after-strict-summary.json, tfp38-after-long-summary.json",
-      "change": "Public measurement fields only; private fleet mappings, paths, IDs and application data omitted."
-    },
-    {
-      "path": "results/production-hardening.json",
-      "sha256": "84d41c4d3b47d7f2e08bf41ae2e4c2b44e4685d59258e64a054e0aed46d4908c",
-      "origin": "amos-recipes@bb49dce1a426a80e7c8c638a5b247b1e865dfb69: selected fields from hardening1-summary.json, hardening1-reboot.json, hardening1-controller-restart.json, hardening1-application-acceptance.json, hardening1-observation.json, hardening1-exclusive-gpu.json",
-      "change": "Public measurement fields only; private fleet mappings, paths, IDs and application data omitted."
-    },
-    {
-      "path": "results/tensorfold-latest.json",
-      "sha256": "d72fef89c1dd61210cdb80f2fb429c26ca937fd34aa5eb248dc05daa609b5d9f",
-      "origin": "amos-recipes@bb49dce1a426a80e7c8c638a5b247b1e865dfb69: selected fields from tfp54-benchmark-summary.json, tfp49-quality-summary.json, tfp56-expert-summary.json, tfp57-latent-summary.json, p25r2-component-summary.json",
-      "change": "Public measurement fields only; private fleet mappings, paths, IDs and application data omitted."
-    },
-    {
-      "path": "benchmarks/cache_fixtures.py",
-      "sha256": "00c90d385b736df6d111f1ede0e19caefdc0e276509e9a9d172280ded0bed44d",
-      "origin": "serving-runtime@1e5912b:cache_reuse.py",
-      "change": "Seven fixture definitions copied exactly; public CLI accepts base and credential-file arguments. Actual8K fixture equivalence verified."
-    },
-    {
-      "path": "results/cache-reuse.json",
-      "sha256": "fe921da3e2fa154465c8c35ce0b9a0b44a6d30b94b959220290609ae2ae5d48e",
-      "origin": "serving-runtime:qualification/serving-optimization-20261003/cache-summary.json",
-      "change": "Selected measured summary with fixture and original-receipt hashes; no private site metadata."
-    },
-    {
-      "path": "results/cache-reuse-samples.json",
-      "sha256": "4cbebacd02418e892347552d97aa4196267611eb8429b8e1d3d23570d5ad9e99",
-      "origin": "serving-runtime:qualification/serving-optimization-20261003/cache-{8k-r3,32k-r1,128k-r1}.json",
-      "change": "Selected72 synthetic per-request timing,cache,fidelity andcounter records; generated text/site information omitted."
-    },
-    {
-      "path": "runtime/vllm/amos_prefill_budget.py",
-      "sha256": "5899084d9222bb12419bb7ff207f1a977637730a1117d69af8bf1dfafccf98f6",
-      "origin": "amos-recipes@5bd4d47ce20866232283569ed2803b460728de8d:runtime/exl3-tp6/amos_prefill_budget.py",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/patch_prefill_budget.py",
-      "sha256": "08070ae62edaa91aa163dc447e770606b24e4bde42cd9b721ad5a820ab2d76c4",
-      "origin": "amos-recipes@5bd4d47ce20866232283569ed2803b460728de8d:runtime/exl3-tp6/patch_prefill_budget.py",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/Dockerfile.prefill-budget",
-      "sha256": "c99b683b8e295a07c5cf3baf8df6c1d5a7949cf5a2ba994458f7d7300e62e234",
-      "origin": "amos-recipes@5bd4d47ce20866232283569ed2803b460728de8d:runtime/exl3-tp6/Dockerfile.prefill-budget",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/squash_patch_layers.py",
-      "sha256": "1222a1c210adf96f50343c9a31ef796a6491136ebac2bd3c3e2eef0acaf82625",
-      "origin": "amos-recipes@5bd4d47ce20866232283569ed2803b460728de8d:runtime/exl3-tp6/squash_patch_layers.py",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/test_prefill_budget.py",
-      "sha256": "4d9453660d421c398951c914d3de2eea4de52b597b27939cc60b4d7ec003bfee",
-      "origin": "amos-recipes@5bd4d47ce20866232283569ed2803b460728de8d:runtime/exl3-tp6/test_prefill_budget.py",
-      "change": null
-    },
-    {
-      "path": "results/prefill-budgets.json",
-      "sha256": "bf0f14dceac8b760d107b8fa7e10081e1c5d1acfc0cc2d9e2d60f0ac01cb7a0a",
-      "origin": "amos-recipes@5bd4d47ce20866232283569ed2803b460728de8d:qualification/serving-optimization-20261003/prefill-budget-summary.json",
-      "change": "Selected public summary plus source revision and packaging metadata; source receipt hashes retained. No raw application records or site mappings."
-    },
-    {
-      "path": "runtime/vllm/amos_mtp_tuning.py",
-      "sha256": "22ec81965900bda062dad9b74f13e4f464c1b74e88741c066ecaf73c5e320c07",
-      "origin": "amos-recipes@e788e69b84038f213ec3623b3eb86312ee4122b3:runtime/exl3-tp6/amos_mtp_tuning.py",
+      "path": "runtime/vllm/patch_indexer_warmup.py",
+      "sha256": "8c843c96699ed6da1053c7cc1292a7b739fead44d2649adc7dd41e78b4fb58de",
+      "origin": "amos-recipes@173f4c5:patch_indexer_warmup.py",
       "change": null
     },
     {
@@ -3674,9 +3734,177 @@
       "change": null
     },
     {
-      "path": "runtime/vllm/build_mtp_tuning.py",
-      "sha256": "ca3828007974c12967a6c38c12cffba50f13b06caa202ce87492df1436a29577",
-      "origin": "amos-recipes@e788e69b84038f213ec3623b3eb86312ee4122b3:runtime/exl3-tp6/build_mtp_tuning.py",
+      "path": "runtime/vllm/patch_prefill_budget.py",
+      "sha256": "08070ae62edaa91aa163dc447e770606b24e4bde42cd9b721ad5a820ab2d76c4",
+      "origin": "amos-recipes@5bd4d47ce20866232283569ed2803b460728de8d:runtime/exl3-tp6/patch_prefill_budget.py",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/patch_request_phase_mtp.py",
+      "sha256": "34ab101341449e165a0edce905567a3d3f3a73f96edafbc1a00ef3d7789a729d",
+      "origin": "amos-recipes@173f4c5:patch_request_phase_mtp.py",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/patch_rocenante.py",
+      "sha256": "64f0b238b650870476f239c293d3d49a48c84f5bdb8a69f22bb91b66d2291784",
+      "origin": "amos-recipes@173f4c5:patch_rocenante.py",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/patch_runtime.py",
+      "sha256": "99127daf09de171750650ddb69f18dc077ca0289203599067c71dad23c67a5d3",
+      "origin": "amos-recipes@173f4c5:patch_runtime.py",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/patch_shared_audit.py",
+      "sha256": "9d5d13ba0d55ec8a77ea287f39503ed22cc69a894ffedf227ae3f23c40d3af25",
+      "origin": "amos-recipes@173f4c5:patch_shared_audit.py",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/patch_shared_early.py",
+      "sha256": "d464c3adccd5e47c724b0ae4d11cf2e9ff3152b7428204d7f896082c8e01b550",
+      "origin": "amos-recipes@173f4c5:patch_shared_early.py",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/patch_shared_expert_padding.py",
+      "sha256": "5ca5a79e2b8eee33d4ef82edef5715d3f25475f6a2a2ab357182fe285ff65cb9",
+      "origin": "amos-recipes@173f4c5:patch_shared_expert_padding.py",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/patch_shared_zero_elision.py",
+      "sha256": "7c505894806e8f75e8d4f10c1a171c9b8bcb67823720f7297fb1b815ac61203c",
+      "origin": "amos-recipes@173f4c5:patch_shared_zero_elision.py",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/patch_stable_attention_norm.py",
+      "sha256": "4521b56552c45dc185138f1ae7d78cb258989e6251d16be60dcf15c521bb4d54",
+      "origin": "amos-recipes@173f4c5:patch_stable_attention_norm.py",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/patch_stable_prefill_reduce.py",
+      "sha256": "79ada112193c4460d3e2e0f155d29d17e66aaafd8099ce1f750d056ca98519bb",
+      "origin": "amos-recipes@173f4c5:patch_stable_prefill_reduce.py",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/patch_tma_store_order.py",
+      "sha256": "182286c06035566db6cb33d7b64c11d6813906ed61bbcf582353b056470a904e",
+      "origin": "amos-recipes@173f4c5:patch_tma_store_order.py",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/rocenante/LICENSE-APACHE-2.0",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "origin": "b12x/vllm import; see adjacent PROVENANCE.md",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/rocenante/PROVENANCE.md",
+      "sha256": "5093ba0c9f98e38e825045c2e1d1b7cb48106fb506814cc6f4d9c66d1e4949da",
+      "origin": "b12x/vllm import; see adjacent PROVENANCE.md",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/rocenante/UPSTREAM.md",
+      "sha256": "ed7299eb87a76701b888fe096a674da8fb4b2a563e4054c997f57faab0db74e6",
+      "origin": "b12x/vllm import; see adjacent PROVENANCE.md",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/rocenante/b12x_roce_all_reduce.py",
+      "sha256": "ea8a0f8515c82b7d57f4c085287f4dc106de745fbf2dd5721403072aeaf75114",
+      "origin": "b12x/vllm import; see adjacent PROVENANCE.md",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/rocenante/roce/__init__.py",
+      "sha256": "17070372720121037728d2a3fdd9f53739929c751f1e17f16a124ce8991c589e",
+      "origin": "b12x/vllm import; see adjacent PROVENANCE.md",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/rocenante/roce/_allgather_cute.py",
+      "sha256": "377ebaf078a5877f8cfbd90de9ba0fb9f65e7a2fa103ea29b1b2841e63a31eeb",
+      "origin": "b12x/vllm import; see adjacent PROVENANCE.md",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/rocenante/roce/_cute_intrinsics.py",
+      "sha256": "11737796a80a0966c04ee347d5ef83a662bde16dc188022134d2cbaa1567410b",
+      "origin": "b12x/vllm import; see adjacent PROVENANCE.md",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/rocenante/roce/_oneshot_cute.py",
+      "sha256": "a2328b66d64a81484b78aa946bf37032cd997d6594c2047448b42886ada0a02d",
+      "origin": "b12x/vllm import; see adjacent PROVENANCE.md",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/rocenante/roce/_proxy.py",
+      "sha256": "6f951679abd73e76d394eaa23803fe54eb70263fcec688635074455ee10c166c",
+      "origin": "b12x/vllm import; see adjacent PROVENANCE.md",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/rocenante/roce/_roce_proxy.c",
+      "sha256": "5e09786ebe98981f8ea1b50cc5a914bce98c379a33072f6ae0a20046f601544d",
+      "origin": "b12x/vllm import; see adjacent PROVENANCE.md",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/rocenante/roce/api.py",
+      "sha256": "aaa3dac7a1e06cd8ee54ac1d722dfa1a58d1c1a02118f12b54ed9b763d6fed68",
+      "origin": "b12x/vllm import; see adjacent PROVENANCE.md",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/rocenante/roce/roce_oneshot.py",
+      "sha256": "3e97805f64428cfc4cea352e77e8c2bd982fcff317a3973c826f0e98ef731ed9",
+      "origin": "b12x/vllm import; see adjacent PROVENANCE.md",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/rocenante/source-lock.json",
+      "sha256": "5c97499655cd58b8476297b8c52b9a3e4dccc7066eeb56b0fdb8871d0fd99cf0",
+      "origin": "b12x/vllm import; see adjacent PROVENANCE.md",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/rocenante/test_b12x_roce_health.py",
+      "sha256": "1d2e255457687d59c8a67ee073cccde5d1e509bf15125c51a9596ccf87a12fa1",
+      "origin": "b12x/vllm import; see adjacent PROVENANCE.md",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/rocenante/worker-health-class.txt",
+      "sha256": "f22919c26accae9dbd8f5a305947bd158e1eb0ef582eb4d50a12b322f1bb1b5c",
+      "origin": "b12x/vllm import; see adjacent PROVENANCE.md",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/rocenante/worker-health-methods.txt",
+      "sha256": "ce7769f9ca4891c57ed45f567eb874106ae068192101294e90ad4a7222f8438e",
+      "origin": "b12x/vllm import; see adjacent PROVENANCE.md",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/runtime-source-lock.json",
+      "sha256": "be4f14f18243461e8acda59fad9e23fec445fea0148104b5c380150c2cd2d699",
+      "origin": "amos-recipes@173f4c5:runtime-source-lock.json",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/squash_patch_layers.py",
+      "sha256": "1222a1c210adf96f50343c9a31ef796a6491136ebac2bd3c3e2eef0acaf82625",
+      "origin": "amos-recipes@5bd4d47ce20866232283569ed2803b460728de8d:runtime/exl3-tp6/squash_patch_layers.py",
       "change": null
     },
     {
@@ -3686,244 +3914,46 @@
       "change": null
     },
     {
-      "path": "benchmarks/analyze_mtp_matrix.py",
-      "sha256": "d521a7610a2c8809a4a48eae89d744b3e802597caf8ffca0290e9fd6774a816a",
-      "origin": "amos-recipes@d0486aaf699729638c36fafa1e46e3fe74fe3dd0:runtime/exl3-tp6/analyze_mtp_matrix.py",
+      "path": "runtime/vllm/test_prefill_budget.py",
+      "sha256": "4d9453660d421c398951c914d3de2eea4de52b597b27939cc60b4d7ec003bfee",
+      "origin": "amos-recipes@5bd4d47ce20866232283569ed2803b460728de8d:runtime/exl3-tp6/test_prefill_budget.py",
       "change": null
     },
     {
-      "path": "benchmarks/mtp-fixtures.json",
-      "sha256": "542ce05b3bdc49d352097b31a9553f152ee1cf597445570858fd15d35681aadd",
-      "origin": "amos-recipes@e788e69b84038f213ec3623b3eb86312ee4122b3:qualification/serving-optimization-20261003/mtp-fixtures.json",
+      "path": "weights/amos_exl3_tp6.py",
+      "sha256": "3756c20c7d4aaffac30e22f218621f96264c14f8a23c9f5a1bb3a276a5e77693",
+      "origin": "amos-recipes@173f4c5:amos_exl3_tp6.py",
       "change": null
     },
     {
-      "path": "results/mtp-first-pass.json",
-      "sha256": "775fb2a489321e41031f8ce04ccc536af9b665d6ecd8256d97adbf81b55e0b11",
-      "origin": "amos-recipes@e788e69b84038f213ec3623b3eb86312ee4122b3:qualification/serving-optimization-20261003/mtp-first-pass.json",
-      "change": "Add source revision; selected timing/quality metadata only."
-    },
-    {
-      "path": "benchmarks/mtp_matrix.py",
-      "sha256": "a81f2502f3bc9516e0495897afa7102c73fc23bf38cdc76c3e32a814ab6fb155",
-      "origin": "amos-recipes@d0486aaf699729638c36fafa1e46e3fe74fe3dd0:runtime/exl3-tp6/{mtp_trials.py,cache_reuse.py,mixed_prefill.py}",
-      "change": "Portable API/key-file client; external operator owns policy/image/guard verification. Add18-cell C1..C4 candidate matrix; measurement bodies unchanged."
-    },
-    {
-      "path": "runtime/vllm/amos_mtp_costs.json",
-      "sha256": "bc00bb014bfc46ac5cdfa8fe5d717c44ec456f19191dae5af447da7b5074fd7f",
-      "origin": "amos-recipes@e788e69b84038f213ec3623b3eb86312ee4122b3:runtime/exl3-tp6/amos_mtp_costs.json",
+      "path": "weights/checkpoint-manifest.json",
+      "sha256": "a69b3ea8f972c374bdaf67a6202ab0381ff5e3bdfcf0e27aa630426bfb50c602",
+      "origin": "amos-recipes@173f4c5:checkpoint-manifest.json",
       "change": null
     },
     {
-      "path": "benchmarks/mtp_overlap_cost.py",
-      "sha256": "41f10410541c336db8344b1fb785011769229c41231569eade5f469b0eafc8cd",
-      "origin": "amos-recipes@d0486aaf699729638c36fafa1e46e3fe74fe3dd0:runtime/exl3-tp6/mtp_overlap_cost.py",
-      "change": "Use portable stream/idle imports and external host guards; identical native-counter timing math, memory field null."
-    },
-    {
-      "path": "benchmarks/mtp_costs.py",
-      "sha256": "012ff965baa58dd16303809421f05e690d7408aa64971c5d0b138b61924538df",
-      "origin": "amos-recipes@d0486aaf699729638c36fafa1e46e3fe74fe3dd0:runtime/exl3-tp6/{mtp_cost_round.py,mtp_overlap_cost.py}",
-      "change": "Portable one-policy calibration CLI; external operator applies/acknowledges policy and owns host guards. Verify frozen render hashes; preserve warmups/cells/counters and failed-cell retention."
-    },
-    {
-      "path": "benchmarks/fit_mtp_costs.py",
-      "sha256": "429d4347595958abc8fdccaf6959fbcbe75eb9ec66d8528e7a9d7362f5c3bdb0",
-      "origin": "amos-recipes@d0486aaf699729638c36fafa1e46e3fe74fe3dd0:runtime/exl3-tp6/fit_mtp_costs.py",
-      "change": "Import control validation through portable mtp_matrix; fit math unchanged."
-    },
-    {
-      "path": "results/mtp-repeated-matrix.json",
-      "sha256": "fe997b3ceb962aef1211380ac5d7a7abe75306d38204f3bacca12b79b3fb5e35",
-      "origin": "amos-recipes@d0486aaf699729638c36fafa1e46e3fe74fe3dd0:qualification/serving-optimization-20261003/mtp-three-visits-summary.json",
-      "change": "Add source revision."
-    },
-    {
-      "path": "results/mtp-calibration.json",
-      "sha256": "2592cd500895571e0dc7a745afa8e9af0ef4ec2ff9eaab9cf61acb3f0cc6cfdc",
-      "origin": "amos-recipes@d0486aaf699729638c36fafa1e46e3fe74fe3dd0:qualification/serving-optimization-20261003/mtp-calibration-summary.json",
-      "change": "Add source revision."
-    },
-    {
-      "path": "results/mtp-calibrated-cost-fit.json",
-      "sha256": "71c4ff2667f98847c4d6d451e473798d8eafebf87b08b511913c50acde228bc0",
-      "origin": "amos-recipes@d0486aaf699729638c36fafa1e46e3fe74fe3dd0:qualification/serving-optimization-20261003/mtp-calibrated-cost-fit.json",
-      "change": "Add source revision."
-    },
-    {
-      "path": "results/mtp-calibration-observations.json",
-      "sha256": "df2c5587d92effa96cb97293a0a0d97193260315e2f6f02a0095f551a6dabb73",
-      "origin": "amos-recipes@d0486aaf699729638c36fafa1e46e3fe74fe3dd0:qualification/serving-optimization-20261003/mtp{5,6,7}-cost-r{0,1,2}-fixed*-bench.json",
-      "change": "Select counter observations, overlap bounds, client timing/token hashes and eligibility checks from72 cells; preserve source receipt hashes; omit response streams and private operator state."
-    },
-    {
-      "path": "results/mtp-candidate-screen.json",
-      "sha256": "01f0c9e0f75caca3bbea329f08963be64ae6eccec2c2b184413bbfcca9a42bc4",
-      "origin": "amos-recipes@e24ee612a65f4e94006e45a6ab7edf52a69b054b:qualification/serving-optimization-20261003/mtp8-screen-summary.json",
-      "change": "Add local source revision; selected synthetic summary only, no private host mappings or response bodies."
-    },
-    {
-      "path": "results/mtp-outcome.json",
-      "sha256": "232a31d5150f39e594635a5b1330783513b732cdab6d578fa6e08c18a8252f6b",
-      "origin": "amos-recipes@e24ee612a65f4e94006e45a6ab7edf52a69b054b:qualification/serving-optimization-20261003/mtp-outcome.json",
-      "change": "Add local source revision; selected synthetic summary only, no private host mappings or response bodies."
-    },
-    {
-      "path": "results/communication-dual-roce.json",
-      "sha256": "8dca3419eb764860010da7e471fbef8e54f609ac10b40304c14d493e13485c5a",
-      "origin": "amos-recipes@c69f8b66c6c5ca72a00b732c589bc2a55bd89c3e:qualification/serving-optimization-20261003/comm2-balanced-comparison.json",
-      "change": "Sanitized selected metrics, numerical summary, acceptance flags and original receipt hashes; no host mappings or response bodies."
-    },
-    {
-      "path": "results/communication-samples.json",
-      "sha256": "96383547aa508103cb7234b8651086b15570be7d39bd60e0fbaa2d59c966358c",
-      "origin": "amos-recipes@c69f8b66c6c5ca72a00b732c589bc2a55bd89c3e:qualification/serving-optimization-20261003/comm2-balanced-comparison.json",
-      "change": "Selected scalar samples from the eight source receipts identified inside; verified exported medians reproduce the local summary."
-    },
-    {
-      "path": "results/communication-profile.json",
-      "sha256": "cee739f5b4a3ad0a568fc171482c27494be8aee5c03a6d8aae01b7ac7bb9e2e6",
-      "origin": "amos-recipes@c69f8b66c6c5ca72a00b732c589bc2a55bd89c3e:qualification/serving-optimization-20261003/comm1-summary.json",
-      "change": "Selected per-case rank summaries and limitations; raw traces and host inventory excluded."
-    },
-    {
-      "path": "results/communication-sizes.json",
-      "sha256": "31b9791e956a9134be7e34264704c83eb80c3e3546b942ef4b1f8f7028a17030",
-      "origin": "amos-recipes@3e692ad3be63e06a7f2cde03c0870373288fa391:qualification/serving-optimization-20261003/comm4-size-summary-final.json",
-      "change": "Add local source revision; selected numerical/profile/acceptance fields and original receipt hashes only."
-    },
-    {
-      "path": "benchmarks/comm_sizes_host.py",
-      "sha256": "46618bd5ab97aed1cb6b544e5f27c7839c376d5e72099b2c628910da4cd7e679",
-      "origin": "amos-recipes@963f633371eee9f3ef2e0f9715401422d6c64ea5:comm_sizes_host.py",
+      "path": "weights/download_checkpoint.py",
+      "sha256": "2cdb52ca8b8db03cd2c1cc749ef9a953e31abd3d689dad59d4201409beace5d4",
+      "origin": "amos-recipes@173f4c5:download_checkpoint.py",
       "change": null
     },
     {
-      "path": "results/communication-outcome.json",
-      "sha256": "926188d7f372bdee87ac6de5f88bfecc94b3df655da06c4936a96d4106f2a06a",
-      "origin": "amos-recipes@3e692ad3be63e06a7f2cde03c0870373288fa391:qualification/serving-optimization-20261003/communication-outcome.json",
-      "change": "Add local source revision; selected numerical/profile/acceptance fields and original receipt hashes only."
-    },
-    {
-      "path": "runtime/vllm/amos_e3_capture.py",
-      "sha256": "3550bf30820b7a60015a2919f4b56b9a43a25a76f2f4721829c89af121197549",
-      "origin": "amos-recipes@c367d0b4a6bf35b0dd9f8ee607b4060b85e3465a:amos_e3_capture.py",
+      "path": "weights/shard_checkpoint.py",
+      "sha256": "2ae98ab343260cbbf43840d9a065520531e1d1d0e4cc0475625c8a0bc95c970d",
+      "origin": "amos-recipes@173f4c5:shard_checkpoint.py",
       "change": null
     },
     {
-      "path": "runtime/vllm/e3/amos_e3/diagnostic_capture.py",
-      "sha256": "3550bf30820b7a60015a2919f4b56b9a43a25a76f2f4721829c89af121197549",
-      "origin": "amos-recipes@c367d0b4a6bf35b0dd9f8ee607b4060b85e3465a:amos_e3_capture.py",
+      "path": "weights/test_placement.py",
+      "sha256": "39bb07dc30da3f91be5d49ff2a3ed806df25ca302a2dbcafa7c9e45e5ed36093",
+      "origin": "amos-recipes@173f4c5:test_placement.py",
       "change": null
     },
     {
-      "path": "runtime/vllm/build_e3_capture.py",
-      "sha256": "4f14f260b94c8cc7bb13c757134e17235e6d92ea265106ccc8a314fc9128aa02",
-      "origin": "amos-recipes@c367d0b4a6bf35b0dd9f8ee607b4060b85e3465a:build_e3_capture.py",
+      "path": "weights/verify_shard.py",
+      "sha256": "8115504fa8c91b8bb0539e8401e09a467fab178e28bfa074b481958d9d3af9a7",
+      "origin": "amos-recipes@173f4c5:verify_shard.py",
       "change": null
-    },
-    {
-      "path": "benchmarks/analyze_e3_routes.py",
-      "sha256": "1505aa60447a506802a11e80e20f7e21fadcab9556fc5541917659fc5af7a63f",
-      "origin": "amos-recipes@c367d0b4a6bf35b0dd9f8ee607b4060b85e3465a:analyze_e3_routes.py",
-      "change": null
-    },
-    {
-      "path": "benchmarks/test_e3_capture.py",
-      "sha256": "ccc5049b65534889837ab310ddc7fa5559707c4e657a0ef3650babec16606329",
-      "origin": "amos-recipes@c367d0b4a6bf35b0dd9f8ee607b4060b85e3465a:test_e3_capture.py",
-      "change": "Resolve the published runtime directory for standalone CPU tests."
-    },
-    {
-      "path": "benchmarks/e3_rows_check.py",
-      "sha256": "3f5e34ea47a1137a6b57cc29ce58769362df87d05efcbdf03bb58357a8e2e750",
-      "origin": "amos-recipes@79a2358b90fdcb5ed58bee399eb42294cd87e6ae:e3_rows_check.py",
-      "change": null
-    },
-    {
-      "path": "benchmarks/grouped_prefill_kernel_check.py",
-      "sha256": "4e4250febb544b7582842d1814c2ff76f9b3170764324502cbbd41cbf1ecca46",
-      "origin": "amos-recipes@79a2358b90fdcb5ed58bee399eb42294cd87e6ae:grouped_prefill_kernel_check.py",
-      "change": null
-    },
-    {
-      "path": "benchmarks/analyze_e3_rows.py",
-      "sha256": "3e93168262602b8665f3c0ac273850dd6727bd2b4285f069842c329a7269ed9f",
-      "origin": "amos-recipes@79a2358b90fdcb5ed58bee399eb42294cd87e6ae:analyze_e3_rows.py",
-      "change": null
-    },
-    {
-      "path": "benchmarks/e3-row32.patch",
-      "sha256": "02fc237759cf613bffee31a8e802ed8c7034f456bf622db5dd308d5e848157ea",
-      "origin": "amos-recipes@79a2358b90fdcb5ed58bee399eb42294cd87e6ae:e3-row32.patch",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/amos_e3_policy.py",
-      "sha256": "dfb452cf7e46f5e77b97498ecf14671e154c45ee810f3a7b6aa88101e121504e",
-      "origin": "amos-recipes@1ec92c9d2a3ce7c556884fb662f1ea6f1da1027c:amos_e3_policy.py",
-      "change": null
-    },
-    {
-      "path": "runtime/vllm/build_e3_rows.py",
-      "sha256": "74e31c2ba3b6b4de7987ed3d8139a69cd88cb890d014e0746650c34546e8d89c",
-      "origin": "amos-recipes@1ec92c9d2a3ce7c556884fb662f1ea6f1da1027c:build_e3_rows.py",
-      "change": null
-    },
-    {
-      "path": "benchmarks/test_e3_rows_policy.py",
-      "sha256": "f6528278ece28b807c5bc8ea824a47ab5a385151f54fc18340b10efb5d3f100e",
-      "origin": "amos-recipes@1ec92c9d2a3ce7c556884fb662f1ea6f1da1027c:test_e3_rows_policy.py",
-      "change": null
-    },
-    {
-      "path": "benchmarks/analyze_e3_public_samples.py",
-      "sha256": "cb90d905d2573807f8e85d0fe23acf1f73e9575f66f53fbcb18890d1b0350a35",
-      "origin": "amos-recipes@1ec92c9d2a3ce7c556884fb662f1ea6f1da1027c:analyze_e3_public_samples.py",
-      "change": null
-    },
-    {
-      "path": "benchmarks/ngram_source_check.py",
-      "sha256": "77485e2950a6983b308f32f173e534d686d17ad5d0326654340371e2907ef973",
-      "origin": "amos-recipes@1ec92c9d2a3ce7c556884fb662f1ea6f1da1027c:ngram_source_check.py",
-      "change": null
-    },
-    {
-      "path": "benchmarks/ngram_tensor_cpu_check.py",
-      "sha256": "a34adab02c2beb0e7fbbe2571bd74ccdf8ab7f3e47cdc675800ce4974af9ca51",
-      "origin": "amos-recipes@1ec92c9d2a3ce7c556884fb662f1ea6f1da1027c:ngram_tensor_cpu_check.py",
-      "change": null
-    },
-    {
-      "path": "results/copy-drafting-source-review.json",
-      "sha256": "cb4deecd3daff9c6b7cd37c0c2e207afe55992983948178838cc33220aa7d028",
-      "origin": "amos-recipes@1ec92c9d2a3ce7c556884fb662f1ea6f1da1027c:qualification/serving-optimization-20261003/ngram1-source-review.json",
-      "change": null
-    },
-    {
-      "path": "results/copy-drafting-cpu.json",
-      "sha256": "57672f8a5ee51d021c6ee6b9b0f53ce9aaff9b4669cba9527264e4064f81c5da",
-      "origin": "amos-recipes@1ec92c9d2a3ce7c556884fb662f1ea6f1da1027c:qualification/serving-optimization-20261003/ngram1-cpu-source-checks.json",
-      "change": null
-    },
-    {
-      "path": "results/copy-drafting-tensor-cpu.json",
-      "sha256": "b2a316d6c7f39e71c94da1183d6cd28be4d4ea7496c756e2424010325f2f6b9d",
-      "origin": "amos-recipes@1ec92c9d2a3ce7c556884fb662f1ea6f1da1027c:qualification/serving-optimization-20261003/ngram1-tensor-cpu-checks.json",
-      "change": null
-    },
-    {
-      "path": "results/e3-row32-serving.json",
-      "sha256": "9c2fc5fbcbaea7ced06a308172045e8fa2205566c0d0dc444d636009a249078e",
-      "origin": "amos-recipes@1ec92c9d2a3ce7c556884fb662f1ea6f1da1027c:qualification/serving-optimization-20261003/e33-comparison.json",
-      "change": "Allowlisted comparison, quality and selected-serving fields, with original receipt hashes; private identities and generated text omitted."
-    },
-    {
-      "path": "results/e3-row32-serving-samples.json",
-      "sha256": "7e63f5a4b4b457e09ffd1ecc66374435d92a177e89c4bc6524d7eb525d70b0d8",
-      "origin": "amos-recipes@1ec92c9d2a3ce7c556884fb662f1ea6f1da1027c:qualification/serving-optimization-20261003/e33-comparison.json",
-      "change": "All scalar timing samples and synthetic stream metadata from the source receipts; private identities and generated text omitted; standalone recomputation matches private analysis."
     }
   ]
 }

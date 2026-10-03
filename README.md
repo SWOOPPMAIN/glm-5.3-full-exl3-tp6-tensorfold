@@ -68,9 +68,10 @@ E3 prefill kernels, and target-verified copy/ngram drafting. Prompt reuse has
 been measured; smaller prefill budgets and MTP retuning were rejected for promotion.
 Dual-port communication and its bounded crossover screen are complete; retain
 the 2 MiB cutoff. [E3 row32](recipes/vllm-tp6/E3_PREFILL.md) passed component and
-full-model checks and is selected for repeatable cold-prefill gains. A native/E3
-crossover follow-up and [copy/ngram drafting](recipes/vllm-tp6/COPY_DRAFTING.md)
-remain. Copy drafting has source/CPU checks and an offline launcher; no serving
+full-model checks and is selected for repeatable cold-prefill gains. The native/E3
+component comparison passed 1,296 exact checks and favors row32 above 32 rows;
+the new boundary still needs full-model qualification. That and
+[copy/ngram drafting](recipes/vllm-tp6/COPY_DRAFTING.md) remain. Copy drafting has source/CPU checks and an offline launcher; no serving
 comparison or promotion yet.
 TensorFold development is excluded from this optimization goal.
 

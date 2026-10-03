@@ -1,0 +1,91 @@
+{
+  "at": 1791026564.2274806,
+  "image": "sha256:b4988201229054893df527528c38e8091d4d5392d44c314406e66493ec9300da",
+  "capture_files": {
+    "code": {
+      "0": {
+        "3": "daad1b43da5614d67d645d17c1caff9d75e4798cea16acca6803aadc76f48034",
+        "40": "06177b4d1aac5966a999f84da7fdc2e9b02d736cc83d9ffd816d3489cf042488",
+        "77": "988efecafae803d48ecdf9b35f04158d50320f2f73e1b27112e12f363f8dcea0"
+      },
+      "1": {
+        "3": "511c768c4a25b5c98244f2f11780666db34045ec618050c7329856a8394a0865",
+        "40": "01f84b0997bc11b1038925f14ca44685751f9d099597fd3a650950e12bf0db3d",
+        "77": "2d6122d27bdc58a3e1e1aad3e6b09f099b340017e7c2adbfaac63698cd066b8e"
+      },
+      "2": {
+        "3": "685b4a96e6611c650650bef0c103246efe13e6e9d31ca11bfd1e85b5524a34f9",
+        "40": "5284579b74d67f5e1029c504c541199aeeeaf3d27837bb14cc2eae2af91ae394",
+        "77": "be31234b5b9826114222db13438ca79fc81762c67535e77cd4d203a315ee956c"
+      },
+      "3": {
+        "3": "5eab5379d8ca653d6abf7b33f1526c0a83f81986caf461f25485c765f0908e79",
+        "40": "983db47a2bc8fb6d7d1318a2e3669b05dc6a841986eefb3e83e2bc263d8bf80c",
+        "77": "352b5117ac378112bd25a760a812e8ba8b6f12f2315b239be71bce0c97857344"
+      },
+      "4": {
+        "3": "09bbe4f7164676a00a68891c4bfccd9882f43d4ca791c1a03215094c78e1b919",
+        "40": "f0a735bb7f9038f6c9bbacc3752de5fa64a66d7e3f6b9721fecb112f6fad1ed9",
+        "77": "80cff87b60dd6b7ba3e807886700e4bc77b12dc36389cd7001ff91082da5d9e0"
+      },
+      "5": {
+        "3": "b10153af01c4d067da4c5645671920f2509e7670c439641db97cac58ea3281b7",
+        "40": "8eccb04781ab25b959497c435d0ee2edb3e0e5788f18eedc1afe3af7feaf63dd",
+        "77": "cbee5c064e74488deccf177017f5ddbb6f00eaa865edf0837735a64b7295bc1f"
+      }
+    },
+    "prose": {
+      "0": {
+        "3": "cfe448ffa6662e5c5597917e2da2e1a1443dc1d83664e654ed5c93fd1683b6ef",
+        "40": "25d94558d9b221cd15d27a55a994ed7fbfb6f301bf9432a6c36f4cf0cc04de47",
+        "77": "e4949bb0d5a837ba474a9d4de3f594513403417333087c6003a276be4e8c8097"
+      },
+      "1": {
+        "3": "37f4a3587c31b566d40d911775c623140f15c3dfeecce9b25ee738d2d7b50c3b",
+        "40": "0ba8c18497f7f488677c086527b7f06224bdaa225cf546483e4d63172b2d6a0a",
+        "77": "a8cf64a35ef0219e90d21b2bde72a1b7ebad49d521a8f2c747607ff940b66c72"
+      },
+      "2": {
+        "3": "fcbdc2a164ac7e2d07b2e023476c1161916734a791dbdfbc417ef75ffcf59ac7",
+        "40": "1c5de66e5a7c9f6391973385d8c68776138ac67e9c4dcd0c13bd370712d57f42",
+        "77": "b2f72ec1a03ccf4ded745e53b3beedab5f28c8a2c5311d8ffb93e898013c7599"
+      },
+      "3": {
+        "3": "297663773c47d8a37a02c4ac4b1c9ef64d306206e761259b4f78cdeb7f694293",
+        "40": "b542b6edb2ff4af4ee83e553f275b55cb6d64f14de6c05d1d245592780005050",
+        "77": "52ba9f75cc03dc87113f7eb4314dc3aa306a295f596eba3c7cc34ccb7363b5b5"
+      },
+      "4": {
+        "3": "188ef62cc9e94fe33de076024f12c321c7debf337016a8ccb45f9488076186b0",
+        "40": "ef334fdae1916c52fec994842acf525a351e984aed07fac215c296930dbb08a7",
+        "77": "7d19974d0d1bae2942c7efb0a58fda46d1fca8a56d66a200875dda455ffb1d03"
+      },
+      "5": {
+        "3": "f01032a0099528da08a5d45dce4e1cd52e62ae1c8c8ad608e884bb0828468abe",
+        "40": "4b1f33bdbbdbe2ba2564a4246eb12f7b0a83ff27ef10d512e587a6cf9654c189",
+        "77": "55d4f9669fa7d3965b458ad46ffe90a7acb54b05b0e3e85d4e241435f3493863"
+      }
+    }
+  },
+  "installed_files": {
+    "/usr/local/lib/python3.12/dist-packages/vllm/amos_e3/runtime.py": "81ec16e93229a1e2305f01ea8f04a17a639122ce8a9b007375f5d8d197816eba",
+    "/usr/local/lib/python3.12/dist-packages/vllm/amos_e3/grouped_fragments.cubin": "799dd2587446158fad03aa6bf212072fff96a322bb8fa21f791fc53331dd847f",
+    "/usr/local/lib/python3.12/dist-packages/vllm/amos_e3/native_epilogues.py": "2277e652b9a56d36e609393a9b051c449313d40efd470936acfe6fc9df279212",
+    "/usr/local/lib/python3.12/dist-packages/vllm/amos_e3/geometry.py": "096e373105f40fca132c6aee89980cb236b2b009ba5c6bc234487da1f40caf50",
+    "/usr/local/lib/python3.12/dist-packages/vllm/amos_exl3_tp6.py": "3756c20c7d4aaffac30e22f218621f96264c14f8a23c9f5a1bb3a276a5e77693",
+    "/usr/local/lib/python3.12/dist-packages/vllm/model_executor/layers/quantization/exl3.py": "c5dd0c5d4025cd04832db5c2288a5d9aef1742358716ba53e60076b011ee22ed",
+    "/usr/local/lib/python3.12/dist-packages/b12x/moe/_shared/kernels/w4a16/prepare.py": "7de6f672235fda8e9d1e1f8ea676c2026201dc65f5743a02d366e19c59a8e7fb",
+    "/usr/local/lib/python3.12/dist-packages/b12x/moe/_shared/kernels/w4a16/mixed_trellis.py": "4d5140de84e3dde5875ff75ad95c9a62b6041b5dde2e69f0fb96562319aabd78",
+    "/usr/local/lib/python3.12/dist-packages/b12x/moe/_shared/kernels/w4a16/kernel.py": "524af13b672674cd9ce1fd543163bc0b65fa5a6ac62057307da0cd6c3cda3fb8",
+    "/usr/local/lib/python3.12/dist-packages/vllm/amos_grouped_prefill.py": "bea184c0a42967bf52e1306b1fecedb2eaa4533451402b98180e6e42046ec0fb",
+    "/usr/local/lib/python3.12/dist-packages/vllm/amos_e3/policy.py": "dfb452cf7e46f5e77b97498ecf14671e154c45ee810f3a7b6aa88101e121504e",
+    "/usr/local/lib/python3.12/dist-packages/vllm/amos_e3/runtime_row32.py": "87c88fa29105eec253c75691128721e31c99dbba42181cf3feb14e3853b5cfa0",
+    "/usr/local/lib/python3.12/dist-packages/vllm/amos_e3/grouped_fragments_row32.cubin": "319dca90efb470b3e7eae708365c10f123c9f04751e06f1680c9df7bca2ce1ad"
+  },
+  "probe_files": {
+    "grouped_prefill_kernel_check.py": "4e4250febb544b7582842d1814c2ff76f9b3170764324502cbbd41cbf1ecca46",
+    "e3_crossover_check.py": "f7886c71c6795a37ee9c9dde761be582678a3732144034426edf1e0079627538"
+  },
+  "plan_sha256": "3562b0d58bb24af9025ad8ede76376db925a01b26e6812d09e9fec5aead036f1",
+  "operator_sha256": "c0a5ad7fb59043fa9a2bf0ba93384b01a202a3894f36b49620c84a84dc4db0ea"
+}
