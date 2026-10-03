@@ -1,6 +1,7 @@
 # vLLM integration source
 
-Source snapshot from Swoopp's P24-era full GLM TP6 work. The production image
+Source snapshot from Swoopp's P24-era full GLM TP6 work, with unchanged direct
+integration modules verified against the current P27 workspace. The production image
 is identified in [the recipe](../../recipes/vllm-tp6/README.md); these files
 alone are not a complete image build context.
 
@@ -13,5 +14,5 @@ alone are not a complete image build context.
   activation and ordered-reduction changes. AGPL-3.0; vendor headers retain MIT.
 
 Several diagnostic modules and the early shared-expert experiment are inactive
-in P24. Use the recorded image and tuning to identify the serving configuration.
+in production. Use the recorded image and tuning to identify the serving configuration.
 Do not run all installers in filename order or apply them to arbitrary vLLM versions.

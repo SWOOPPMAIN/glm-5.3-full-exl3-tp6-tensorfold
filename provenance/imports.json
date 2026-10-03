@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-01",
+  "date": "2026-10-03",
   "files": [
     {
       "path": "experimental/tensorfold/LICENSE",
@@ -3339,8 +3339,8 @@
     },
     {
       "path": "recipes/vllm-tp6/tuning.json",
-      "sha256": "4632a03977b2e85e6a917cfb5502de267353375ea147b40a1fb0a482febeadaa",
-      "origin": "P24 serving tuning",
+      "sha256": "fc7e38e9d7daafdebee8344f3a95536798314b10a3d2dfc8538ebd2ed0181e36",
+      "origin": "amos-recipes@bb49dce1a426a80e7c8c638a5b247b1e865dfb69:p27-nccl-dual-tuning.json",
       "change": null
     },
     {
@@ -3588,6 +3588,24 @@
       "sha256": "5d43feb13acd077642350634abdf50f180e439ec44cfd7d5213f24523d2f1999",
       "origin": "tensorfold-port candidate 82b24104bf7fefea69788d5d493eeae5c5493d45 diff from qualified c79902ec67c9e516e67b9aca82a851c9b7a49c91",
       "change": null
+    },
+    {
+      "path": "results/p27-serving.json",
+      "sha256": "9c0e8ee79ae7c1e3d8aef1447e743b25749a2d3a6b5268762cf29e5b34862595",
+      "origin": "amos-recipes@bb49dce1a426a80e7c8c638a5b247b1e865dfb69: selected fields from tfp38-after-summary.json, tfp38-after-strict-summary.json, tfp38-after-long-summary.json",
+      "change": "Public measurement fields only; private fleet mappings, paths, IDs and application data omitted."
+    },
+    {
+      "path": "results/production-hardening.json",
+      "sha256": "84d41c4d3b47d7f2e08bf41ae2e4c2b44e4685d59258e64a054e0aed46d4908c",
+      "origin": "amos-recipes@bb49dce1a426a80e7c8c638a5b247b1e865dfb69: selected fields from hardening1-summary.json, hardening1-reboot.json, hardening1-controller-restart.json, hardening1-application-acceptance.json, hardening1-observation.json, hardening1-exclusive-gpu.json",
+      "change": "Public measurement fields only; private fleet mappings, paths, IDs and application data omitted."
+    },
+    {
+      "path": "results/tensorfold-latest.json",
+      "sha256": "d72fef89c1dd61210cdb80f2fb429c26ca937fd34aa5eb248dc05daa609b5d9f",
+      "origin": "amos-recipes@bb49dce1a426a80e7c8c638a5b247b1e865dfb69: selected fields from tfp54-benchmark-summary.json, tfp49-quality-summary.json, tfp56-expert-summary.json, tfp57-latent-summary.json, p25r2-component-summary.json",
+      "change": "Public measurement fields only; private fleet mappings, paths, IDs and application data omitted."
     }
   ]
 }

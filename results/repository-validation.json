@@ -17,5 +17,14 @@
     "TensorFold full-model serving integration remains incomplete."
   ],
   "pending_scheduling_cpu_checks": 125,
-  "pending_scheduling_source_revision": "82b24104bf7fefea69788d5d493eeae5c5493d45"
+  "pending_scheduling_source_revision": "82b24104bf7fefea69788d5d493eeae5c5493d45",
+  "latest_publication": {
+    "date": "2026-10-03",
+    "scope": "Current P27 tuning, selected measurement summaries, hardening operations and proposed experiments. Historical TensorFold executable snapshot retained.",
+    "repository_check": true,
+    "import_hashes_verified": 601,
+    "placement_tests_passed": 4,
+    "node_bash_syntax": true,
+    "inference_benchmarks_run": false
+  }
 }

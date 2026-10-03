@@ -5,8 +5,8 @@ the snapshot as imported; update a file's record when intentionally changing it.
 
 | Component | Pin |
 | --- | --- |
-| Swoopp serving source | `amos-recipes` commit `173f4c5449a38d05057e1c342d1b44655b024ab8` |
-| Swoopp TensorFold GPU-qualified source | `c79902ec67c9e516e67b9aca82a851c9b7a49c91` |
+| Historical serving source export | `amos-recipes` commit `173f4c5449a38d05057e1c342d1b44655b024ab8` |
+| Bundled historical TensorFold source | `c79902ec67c9e516e67b9aca82a851c9b7a49c91` |
 | TensorFold base | `9cd52ab4daba68ddd09be89be8f23ad43175e821` (v0.5.0) |
 | Imported Mia recipe | `ed026ef92d1650120dada1294a112acb6c8f2f48` (52 patches) |
 | Kindling E3 import | `0ecf21ebcccd924f7f7c47eda0333282d8e177f5` |
@@ -14,7 +14,8 @@ the snapshot as imported; update a file's record when intentionally changing it.
 
 The source revision is distinct from a metadata-only ledger commit. Each
 experiment identifies its executed source revision in the results; the
-current snapshot matches TFP21.
+bundled executable TensorFold snapshot matches TFP21. Later local results through
+TFP57 are published separately; their source revisions are recorded in each summary.
 
 TensorFold files under `src/` are byte-identical to the qualified revision.
 Earlier GPU probe scripts replace a private fabric address with `MASTER_ADDR`;
@@ -32,3 +33,12 @@ omitted: the current model pin is the checkpoint manifest above.
 Raw fleet receipts, private deployment manifests, credentials, and application
 responses remain outside this repository. Results are selected measurement
 fields with original receipt hashes, not a wholesale copy of operational logs.
+
+## October 3 deployment closeout export
+
+Current local deployment closeout: `bb49dce1a426a80e7c8c638a5b247b1e865dfb69`.
+Selected public results retain SHA256 hashes of their original receipts. The P27
+tuning file is imported exactly. Existing direct vLLM integration modules were
+checked against the current workspace and were unchanged; this is not a complete
+P27 image export. No later TensorFold source refresh is implied by the result reports.
+Private node addresses, container IDs, credentials and application records remain local.

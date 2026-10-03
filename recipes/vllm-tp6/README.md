@@ -2,18 +2,17 @@
 
 ## What this recipe reproduces
 
-The current P24 configuration on six GB10 nodes: original 3.25 bpw experts,
+The current P27 configuration on six GB10 nodes: original 3.25 bpw experts,
 MXFP8 target/draft dense paths, native MTP up to four draft tokens, adaptive
-request/phase scheduling, and native/E3 prefill dispatch.
+request/phase scheduling, and native/E3 prefill dispatch, and two validated NCCL RoCE rails.
 
-**Prerequisite:** the retained, qualified P24 image must already be installed
-on every node. This first private repository snapshot does not yet build that
+**Prerequisite:** the retained, qualified P27 image must already be installed
+on every node. This repository does not yet build that
 image from a clean machine or provide a downloadable registry image.
 Do not substitute a stock vLLM image: it lacks the required mixed-K/TP6 patches.
 
 ```text
-Image ID: sha256:801206ed6b1dd8abbc75dc877b3ba0ee56d25fda564f1a0cd998f85c4efeaf0f
-Local tag: amos/glm53-exl3-tp6:prefill-dispatch-d1506a3bc463cecc
+Image ID: sha256:8935c96fe1670c4016bbc47c905477cb652a5a2b89214c0e952920d2ed232e90
 ```
 
 A Docker image ID is not a registry digest. Move an existing image with
@@ -28,7 +27,7 @@ A Docker image ID is not a registry digest. Move an existing image with
 - Linux cgroup v2, Docker with NVIDIA support, systemd, and the host memory guard.
 - A quiet, drained fleet with sufficient memory headroom before starting.
 
-| Setting | P24 value |
+| Setting | P27 value |
 | --- | --- |
 | TP / nodes / ranks | 6 / 6 / 0–5 |
 | Profile | `mtp4` |
@@ -37,7 +36,7 @@ A Docker image ID is not a registry digest. Move an existing image with
 | `KV_CACHE_MEMORY_BYTES` | `25769803776` (24 GiB) |
 | Maximum batch tokens | 3072 |
 | Maximum sequence length / admitted requests | 360000 / 4 |
-| Observed shared cache | 470847 tokens |
+| Shared cache slots | Not re-counted in the hardening pass; see historical P24 measurement |
 | Memory guard | 8 GiB available floor sustained for 2 seconds, plus pressure/refault checks |
 
 Four-request admission does not mean four simultaneous 360K contexts fit.
@@ -58,8 +57,16 @@ guards; its site-specific host mappings and credentials are deliberately absent 
 4. Use host network/IPC, GPU access, `/dev/infiniband`, unlimited memlock,
    `IPC_LOCK`, and the host's performance CPU cores.
 5. Set `NODE_RANK`, `HEAD_IP`, `VLLM_HOST_IP`, `NCCL_SOCKET_IFNAME`,
-   `GLOO_SOCKET_IFNAME`, `NCCL_IB_HCA`, `NCCL_IB_GID_INDEX`, `B12X_ROCE_HCA`,
+   `GLOO_SOCKET_IFNAME`, `NCCL_IB_HCA`, `B12X_ROCE_HCA`,
    and `B12X_ROCE_GID_INDEX`. Use the **qualified port** for each host.
+   P27 uses both validated fabric HCAs for NCCL with IPv4 RoCEv2 and an
+   address-range filter for your fabric (`NCCL_IB_ADDR_FAMILY=AF_INET`,
+   `NCCL_IB_ROCE_VERSION_NUM=2`, and a site-specific `NCCL_IB_ADDR_RANGE`).
+   Leave a fixed `NCCL_IB_GID_INDEX` unset for this NCCL policy. Validate
+   per-host GIDs against live interface/subnet state; keep the custom b12x
+   collective on its separately qualified HCA and explicit GID.
+   `AMOS_TP6_NCCL_RAILS=2` records the controller selection policy; the node
+   entrypoint alone does not discover or configure a second fabric.
 6. Apply the table above and [tuning.json](tuning.json) as environment values,
    plus `VLLM_ENABLE_ROCE_ALLREDUCE=1`, `VLLM_WORKER_MULTIPROC_METHOD=spawn`,
    `OMP_NUM_THREADS=1`, `OPENBLAS_NUM_THREADS=1`, `MKL_NUM_THREADS=1`.
@@ -84,6 +91,11 @@ inside the container; no key value belongs in a Docker command or Git.
 [`runtime/vllm/`](../../runtime/vllm/README.md) preserves our integration
 modules, patch installers, collective sources, and E3 source with licenses.
 Some files are diagnostic helpers or inactive experiments; source presence
-does not mean the P24 image executes them. The patch installers check specific
+does not mean the P27 image executes them. The patch installers check specific
 input hashes and are not a build-order script. Portable image assembly and a
 general fleet launcher remain [explicit release work](../../docs/ROADMAP.md).
+
+## Host persistence and recovery
+
+See [operating notes](OPERATIONS.md) for the pinned Spark OS, permanent boot
+selection, persistent dual-fabric settings, memory guards and recovery scope.

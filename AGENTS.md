@@ -8,5 +8,6 @@
 - Do not launch GPU probes alongside the serving model. Require a drained,
   explicitly owned window and fresh exact-container memory guards.
 - Preserve forward-only iteration; never silently restore older serving configurations.
-- TensorFold full-model family registration and serving integration remain incomplete.
+- Production uses vLLM P27. TensorFold is deferred because strict fidelity fails;
+  distinguish the bundled historical TFP21 source from later local result summaries.
 - Update `provenance/imports.json` when refreshing imported files, preserving their origin.

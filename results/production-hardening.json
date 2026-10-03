@@ -1,0 +1,63 @@
+{
+  "date": "2026-10-03",
+  "status": "production_hardening_passed",
+  "backend": "vllm",
+  "profile": "P27",
+  "image_id": "sha256:8935c96fe1670c4016bbc47c905477cb652a5a2b89214c0e952920d2ed232e90",
+  "os_version": "0.9.2-1019-64k-amos3",
+  "kernel": "7.0.0-1019-nvidia-64k",
+  "driver": "580.178.04",
+  "nodes_rebooted_and_verified": 6,
+  "permanent_os_default": true,
+  "fabric_network_persistent": true,
+  "fabric_mtu": 9000,
+  "compaction_proactiveness": 0,
+  "compaction_persistent": true,
+  "management_route_preserved": true,
+  "controller_restart_preserved_six_containers": true,
+  "additional_controller_restart_launches": 0,
+  "native_acceptance_passed": true,
+  "application_acceptance": {
+    "status": "passed",
+    "checks": [
+      "chat_answer",
+      "chat_catalog",
+      "chat_memory",
+      "code",
+      "native_capacity",
+      "native_catalog"
+    ]
+  },
+  "observation_seconds": 90.408,
+  "same_six_containers_during_observation": true,
+  "final_minimum_available_gib": 13.14,
+  "current_guards_clear": true,
+  "exclusive_gpu_ownership_verified": true,
+  "original_weights_changed": false,
+  "inference_runtime_changed": false,
+  "soak_required": false,
+  "soak_started": false,
+  "tensorfold_serving": false,
+  "incident": {
+    "cause": "A separate Flash canary launched on two production nodes during the first restart, exhausting one node's available memory.",
+    "protection": "Exact-container guard stopped the affected full-model worker below the 8 GiB floor.",
+    "resolution": "User prioritized full TP6; competing canaries stopped, their Docker restart policies disabled, and the same current TP6 config resumed.",
+    "guard_thresholds_changed": false,
+    "final_native_and_application_checks_passed": true
+  },
+  "recovery_scope": "Six controlled reboots under a drained, owned maintenance hold; manually resumed current configuration. Supervisor restart preserved live container identities. No new unattended failure or power-loss test.",
+  "limitations": [
+    "Brief acceptance plus 90-second observation; no long-soak claim.",
+    "A node failure interrupts the TP6 model; bounded fleet recovery is not high availability.",
+    "Memory-guard trips require operator investigation."
+  ],
+  "source_revision": "bb49dce1a426a80e7c8c638a5b247b1e865dfb69",
+  "raw_receipt_sha256": {
+    "hardening1-summary.json": "06890f8a8c101bf8b830d5cd325ba769eae9c9c87231cab4cb73377c3758efc9",
+    "hardening1-reboot.json": "6f3182ed817d0536563f37a4e1c78f25c84a766b8f3f16b21ebfdc970bce89a5",
+    "hardening1-controller-restart.json": "4661f9d2e0e0bcfd960d5571534839eda0ecdbdd650cd013ca7c97f5bcb3504c",
+    "hardening1-application-acceptance.json": "119bc69bcc0615092331fd72c34e8aaed170fa66ad1a7108c8fa136373cbff24",
+    "hardening1-observation.json": "69980ffc62eb42cc6c34cd86f728b2d50f4918004e1fa8bfc84a99ac73e0ae02",
+    "hardening1-exclusive-gpu.json": "4ebc2d91fb3d038eec7dac419fdc5140622a82ecde4aac10da6601902da2affe"
+  }
+}

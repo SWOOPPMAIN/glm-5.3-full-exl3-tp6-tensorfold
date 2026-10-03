@@ -1,0 +1,64 @@
+# Operating the current six-Spark deployment
+
+[Public closeout evidence](../../results/production-hardening.json).
+Original 3.25 bpw weights and the qualified P27 inference configuration are retained.
+
+## Pinned host and runtime
+
+| Component | Verified deployment |
+| --- | --- |
+| OS | Kindling-derived `0.9.2-1019-64k-amos3` |
+| Kernel | `7.0.0-1019-nvidia-64k`; 64 KiB pages |
+| NVIDIA driver | `580.178.04` |
+| Runtime | P27 image ID in the [serving recipe](README.md) |
+| Fabric | Two validated NCCL rails; both addresses and MTU 9000 persistent |
+| Memory setting | `vm.compaction_proactiveness=0`, persistent |
+| Protection | Exact-container guard: 8 GiB available for 2 seconds, plus PSI/refault/swap checks |
+
+Kindling Spark OS imports network configuration from the persistent host disk
+into its runtime overlay. Persist changes in those host-disk sources, not only
+the running overlay. Our five dedicated-fabric nodes use netplan; the node whose
+second NIC also carries management uses its persistent NetworkManager connection,
+preserving DHCP and the management default route. Validate the candidate offline
+before changing persistent files.
+
+The existing OS was promoted with its upstream boot-promotion mechanism. The
+compaction setting is supplied as `sysctl.vm.compaction_proactiveness=0` on the
+kernel command line. All six controlled reboots confirmed the selected OS,
+network, setting, identity, original shard receipts and clear GPU-error checks.
+This repository does not include our private site files or an OS image build.
+
+Sources: [Kindling Spark OS](https://github.com/kindlingai/kindling-spark-os),
+[Linux boot parameters](https://www.kernel.org/doc/html/v6.6/admin-guide/kernel-parameters.html).
+
+## Maintenance and recovery
+
+1. Reserve all six GPUs for full TP6. Stop competing model tests and their
+   automatic restart policies before starting the fleet.
+2. Drain application admission and hold the fleet supervisor for planned work.
+3. Resume the current pinned image/configuration with fresh exact-container guards.
+4. Check native identity, authentication, answers, streaming and capacity; then
+   verify the actual router/client path before ending the maintenance window.
+5. Investigate a guard trip before resuming. Keep the guard threshold and its
+   pressure protections enabled. Never treat an expired observation as proof
+   that the underlying process has stopped.
+
+The supervisor restart retained all six live containers without another fleet
+launch. Six host reboots were tested under an owned maintenance hold, followed
+by manual resumption of the same configuration. Existing supervisor recovery
+is bounded to three launches/hour. Any failed Spark interrupts the TP6 model;
+no new arbitrary power-loss or unattended node-failure test was performed.
+
+## Closeout and the competing-workload incident
+
+A separate Flash canary started on two nodes during the first resume. Available
+RAM on one node fell below the floor and its guard stopped the TP6 worker.
+The canaries were stopped, their Docker restart policies disabled, and the same
+TP6 configuration resumed. No weight, KV allocation or guard threshold changed.
+
+Final native and Code/Chat checks passed, including streaming, tool calls and
+memory integration. A 90.4-second observation retained all six containers with
+clear guards; final minimum available memory was 13.14 GiB. GPU process ownership
+was verified to belong exclusively to those containers. The user declined a
+12-hour soak; none was launched. This is controlled-recovery and brief-acceptance
+evidence, not a long-duration reliability claim.

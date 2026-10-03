@@ -1,0 +1,363 @@
+{
+  "date": "2026-10-03",
+  "status": "experimental_deferred_not_serving",
+  "latest_screen_source_revision": "2f2236a2921b2269e2b608f0393d88621933d836",
+  "benchmark_source_revision": "1b4fef6247111fb5af3be06c79f4f334315c17ab",
+  "benchmark_method": {
+    "order": [
+      "eager",
+      "graphs32",
+      "graphs64",
+      "graphs64",
+      "graphs32",
+      "eager"
+    ],
+    "c1_output_tokens": 256,
+    "c1_repeats_per_phase": 2,
+    "c4_output_tokens_per_client": 128,
+    "c4_repeats_per_phase": 1,
+    "cold_prefill_tokens": [
+      8192,
+      32768
+    ],
+    "cold_prefill_repeats_per_phase": 1,
+    "short_prefix_policy": "Normal serving reuse, cached counts reported",
+    "long_prefix_policy": "Distinct first token and zero cached tokens required",
+    "prefill_fixture": "Synthetic repeated inspection text; exact token lengths; no recall/task-quality claim",
+    "long_output_check": "One output token must match across all six measured phases for each prompt",
+    "graph_capture_policy": "Warmup separate; every measured capture/eviction retained and reported",
+    "instrumentation": "No profiler, background memory timeline or extra per-token cross-rank checks; external production-equivalent memory guards retained",
+    "torch_threads": 1,
+    "numerical_gate_remeasured": false,
+    "production_comparison": false,
+    "periodic_traceback_dump": false,
+    "fatal_traceback_enabled": true
+  },
+  "benchmark_profiles": {
+    "eager": {
+      "decode_tok_s": {
+        "prose": {
+          "samples": 4,
+          "median": 18.704702660691634,
+          "minimum": 18.508975038288174,
+          "maximum": 18.870717087249314
+        },
+        "code": {
+          "samples": 4,
+          "median": 20.158457320992,
+          "minimum": 19.949149227459415,
+          "maximum": 20.414698582979746
+        }
+      },
+      "c4_aggregate_tok_s": {
+        "samples": 2,
+        "median": 50.817124505816054,
+        "minimum": 48.95303365304898,
+        "maximum": 52.68121535858312
+      },
+      "c4_client_elapsed_s": {
+        "samples": 8,
+        "median": 9.662479382990568,
+        "minimum": 8.753455008001765,
+        "maximum": 10.458791393990396
+      },
+      "cold_prefill_tok_s": {
+        "8192": {
+          "samples": 2,
+          "median": 379.25190562643604,
+          "minimum": 370.7607631460005,
+          "maximum": 387.7430481068716
+        },
+        "32768": {
+          "samples": 2,
+          "median": 368.36279989379375,
+          "minimum": 367.2564234725521,
+          "maximum": 369.46917631503544
+        }
+      },
+      "cold_completion_seconds": {
+        "8192": {
+          "samples": 2,
+          "median": 21.6112520175011,
+          "minimum": 21.127393618007773,
+          "maximum": 22.09511041699443
+        },
+        "32768": {
+          "samples": 2,
+          "median": 88.95658196749719,
+          "minimum": 88.68940117499733,
+          "maximum": 89.22376275999704
+        }
+      },
+      "timed_captures": {
+        "c1": 0,
+        "c4": 0,
+        "prefill": 0
+      },
+      "timed_evictions": {
+        "c1": 0,
+        "c4": 0,
+        "prefill": 0
+      },
+      "phase_captures": [
+        0,
+        0
+      ],
+      "phase_evictions": [
+        0,
+        0
+      ],
+      "peak_graph_growth_bytes": 0
+    },
+    "graphs32": {
+      "decode_tok_s": {
+        "prose": {
+          "samples": 4,
+          "median": 19.213210919373214,
+          "minimum": 19.15478569175067,
+          "maximum": 19.25022269865475
+        },
+        "code": {
+          "samples": 4,
+          "median": 20.599632507188645,
+          "minimum": 20.558216030571277,
+          "maximum": 20.710155285556496
+        }
+      },
+      "c4_aggregate_tok_s": {
+        "samples": 2,
+        "median": 49.928072729928424,
+        "minimum": 45.480775894492965,
+        "maximum": 54.37536956536388
+      },
+      "c4_client_elapsed_s": {
+        "samples": 8,
+        "median": 9.344702832990151,
+        "minimum": 8.489707184999133,
+        "maximum": 11.257442260000971
+      },
+      "cold_prefill_tok_s": {
+        "8192": {
+          "samples": 2,
+          "median": 387.9694016251326,
+          "minimum": 387.5076482636432,
+          "maximum": 388.43115498662195
+        },
+        "32768": {
+          "samples": 2,
+          "median": 368.1181168112139,
+          "minimum": 367.5976182765306,
+          "maximum": 368.6386153458972
+        }
+      },
+      "cold_completion_seconds": {
+        "8192": {
+          "samples": 2,
+          "median": 21.115097144000174,
+          "minimum": 21.089966380997794,
+          "maximum": 21.140227907002554
+        },
+        "32768": {
+          "samples": 2,
+          "median": 89.01508514449961,
+          "minimum": 88.88922276700032,
+          "maximum": 89.1409475219989
+        }
+      },
+      "timed_captures": {
+        "c1": 2,
+        "c4": 10,
+        "prefill": 0
+      },
+      "timed_evictions": {
+        "c1": 0,
+        "c4": 10,
+        "prefill": 0
+      },
+      "phase_captures": [
+        42,
+        32
+      ],
+      "phase_evictions": [
+        10,
+        0
+      ],
+      "peak_graph_growth_bytes": 0
+    },
+    "graphs64": {
+      "decode_tok_s": {
+        "prose": {
+          "samples": 4,
+          "median": 19.22924657501752,
+          "minimum": 19.18461619482542,
+          "maximum": 19.284579898661423
+        },
+        "code": {
+          "samples": 4,
+          "median": 20.69137885237773,
+          "minimum": 20.459249987965144,
+          "maximum": 20.760907618031865
+        }
+      },
+      "c4_aggregate_tok_s": {
+        "samples": 2,
+        "median": 49.22045261128272,
+        "minimum": 44.53674784019882,
+        "maximum": 53.90415738236661
+      },
+      "c4_client_elapsed_s": {
+        "samples": 8,
+        "median": 9.72261331849586,
+        "minimum": 8.570931402005954,
+        "maximum": 11.496057456999552
+      },
+      "cold_prefill_tok_s": {
+        "8192": {
+          "samples": 2,
+          "median": 387.79353113739757,
+          "minimum": 386.38270032404176,
+          "maximum": 389.20436195075337
+        },
+        "32768": {
+          "samples": 2,
+          "median": 368.61282801369373,
+          "minimum": 368.48222201088095,
+          "maximum": 368.7434340165065
+        }
+      },
+      "cold_completion_seconds": {
+        "8192": {
+          "samples": 2,
+          "median": 21.12492285449116,
+          "minimum": 21.048068317992147,
+          "maximum": 21.201777390990173
+        },
+        "32768": {
+          "samples": 2,
+          "median": 88.89545241900487,
+          "minimum": 88.86395519800135,
+          "maximum": 88.92694964000839
+        }
+      },
+      "timed_captures": {
+        "c1": 2,
+        "c4": 14,
+        "prefill": 0
+      },
+      "timed_evictions": {
+        "c1": 0,
+        "c4": 0,
+        "prefill": 0
+      },
+      "phase_captures": [
+        37,
+        37
+      ],
+      "phase_evictions": [
+        0,
+        0
+      ],
+      "peak_graph_growth_bytes": 0
+    }
+  },
+  "benchmark_gpu_checks": 146,
+  "benchmark_completed": true,
+  "numerical_gate_passed": false,
+  "last_full_numerical_source_revision": "d0632cca202f8d3e835fa03e95f6a8cf5894c5fe",
+  "short_fidelity": {
+    "positions": 4096,
+    "mean_coarsened_kl": 0.019896660336814136,
+    "top1_agreement": 0.970458984375,
+    "mean_common_reference_mass": 0.99946330739693,
+    "mean_nll_delta": -0.006009726812116981
+  },
+  "long_fidelity": [
+    {
+      "context": 8192,
+      "scored_positions": 512,
+      "metrics": {
+        "positions": 512,
+        "mean_coarsened_kl": 0.005225706829971588,
+        "top1_agreement": 0.99609375,
+        "mean_common_reference_mass": 0.9990412950752195,
+        "mean_nll_delta": 0.000982944520752746
+      },
+      "strict_pass": false
+    },
+    {
+      "context": 32768,
+      "scored_positions": 512,
+      "metrics": {
+        "positions": 512,
+        "mean_coarsened_kl": 0.006994066782862684,
+        "top1_agreement": 1,
+        "mean_common_reference_mass": 0.997495089454417,
+        "mean_nll_delta": -0.0020085718491794635
+      },
+      "strict_pass": false
+    },
+    {
+      "context": 131072,
+      "scored_positions": 512,
+      "metrics": {
+        "positions": 512,
+        "mean_coarsened_kl": 0.03952527780976466,
+        "top1_agreement": 0.828125,
+        "mean_common_reference_mass": 0.4450931832450397,
+        "mean_nll_delta": -0.10379656432269257
+      },
+      "strict_pass": false
+    }
+  ],
+  "numerical_thresholds": {
+    "max_coarsened_kl": 0.001,
+    "min_top1": 0.995,
+    "max_nll_delta": 0.01
+  },
+  "expert_launch_screen": {
+    "source_revision": "73db3e3afd497badf83c26a1e7f36c08368a2395",
+    "execution_checks": 1452,
+    "candidate_checks": 5184,
+    "candidate_checks_failed": 0,
+    "findings": [
+      "All nine fixed-reduction expert launch pairs passed5184 exact eager/changed-graph/routedFP32/fullMoEBF16/chunk/stream checks plus1452 hard execution checks across3original layers,6sizes and6ranks. No weights or runtime source changed.",
+      "Baseline remains fastest in the six-rank three-layer timing proxy at17,281 and1024rows.3072rows best candidate g8p2_d8p1 reduces the proxy only0.1611%; g4p2_d4p2 instead increases it3.125%. No worthwhile prefill winner or default change.",
+      "Single-row g4p2_d4p2 reduces the proxy1.8795%, but gains do not transfer across other batch sizes. Five-row best reduction0.2852%. These local warm graph results do not establish an end-to-end speedup."
+    ],
+    "decision": "Keep current expert launch defaults; no meaningful prefill improvement. Move to attention row reuse."
+  },
+  "latent_projection_screen": {
+    "source_revision": "2f2236a2921b2269e2b608f0393d88621933d836",
+    "execution_checks": 1410,
+    "candidate_checks": 2484,
+    "candidate_checks_failed": 1710,
+    "findings": [
+      "All six component workers completed with 1410 hard execution checks. Across 2484 candidate checks, 1710 failed exact agreement; only the original reference is globally eligible for either projection.",
+      "Every candidate fails raw FP32 agreement on every tested eager rank/shape/input combination. Failures also reach BF16 stored outputs, chunked execution and independent streams. No candidate proceeds to graph timing; no candidate speedup is measured.",
+      "The original references reproduce the saved TFP42 outputs and pass all changed-graph, chunk, stream and inactive-head checks. No production runtime or original mixed K3/K4 weights changed.",
+      "Even the single-row original-width variants fail. The candidates add a broadcast tensor dimension and change compiler layout/reduction lowering; a changed sum tree is a hypothesis, not yet proven by generated-code or independent-oracle comparison."
+    ],
+    "decision": "Reject all new latent projection layouts; preserve evidence and repair reduction ordering before further speed qualification."
+  },
+  "vllm_shared_expert_overlap": {
+    "latency_reduction_percent_range": [
+      -1.4621609421184845,
+      0.5925920758163894
+    ],
+    "decision": "Do not build or deploy P25 now: including native gate/router gives mixed sub-1.5% component timing, with no consistent useful reduction. Keep evidence and patch for possible future bottleneck changes."
+  },
+  "source_snapshot_scope": "The bundled experimental source remains the historical TFP21 export. Later local results are reported here; the later full port is not exported by this documentation update.",
+  "limitations": [
+    "TensorFold benchmark profiles are matched to each other, not a same-session P27 A/B.",
+    "Self-parity and completed API mechanics do not establish agreement with the frozen production reference.",
+    "No TensorFold production promotion or new performance experiment occurred in this publication."
+  ],
+  "source_revision": "bb49dce1a426a80e7c8c638a5b247b1e865dfb69",
+  "raw_receipt_sha256": {
+    "tfp54-benchmark-summary.json": "3b220a149d67b1c883bfe126e676e8c9d4bdf280fe11af1d3bac9efd8ff230b7",
+    "tfp49-quality-summary.json": "6d2709af1ed29ddfcc0dc7dc023f5389674816bfa6922f60f750cd2c88cdf7d4",
+    "tfp56-expert-summary.json": "7f1b7a298143c397c2073669e0315be7453e8bd13f9314f0a5cb2e138363d50d",
+    "tfp57-latent-summary.json": "28823bf85e4fc808c22fe6f3ac804b88afa589bbab157d28eba3b1c88a639add",
+    "p25r2-component-summary.json": "cb9a0959e15cd2aec2d212f5138228f2fc96bc17f7c166c4fc1d576bfd64007f"
+  }
+}

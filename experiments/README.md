@@ -1,5 +1,7 @@
 # Experiments
 
+**Current status (October 3):** [Deferred local port and latest results](../results/TENSORFOLD_STATUS.md). The source and experiment notes below describe the historical TFP21/early-TFP22 export, not the current production backend.
+
 ## Completed: TFP15 attention tuning
 
 The [original proposal](completed/tfp15-attention-tuning.patch) is retained as

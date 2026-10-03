@@ -78,3 +78,17 @@ TFP21 suspended request operations, packed TP6 execution, per-row cache ownershi
 grouped request commands and matched HTTP qualification are Swoopp additions to
 the existing TensorFold/Mia-derived port. Upstream model, kernel, runtime and
 recipe contributions remain attributed above.
+
+## Production hardening and current research review
+
+[Kindling Spark OS](https://github.com/kindlingai/kindling-spark-os) provides the
+host-OS and boot-promotion foundation used by the current six-node deployment.
+Swoopp supplied the site-specific persistence work, controlled-reboot validation,
+exclusive GPU checks and application acceptance. No inference gain is attributed
+to this hardening pass.
+
+MiaAI-Lab's current prompt retention, sliced prefill and experimental TP-N work
+informed the proposed experiments; it has not been imported by this update.
+Its changelog attributes relevant community work to @kky42 and @Alexbob0 for
+prompt retention, @webzone for PCIe-twin rail discovery, and other contributors
+named in the [upstream changelog](https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks-TensorFold/blob/cf28cc4f8038be322cdeda220c6f1c8ace8f27d1/CHANGELOG.md).

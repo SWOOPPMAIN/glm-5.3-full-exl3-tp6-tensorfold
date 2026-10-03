@@ -1,0 +1,131 @@
+{
+  "date": "2026-10-02",
+  "status": "qualified_serving",
+  "backend": "vllm",
+  "profile": "P27",
+  "weights": "original mixed K3/K4 EXL3 3.25 bpw",
+  "decode_median_tok_s": {
+    "prose": 35.12866221369373,
+    "code": 47.35420575394692
+  },
+  "decode_samples_tok_s": {
+    "prose": [
+      35.418718289386085,
+      35.12866221369373,
+      34.254235714548706
+    ],
+    "code": [
+      47.890272137154014,
+      47.35420575394692,
+      47.03409972974075
+    ]
+  },
+  "cold_prefill": {
+    "8192": {
+      "ttft_median_s": 8.730373756261542,
+      "input_tok_s_median": 938.3376126142812,
+      "ttft_samples_s": [
+        8.749193558935076,
+        8.711553953588009
+      ],
+      "input_tok_s_samples": [
+        936.3148666009287,
+        940.3603586276337
+      ]
+    },
+    "32768": {
+      "ttft_median_s": 35.17334688990377,
+      "input_tok_s_median": 931.5585761094978,
+      "ttft_samples_s": [
+        35.20861657289788,
+        35.13807720690966
+      ],
+      "input_tok_s_samples": [
+        930.6244660922547,
+        932.4926861267411
+      ]
+    }
+  },
+  "c4_median_output_tok_s": 76.51566504066102,
+  "c4_samples_output_tok_s": [
+    76.51566504066102,
+    77.96748126332908,
+    74.97240742991109
+  ],
+  "method": {
+    "decode_repeats": 3,
+    "c4_repeats": 3,
+    "cold_prefill_repeats_per_context": 2,
+    "effective_prefill": "input tokens / time to first token, including first generation and delivery",
+    "fixture_sha256": "2fada2edd75499dc84f1f151ef579cf0f2f4e8619bcd980e55f5282c3b000626",
+    "same_pass_128k_speed_measured": false,
+    "hardening_pass_rebenchmarked": false
+  },
+  "short_numerical": {
+    "passed": true,
+    "metrics": {
+      "positions": 4096,
+      "mean_coarsened_kl": 0,
+      "top1_agreement": 1,
+      "mean_common_reference_mass": 0.9995512817500845,
+      "mean_nll_delta": 0.0
+    },
+    "thresholds": {
+      "max_kl": 0.001,
+      "min_top1": 0.995,
+      "max_nll_delta": 0.01
+    }
+  },
+  "long_numerical": {
+    "passed": true,
+    "cases": [
+      {
+        "context": 8192,
+        "metrics": {
+          "positions": 512,
+          "mean_coarsened_kl": 0,
+          "top1_agreement": 1,
+          "mean_common_reference_mass": 0.9991739549163815,
+          "mean_nll_delta": 0.0
+        },
+        "passed": true
+      },
+      {
+        "context": 32768,
+        "metrics": {
+          "positions": 512,
+          "mean_coarsened_kl": 0,
+          "top1_agreement": 1,
+          "mean_common_reference_mass": 0.9978193007741218,
+          "mean_nll_delta": 0.0
+        },
+        "passed": true
+      },
+      {
+        "context": 131072,
+        "metrics": {
+          "positions": 512,
+          "mean_coarsened_kl": 0,
+          "top1_agreement": 1,
+          "mean_common_reference_mass": 0.4608117383047953,
+          "mean_nll_delta": 0.0
+        },
+        "passed": true
+      }
+    ]
+  },
+  "context_length": 360000,
+  "max_running_requests": 4,
+  "kv_cache_memory_bytes_per_rank": 25769803776,
+  "limitations": [
+    "Configured context is not comprehensive 360K task-quality qualification.",
+    "Short and long-tail teacher-forced agreement is measured against the frozen serving reference; coarsened KL is not full-vocabulary KL.",
+    "This is a measured baseline, not a predicted ceiling or a new speedup from hardening."
+  ],
+  "source_revision": "bb49dce1a426a80e7c8c638a5b247b1e865dfb69",
+  "raw_receipt_sha256": {
+    "tfp38-after-summary.json": "d13882288233358132dcbad05195d9328acd35997c768ff08dbf788fd7bbbabd",
+    "tfp38-after-strict-summary.json": "dc46e8ec2a054b44ba554ae9de41bb2ca17d68af81e49879fd034b442deeee09",
+    "tfp38-after-long-summary.json": "1147c4d77eef95b992c5a80bbb4368d3d1564499f19d66ad5230d184cb180ba2"
+  }
+}

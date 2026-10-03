@@ -1,75 +1,60 @@
-# Full GLM-5.3 EXL3 · TP6 · TensorFold
+# Full GLM-5.3 EXL3 · TP6 · TensorFold research
 
-Full GLM-5.3 on **six NVIDIA DGX Sparks**, keeping the original **3.25 bpw
-mixed K3/K4 EXL3 weights**. This is Swoopp's private working repository for the
-serving recipe, measured optimizations, and ongoing TensorFold port.
+Full GLM-5.3 on **six NVIDIA DGX Sparks**, preserving the original
+**3.25 bpw mixed K3/K4 EXL3 weights**. Serving uses **vLLM P27**.
+TensorFold is an experimental research port and is not serving production.
 
-**Status — October 1, 2026:** vLLM serves the model today. TensorFold can run
-the full target/MTP model with decode graphs on all six ranks. Short chat-template
-HTTP requests, four concurrent clients and streamed replies pass exact-output
-checks. Full API qualification and deployment remain in development.
+**Status — October 3, 2026 UTC:** production hardening is complete within the
+requested brief-check scope. All six controlled reboots, native API and
+Code/Chat acceptance passed. OS, network and memory settings persist across
+reboot. No 12-hour soak was run. [Operating notes](recipes/vllm-tp6/OPERATIONS.md).
 
-## Performance
+## Latest serving measurements
 
-Measured on our six-Spark vLLM deployment, current P24 profile:
-
-| Measurement | Result |
+| Measurement | vLLM P27 |
 | --- | ---: |
-| Code generation, one request | **46.8 tok/s median**; 47.3 best of three |
-| Prose generation, one request | **33.7 tok/s median**; 34.2 best of three |
-| Four concurrent requests | **72.4 output tok/s combined** |
-| Uncached prefill, 8K / 32K / 128K | **847 / 840 / 833 input tok/s** |
-| Time to first token, 8K / 32K / 128K | **9.67 / 39.01 / 157.34 s** |
-| Configured context / shared KV cache | **360,000 / 470,847 tokens** |
+| Prose generation, one request | **35.1 output tok/s median** |
+| Code generation, one request | **47.4 output tok/s median** |
+| Four concurrent requests | **76.5 output tok/s combined median** |
+| Cold prefill, 8K / 32K | **938 / 932 input tok/s** |
+| Time to first token, 8K / 32K | **8.73 / 35.17 s** |
+| Configured context / admitted requests | **360,000 tokens / 4** |
+| KV allocation | **24 GiB per rank** |
 
-Prefill here means prompt tokens divided by time to first token, including
-the first generation step and delivery. These are workload measurements,
-not a hardware ceiling. See [results and methodology](results/README.md).
+These October 2 measurements precede the hardening closeout; no new speedup
+is claimed from that work. Prefill is prompt tokens divided by time to first
+token. Concurrent requests share the cache; four full-length contexts are
+not promised. [Samples, quality checks and limitations](results/README.md).
 
-TensorFold remains experimental. It now packs compatible target, draft and
-vocabulary operations from concurrent requests into shared GPU passes.
-The latest short HTTP test measured **23.6 → 51.8 output tok/s
-combined across four clients**, with exact serial-reference answers.
-Single-request code regressed in this run, so dispatch tuning remains. These
-workloads differ from the P24 serving measurements above.
-
-See [packed request results and recipe](recipes/tensorfold-tp6/PACKED_REQUESTS.md),
-[projection tuning](recipes/tensorfold-tp6/PROJECTIONS.md), and
-[profiling](recipes/tensorfold-tp6/DECODE_PROFILING.md).
-
-The next [scheduling candidate](experiments/README.md#pending-tfp22-scheduling-and-host-memory-diagnosis)
-passed CPU and 8K output checks; GPU qualification is pending after a host-memory guard stop.
+The latest local TensorFold HTTP measurements remain around 19–21 output
+tok/s for one request and 368–388 cold-prefill tok/s. Its strict numerical
+fidelity gate still fails. The bundled source is the historical TFP21 snapshot;
+[later results through TFP57](results/TENSORFOLD_STATUS.md) are reported separately.
 
 ## Recipes
 
-1. [Prepare and verify the original weights](recipes/weights/README.md)
+1. [Prepare and verify original weights](recipes/weights/README.md)
 2. [Serve with the qualified vLLM TP6 image](recipes/vllm-tp6/README.md)
-3. [Work on the TensorFold TP6 port](recipes/tensorfold-tp6/README.md)
+3. [Operate the six-node deployment](recipes/vllm-tp6/OPERATIONS.md)
 4. [Benchmark a candidate](benchmarks/README.md)
+5. [Explore the historical TensorFold port](recipes/tensorfold-tp6/README.md)
 
-The serving recipe currently requires our retained P24 image. A portable
-image release and a complete clean-machine build are not included yet.
-The repository includes source, configuration, and measured results; model
-weights and compiled artifacts are downloaded or built separately.
+The serving recipe requires the retained P27 image. A portable image release
+and a verified clean-machine build remain unfinished. Weights and compiled
+artifacts are not included in this repository.
 
-## What's here
+## Next experiments
 
-| Directory | Contents |
-| --- | --- |
-| `weights/` | Pinned checkpoint manifest, lossless resharing and verification |
-| `runtime/vllm/` | Serving overlays, node entrypoint, memory guard, E3 sources |
-| `experimental/tensorfold/` | Source snapshot through packed request and HTTP qualification |
-| `experiments/` | Completed attention experiment and next development steps |
-| `results/` | Serving measurements and separate TensorFold experiment results |
-| `provenance/` | Source revisions, import hashes, and local change records |
+[Ranked experiment plan](docs/PERFORMANCE_EXPERIMENTS.md): prompt reuse,
+mixed prefill/decode scheduling, workload-aware MTP, six-rank communication,
+and E3 prefill kernels. These are proposed tests, not measured gains.
+TensorFold remains outside the production completion requirements.
 
 ## Credits
 
 Built on **Z.ai**, **davidsyoung**, **Turboderp / ExLlamaV3**, **vLLM**,
-**local-inference-lab / b12x**, **Ash Hart / TensorFold**, and **MiaAI-Lab**.
-**Adapt AI Systems**, **Kindling**, **Matt Mastracci**, and the wider Spark
-community supplied recipes, kernels, and optimization ideas that informed this work.
+**local-inference-lab / b12x**, **Ash Hart / TensorFold**, **MiaAI-Lab**,
+**Adapt AI Systems**, **Kindling**, **Matt Mastracci**, and the wider Spark community.
 
-See [CREDITS.md](CREDITS.md) for specific contributions and source links,
-[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for licenses, and
-[the roadmap](docs/ROADMAP.md) for what remains.
+See [CREDITS.md](CREDITS.md), [third-party notices](THIRD_PARTY_NOTICES.md),
+[source provenance](provenance/README.md), and [the roadmap](docs/ROADMAP.md).

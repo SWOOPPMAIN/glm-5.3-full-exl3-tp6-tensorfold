@@ -1,5 +1,7 @@
 # TensorFold full GLM-5.3 TP6 port
 
+**Current status (October 3):** [Deferred local port and latest results](../../results/TENSORFOLD_STATUS.md). The source and experiment notes below describe the historical TFP21/early-TFP22 export, not the current production backend.
+
 **Experimental.** This is the full `glm_moe_dsa` model, with original mixed
 K3/K4 3.25 bpw expert fragments. Full-model target/MTP forward execution works;
 `tensorfold serve` does **not** register or serve this family yet.

@@ -1,40 +1,33 @@
 # Roadmap
 
-## Working and measured
+## Current serving: completed
 
-- Full GLM-5.3 EXL3, TP6, native MTP, vLLM API and Swoopp application routing.
-- Original 3.25 bpw expert fragments; lossless redistribution and verified rank ownership.
-- P24 serving: numerical gates, code/prose, cold 8K/32K/128K, four concurrent requests.
-- TensorFold full target/MTP forward passes, original weights, bounded scratch,
-  and fully resident 804K test cache on all six ranks.
-- Expert chunk tuning and fixed-order bulk reductions with exact GPU comparisons.
-- Attention tile skipping and row-batch comparisons, with FP64 reference checks.
-- Eager request core: recursive MTP, keyed target verification, four interleaved
-  requests and retained-prefix continuation against serial target generation.
+- Full GLM-5.3 EXL3 TP6 on vLLM P27, original mixed K3/K4 3.25 bpw weights.
+- Verified short and long-tail agreement with the frozen serving reference.
+- Native API, router and Code/Chat acceptance.
+- All six controlled reboots; persistent OS default, dual-fabric network and memory settings.
+- Brief health observation and exclusive GPU ownership checks. No long soak required or run.
 
-- Distributed TP6 request controller, leader-only sampler and bounded
-  concurrent-client scheduler, qualified against original-weight serial output.
+[Current measurements](../results/README.md) · [operations](../recipes/vllm-tp6/OPERATIONS.md)
 
-- Bounded decode graphs and actual checkpoint chat-template HTTP C1/C4/SSE,
-  with exact serial output checks and separate short-context timing.
+## Optional performance work
 
-- Seven-depth exact-output sweep and bounded all-rank decode profiling;
-  dense BF16 projections identified as the main compute target.
+The [ranked experiment plan](PERFORMANCE_EXPERIMENTS.md) starts with prompt reuse,
+mixed prefill/decode scheduling and retuning the current MTP policy. Six-rank
+communication and E3 prefill follow. These are proposed tests, not promised gains.
+Preserve current weights/precision and qualify each change before promotion.
 
-- BF16 projection tile screening and immutable per-model plans, qualified on
-  all six ranks against original-kernel tensors and serial request outputs.
+## TensorFold: deferred research
 
-- Packed target/MTP/head execution across disjoint request cache leases,
-  qualified against serial output and actual short HTTP C1/C4/SSE.
+The later local full-model port has HTTP and graph execution, but strict fidelity
+still fails. It is not a prerequisite for current serving. [Latest status](../results/TENSORFOLD_STATUS.md).
+The bundled executable source remains the historical TFP21 export; a vetted export
+of the later port and its diagnostic tooling is separate work.
 
-## Next
+## Packaging still needed
 
-1. Diagnose the TFP22 transient host-memory peak and finish automatic dispatch/shared-prefill qualification.
-2. Screen larger EXL3 expert chunks using TensorFold 0.6.1 shared-memory opt-in; compare matched workloads with P24.
-3. Adapt Mia complete tool-call/keepalive fixes and 0.6.1 HTTP/reasoning fixes; extend conversation/fork cache reuse and API checks.
-4. Measure authentic code/prose and uncached 8K/32K/128K; qualify real 360K quality.
-5. Package the backend and promote measured gains through Max/Pi-router/Code.
-6. Publish a verified clean-machine image build and portable fleet launcher.
+- Verified clean-machine P27 image build and distributable registry artifact.
+- Portable fleet launcher and site configuration independent of our private controller.
+- Reproducible OS site overlay, with networking selected for the operator's topology.
 
-Short-request parity does not establish serving throughput or long-context
-quality. Full application integration remains part of the original goal.
+These release gaps are separate from the completed local deployment hardening.

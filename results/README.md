@@ -1,6 +1,27 @@
-# Results — October 1, 2026
+# Results — current baseline and historical experiments
 
-## Serving: vLLM P24
+## Current serving: vLLM P27
+
+[Samples and quality checks](p27-serving.json) · [hardening closeout](production-hardening.json)
+
+October 2 baseline: **35.13 prose / 47.35 code output tok/s**, medians of three
+warm requests; **76.52 aggregate C4 output tok/s**, median of three rounds.
+Cold 8K/32K prefill: **938.34 / 931.56 input tok/s**; TTFT **8.730 / 35.173 s**,
+two repeats per context. Cold prefill means input tokens / TTFT, including the
+first generation step and delivery. The hardening pass did not rerun speed tests.
+
+Teacher-forced short reference comparison: 4,096 positions, exact top-1 agreement
+and zero measured coarsened KL. The 512-position tails at 8K/32K/128K also match
+that frozen reference exactly. This is not comprehensive 360K task evaluation.
+128K speed was not remeasured in this pass; the P24 timing below is historical.
+The current KV allocation remains 24 GiB per rank; historical P24 slot counts
+must not be confused with TensorFold's separate 804K experimental allocation.
+
+Latest local TensorFold benchmark, failed fidelity gate and rejected kernel
+candidates are in [the status report](TENSORFOLD_STATUS.md). Historical results
+below retain their original scope and source snapshots.
+
+## Historical serving: vLLM P24
 
 [Summary](p24-serving.json) · [individual warm decode samples](p24-decode-samples.json)
 
@@ -101,7 +122,7 @@ minimum host-available memory: 11.08 GiB. Guards stayed clear.
 
 This qualifies distributed request mechanics using short raw-text fixtures.
 It does not establish serving throughput, long-context quality or HTTP/chat API
-compatibility. The production model remains vLLM P24.
+compatibility. The production model at that experiment was vLLM P24; current serving is P27.
 
 ## TensorFold: TFP18 decode graphs and local HTTP
 
@@ -142,9 +163,10 @@ throughput: 23.61 → 51.77 output tok/s, including prefill and delivery.
 Original weights and TFP20 projection plan preserved; complete API/long-context
 qualification and serving promotion remain pending.
 
-## TensorFold: TFP22 incomplete scheduling run
+## Historical TensorFold: TFP22 first incomplete scheduling run
 
 [Recorded evidence](tfp22-tensorfold.json). 349 checks passed before a
 host-memory guard stop during the final automatic HTTP concurrency measurements.
 The 125 CPU tests and 8,218-token scheduling parity passed; the complete GPU
-qualification and throughput result remain pending. Qualified source remains TFP21.
+qualification was incomplete in that attempt. The bundled source remains TFP21;
+later local qualification and current blockers are in [the status report](TENSORFOLD_STATUS.md).

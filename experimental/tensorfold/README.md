@@ -1,5 +1,7 @@
 # TensorFold source snapshot for full GLM TP6
 
+**Current status (October 3):** [Deferred local port and latest results](../../results/TENSORFOLD_STATUS.md). The source and experiment notes below describe the historical TFP21/early-TFP22 export, not the current production backend.
+
 This directory preserves the complete source dependencies of the experimental
 full-model port. Start with [the TP6 recipe](../../recipes/tensorfold-tp6/README.md).
 
