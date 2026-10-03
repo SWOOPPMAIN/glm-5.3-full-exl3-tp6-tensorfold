@@ -1,0 +1,933 @@
+{
+  "schema": 1,
+  "phase": "qualified_transport_selected",
+  "sources": {
+    "comm2-original-r0-transport-bench.json": "ec0e4386a63635ed11de778ce0f0ddb3e8a8a544145ae4af325a661ca3919da4",
+    "comm2-original-r0-bench.json": "ab7bfdcf5ff0b619b83b01480e01e23c4994343e1d6ff95189a58b85a0fd37aa",
+    "comm2-original-r0-performance.json": "f2bcc51c43b4506fc5804a21c89b77e7d1ab18e5bb1bd46c56891046e4214d01",
+    "comm2-original-r1-transport-bench.json": "73dab1fd6d07f5a7721e3de2eadcde5fa66999373f1f0b19ff077e861bd14e93",
+    "comm2-original-r1-bench.json": "31b6b6923d83eb60c5da6770be143e80ce0bc229be60db5d2cac92b7394a4102",
+    "comm2-original-r1-performance.json": "b814ffbae27df533f119c4db9beba7a7e8dbeb282b03a95fe8acb59ec50dd613",
+    "comm2-dual-r0-transport-bench.json": "9107445787e969a3f12b794d3eb1eef9a19b704b4c19b96387df681c5c0c2611",
+    "comm2-dual-r0-bench.json": "f16861472c751a698b4001a3be3b60e3b65ad0242e508d579482bff6dda8c7c5",
+    "comm2-dual-r0-performance.json": "23889be073288aed2d82b8c0eda05cd2da326b7b0e25423f194b5bd6c8cb1774",
+    "comm2-dual-r1-transport-bench.json": "8eedbeb1e0035963551a9d963c26f510834eabe696afb5d646ee23b0c7ee1708",
+    "comm2-dual-r1-bench.json": "cf5a69b3b6b236d2f9c88233bf9bd166049e2fbd0561aa6bd80617d0865bda4f",
+    "comm2-dual-r1-performance.json": "c11ef02239a30b01a30ddb30f85abee09767ffa5802044702879bac5c8f910f2",
+    "comm2-selection.json": "9db661b226b035c8f3949d1c207033cf7b29c890ff4ec52af4e1795a349b54ba",
+    "comm2-dual-roce-short.json": "dfc63073c3ef824e56a8d0ac60db6aa01fc2f3fd02fbb15646dcfe43e548036b",
+    "comm2-dual-roce-long.json": "d5d02421aef1eb2cc50d438882ec5bad04793710015cf7927a1235fed9cd6f21",
+    "comm2-dual-r1-quality-trial.json": "0d9dfcc4a86e45ea1259cf0d44b98259f5321ef3fb3f913b602a8688b54b8265",
+    "comm2-dual-r1-basic.json": "581c737ee0a05bbed32dbb2d25ffacc256d120a0abda37347ac3e390b2781348",
+    "comm2-application-acceptance.json": "407f7ee8a61ba5c361e87aa60d0b123ccef224036575245b96061c505d8ccd21",
+    "comm2-window-native.json": "239acdf6078226f826a1741a6876ac310c3a204ff85f4ef4c0b9483f46557d54",
+    "comm2-final-serving.json": "37da6ab2c881b989947163340bd30330a9c1ed978a19b1aefa293651aa218702",
+    "comm2-dual-decode-ports.json": "7795b2a5a475d036931b602284d7f0ede10c789e7708e37d1bbb19be484de59a"
+  },
+  "control": {
+    "image": "sha256:2e947348fd26b8d58e4535e0321126935069a5e521784fa573f19fb560975d9d",
+    "tuning": {
+      "MAX_NUM_BATCHED_TOKENS": 3072,
+      "VLLM_EXL3_PREFILL_BLOCK_M": 32,
+      "VLLM_DCP_QUERY_SPLIT": 1,
+      "VLLM_DCP_QUERY_SPLIT_MIN_CONTEXT_TOKENS": 32768,
+      "AMOS_TP6_DYNAMIC_GRAPHS": 1,
+      "AMOS_PERFORMANCE_CORES": 1,
+      "AMOS_TORCH_PROFILER": 1,
+      "AMOS_TP6_DECODE_PROJECTIONS": 1,
+      "AMOS_TP6_DRAFT_EH": 1,
+      "AMOS_MTP_ADAPT_WINDOW": 16,
+      "AMOS_MTP_COST_AWARE": 1,
+      "AMOS_TP6_SHARED_384": 1,
+      "AMOS_TP6_E3_PREFILL": 1,
+      "AMOS_TP6_NCCL_RAILS": 2
+    },
+    "matrix_fixture_sha256": "542ce05b3bdc49d352097b31a9553f152ee1cf597445570858fd15d35681aadd",
+    "performance_fixture_sha256": "2fada2edd75499dc84f1f151ef579cf0f2f4e8619bcd980e55f5282c3b000626",
+    "visits": [
+      "comm2-original-r0-transport-bench.json",
+      "comm2-original-r1-transport-bench.json"
+    ],
+    "cells": [
+      {
+        "fixtures": [
+          "code-0"
+        ],
+        "requests": 1,
+        "repetitions": 3,
+        "output_tokens": [
+          256
+        ],
+        "median_output_tok_s": 41.88392230975045,
+        "range_output_tok_s": [
+          39.66970665076589,
+          44.648550469300794
+        ],
+        "median_accepted_per_wall_second": 28.795196587953434,
+        "median_p95_stream_gap": 0.0786617292324081
+      },
+      {
+        "fixtures": [
+          "code-0",
+          "prose-0",
+          "tools-0",
+          "code-0"
+        ],
+        "requests": 4,
+        "repetitions": 3,
+        "output_tokens": [
+          256,
+          256,
+          256,
+          256
+        ],
+        "median_output_tok_s": 75.13145430893864,
+        "range_output_tok_s": [
+          74.05567354721502,
+          77.39694289991118
+        ],
+        "median_accepted_per_wall_second": 48.05771735581524,
+        "median_p95_stream_gap": 0.15028379232389852
+      },
+      {
+        "fixtures": [
+          "code-32768"
+        ],
+        "requests": 1,
+        "repetitions": 3,
+        "output_tokens": [
+          256
+        ],
+        "median_output_tok_s": 37.68567483707945,
+        "range_output_tok_s": [
+          37.53398248338279,
+          37.91779742091053
+        ],
+        "median_accepted_per_wall_second": 24.587321765121676,
+        "median_p95_stream_gap": 0.08415646613575518
+      },
+      {
+        "fixtures": [
+          "code-32768",
+          "prose-32768",
+          "tools-32768",
+          "code-32768"
+        ],
+        "requests": 4,
+        "repetitions": 3,
+        "output_tokens": [
+          256,
+          256,
+          256,
+          256
+        ],
+        "median_output_tok_s": 66.65143781634879,
+        "range_output_tok_s": [
+          63.80798158374349,
+          67.61856081918924
+        ],
+        "median_accepted_per_wall_second": 43.450208026393085,
+        "median_p95_stream_gap": 0.17156305585522205
+      },
+      {
+        "fixtures": [
+          "code-8192"
+        ],
+        "requests": 1,
+        "repetitions": 3,
+        "output_tokens": [
+          256
+        ],
+        "median_output_tok_s": 40.8090749962985,
+        "range_output_tok_s": [
+          40.14778855034649,
+          41.35665858092398
+        ],
+        "median_accepted_per_wall_second": 29.96916445040671,
+        "median_p95_stream_gap": 0.08799275569617748
+      },
+      {
+        "fixtures": [
+          "code-8192",
+          "prose-8192",
+          "tools-8192",
+          "code-8192"
+        ],
+        "requests": 4,
+        "repetitions": 3,
+        "output_tokens": [
+          256,
+          256,
+          256,
+          256
+        ],
+        "median_output_tok_s": 68.6115241786192,
+        "range_output_tok_s": [
+          67.63137478815943,
+          68.92862637373534
+        ],
+        "median_accepted_per_wall_second": 42.930071887015266,
+        "median_p95_stream_gap": 0.1700098200351931
+      },
+      {
+        "fixtures": [
+          "prose-0"
+        ],
+        "requests": 1,
+        "repetitions": 3,
+        "output_tokens": [
+          256
+        ],
+        "median_output_tok_s": 31.21195254682049,
+        "range_output_tok_s": [
+          30.907051167953426,
+          31.44884153443924
+        ],
+        "median_accepted_per_wall_second": 15.849819652682282,
+        "median_p95_stream_gap": 0.07601287942379711
+      },
+      {
+        "fixtures": [
+          "prose-32768"
+        ],
+        "requests": 1,
+        "repetitions": 3,
+        "output_tokens": [
+          256
+        ],
+        "median_output_tok_s": 31.92515854457529,
+        "range_output_tok_s": [
+          30.408589415399774,
+          32.528358963660985
+        ],
+        "median_accepted_per_wall_second": 18.33202463301784,
+        "median_p95_stream_gap": 0.08253997936844826
+      },
+      {
+        "fixtures": [
+          "prose-8192"
+        ],
+        "requests": 1,
+        "repetitions": 3,
+        "output_tokens": [
+          256
+        ],
+        "median_output_tok_s": 31.431779875063505,
+        "range_output_tok_s": [
+          30.255515252088156,
+          33.06708775902585
+        ],
+        "median_accepted_per_wall_second": 17.066474229038388,
+        "median_p95_stream_gap": 0.08367083873599768
+      },
+      {
+        "fixtures": [
+          "tools-0"
+        ],
+        "requests": 1,
+        "repetitions": 3,
+        "output_tokens": [
+          256
+        ],
+        "median_output_tok_s": 44.24968492352102,
+        "range_output_tok_s": [
+          43.96139930537892,
+          46.658091146013746
+        ],
+        "median_accepted_per_wall_second": 32.84156302917576,
+        "median_p95_stream_gap": 0.08388867517933249
+      },
+      {
+        "fixtures": [
+          "tools-32768"
+        ],
+        "requests": 1,
+        "repetitions": 3,
+        "output_tokens": [
+          256
+        ],
+        "median_output_tok_s": 36.062163677519536,
+        "range_output_tok_s": [
+          35.006795352879266,
+          37.351525120165974
+        ],
+        "median_accepted_per_wall_second": 23.243191432776264,
+        "median_p95_stream_gap": 0.0868967353599146
+      },
+      {
+        "fixtures": [
+          "tools-8192"
+        ],
+        "requests": 1,
+        "repetitions": 3,
+        "output_tokens": [
+          256
+        ],
+        "median_output_tok_s": 40.99009019482837,
+        "range_output_tok_s": [
+          37.28257395212526,
+          41.38287669317715
+        ],
+        "median_accepted_per_wall_second": 29.62174486735644,
+        "median_p95_stream_gap": 0.08723101648502052
+      }
+    ],
+    "prefill": [
+      {
+        "context": 8192,
+        "repetitions": 3,
+        "median_ttft_seconds": 8.699627358000726,
+        "median_prompt_tok_s_by_ttft": 941.6495285244741
+      },
+      {
+        "context": 32768,
+        "repetitions": 3,
+        "median_ttft_seconds": 35.16121182916686,
+        "median_prompt_tok_s_by_ttft": 931.8791445299395
+      }
+    ],
+    "decode_medians": {
+      "prose": 35.909739931877795,
+      "code": 46.71273319063954
+    }
+  },
+  "analyzer_sha256": "88febcad32b3ca8d1aff5180cf3703e8d8844ba0359f1c737645fe21699d033d",
+  "candidate": {
+    "image": "sha256:2e947348fd26b8d58e4535e0321126935069a5e521784fa573f19fb560975d9d",
+    "tuning": {
+      "MAX_NUM_BATCHED_TOKENS": 3072,
+      "VLLM_EXL3_PREFILL_BLOCK_M": 32,
+      "VLLM_DCP_QUERY_SPLIT": 1,
+      "VLLM_DCP_QUERY_SPLIT_MIN_CONTEXT_TOKENS": 32768,
+      "AMOS_TP6_DYNAMIC_GRAPHS": 1,
+      "AMOS_PERFORMANCE_CORES": 1,
+      "AMOS_TORCH_PROFILER": 1,
+      "AMOS_TP6_DECODE_PROJECTIONS": 1,
+      "AMOS_TP6_DRAFT_EH": 1,
+      "AMOS_MTP_ADAPT_WINDOW": 16,
+      "AMOS_MTP_COST_AWARE": 1,
+      "AMOS_TP6_SHARED_384": 1,
+      "AMOS_TP6_E3_PREFILL": 1,
+      "AMOS_TP6_NCCL_RAILS": 2,
+      "AMOS_TP6_ROCE_RAILS": 2,
+      "VLLM_ROCE_ALLREDUCE_MAX_SIZE": 2097152
+    },
+    "matrix_fixture_sha256": "542ce05b3bdc49d352097b31a9553f152ee1cf597445570858fd15d35681aadd",
+    "performance_fixture_sha256": "2fada2edd75499dc84f1f151ef579cf0f2f4e8619bcd980e55f5282c3b000626",
+    "visits": [
+      "comm2-dual-r0-transport-bench.json",
+      "comm2-dual-r1-transport-bench.json"
+    ],
+    "cells": [
+      {
+        "fixtures": [
+          "code-0"
+        ],
+        "requests": 1,
+        "repetitions": 3,
+        "output_tokens": [
+          256
+        ],
+        "median_output_tok_s": 42.97499990015991,
+        "range_output_tok_s": [
+          42.00685539097909,
+          44.562189642054776
+        ],
+        "median_accepted_per_wall_second": 30.552538991519935,
+        "median_p95_stream_gap": 0.07637597043067217
+      },
+      {
+        "fixtures": [
+          "code-0",
+          "prose-0",
+          "tools-0",
+          "code-0"
+        ],
+        "requests": 4,
+        "repetitions": 3,
+        "output_tokens": [
+          256,
+          256,
+          256,
+          256
+        ],
+        "median_output_tok_s": 78.27600222562725,
+        "range_output_tok_s": [
+          72.76424932185228,
+          80.08686697844006
+        ],
+        "median_accepted_per_wall_second": 49.53403265840475,
+        "median_p95_stream_gap": 0.14564025764120742
+      },
+      {
+        "fixtures": [
+          "code-32768"
+        ],
+        "requests": 1,
+        "repetitions": 3,
+        "output_tokens": [
+          256
+        ],
+        "median_output_tok_s": 38.30567924703289,
+        "range_output_tok_s": [
+          37.75579256805852,
+          38.73539380251995
+        ],
+        "median_accepted_per_wall_second": 24.98847044630661,
+        "median_p95_stream_gap": 0.08208441452588887
+      },
+      {
+        "fixtures": [
+          "code-32768",
+          "prose-32768",
+          "tools-32768",
+          "code-32768"
+        ],
+        "requests": 4,
+        "repetitions": 3,
+        "output_tokens": [
+          256,
+          256,
+          256,
+          256
+        ],
+        "median_output_tok_s": 69.02615716968796,
+        "range_output_tok_s": [
+          68.30238349484532,
+          69.69227369441283
+        ],
+        "median_accepted_per_wall_second": 43.28930360171349,
+        "median_p95_stream_gap": 0.16737956829601897
+      },
+      {
+        "fixtures": [
+          "code-8192"
+        ],
+        "requests": 1,
+        "repetitions": 3,
+        "output_tokens": [
+          256
+        ],
+        "median_output_tok_s": 39.871762752330284,
+        "range_output_tok_s": [
+          39.45768918716109,
+          41.317405253220024
+        ],
+        "median_accepted_per_wall_second": 28.813578551488682,
+        "median_p95_stream_gap": 0.08677732469514013
+      },
+      {
+        "fixtures": [
+          "code-8192",
+          "prose-8192",
+          "tools-8192",
+          "code-8192"
+        ],
+        "requests": 4,
+        "repetitions": 3,
+        "output_tokens": [
+          256,
+          256,
+          256,
+          256
+        ],
+        "median_output_tok_s": 70.65064518733293,
+        "range_output_tok_s": [
+          69.09642339276958,
+          71.19481974665584
+        ],
+        "median_accepted_per_wall_second": 45.60918140020139,
+        "median_p95_stream_gap": 0.16306055925088003
+      },
+      {
+        "fixtures": [
+          "prose-0"
+        ],
+        "requests": 1,
+        "repetitions": 3,
+        "output_tokens": [
+          256
+        ],
+        "median_output_tok_s": 33.93135508638,
+        "range_output_tok_s": [
+          32.10671538636809,
+          34.261146753349365
+        ],
+        "median_accepted_per_wall_second": 18.29112110125172,
+        "median_p95_stream_gap": 0.07530489144846797
+      },
+      {
+        "fixtures": [
+          "prose-32768"
+        ],
+        "requests": 1,
+        "repetitions": 3,
+        "output_tokens": [
+          256
+        ],
+        "median_output_tok_s": 30.652927890705087,
+        "range_output_tok_s": [
+          29.68420040049069,
+          31.652311729234608
+        ],
+        "median_accepted_per_wall_second": 17.002795939375478,
+        "median_p95_stream_gap": 0.08236976256594061
+      },
+      {
+        "fixtures": [
+          "prose-8192"
+        ],
+        "requests": 1,
+        "repetitions": 3,
+        "output_tokens": [
+          256
+        ],
+        "median_output_tok_s": 32.98400886979391,
+        "range_output_tok_s": [
+          32.507992729885906,
+          33.28689343951462
+        ],
+        "median_accepted_per_wall_second": 19.4554114817925,
+        "median_p95_stream_gap": 0.08026858689263464
+      },
+      {
+        "fixtures": [
+          "tools-0"
+        ],
+        "requests": 1,
+        "repetitions": 3,
+        "output_tokens": [
+          256
+        ],
+        "median_output_tok_s": 43.87872804664417,
+        "range_output_tok_s": [
+          43.82139371129067,
+          47.63337653964868
+        ],
+        "median_accepted_per_wall_second": 32.223440909254315,
+        "median_p95_stream_gap": 0.08185818325728178
+      },
+      {
+        "fixtures": [
+          "tools-32768"
+        ],
+        "requests": 1,
+        "repetitions": 3,
+        "output_tokens": [
+          256
+        ],
+        "median_output_tok_s": 37.71275031566183,
+        "range_output_tok_s": [
+          36.82163238475402,
+          38.71204295787508
+        ],
+        "median_accepted_per_wall_second": 24.89630782557363,
+        "median_p95_stream_gap": 0.08645191988907755
+      },
+      {
+        "fixtures": [
+          "tools-8192"
+        ],
+        "requests": 1,
+        "repetitions": 3,
+        "output_tokens": [
+          256
+        ],
+        "median_output_tok_s": 42.207831082045125,
+        "range_output_tok_s": [
+          41.85861754722215,
+          42.87398663047478
+        ],
+        "median_accepted_per_wall_second": 30.83150161071265,
+        "median_p95_stream_gap": 0.0880936661735177
+      }
+    ],
+    "prefill": [
+      {
+        "context": 8192,
+        "repetitions": 3,
+        "median_ttft_seconds": 8.721577588934451,
+        "median_prompt_tok_s_by_ttft": 939.2796104220462
+      },
+      {
+        "context": 32768,
+        "repetitions": 3,
+        "median_ttft_seconds": 35.18998823221773,
+        "median_prompt_tok_s_by_ttft": 931.117105915981
+      }
+    ],
+    "decode_medians": {
+      "prose": 35.176030872177556,
+      "code": 47.78630501189327
+    }
+  },
+  "matrix_comparisons": [
+    {
+      "fixtures": [
+        "code-0"
+      ],
+      "requests": 1,
+      "throughput_ratio": 1.026050033765712,
+      "accepted_per_wall_second_ratio": 1.0610290121895432
+    },
+    {
+      "fixtures": [
+        "code-0",
+        "prose-0",
+        "tools-0",
+        "code-0"
+      ],
+      "requests": 4,
+      "throughput_ratio": 1.0418539471332247,
+      "accepted_per_wall_second_ratio": 1.0307196301409614
+    },
+    {
+      "fixtures": [
+        "code-32768"
+      ],
+      "requests": 1,
+      "throughput_ratio": 1.0164519917086214,
+      "accepted_per_wall_second_ratio": 1.0163152654452177
+    },
+    {
+      "fixtures": [
+        "code-32768",
+        "prose-32768",
+        "tools-32768",
+        "code-32768"
+      ],
+      "requests": 4,
+      "throughput_ratio": 1.0356289291145147,
+      "accepted_per_wall_second_ratio": 0.9962968088764533
+    },
+    {
+      "fixtures": [
+        "code-8192"
+      ],
+      "requests": 1,
+      "throughput_ratio": 0.9770317694274318,
+      "accepted_per_wall_second_ratio": 0.9614408369365685
+    },
+    {
+      "fixtures": [
+        "code-8192",
+        "prose-8192",
+        "tools-8192",
+        "code-8192"
+      ],
+      "requests": 4,
+      "throughput_ratio": 1.0297198033876231,
+      "accepted_per_wall_second_ratio": 1.062406359817824
+    },
+    {
+      "fixtures": [
+        "prose-0"
+      ],
+      "requests": 1,
+      "throughput_ratio": 1.0871269599516462,
+      "accepted_per_wall_second_ratio": 1.1540270805640551
+    },
+    {
+      "fixtures": [
+        "prose-32768"
+      ],
+      "requests": 1,
+      "throughput_ratio": 0.9601495901079439,
+      "accepted_per_wall_second_ratio": 0.9274914407845445
+    },
+    {
+      "fixtures": [
+        "prose-8192"
+      ],
+      "requests": 1,
+      "throughput_ratio": 1.0493840629102227,
+      "accepted_per_wall_second_ratio": 1.1399783704995943
+    },
+    {
+      "fixtures": [
+        "tools-0"
+      ],
+      "requests": 1,
+      "throughput_ratio": 0.9916167340509204,
+      "accepted_per_wall_second_ratio": 0.981178663166174
+    },
+    {
+      "fixtures": [
+        "tools-32768"
+      ],
+      "requests": 1,
+      "throughput_ratio": 1.0457705936033792,
+      "accepted_per_wall_second_ratio": 1.0711226079937641
+    },
+    {
+      "fixtures": [
+        "tools-8192"
+      ],
+      "requests": 1,
+      "throughput_ratio": 1.0297081777919679,
+      "accepted_per_wall_second_ratio": 1.0408401580924214
+    }
+  ],
+  "matrix_geomean_ratio": 1.0236744255667003,
+  "decode_ratios": {
+    "prose": 0.9795679650954835,
+    "code": 1.022982423590424
+  },
+  "prefill_ratios": [
+    {
+      "context": 8192,
+      "ratio": 0.9974832270068233
+    },
+    {
+      "context": 32768,
+      "ratio": 0.9991822559626626
+    }
+  ],
+  "promoted": true,
+  "limitations": [
+    "Within-configuration repeats alone do not isolate between-launch drift. Inspect the recorded visit order and per-workload ranges, not only the aggregate.",
+    "256-token cached matrix throughput differs from512-token decode estimates and cold-prefill TTFT rates.",
+    "Adaptive MTP changes draft depth; report acceptance throughput alongside total output and do not interpret every difference as isolated network latency.",
+    "Quality and actual application acceptance are separate required gates.",
+    "Three samples per workload/configuration across two launches; no statistical-significance claim. Adaptive MTP and host state contribute variation.",
+    "The original first visit followed profiling and had lower free RAM; a fresh original/candidate visit was added, but this does not eliminate all order effects.",
+    "Long-context coarsened KL is a lower bound;128K common reference mass is limited. This is not comprehensive360K quality validation.",
+    "Dual-port is a tradeoff:512-token prose -2.04%,cached32K prose -3.99%,cached8K code -2.30%. Cold prefill is essentially unchanged."
+  ],
+  "local_source_revision": "c69f8b66c6c5ca72a00b732c589bc2a55bd89c3e",
+  "date": "2026-10-03",
+  "outcome": "promoted",
+  "reason": "Select dual-HCA RoCEnante on the same qualified image.72 cached matrix measurements across two alternating visits per configuration give +2.37% equal-cell geometric mean; C4 improves2.97-4.19%,512-token code +2.30%, most median p95 gaps improve. Cold prefill is unchanged. Tradeoffs:512-token prose -2.04%, cached32K prose -3.99%,8K code -2.30%; no universal speedup or statistical significance claimed. Full numerical short/8K/32K/128K qualification passed for this exact configuration, with fresh functional checks on the final containers. Application acceptance remains required.",
+  "scope": "Dual-HCA transport experiment; message-size/crossover work remains in progress.",
+  "quality": {
+    "short": {
+      "reference_sha256": "9e9e2fe042e38fcf6af3b500d721deb9d616f3da0c2d2032671a4072ceaf3a58",
+      "summary": {
+        "positions": 4096,
+        "mean_coarsened_kl": 5.069549738019353e-10,
+        "top1_agreement": 1,
+        "mean_common_reference_mass": 0.9995512817500845,
+        "mean_nll_delta": -7.956259651109576e-09
+      },
+      "pass": true,
+      "thresholds": {
+        "max_kl": 0.001,
+        "min_top1": 0.995,
+        "max_nll_delta": 0.01
+      },
+      "limitation": "Freeze baseline continuations and compare dense overlays on identical tokens.\n\nThe KL statistic is a lower bound: common reported tokens are separate bins and\nall other probability is one tail bin. It is not full-vocabulary KL or a task\nquality benchmark. Top-1 agreement is exact at each teacher-forced position.\n"
+    },
+    "long": {
+      "reference_sha256": "d3b321c96f516b74af1e41c6b30d8439cc346c8f440da6438ff4e12f59732287",
+      "thresholds": {
+        "max_coarsened_kl": 0.001,
+        "min_top1": 0.995,
+        "max_nll_delta": 0.01
+      },
+      "passed": true,
+      "cases": [
+        {
+          "context": 8192,
+          "start": 7680,
+          "summary": {
+            "positions": 512,
+            "mean_coarsened_kl": 2.721325492030414e-15,
+            "top1_agreement": 1,
+            "mean_common_reference_mass": 0.9991739549163815,
+            "mean_nll_delta": 2.1827872842550278e-10
+          },
+          "passed": true
+        },
+        {
+          "context": 32768,
+          "start": 32256,
+          "summary": {
+            "positions": 512,
+            "mean_coarsened_kl": 0,
+            "top1_agreement": 1,
+            "mean_common_reference_mass": 0.9978193007741218,
+            "mean_nll_delta": 0.0
+          },
+          "passed": true
+        },
+        {
+          "context": 131072,
+          "start": 130560,
+          "summary": {
+            "positions": 512,
+            "mean_coarsened_kl": 2.05238423798726e-11,
+            "top1_agreement": 1,
+            "mean_common_reference_mass": 0.4608117383047953,
+            "mean_nll_delta": 2.1886080503463745e-07
+          },
+          "passed": true
+        }
+      ]
+    },
+    "fresh_basic_cases": 8,
+    "numerical_reuse": "Final identical-image/configuration restart reused the full numerical gates and ran fresh basic checks. No numerical rerun is claimed for that restart."
+  },
+  "acceptance": {
+    "native": true,
+    "pi_router": true,
+    "code_chat": true,
+    "same_containers": true,
+    "minimum_available_gib": 13.53,
+    "guard_floor_gib": 8,
+    "guard_floor_seconds": 2,
+    "long_soak": false
+  },
+  "ports": [
+    {
+      "requests": 1,
+      "ranks": [
+        {
+          "rank": 0,
+          "tx_bytes_by_hca": {
+            "roceP2p1s0f0": 2791298668,
+            "roceP2p1s0f1": 0,
+            "rocep1s0f0": 1856541080,
+            "rocep1s0f1": 0
+          },
+          "second_rail_share": 0.6005582849970498
+        },
+        {
+          "rank": 1,
+          "tx_bytes_by_hca": {
+            "roceP2p1s0f0": 2791540232,
+            "roceP2p1s0f1": 0,
+            "rocep1s0f0": 1868433272,
+            "rocep1s0f1": 0
+          },
+          "second_rail_share": 0.5990463743203291
+        },
+        {
+          "rank": 2,
+          "tx_bytes_by_hca": {
+            "roceP2p1s0f0": 2791826260,
+            "roceP2p1s0f1": 0,
+            "rocep1s0f0": 1856601100,
+            "rocep1s0f1": 0
+          },
+          "second_rail_share": 0.600595866899811
+        },
+        {
+          "rank": 3,
+          "tx_bytes_by_hca": {
+            "roceP2p1s0f0": 2791982452,
+            "roceP2p1s0f1": 0,
+            "rocep1s0f0": 1856612716,
+            "rocep1s0f1": 0
+          },
+          "second_rail_share": 0.600607786029519
+        },
+        {
+          "rank": 4,
+          "tx_bytes_by_hca": {
+            "roceP2p1s0f0": 2791774040,
+            "roceP2p1s0f1": 0,
+            "rocep1s0f0": 1868408460,
+            "rocep1s0f1": 0
+          },
+          "second_rail_share": 0.5990696802110218
+        },
+        {
+          "rank": 5,
+          "tx_bytes_by_hca": {
+            "roceP2p1s0f0": 2791300520,
+            "roceP2p1s0f1": 0,
+            "rocep1s0f0": 1856520984,
+            "rocep1s0f1": 0
+          },
+          "second_rail_share": 0.6005610408226211
+        }
+      ]
+    },
+    {
+      "requests": 4,
+      "ranks": [
+        {
+          "rank": 0,
+          "tx_bytes_by_hca": {
+            "roceP2p1s0f0": 9765134704,
+            "roceP2p1s0f1": 0,
+            "rocep1s0f0": 6499813132,
+            "rocep1s0f1": 0
+          },
+          "second_rail_share": 0.600379097582247
+        },
+        {
+          "rank": 1,
+          "tx_bytes_by_hca": {
+            "roceP2p1s0f0": 9765356712,
+            "roceP2p1s0f1": 0,
+            "rocep1s0f0": 6527303900,
+            "rocep1s0f1": 0
+          },
+          "second_rail_share": 0.599371517308078
+        },
+        {
+          "rank": 2,
+          "tx_bytes_by_hca": {
+            "roceP2p1s0f0": 9765767448,
+            "roceP2p1s0f1": 0,
+            "rocep1s0f0": 6499813216,
+            "rocep1s0f1": 0
+          },
+          "second_rail_share": 0.6003946400520583
+        },
+        {
+          "rank": 3,
+          "tx_bytes_by_hca": {
+            "roceP2p1s0f0": 9765695372,
+            "roceP2p1s0f1": 0,
+            "rocep1s0f0": 6500925740,
+            "rocep1s0f1": 0
+          },
+          "second_rail_share": 0.6003518066081823
+        },
+        {
+          "rank": 4,
+          "tx_bytes_by_hca": {
+            "roceP2p1s0f0": 9764613296,
+            "roceP2p1s0f1": 0,
+            "rocep1s0f0": 6525657180,
+            "rocep1s0f1": 0
+          },
+          "second_rail_share": 0.5994138225259017
+        },
+        {
+          "rank": 5,
+          "tx_bytes_by_hca": {
+            "roceP2p1s0f0": 9764363104,
+            "roceP2p1s0f1": 0,
+            "rocep1s0f0": 6500301012,
+            "rocep1s0f1": 0
+          },
+          "second_rail_share": 0.6003421302991757
+        }
+      ]
+    }
+  ],
+  "visit_order": [
+    "single-r0:2 repeats",
+    "dual-r0:2 repeats",
+    "single-r1:1 repeat",
+    "dual-r1:1 repeat"
+  ],
+  "measurement_counts": {
+    "cached_matrix": 72,
+    "decode512": 12,
+    "cold_prefill": 12
+  },
+  "unchanged": {
+    "weights": "original3.25bpw mixedK3/K4 EXL3",
+    "target_dense": "mxfp8",
+    "draft_dense": "mxfp8",
+    "context": 360000,
+    "max_requests": 4,
+    "kv_bytes_per_rank": 25769803776,
+    "prefill_budget": 3072,
+    "mtp_policy": "original"
+  }
+}

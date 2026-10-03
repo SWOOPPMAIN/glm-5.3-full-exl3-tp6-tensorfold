@@ -3339,8 +3339,8 @@
     },
     {
       "path": "recipes/vllm-tp6/tuning.json",
-      "sha256": "fc7e38e9d7daafdebee8344f3a95536798314b10a3d2dfc8538ebd2ed0181e36",
-      "origin": "amos-recipes@bb49dce1a426a80e7c8c638a5b247b1e865dfb69:p27-nccl-dual-tuning.json",
+      "sha256": "48ea2b58cf0f2d3754067b14fac9fecaae3b919d7b8031d6d77b1898edcf28c4",
+      "origin": "amos-recipes@c69f8b66c6c5ca72a00b732c589bc2a55bd89c3e:qualification/serving-optimization-20261003/comm2-dual-roce-tuning.json",
       "change": null
     },
     {
@@ -3768,6 +3768,24 @@
       "sha256": "232a31d5150f39e594635a5b1330783513b732cdab6d578fa6e08c18a8252f6b",
       "origin": "amos-recipes@e24ee612a65f4e94006e45a6ab7edf52a69b054b:qualification/serving-optimization-20261003/mtp-outcome.json",
       "change": "Add local source revision; selected synthetic summary only, no private host mappings or response bodies."
+    },
+    {
+      "path": "results/communication-dual-roce.json",
+      "sha256": "8dca3419eb764860010da7e471fbef8e54f609ac10b40304c14d493e13485c5a",
+      "origin": "amos-recipes@c69f8b66c6c5ca72a00b732c589bc2a55bd89c3e:qualification/serving-optimization-20261003/comm2-balanced-comparison.json",
+      "change": "Sanitized selected metrics, numerical summary, acceptance flags and original receipt hashes; no host mappings or response bodies."
+    },
+    {
+      "path": "results/communication-samples.json",
+      "sha256": "96383547aa508103cb7234b8651086b15570be7d39bd60e0fbaa2d59c966358c",
+      "origin": "amos-recipes@c69f8b66c6c5ca72a00b732c589bc2a55bd89c3e:qualification/serving-optimization-20261003/comm2-balanced-comparison.json",
+      "change": "Selected scalar samples from the eight source receipts identified inside; verified exported medians reproduce the local summary."
+    },
+    {
+      "path": "results/communication-profile.json",
+      "sha256": "cee739f5b4a3ad0a568fc171482c27494be8aee5c03a6d8aae01b7ac7bb9e2e6",
+      "origin": "amos-recipes@c69f8b66c6c5ca72a00b732c589bc2a55bd89c3e:qualification/serving-optimization-20261003/comm1-summary.json",
+      "change": "Selected per-case rank summaries and limitations; raw traces and host inventory excluded."
     }
   ]
 }

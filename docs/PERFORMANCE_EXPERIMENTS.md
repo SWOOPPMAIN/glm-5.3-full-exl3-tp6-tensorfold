@@ -5,8 +5,10 @@ Prompt-cache replay results are recorded in [cache reuse](../results/cache-reuse
 and its [reproduction protocol](../benchmarks/CACHE_REUSE.md).
 Smaller/adaptive prefill budgets were rejected at the numerical gate; see
 [the experiment](../recipes/vllm-tp6/PREFILL_BUDGETS.md). MTP retuning also
-finished without a promoted policy; communication, E3 and copy drafting remain.
-No new serving speedup is claimed.
+finished without a promoted policy. [Dual-port RoCEnante](../recipes/vllm-tp6/COMMUNICATION.md)
+is selected after a 72-measurement comparison: +2.37% across the cached matrix,
+with per-workload regressions and unchanged prefill. Communication size/crossover
+work, E3 and copy drafting remain.
 Keep full GLM, TP6, the original 3.25 bpw experts and the current dense precision.
 Start from [P27 measurements](../results/p27-serving.json), with production serving
 remaining the priority. No numerical speedup promise is supported for this list.
@@ -54,8 +56,10 @@ no global fixed-depth policy was promoted. The fitted windows 8/16/32 were withi
 Retain original adaptive MTP; this rejects promotion, not every possible retuning.
 
 **TP6 communication:** two NCCL rails, performance-core affinity, custom small-message
-RoCE and decode projection sharding are already present. The next test is where each
-path wins on six ranks, not merely turning on a second NIC. Preserve deterministic
+RoCE and decode projection sharding were already present. Six-rank profiling showed
+that decode's custom RoCE path used one HCA while NCCL prefill used both. The qualified
+dual-HCA custom path is now selected; actual message-size profiling and crossover
+tests remain. Preserve deterministic
 sum order and validate with all six ranks; two-node bandwidth alone is insufficient.
 The previous generic NCCL protocol screen found no gain, so avoid repeating that sweep
 without a new measured bottleneck. [Kindling's TP6 recipe](https://github.com/kindlingai/glm-5.3-full-exl3-tp6)

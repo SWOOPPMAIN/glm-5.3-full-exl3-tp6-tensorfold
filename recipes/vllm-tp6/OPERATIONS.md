@@ -11,7 +11,7 @@ Original 3.25 bpw weights and the qualified P27 inference configuration are reta
 | Kernel | `7.0.0-1019-nvidia-64k`; 64 KiB pages |
 | NVIDIA driver | `580.178.04` |
 | Runtime | P27 image ID in the [serving recipe](README.md) |
-| Fabric | Two validated NCCL rails; both addresses and MTU 9000 persistent |
+| Fabric | Two validated NCCL rails and dual-HCA RoCEnante; addresses and MTU 9000 persistent |
 | Memory setting | `vm.compaction_proactiveness=0`, persistent |
 | Protection | Exact-container guard: 8 GiB available for 2 seconds, plus PSI/refault/swap checks |
 
@@ -32,6 +32,10 @@ Sources: [Kindling Spark OS](https://github.com/kindlingai/kindling-spark-os),
 [Linux boot parameters](https://www.kernel.org/doc/html/v6.6/admin-guide/kernel-parameters.html).
 
 ## Maintenance and recovery
+
+October 3: [dual-HCA RoCEnante](COMMUNICATION.md) was selected with unchanged
+image/precision/weights after numerical and application acceptance. The HCA pair
+and per-node shared GID-index checks are required on subsequent launches.
 
 1. Reserve all six GPUs for full TP6. Stop competing model tests and their
    automatic restart policies before starting the fleet.

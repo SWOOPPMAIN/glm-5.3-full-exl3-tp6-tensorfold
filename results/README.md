@@ -2,6 +2,13 @@
 
 ## Current serving: vLLM P27
 
+Latest: [dual-port RoCEnante](communication-dual-roce.json) is selected on the same
+image after short/long numerical and native/Pi/Code/Chat checks. Matched cached
+workloads improve 2.37% overall, with C4 gains of 3.0–4.2%; code generation is
+47.79 tok/s (+2.3%) and prose is 35.18 tok/s (−2.0%). Cold prefill remains about
+939/931 tok/s at 8K/32K. [Individual samples](communication-samples.json) and
+[conditions, regressions and replay](../recipes/vllm-tp6/COMMUNICATION.md).
+
 Latest October 3 image adds bounded MTP controls with **original adaptive MTP
 still selected**. [Repeated results](mtp-repeated-matrix.json) cover 60 cells with
 three visits each. [Cost calibration](mtp-calibration.json) adds 72 cells and

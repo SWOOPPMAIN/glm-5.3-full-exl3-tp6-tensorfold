@@ -4,7 +4,8 @@
 
 The current P27 inference configuration on six GB10 nodes: original 3.25 bpw experts,
 MXFP8 target/draft dense paths, native MTP up to four draft tokens, adaptive
-request/phase scheduling, and native/E3 prefill dispatch, and two validated NCCL RoCE rails.
+request/phase scheduling, native/E3 prefill dispatch, and two validated fabric
+ports for both NCCL and the custom RoCEnante collectives.
 
 **Prerequisite:** the retained, qualified image must already be installed
 on every node. This repository does not yet build that
@@ -21,7 +22,9 @@ The October 3 image adds bounded prefill and MTP controls. It retains qualified
 **3072** prefill and the **original adaptive MTP policy**. Before starting rank 0,
 install both persistent control files and read their qualification limits:
 [prefill budgets](PREFILL_BUDGETS.md) and [MTP tuning](MTP_TUNING.md).
-Smaller/adaptive budgets failed the numerical gate; MTP tuning remains in progress.
+Smaller/adaptive budgets failed the numerical gate; MTP retuning finished without
+a promoted policy. [Dual-port RoCEnante](COMMUNICATION.md) is now selected for
+modest overall and concurrent gains, with explicit per-workload tradeoffs.
 
 A Docker image ID is not a registry digest. Move an existing image with
 `docker save` / `docker load`, then compare `docker image inspect --format
@@ -72,8 +75,9 @@ guards; its site-specific host mappings and credentials are deliberately absent 
    address-range filter for your fabric (`NCCL_IB_ADDR_FAMILY=AF_INET`,
    `NCCL_IB_ROCE_VERSION_NUM=2`, and a site-specific `NCCL_IB_ADDR_RANGE`).
    Leave a fixed `NCCL_IB_GID_INDEX` unset for this NCCL policy. Validate
-   per-host GIDs against live interface/subnet state; keep the custom b12x
-   collective on its separately qualified HCA and explicit GID.
+   per-host GIDs against live interface/subnet state. The custom b12x collective
+   uses both validated HCAs and one explicit GID index shared by those two HCAs
+   on each node; see the [mapping constraints](COMMUNICATION.md#configuration-and-reproduction).
    `AMOS_TP6_NCCL_RAILS=2` records the controller selection policy; the node
    entrypoint alone does not discover or configure a second fabric.
 6. Apply the table above and [tuning.json](tuning.json) as environment values,

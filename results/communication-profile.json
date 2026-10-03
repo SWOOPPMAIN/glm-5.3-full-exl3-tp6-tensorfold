@@ -1,0 +1,181 @@
+{
+  "schema": 1,
+  "local_source_revision": "c69f8b66c6c5ca72a00b732c589bc2a55bd89c3e",
+  "image": "sha256:2e947348fd26b8d58e4535e0321126935069a5e521784fa573f19fb560975d9d",
+  "phase": "diagnostic_complete_threshold_tests_pending",
+  "cases": [
+    {
+      "case": "decode-c1",
+      "families": {
+        "nccl": {
+          "median_kernel_sum_ms": 0.0,
+          "range_kernel_sum_ms": [
+            0.0,
+            0.0
+          ],
+          "counts_by_rank": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "roce_reduce": {
+          "median_kernel_sum_ms": 81.6797895,
+          "range_kernel_sum_ms": [
+            81.124077,
+            102.11606900000001
+          ],
+          "counts_by_rank": [
+            1340,
+            1340,
+            1340,
+            1340,
+            1340,
+            1340
+          ]
+        },
+        "roce_gather": {
+          "median_kernel_sum_ms": 24.306703499999998,
+          "range_kernel_sum_ms": [
+            22.61381,
+            25.985076
+          ],
+          "counts_by_rank": [
+            856,
+            856,
+            856,
+            856,
+            856,
+            856
+          ]
+        }
+      },
+      "median_trace_span_ms": 595.3042265014649,
+      "second_rail_tx_share_range": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "case": "decode-c4",
+      "families": {
+        "nccl": {
+          "median_kernel_sum_ms": 0.0,
+          "range_kernel_sum_ms": [
+            0.0,
+            0.0
+          ],
+          "counts_by_rank": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "roce_reduce": {
+          "median_kernel_sum_ms": 141.5472415,
+          "range_kernel_sum_ms": [
+            135.269842,
+            161.212784
+          ],
+          "counts_by_rank": [
+            1304,
+            1304,
+            1304,
+            1304,
+            1304,
+            1304
+          ]
+        },
+        "roce_gather": {
+          "median_kernel_sum_ms": 27.935980999999998,
+          "range_kernel_sum_ms": [
+            26.132428,
+            29.587584
+          ],
+          "counts_by_rank": [
+            832,
+            832,
+            832,
+            832,
+            832,
+            832
+          ]
+        }
+      },
+      "median_trace_span_ms": 743.1528854827881,
+      "second_rail_tx_share_range": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "case": "prefill32k",
+      "families": {
+        "nccl": {
+          "median_kernel_sum_ms": 4983.499599,
+          "range_kernel_sum_ms": [
+            4805.052192,
+            5449.785089
+          ],
+          "counts_by_rank": [
+            2560,
+            2560,
+            2560,
+            2560,
+            2560,
+            2560
+          ]
+        },
+        "roce_reduce": {
+          "median_kernel_sum_ms": 7.619912,
+          "range_kernel_sum_ms": [
+            6.8292150000000005,
+            9.802702
+          ],
+          "counts_by_rank": [
+            72,
+            72,
+            72,
+            72,
+            72,
+            72
+          ]
+        },
+        "roce_gather": {
+          "median_kernel_sum_ms": 7.8847084999999995,
+          "range_kernel_sum_ms": [
+            7.504049,
+            8.253831
+          ],
+          "counts_by_rank": [
+            64,
+            64,
+            64,
+            64,
+            64,
+            64
+          ]
+        }
+      },
+      "median_trace_span_ms": 25841.80057400513,
+      "second_rail_tx_share_range": [
+        0.49967395906971873,
+        0.4996781004319587
+      ]
+    }
+  ],
+  "limitations": [
+    "Eight profiled iterations per case on each rank; timings include profiler overhead and collective waits. They are not serving throughput or a guaranteed optimization ceiling.",
+    "Port counters span full requests, whereas CUDA traces cover bounded subsets. Counters include protocol overhead and any concurrent network management traffic.",
+    "Tensor-shape recording was disabled. These traces do not establish an exact collective-message-size histogram; bounded dispatch metadata is still needed before a size-dependent crossover claim.",
+    "Rank clocks are not aligned here. Rank duration differences can reflect waiting for compute elsewhere and cannot isolate a slow network link."
+  ],
+  "source_sha256": "b5be794603b8072961f57b35cf050a03e8678b15fa57fa4f427290b52fdb131d",
+  "speed_benchmark": false
+}

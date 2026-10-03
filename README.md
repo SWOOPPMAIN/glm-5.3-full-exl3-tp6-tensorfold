@@ -13,18 +13,21 @@ reboot. No 12-hour soak was run. [Operating notes](recipes/vllm-tp6/OPERATIONS.m
 
 | Measurement | vLLM P27 |
 | --- | ---: |
-| Prose generation, one request | **35.1 output tok/s median** |
-| Code generation, one request | **47.4 output tok/s median** |
-| Four concurrent requests | **76.5 output tok/s combined median** |
-| Cold prefill, 8K / 32K | **938 / 932 input tok/s** |
-| Time to first token, 8K / 32K | **8.73 / 35.17 s** |
+| Prose generation, one request | **35.2 output tok/s median** |
+| Code generation, one request | **47.8 output tok/s median** |
+| Four concurrent requests, cached short mixed workload | **78.3 output tok/s combined median** |
+| Cold prefill, 8K / 32K | **939 / 931 input tok/s** |
+| Time to first token, 8K / 32K | **8.72 / 35.19 s** |
 | Configured context / admitted requests | **360,000 tokens / 4** |
 | KV allocation | **24 GiB per rank** |
 
-These October 2 measurements precede the hardening closeout; no new speedup
-is claimed from that work. Prefill is prompt tokens divided by time to first
-token. Concurrent requests share the cache; four full-length contexts are
-not promised. [Samples, quality checks and limitations](results/README.md).
+October 3, three samples per workload. Dual-port RoCEnante is selected on the same
+image: **+2.4%** across the matched cached workload matrix and **+3–4%** at C4.
+Code improves 2.3%, prose falls 2.0%, and cold prefill is unchanged versus the
+matched single-port control. Prefill is prompt tokens divided by TTFT; the C4
+matrix uses 256 output tokens per request, while generation tests use 512.
+Concurrent requests share the cache; four full-length contexts are not promised.
+[Samples, quality, tradeoffs and recipe](recipes/vllm-tp6/COMMUNICATION.md).
 
 New cache replay: repeated 8K / 32K / 128K code-tool histories reached first
 tokens in **0.60 / 0.64 / 0.87 seconds**, versus **8.65 / 35.28 / 142.39 seconds**
@@ -62,7 +65,8 @@ artifacts are not included in this repository.
 mixed prefill/decode scheduling, workload-aware MTP, six-rank communication,
 E3 prefill kernels, and target-verified copy/ngram drafting. Prompt reuse has
 been measured; smaller prefill budgets and MTP retuning were rejected for promotion.
-Communication, E3 and copy/ngram drafting remain to be assessed.
+Dual-port communication is selected; message-size/crossover tests, E3 and
+copy/ngram drafting remain.
 TensorFold development is excluded from this optimization goal.
 
 ## Credits
