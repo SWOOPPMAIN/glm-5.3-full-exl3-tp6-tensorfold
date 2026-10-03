@@ -9,7 +9,10 @@ finished without a promoted policy. [Dual-port RoCEnante](../recipes/vllm-tp6/CO
 is selected after a 72-measurement comparison: +2.37% across the cached matrix,
 with per-workload regressions and unchanged prefill. Six-rank size profiling and
 the bounded crossover screen are complete: retain 2 MiB; 128 KiB loses C4 speed
-and 16 MiB fails fidelity. E3 and copy drafting remain.
+and 16 MiB fails fidelity. [E3 route capture](../recipes/vllm-tp6/E3_PREFILL.md)
+is complete: about 26.5% of current tile capacity is unused padding. A 32-row
+candidate eliminates compiler-reported gate/up spills but has not been GPU-tested.
+E3 kernel comparisons and copy drafting remain.
 Keep full GLM, TP6, the original 3.25 bpw experts and the current dense precision.
 Start from [P27 measurements](../results/p27-serving.json), with production serving
 remaining the priority. No numerical speedup promise is supported for this list.
@@ -72,6 +75,10 @@ is a reference for the existing collective split.
 expert-launch screen. Measure rank imbalance, padding, routed token counts and
 complete MoE latency; a faster isolated GEMM can lose after routing and reductions.
 Use current graph and memory constraints rather than blindly raising the batch budget.
+The two actual-route captures cover all 75 layers on six ranks. A 32-row layout
+would reduce padded rows about 14% while increasing segment count about 72%.
+Its CPU compile removes gate/up spills; compare exact captured inputs before
+claiming a gain. The qualified diagnostic hook is inactive in serving.
 
 **Copy drafting:** no new drafter weights are required. Full target verification is
 mandatory. First validate compatibility with the pinned TP6 scheduler; combining it

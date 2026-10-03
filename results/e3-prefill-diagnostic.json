@@ -1,0 +1,490 @@
+{
+  "phase": "diagnostic_complete_serving",
+  "at": 1791020722.391702,
+  "image": "sha256:340a9bae07ab134120249cf0224108fda7b3706720724bd1b2fe705245e7ce20",
+  "kernels_changed": false,
+  "weights_or_precision_changed": false,
+  "tensorfold_work": false,
+  "new_speed_claim": false,
+  "capture_records": 900,
+  "input_output_pairs": 36,
+  "context_capacity": 360000,
+  "prefill_budget": 3072,
+  "short_quality": {
+    "positions": 4096,
+    "mean_coarsened_kl": 5.069549738019353e-10,
+    "top1_agreement": 1,
+    "mean_common_reference_mass": 0.9995512817500845,
+    "mean_nll_delta": -7.956259651109576e-09
+  },
+  "long_quality": [
+    {
+      "context": 8192,
+      "summary": {
+        "positions": 512,
+        "mean_coarsened_kl": 2.721325492030414e-15,
+        "top1_agreement": 1,
+        "mean_common_reference_mass": 0.9991739549163815,
+        "mean_nll_delta": 2.1827872842550278e-10
+      },
+      "passed": true
+    },
+    {
+      "context": 32768,
+      "summary": {
+        "positions": 512,
+        "mean_coarsened_kl": 0,
+        "top1_agreement": 1,
+        "mean_common_reference_mass": 0.9978193007741218,
+        "mean_nll_delta": 0.0
+      },
+      "passed": true
+    },
+    {
+      "context": 131072,
+      "summary": {
+        "positions": 512,
+        "mean_coarsened_kl": 2.05238423798726e-11,
+        "top1_agreement": 1,
+        "mean_common_reference_mass": 0.4608117383047953,
+        "mean_nll_delta": 2.1886080503463745e-07
+      },
+      "passed": true
+    }
+  ],
+  "application_acceptance": "passed",
+  "minimum_final_available_gib": 10.46,
+  "cases": [
+    {
+      "kind": "code",
+      "totals": {
+        "16": {
+          "segments": 497440,
+          "actual_rows": 7372800,
+          "padded_rows": 7959040,
+          "unused_row_fraction": 0.07365712447732387
+        },
+        "32": {
+          "segments": 269272,
+          "actual_rows": 7372800,
+          "padded_rows": 8616704,
+          "unused_row_fraction": 0.144359606643097
+        },
+        "64": {
+          "segments": 156640,
+          "actual_rows": 7372800,
+          "padded_rows": 10024960,
+          "unused_row_fraction": 0.2645556690500511
+        }
+      },
+      "rank_totals": [
+        {
+          "rank": 0,
+          "geometry": {
+            "16": {
+              "segments": 82636,
+              "actual_rows": 1224344,
+              "padded_rows": 1322176,
+              "unused_row_fraction": 0.07399317488745827
+            },
+            "32": {
+              "segments": 44740,
+              "actual_rows": 1224344,
+              "padded_rows": 1431680,
+              "unused_row_fraction": 0.14482007152436294
+            },
+            "64": {
+              "segments": 26015,
+              "actual_rows": 1224344,
+              "padded_rows": 1664960,
+              "unused_row_fraction": 0.2646405919661734
+            }
+          },
+          "k3_rows": 902261,
+          "k4_rows": 322083
+        },
+        {
+          "rank": 1,
+          "geometry": {
+            "16": {
+              "segments": 82636,
+              "actual_rows": 1224344,
+              "padded_rows": 1322176,
+              "unused_row_fraction": 0.07399317488745827
+            },
+            "32": {
+              "segments": 44740,
+              "actual_rows": 1224344,
+              "padded_rows": 1431680,
+              "unused_row_fraction": 0.14482007152436294
+            },
+            "64": {
+              "segments": 26015,
+              "actual_rows": 1224344,
+              "padded_rows": 1664960,
+              "unused_row_fraction": 0.2646405919661734
+            }
+          },
+          "k3_rows": 902261,
+          "k4_rows": 322083
+        },
+        {
+          "rank": 2,
+          "geometry": {
+            "16": {
+              "segments": 83334,
+              "actual_rows": 1235119,
+              "padded_rows": 1333344,
+              "unused_row_fraction": 0.07366816065471471
+            },
+            "32": {
+              "segments": 45115,
+              "actual_rows": 1235119,
+              "padded_rows": 1443680,
+              "unused_row_fraction": 0.14446483985370717
+            },
+            "64": {
+              "segments": 26246,
+              "actual_rows": 1235119,
+              "padded_rows": 1679744,
+              "unused_row_fraction": 0.2646980730397013
+            }
+          },
+          "k3_rows": 923270,
+          "k4_rows": 311849
+        },
+        {
+          "rank": 3,
+          "geometry": {
+            "16": {
+              "segments": 83334,
+              "actual_rows": 1235119,
+              "padded_rows": 1333344,
+              "unused_row_fraction": 0.07366816065471471
+            },
+            "32": {
+              "segments": 45115,
+              "actual_rows": 1235119,
+              "padded_rows": 1443680,
+              "unused_row_fraction": 0.14446483985370717
+            },
+            "64": {
+              "segments": 26246,
+              "actual_rows": 1235119,
+              "padded_rows": 1679744,
+              "unused_row_fraction": 0.2646980730397013
+            }
+          },
+          "k3_rows": 923270,
+          "k4_rows": 311849
+        },
+        {
+          "rank": 4,
+          "geometry": {
+            "16": {
+              "segments": 82750,
+              "actual_rows": 1226937,
+              "padded_rows": 1324000,
+              "unused_row_fraction": 0.0733104229607251
+            },
+            "32": {
+              "segments": 44781,
+              "actual_rows": 1226937,
+              "padded_rows": 1432992,
+              "unused_row_fraction": 0.14379354525356736
+            },
+            "64": {
+              "segments": 26059,
+              "actual_rows": 1226937,
+              "padded_rows": 1667776,
+              "unused_row_fraction": 0.2643274636402011
+            }
+          },
+          "k3_rows": 907245,
+          "k4_rows": 319692
+        },
+        {
+          "rank": 5,
+          "geometry": {
+            "16": {
+              "segments": 82750,
+              "actual_rows": 1226937,
+              "padded_rows": 1324000,
+              "unused_row_fraction": 0.0733104229607251
+            },
+            "32": {
+              "segments": 44781,
+              "actual_rows": 1226937,
+              "padded_rows": 1432992,
+              "unused_row_fraction": 0.14379354525356736
+            },
+            "64": {
+              "segments": 26059,
+              "actual_rows": 1226937,
+              "padded_rows": 1667776,
+              "unused_row_fraction": 0.2643274636402011
+            }
+          },
+          "k3_rows": 907245,
+          "k4_rows": 319692
+        }
+      ],
+      "tile32_padded_row_reduction": 0.14047497446373847,
+      "tile32_segment_multiplier": 1.719050051072523,
+      "mean_layer_padded_max_to_mean": 1.043615665643169,
+      "worst_padded_imbalance": [
+        {
+          "layer": 29,
+          "active_max_to_mean": 1.16802978515625,
+          "padded_max_to_mean": 1.1149425287356323
+        },
+        {
+          "layer": 40,
+          "active_max_to_mean": 1.133056640625,
+          "padded_max_to_mean": 1.0963740458015268
+        },
+        {
+          "layer": 22,
+          "active_max_to_mean": 1.1265869140625,
+          "padded_max_to_mean": 1.0958254269449716
+        },
+        {
+          "layer": 16,
+          "active_max_to_mean": 1.0986328125,
+          "padded_max_to_mean": 1.0927342256214148
+        },
+        {
+          "layer": 21,
+          "active_max_to_mean": 1.12457275390625,
+          "padded_max_to_mean": 1.0916824196597352
+        }
+      ]
+    },
+    {
+      "kind": "prose",
+      "totals": {
+        "16": {
+          "segments": 497648,
+          "actual_rows": 7372800,
+          "padded_rows": 7962368,
+          "unused_row_fraction": 0.07404430440793497
+        },
+        "32": {
+          "segments": 269680,
+          "actual_rows": 7372800,
+          "padded_rows": 8629760,
+          "unused_row_fraction": 0.14565410857312366
+        },
+        "64": {
+          "segments": 157032,
+          "actual_rows": 7372800,
+          "padded_rows": 10050048,
+          "unused_row_fraction": 0.2663915635029803
+        }
+      },
+      "rank_totals": [
+        {
+          "rank": 0,
+          "geometry": {
+            "16": {
+              "segments": 82656,
+              "actual_rows": 1224217,
+              "padded_rows": 1322496,
+              "unused_row_fraction": 0.07431326824428963
+            },
+            "32": {
+              "segments": 44829,
+              "actual_rows": 1224217,
+              "padded_rows": 1434528,
+              "unused_row_fraction": 0.14660640991322582
+            },
+            "64": {
+              "segments": 26154,
+              "actual_rows": 1224217,
+              "padded_rows": 1673856,
+              "unused_row_fraction": 0.2686246606637608
+            }
+          },
+          "k3_rows": 893951,
+          "k4_rows": 330266
+        },
+        {
+          "rank": 1,
+          "geometry": {
+            "16": {
+              "segments": 82656,
+              "actual_rows": 1224217,
+              "padded_rows": 1322496,
+              "unused_row_fraction": 0.07431326824428963
+            },
+            "32": {
+              "segments": 44829,
+              "actual_rows": 1224217,
+              "padded_rows": 1434528,
+              "unused_row_fraction": 0.14660640991322582
+            },
+            "64": {
+              "segments": 26154,
+              "actual_rows": 1224217,
+              "padded_rows": 1673856,
+              "unused_row_fraction": 0.2686246606637608
+            }
+          },
+          "k3_rows": 893951,
+          "k4_rows": 330266
+        },
+        {
+          "rank": 2,
+          "geometry": {
+            "16": {
+              "segments": 83187,
+              "actual_rows": 1232395,
+              "padded_rows": 1330992,
+              "unused_row_fraction": 0.07407783067065765
+            },
+            "32": {
+              "segments": 45093,
+              "actual_rows": 1232395,
+              "padded_rows": 1442976,
+              "unused_row_fraction": 0.14593520612955446
+            },
+            "64": {
+              "segments": 26247,
+              "actual_rows": 1232395,
+              "padded_rows": 1679808,
+              "unused_row_fraction": 0.2663477016420924
+            }
+          },
+          "k3_rows": 912523,
+          "k4_rows": 319872
+        },
+        {
+          "rank": 3,
+          "geometry": {
+            "16": {
+              "segments": 83187,
+              "actual_rows": 1232395,
+              "padded_rows": 1330992,
+              "unused_row_fraction": 0.07407783067065765
+            },
+            "32": {
+              "segments": 45093,
+              "actual_rows": 1232395,
+              "padded_rows": 1442976,
+              "unused_row_fraction": 0.14593520612955446
+            },
+            "64": {
+              "segments": 26247,
+              "actual_rows": 1232395,
+              "padded_rows": 1679808,
+              "unused_row_fraction": 0.2663477016420924
+            }
+          },
+          "k3_rows": 912523,
+          "k4_rows": 319872
+        },
+        {
+          "rank": 4,
+          "geometry": {
+            "16": {
+              "segments": 82981,
+              "actual_rows": 1229788,
+              "padded_rows": 1327696,
+              "unused_row_fraction": 0.07374278449283567
+            },
+            "32": {
+              "segments": 44918,
+              "actual_rows": 1229788,
+              "padded_rows": 1437376,
+              "unused_row_fraction": 0.14442150140255572
+            },
+            "64": {
+              "segments": 26115,
+              "actual_rows": 1229788,
+              "padded_rows": 1671360,
+              "unused_row_fraction": 0.26419921501053034
+            }
+          },
+          "k3_rows": 897706,
+          "k4_rows": 332082
+        },
+        {
+          "rank": 5,
+          "geometry": {
+            "16": {
+              "segments": 82981,
+              "actual_rows": 1229788,
+              "padded_rows": 1327696,
+              "unused_row_fraction": 0.07374278449283567
+            },
+            "32": {
+              "segments": 44918,
+              "actual_rows": 1229788,
+              "padded_rows": 1437376,
+              "unused_row_fraction": 0.14442150140255572
+            },
+            "64": {
+              "segments": 26115,
+              "actual_rows": 1229788,
+              "padded_rows": 1671360,
+              "unused_row_fraction": 0.26419921501053034
+            }
+          },
+          "k3_rows": 897706,
+          "k4_rows": 332082
+        }
+      ],
+      "tile32_padded_row_reduction": 0.1413215140863009,
+      "tile32_segment_multiplier": 1.7173569718273982,
+      "mean_layer_padded_max_to_mean": 1.044388096069843,
+      "worst_padded_imbalance": [
+        {
+          "layer": 17,
+          "active_max_to_mean": 1.13238525390625,
+          "padded_max_to_mean": 1.1048076923076922
+        },
+        {
+          "layer": 38,
+          "active_max_to_mean": 1.1353759765625,
+          "padded_max_to_mean": 1.0990654205607475
+        },
+        {
+          "layer": 54,
+          "active_max_to_mean": 1.1175537109375,
+          "padded_max_to_mean": 1.0851063829787233
+        },
+        {
+          "layer": 33,
+          "active_max_to_mean": 1.103271484375,
+          "padded_max_to_mean": 1.0847457627118644
+        },
+        {
+          "layer": 40,
+          "active_max_to_mean": 1.1195068359375,
+          "padded_max_to_mean": 1.0795454545454546
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Row padding and register pressure are hypotheses, not measured speedups.",
+    "Smaller tiles reduce unused row arithmetic but increase segment count and packed-weight fetch/dequantization work.",
+    "Current full64-row kernel and native512-row dispatch remain selected; no kernel change in this diagnostic.",
+    "Two synthetic cold prompts; first3072-token chunk,75 routed layers,6 ranks. Local shard outputs at3/40/77 saved for replay. Does not characterize all prompts or later chunks.",
+    "The code capture client rejected a one-token stream; all75records/rank were already present and verified without repeating that request. Original request usage was not retained. Prose used a nonstreaming completion with verified usage."
+  ],
+  "evidence": {
+    "e31-capture.json": "c48f92dd3ae56cec653def8d37cbd96615e1195c3b2941ccc6266f8f2951e3a4",
+    "e31-route-analysis.json": "5a774584bd6bba172897a270dbe58f10628e03303ae01ff306e73007bb1cae19",
+    "e31-diagnostic-quality-trial.json": "fd9407115e076c89485b4718d5865fb2ac7940901f8f55cc05f786bfed88443e",
+    "e31-diagnostic-short.json": "0b4098038776ef686dc3260cbd429eec93a57454022319b40e6b1d60e351202b",
+    "e31-diagnostic-long.json": "74a7586ebc57cf3e62309ab8188597e014645580acea7eca8e94c901edeb34d1",
+    "e31-diagnostic-basic.json": "e776229874ebdcbdc2444d0811ad56503a0e668c80758fa62e10f8af1178341f",
+    "e31-window.json": "06527fe7f767e4ff8be08b0617228e0f5778f189162ac1d88f9f3d0ce53b9452",
+    "e31-application-acceptance.json": "6da8b25cc972b532cb0c0e97dc77bec05698de724fccea9d28c450f2e379d751",
+    "e31-final-serving.json": "68178c7d7fdac039a9cdf84281859187de840d7a16353da9f519f2c6b0d87bde",
+    "e32-cpu-compile.json": "25feccd0ca397b94aab63c8e000b02289ef18ba254b9ac620f2e06ecc6818ff6"
+  },
+  "next": "Exact captured-input component comparison, row32 versus current row64; smaller-row arithmetic and spill removal may be offset by1.72x segment count. E3 optimization remains in progress, copy/ngram assessment pending.",
+  "local_source_commit": "c367d0b4a6bf35b0dd9f8ee607b4060b85e3465a"
+}

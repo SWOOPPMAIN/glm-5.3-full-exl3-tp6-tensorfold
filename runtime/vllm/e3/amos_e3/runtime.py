@@ -180,4 +180,7 @@ def apply(layer, x, weights, ids, *, grid_cap=512, stream_scratch=False):
          routes['row_route'], routes['row_weight'], *segments, binding['bits'],
          binding['intermediate'], h], stream, SMEM)
     ordered_sum(layer, scratch['up'], output, weights, ids)
-    return output.to(x.dtype)
+    result = output.to(x.dtype)
+    from .diagnostic_capture import capture
+    capture(layer, x, weights, ids, result)
+    return result

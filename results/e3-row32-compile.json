@@ -1,0 +1,106 @@
+{
+  "phase": "cpu_compile_complete",
+  "gpu_used": false,
+  "compiler": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2025 NVIDIA Corporation\nBuilt on Wed_Aug_20_01:57:39_PM_PDT_2025\nCuda compilation tools, release 13.0, V13.0.88\nBuild cuda_13.0.r13.0/compiler.36424714_0\n",
+  "results": [
+    {
+      "rows": 64,
+      "command": [
+        "/usr/local/cuda/bin/nvcc",
+        "-O3",
+        "--fmad=false",
+        "-lineinfo",
+        "--cubin",
+        "-arch=sm_121a",
+        "-Xptxas=-v",
+        "/work/row64/grouped_fragments.cu",
+        "-o",
+        "/work/row64/grouped_fragments.cubin"
+      ],
+      "seconds": 1.6167325973510742,
+      "sha256": "01029a9626a9a2c36b1a60af2feb457765773a52550309ce96429af256561d7c",
+      "resources": "\nResource usage:\n Common:\n  GLOBAL:0\n Function glm6_e3_down:\n  REG:128 STACK:16 SHARED:1024 LOCAL:0 CONSTANT[0]:992 TEXTURE:0 SURFACE:0 SAMPLER:0\n Function glm6_e3_gateup:\n  REG:255 STACK:176 SHARED:1024 LOCAL:0 CONSTANT[0]:1012 TEXTURE:0 SURFACE:0 SAMPLER:0\n Function glm6_e3_gather:\n  REG:39 STACK:0 SHARED:1024 LOCAL:0 CONSTANT[0]:964 TEXTURE:0 SURFACE:0 SAMPLER:0\n",
+      "compiler_log": "/work/row64/vendor/util.cuh(7): warning #20012-D: __device__ annotation is ignored on a non-virtual function(\"half4\") that is explicitly defaulted on its first declaration\n      __attribute__((device)) half4() = default;\n                     ^\n\nRemark: The warnings can be suppressed with \"-diag-suppress <warning-number>\"\n\n/work/row64/vendor/util.cuh(19): warning #20012-D: __device__ annotation is ignored on a non-virtual function(\"bfloat164\") that is explicitly defaulted on its first declaration\n      __attribute__((device)) bfloat164() = default;\n                     ^\n\n/work/row64/vendor/util.cuh(33): warning #20012-D: __device__ annotation is ignored on a non-virtual function(\"half8\") that is explicitly defaulted on its first declaration\n       __attribute__((device)) half8() = default;\n                      ^\n\n/work/row64/grouped_fragments.cu(376): warning #177-D: variable \"svh_g\" was declared but never referenced\n          const half* svh_g = gate_svh_ptrs[e] + n_base;\n                      ^\n\n/work/row64/grouped_fragments.cu(377): warning #177-D: variable \"svh_u\" was declared but never referenced\n          const half* svh_u = up_svh_ptrs[e] + n_base;\n                      ^\n\n/work/row64/grouped_fragments.cu(378): warning #177-D: variable \"suh_d\" was declared but never referenced\n          const half* suh_d = down_suh_ptrs[e] + n_base;\n                      ^\n\n/work/row64/grouped_fragments.cu(453): warning #177-D: variable \"svh\" was declared but never referenced\n          const half* svh = down_svh_ptrs[e] + n_base;\n                      ^\n\n/work/row64/grouped_fragments.cu(35): warning #177-D: variable \"FM_B_STAGE_WORDS\" was declared but never referenced\n  constexpr int FM_B_STAGE_WORDS = 2 * FM_WARPS * 64;\n                ^\n\nptxas info    : 0 bytes gmem\nptxas info    : Compiling entry function 'glm6_e3_down' for 'sm_121a'\nptxas info    : Function properties for glm6_e3_down\n    16 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 128 registers, used 1 barriers, 16 bytes cumulative stack size\nptxas info    : Compile time = 142.942 ms\nptxas info    : Compiling entry function 'glm6_e3_gateup' for 'sm_121a'\nptxas info    : Function properties for glm6_e3_gateup\n    176 bytes stack frame, 752 bytes spill stores, 764 bytes spill loads\nptxas info    : Used 255 registers, used 1 barriers, 176 bytes cumulative stack size\nptxas info    : Compile time = 110.414 ms\nptxas info    : Compiling entry function 'glm6_e3_gather' for 'sm_121a'\nptxas info    : Function properties for glm6_e3_gather\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 39 registers, used 0 barriers\nptxas info    : Compile time = 19.567 ms\n"
+    },
+    {
+      "rows": 32,
+      "command": [
+        "/usr/local/cuda/bin/nvcc",
+        "-O3",
+        "--fmad=false",
+        "-lineinfo",
+        "--cubin",
+        "-arch=sm_121a",
+        "-Xptxas=-v",
+        "/work/row32/grouped_fragments.cu",
+        "-o",
+        "/work/row32/grouped_fragments.cubin"
+      ],
+      "seconds": 0.7276222705841064,
+      "sha256": "319dca90efb470b3e7eae708365c10f123c9f04751e06f1680c9df7bca2ce1ad",
+      "resources": "\nResource usage:\n Common:\n  GLOBAL:0\n Function glm6_e3_down:\n  REG:117 STACK:16 SHARED:1024 LOCAL:0 CONSTANT[0]:992 TEXTURE:0 SURFACE:0 SAMPLER:0\n Function glm6_e3_gateup:\n  REG:225 STACK:32 SHARED:1024 LOCAL:0 CONSTANT[0]:1012 TEXTURE:0 SURFACE:0 SAMPLER:0\n Function glm6_e3_gather:\n  REG:39 STACK:0 SHARED:1024 LOCAL:0 CONSTANT[0]:964 TEXTURE:0 SURFACE:0 SAMPLER:0\n",
+      "compiler_log": "/work/row32/vendor/util.cuh(7): warning #20012-D: __device__ annotation is ignored on a non-virtual function(\"half4\") that is explicitly defaulted on its first declaration\n      __attribute__((device)) half4() = default;\n                     ^\n\nRemark: The warnings can be suppressed with \"-diag-suppress <warning-number>\"\n\n/work/row32/vendor/util.cuh(19): warning #20012-D: __device__ annotation is ignored on a non-virtual function(\"bfloat164\") that is explicitly defaulted on its first declaration\n      __attribute__((device)) bfloat164() = default;\n                     ^\n\n/work/row32/vendor/util.cuh(33): warning #20012-D: __device__ annotation is ignored on a non-virtual function(\"half8\") that is explicitly defaulted on its first declaration\n       __attribute__((device)) half8() = default;\n                      ^\n\n/work/row32/grouped_fragments.cu(376): warning #177-D: variable \"svh_g\" was declared but never referenced\n          const half* svh_g = gate_svh_ptrs[e] + n_base;\n                      ^\n\n/work/row32/grouped_fragments.cu(377): warning #177-D: variable \"svh_u\" was declared but never referenced\n          const half* svh_u = up_svh_ptrs[e] + n_base;\n                      ^\n\n/work/row32/grouped_fragments.cu(378): warning #177-D: variable \"suh_d\" was declared but never referenced\n          const half* suh_d = down_suh_ptrs[e] + n_base;\n                      ^\n\n/work/row32/grouped_fragments.cu(453): warning #177-D: variable \"svh\" was declared but never referenced\n          const half* svh = down_svh_ptrs[e] + n_base;\n                      ^\n\n/work/row32/grouped_fragments.cu(35): warning #177-D: variable \"FM_B_STAGE_WORDS\" was declared but never referenced\n  constexpr int FM_B_STAGE_WORDS = 2 * FM_WARPS * 64;\n                ^\n\nptxas info    : 0 bytes gmem\nptxas info    : Compiling entry function 'glm6_e3_down' for 'sm_121a'\nptxas info    : Function properties for glm6_e3_down\n    16 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 117 registers, used 1 barriers, 16 bytes cumulative stack size\nptxas info    : Compile time = 28.907 ms\nptxas info    : Compiling entry function 'glm6_e3_gateup' for 'sm_121a'\nptxas info    : Function properties for glm6_e3_gateup\n    32 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 225 registers, used 1 barriers, 32 bytes cumulative stack size\nptxas info    : Compile time = 41.358 ms\nptxas info    : Compiling entry function 'glm6_e3_gather' for 'sm_121a'\nptxas info    : Function properties for glm6_e3_gather\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 39 registers, used 0 barriers\nptxas info    : Compile time = 7.150 ms\n"
+    }
+  ],
+  "text_sections": {
+    "live": {
+      ".text.glm6_e3_down": {
+        "bytes": 19968,
+        "sha256": "bebf3a149924d740a620bf8d57e8f220a8729bae5db1966aadc5af1da58fabf5"
+      },
+      ".text.glm6_e3_gateup": {
+        "bytes": 48256,
+        "sha256": "02ac6724d6a80d37dc5170d06132c8b7cb3d7d1acabbe2b704230175038d7343"
+      },
+      ".text.glm6_e3_gather": {
+        "bytes": 9472,
+        "sha256": "a4390f43216fd1c417cf64839124f17093f3ca6c7c2872e7fecd785454ab5ebd"
+      }
+    },
+    "compiled64": {
+      ".text.glm6_e3_down": {
+        "bytes": 19968,
+        "sha256": "bebf3a149924d740a620bf8d57e8f220a8729bae5db1966aadc5af1da58fabf5"
+      },
+      ".text.glm6_e3_gateup": {
+        "bytes": 48256,
+        "sha256": "02ac6724d6a80d37dc5170d06132c8b7cb3d7d1acabbe2b704230175038d7343"
+      },
+      ".text.glm6_e3_gather": {
+        "bytes": 9472,
+        "sha256": "a4390f43216fd1c417cf64839124f17093f3ca6c7c2872e7fecd785454ab5ebd"
+      }
+    },
+    "compiled32": {
+      ".text.glm6_e3_down": {
+        "bytes": 15872,
+        "sha256": "de932e4ab5101fced12976b86371cf92d44ab086fb5a7b9cf6e999c665501a8d"
+      },
+      ".text.glm6_e3_gateup": {
+        "bytes": 25984,
+        "sha256": "f4fb8644c4ee60b7ff2dd40c72a09ee93705df4a283ddb9690099d6e027ac19d"
+      },
+      ".text.glm6_e3_gather": {
+        "bytes": 9472,
+        "sha256": "a4390f43216fd1c417cf64839124f17093f3ca6c7c2872e7fecd785454ab5ebd"
+      }
+    }
+  },
+  "compiled64_matches_live_machine_code": true,
+  "source_plan": {
+    "phase": "cpu_compile_prepared",
+    "gpu_used": false,
+    "at": 1791020183.2876499,
+    "source_sha256": "a673c1af586fb1790024009e25e727ecd69d05f4cd146e02c53d2926c9f880b4",
+    "variants": {
+      "64": "a673c1af586fb1790024009e25e727ecd69d05f4cd146e02c53d2926c9f880b4",
+      "32": "db50b3885b825537e3af84c3605d13c533f07e160de8f3bc31fc27441aafc8d6"
+    },
+    "changes": "Only FM_MB_GATEUP and FM_MB_DOWN4to2 for row32; preserve math, K stripes, rotations, native epilogues.",
+    "plan": "Compile and record resources only. No GPU validation or performance selection yet."
+  },
+  "limitations": [
+    "CPU compilation only; row32 has not been run on a GPU or selected in serving.",
+    "Spill counts are static compiler reports, not measured runtime bandwidth or speed."
+  ]
+}

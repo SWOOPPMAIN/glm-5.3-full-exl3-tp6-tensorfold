@@ -3213,9 +3213,9 @@
     },
     {
       "path": "runtime/vllm/e3/amos_e3/runtime.py",
-      "sha256": "2651478eee38d054cd163df0bd01e219515cd244fcacb9e354b1395e55dbc00b",
-      "origin": "Kindling E3 plus Swoopp native epilogues; upstream 0ecf21ebcccd924f7f7c47eda0333282d8e177f5",
-      "change": null
+      "sha256": "81ec16e93229a1e2305f01ea8f04a17a639122ce8a9b007375f5d8d197816eba",
+      "origin": "amos-recipes@c367d0b4a6bf35b0dd9f8ee607b4060b85e3465a:build_e3_capture.py",
+      "change": "Pinned original E3 runtime plus bounded diagnostic capture call; output returned unchanged."
     },
     {
       "path": "runtime/vllm/e3/amos_e3/geometry.py",
@@ -3804,6 +3804,36 @@
       "sha256": "926188d7f372bdee87ac6de5f88bfecc94b3df655da06c4936a96d4106f2a06a",
       "origin": "amos-recipes@3e692ad3be63e06a7f2cde03c0870373288fa391:qualification/serving-optimization-20261003/communication-outcome.json",
       "change": "Add local source revision; selected numerical/profile/acceptance fields and original receipt hashes only."
+    },
+    {
+      "path": "runtime/vllm/amos_e3_capture.py",
+      "sha256": "3550bf30820b7a60015a2919f4b56b9a43a25a76f2f4721829c89af121197549",
+      "origin": "amos-recipes@c367d0b4a6bf35b0dd9f8ee607b4060b85e3465a:amos_e3_capture.py",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/e3/amos_e3/diagnostic_capture.py",
+      "sha256": "3550bf30820b7a60015a2919f4b56b9a43a25a76f2f4721829c89af121197549",
+      "origin": "amos-recipes@c367d0b4a6bf35b0dd9f8ee607b4060b85e3465a:amos_e3_capture.py",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/build_e3_capture.py",
+      "sha256": "4f14f260b94c8cc7bb13c757134e17235e6d92ea265106ccc8a314fc9128aa02",
+      "origin": "amos-recipes@c367d0b4a6bf35b0dd9f8ee607b4060b85e3465a:build_e3_capture.py",
+      "change": null
+    },
+    {
+      "path": "benchmarks/analyze_e3_routes.py",
+      "sha256": "1505aa60447a506802a11e80e20f7e21fadcab9556fc5541917659fc5af7a63f",
+      "origin": "amos-recipes@c367d0b4a6bf35b0dd9f8ee607b4060b85e3465a:analyze_e3_routes.py",
+      "change": null
+    },
+    {
+      "path": "benchmarks/test_e3_capture.py",
+      "sha256": "ccc5049b65534889837ab310ddc7fa5559707c4e657a0ef3650babec16606329",
+      "origin": "amos-recipes@c367d0b4a6bf35b0dd9f8ee607b4060b85e3465a:test_e3_capture.py",
+      "change": "Resolve the published runtime directory for standalone CPU tests."
     }
   ]
 }
