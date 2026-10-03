@@ -2,18 +2,24 @@
 
 ## What this recipe reproduces
 
-The current P27 configuration on six GB10 nodes: original 3.25 bpw experts,
+The current P27 inference configuration on six GB10 nodes: original 3.25 bpw experts,
 MXFP8 target/draft dense paths, native MTP up to four draft tokens, adaptive
 request/phase scheduling, and native/E3 prefill dispatch, and two validated NCCL RoCE rails.
 
-**Prerequisite:** the retained, qualified P27 image must already be installed
+**Prerequisite:** the retained, qualified image must already be installed
 on every node. This repository does not yet build that
 image from a clean machine or provide a downloadable registry image.
 Do not substitute a stock vLLM image: it lacks the required mixed-K/TP6 patches.
 
 ```text
-Image ID: sha256:8935c96fe1670c4016bbc47c905477cb652a5a2b89214c0e952920d2ed232e90
+Current image ID: sha256:7176241a30ba8349fccb979ad7a35d0eba422d23017543da8c0147b28cb0c1cd
+P27 base image ID: sha256:8935c96fe1670c4016bbc47c905477cb652a5a2b89214c0e952920d2ed232e90
 ```
+
+The October 3 image adds a bounded scheduler control and repairs image layer
+depth. It retains the qualified **3072** policy. Before starting rank 0, install
+the required persistent [control file and read its qualification limits](PREFILL_BUDGETS.md).
+Smaller/adaptive budgets failed the numerical gate and are not serving.
 
 A Docker image ID is not a registry digest. Move an existing image with
 `docker save` / `docker load`, then compare `docker image inspect --format
@@ -53,7 +59,8 @@ guards; its site-specific host mappings and credentials are deliberately absent 
 1. Drain application requests and own the fleet maintenance window.
 2. Confirm the image ID and verified local shard on every rank.
 3. Mount the rank directory at `/model:ro`, the entrypoint at
-   `/opt/amos-tp6/node.sh:ro`, and a writable local compilation cache.
+   `/opt/amos-tp6/node.sh:ro`, and a writable persistent local cache at
+   `/root/.cache`. Rank 0 requires the control file described above.
 4. Use host network/IPC, GPU access, `/dev/infiniband`, unlimited memlock,
    `IPC_LOCK`, and the host's performance CPU cores.
 5. Set `NODE_RANK`, `HEAD_IP`, `VLLM_HOST_IP`, `NCCL_SOCKET_IFNAME`,

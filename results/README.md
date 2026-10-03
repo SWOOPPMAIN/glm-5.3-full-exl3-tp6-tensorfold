@@ -2,6 +2,12 @@
 
 ## Current serving: vLLM P27
 
+October 3 update: the current image adds scheduler-budget controls while retaining
+3072 and the P27 inference settings. All four smaller/adaptive screens failed
+strict fidelity. [Results](prefill-budgets.json) and
+[recipe, mixed-load limitation and packaging repair](../recipes/vllm-tp6/PREFILL_BUDGETS.md).
+Native/Pi/Code/Chat acceptance passed; no new speedup is claimed.
+
 [Samples and quality checks](p27-serving.json) · [hardening closeout](production-hardening.json)
 
 October 2 baseline: **35.13 prose / 47.35 code output tok/s**, medians of three

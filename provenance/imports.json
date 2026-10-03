@@ -3624,6 +3624,42 @@
       "sha256": "4cbebacd02418e892347552d97aa4196267611eb8429b8e1d3d23570d5ad9e99",
       "origin": "serving-runtime:qualification/serving-optimization-20261003/cache-{8k-r3,32k-r1,128k-r1}.json",
       "change": "Selected72 synthetic per-request timing,cache,fidelity andcounter records; generated text/site information omitted."
+    },
+    {
+      "path": "runtime/vllm/amos_prefill_budget.py",
+      "sha256": "5899084d9222bb12419bb7ff207f1a977637730a1117d69af8bf1dfafccf98f6",
+      "origin": "amos-recipes@5bd4d47ce20866232283569ed2803b460728de8d:runtime/exl3-tp6/amos_prefill_budget.py",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/patch_prefill_budget.py",
+      "sha256": "08070ae62edaa91aa163dc447e770606b24e4bde42cd9b721ad5a820ab2d76c4",
+      "origin": "amos-recipes@5bd4d47ce20866232283569ed2803b460728de8d:runtime/exl3-tp6/patch_prefill_budget.py",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/Dockerfile.prefill-budget",
+      "sha256": "c99b683b8e295a07c5cf3baf8df6c1d5a7949cf5a2ba994458f7d7300e62e234",
+      "origin": "amos-recipes@5bd4d47ce20866232283569ed2803b460728de8d:runtime/exl3-tp6/Dockerfile.prefill-budget",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/squash_patch_layers.py",
+      "sha256": "1222a1c210adf96f50343c9a31ef796a6491136ebac2bd3c3e2eef0acaf82625",
+      "origin": "amos-recipes@5bd4d47ce20866232283569ed2803b460728de8d:runtime/exl3-tp6/squash_patch_layers.py",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/test_prefill_budget.py",
+      "sha256": "4d9453660d421c398951c914d3de2eea4de52b597b27939cc60b4d7ec003bfee",
+      "origin": "amos-recipes@5bd4d47ce20866232283569ed2803b460728de8d:runtime/exl3-tp6/test_prefill_budget.py",
+      "change": null
+    },
+    {
+      "path": "results/prefill-budgets.json",
+      "sha256": "bf0f14dceac8b760d107b8fa7e10081e1c5d1acfc0cc2d9e2d60f0ac01cb7a0a",
+      "origin": "amos-recipes@5bd4d47ce20866232283569ed2803b460728de8d:qualification/serving-optimization-20261003/prefill-budget-summary.json",
+      "change": "Selected public summary plus source revision and packaging metadata; source receipt hashes retained. No raw application records or site mappings."
     }
   ]
 }

@@ -31,6 +31,10 @@ tokens in **0.60 / 0.64 / 0.87 seconds**, versus **8.65 / 35.28 / 142.39 seconds
 cold. All 72 synthetic checks passed. This validates existing caching; it is
 not a new runtime speedup. [Protocol and results](benchmarks/CACHE_REUSE.md).
 
+Prefill-budget update: fixed/adaptive 1536 and 768-token policies failed our
+numerical gate. Serving retains **3072** on a newly qualified scheduler-control
+image; no speedup is claimed. [Results and recipe](recipes/vllm-tp6/PREFILL_BUDGETS.md).
+
 The latest local TensorFold HTTP measurements remain around 19–21 output
 tok/s for one request and 368–388 cold-prefill tok/s. Its strict numerical
 fidelity gate still fails. The bundled source is the historical TFP21 snapshot;
@@ -53,7 +57,8 @@ artifacts are not included in this repository.
 [Ranked experiment plan](docs/PERFORMANCE_EXPERIMENTS.md): prompt reuse,
 mixed prefill/decode scheduling, workload-aware MTP, six-rank communication,
 E3 prefill kernels, and target-verified copy/ngram drafting. Prompt reuse has
-been measured; the remaining experiments have no new promoted gains.
+been measured and smaller prefill budgets rejected; MTP, communication, E3
+and copy/ngram drafting remain to be assessed.
 TensorFold development is excluded from this optimization goal.
 
 ## Credits

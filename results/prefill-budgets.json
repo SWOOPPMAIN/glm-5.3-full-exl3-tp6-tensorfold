@@ -1,0 +1,222 @@
+{
+  "schema": 1,
+  "date": "2026-10-03",
+  "experiment": "adaptive_prefill_budget",
+  "outcome": "rejected_with_evidence",
+  "hypothesis": "Smaller scheduler budgets during mixed prefill/decode may reduce streaming stalls while preserving useful throughput.",
+  "base_image": "sha256:8935c96fe1670c4016bbc47c905477cb652a5a2b89214c0e952920d2ed232e90",
+  "current_image": "sha256:7176241a30ba8349fccb979ad7a35d0eba422d23017543da8c0147b28cb0c1cd",
+  "weights_bpw": 3.25,
+  "tensor_parallel": 6,
+  "context": 360000,
+  "max_requests": 4,
+  "kernel_arena_tokens": 3072,
+  "selected_policy": {
+    "mode": "baseline",
+    "budget": 3072
+  },
+  "implementation": "Pinned scheduler budget hook with baseline/fixed/adaptive modes and between-batch control latching; original kernel allocation, target sampling, weights and precision retained.",
+  "quality_thresholds": {
+    "max_coarsened_kl": 0.001,
+    "min_top1": 0.995,
+    "max_nll_delta": 0.01
+  },
+  "original_reference_short": {
+    "sha256": "9e9e2fe042e38fcf6af3b500d721deb9d616f3da0c2d2032671a4072ceaf3a58",
+    "summary": {
+      "positions": 4096,
+      "mean_coarsened_kl": 0,
+      "top1_agreement": 1,
+      "mean_common_reference_mass": 0.9995512817500845,
+      "mean_nll_delta": 0.0
+    },
+    "passed": true
+  },
+  "original_reference_long": {
+    "sha256": "d3b321c96f516b74af1e41c6b30d8439cc346c8f440da6438ff4e12f59732287",
+    "passed": true,
+    "cases": [
+      {
+        "context": 8192,
+        "summary": {
+          "positions": 512,
+          "mean_coarsened_kl": 0,
+          "top1_agreement": 1,
+          "mean_common_reference_mass": 0.9991739549163815,
+          "mean_nll_delta": 0.0
+        },
+        "passed": true
+      },
+      {
+        "context": 32768,
+        "summary": {
+          "positions": 512,
+          "mean_coarsened_kl": 0,
+          "top1_agreement": 1,
+          "mean_common_reference_mass": 0.9978193007741218,
+          "mean_nll_delta": 0.0
+        },
+        "passed": true
+      },
+      {
+        "context": 131072,
+        "summary": {
+          "positions": 512,
+          "mean_coarsened_kl": 0,
+          "top1_agreement": 1,
+          "mean_common_reference_mass": 0.4608117383047953,
+          "mean_nll_delta": 0.0
+        },
+        "passed": true
+      }
+    ]
+  },
+  "screens": [
+    {
+      "policy": "baseline",
+      "budget": 3072,
+      "mixed": true,
+      "context": 8192,
+      "summary": {
+        "positions": 512,
+        "mean_coarsened_kl": 0.003896443261562695,
+        "top1_agreement": 0.998046875,
+        "mean_common_reference_mass": 0.9990565184136354,
+        "mean_nll_delta": 0.0033124763859483097
+      },
+      "passed": false,
+      "decoder_output_tokens": [
+        1024,
+        1024,
+        1024
+      ],
+      "preemptions": 0.0
+    },
+    {
+      "policy": "fixed",
+      "budget": 1536,
+      "mixed": false,
+      "context": 8192,
+      "summary": {
+        "positions": 512,
+        "mean_coarsened_kl": 0.003684360295173458,
+        "top1_agreement": 0.99609375,
+        "mean_common_reference_mass": 0.9991028377318903,
+        "mean_nll_delta": 0.00666353181392601
+      },
+      "passed": false,
+      "decoder_output_tokens": [],
+      "preemptions": 0.0
+    },
+    {
+      "policy": "fixed",
+      "budget": 768,
+      "mixed": false,
+      "context": 8192,
+      "summary": {
+        "positions": 512,
+        "mean_coarsened_kl": 0.005934325319444371,
+        "top1_agreement": 0.9921875,
+        "mean_common_reference_mass": 0.9990658569912502,
+        "mean_nll_delta": 0.010673969324404814
+      },
+      "passed": false,
+      "decoder_output_tokens": [],
+      "preemptions": 0.0
+    },
+    {
+      "policy": "adaptive",
+      "budget": 1536,
+      "mixed": true,
+      "context": 8192,
+      "summary": {
+        "positions": 512,
+        "mean_coarsened_kl": 0.004088617576062211,
+        "top1_agreement": 0.998046875,
+        "mean_common_reference_mass": 0.999021213921429,
+        "mean_nll_delta": 0.002768342697213891
+      },
+      "passed": false,
+      "decoder_output_tokens": [
+        1024,
+        1024,
+        1024
+      ],
+      "preemptions": 0.0
+    },
+    {
+      "policy": "adaptive",
+      "budget": 768,
+      "mixed": true,
+      "context": 8192,
+      "summary": {
+        "positions": 512,
+        "mean_coarsened_kl": 0.005116649327063042,
+        "top1_agreement": 0.99609375,
+        "mean_common_reference_mass": 0.999052672004249,
+        "mean_nll_delta": 0.005981770576888562
+      },
+      "passed": false,
+      "decoder_output_tokens": [
+        1024,
+        1024,
+        1024
+      ],
+      "preemptions": 0.0
+    }
+  ],
+  "mixed_speed_baseline": {
+    "image": "sha256:8935c96fe1670c4016bbc47c905477cb652a5a2b89214c0e952920d2ed232e90",
+    "workload": "Three1024-token decoders plus a fresh32748-token code/tool history after all three decoders emit; C4 mixed prefill/decode.",
+    "repeats": 3,
+    "arrival_ttft_median_seconds": 35.75163922319189,
+    "aggregate_output_tok_s_median": 37.92686024912141,
+    "preemptions": 0.0,
+    "arrival_semantic_passes": 3,
+    "limitation": "Mixed-load aggregate throughput is not comparable to the prior four-short-request76.5 tok/s benchmark. SSE event gaps can include multiple MTP tokens per event.",
+    "maximum_stream_gap_range_seconds": [
+      3.388930090237409,
+      3.4222006457857788
+    ]
+  },
+  "candidate_speed_screen_run": false,
+  "decision": "Retain3072. All four smaller/adaptive candidates fail numerical eligibility, so no speed winner is selected and no lower/adaptive budget is deployed.",
+  "serving_acceptance": {
+    "native": true,
+    "pi_router": true,
+    "code_chat": true,
+    "same_six_candidate_containers": true,
+    "min_available_gib": 10.67
+  },
+  "limitations": [
+    "Mixed3072 control itself exceeds the KL limit versus the isolated frozen reference. This new test exposes batch/chunk sensitivity; it does not establish a regression caused by smaller budgets.",
+    "Candidate screens are one8K512-position tail each. Later long-context and repeated speed tests were deliberately not run after numerical rejection.",
+    "Coarsened KL is a lower bound, not full-vocabulary KL or broad task quality;128K reference coverage is limited.",
+    "Image packaging/control infrastructure changed; no throughput improvement is claimed."
+  ],
+  "sources": {
+    "budget1-baseline3072-mixed8k-long.json": "8ebebfa361a58377a9fb9e026ba7fc04c3b803214747a9751081d0b737891369",
+    "budget1-fixed1536-isolated8k-long.json": "2d7800567cd4cbbcf1ab6e8d990434a9b775340898de6a54f848816d5166d162",
+    "budget1-fixed768-isolated8k-long.json": "2da2f262b2570190a81be45215ef04615ae6be2d253b5e0634fef80d57f68be6",
+    "budget1-adaptive1536-mixed8k-long.json": "a070f8d07989f64aaa4ac293a9e7e12a826eb054e3f8dbdbf1571ba6092d72fc",
+    "budget1-adaptive768-mixed8k-long.json": "dac734c3d9a2b77913f26a9395a19016e447c8f4aa7ac9a1d3e69d5e2578aae3",
+    "budget1-baseline3072-short.json": "3194f228914a1180a54d701d44759f21b489cda9fcb6129d36745bfe7c193367",
+    "budget1-baseline3072-long.json": "e4377c770975e71bbe663f7b1e3395575bc3ccf1f1627451903359f02eebf9db",
+    "budget1-window-native.json": "c6cba1e2dcf516f29bfc41843eb74a871c0d44575dde9a443768f8e64632f239",
+    "budget1-application-acceptance.json": "e45138623e41fdbbd57aa8908e173512233bef911bf08bb3460dc99921fb5649",
+    "prefill-budget-squashed.json": "00a727b9927852b65ebadc36c9614060ebbb7b7e6c6a70e60858a32063d59e00",
+    "budget-image-distribution.json": "6a1baf2ec649a368aaea769de44e6171dad3f811def1724d06a0b4ef29e09c9e",
+    "mixed-p27-3072-baseline.json": "945f270a8d7f40e9fb5897d7e8325a8ddfbd4ce8353ae2350763ee5295f3ccd1"
+  },
+  "source_revision": "5bd4d47ce20866232283569ed2803b460728de8d",
+  "packaging": {
+    "original_candidate_layers": 127,
+    "current_layers": 124,
+    "preserved_lower_layers": 123,
+    "method": "Merge last4 simple patch layers into1; unchanged runtime config; all six nodes load and verify patched file contents and modes using CPU-only containers.",
+    "sources": [
+      "https://raw.githubusercontent.com/moby/moby/v28.5.1/layer/layer_store.go",
+      "https://github.com/opencontainers/image-spec/blob/main/layer.md"
+    ]
+  }
+}

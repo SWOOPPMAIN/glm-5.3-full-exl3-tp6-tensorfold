@@ -3,8 +3,9 @@
 **Active vLLM optimization scope. TensorFold work is excluded.**
 Prompt-cache replay results are recorded in [cache reuse](../results/cache-reuse.json)
 and its [reproduction protocol](../benchmarks/CACHE_REUSE.md).
-The remaining five experiments have no promoted change yet; no new serving
-speedup is claimed.
+Smaller/adaptive prefill budgets were rejected at the numerical gate; see
+[the experiment](../recipes/vllm-tp6/PREFILL_BUDGETS.md). The remaining four
+experiments have no promoted change yet; no new serving speedup is claimed.
 Keep full GLM, TP6, the original 3.25 bpw experts and the current dense precision.
 Start from [P27 measurements](../results/p27-serving.json), with production serving
 remaining the priority. No numerical speedup promise is supported for this list.
@@ -37,6 +38,9 @@ completed output. Reducing prompt work per round can help ongoing replies while
 slowing an arriving long prompt. This is a latency/throughput tradeoff, not a free
 cold-prefill gain. [vLLM tuning documentation](https://docs.vllm.ai/en/latest/configuration/optimization/)
 explains the token-budget tradeoff; compatibility must be checked against our pinned fork.
+The October 3 fixed/adaptive 1536/768 screens all failed strict fidelity at 8K.
+Even mixed 3072 differs from the isolated oracle. Retain 3072; numerical
+consistency across chunk/batch shapes is a prerequisite to another budget trial.
 
 **MTP:** adaptive depth and request/phase policy are already installed. Retune using
 actual workload classes, especially tools and long-context cache pressure, rather

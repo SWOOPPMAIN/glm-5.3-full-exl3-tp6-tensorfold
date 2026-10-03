@@ -1,0 +1,6 @@
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE}
+COPY amos_prefill_budget.py patch_prefill_budget.py /opt/amos-tp6/prefill-budget/
+RUN python3 /opt/amos-tp6/prefill-budget/patch_prefill_budget.py /usr/local/lib/python3.12/dist-packages/vllm \
+ && python3 /opt/amos-tp6/prefill-budget/patch_prefill_budget.py /opt/glm53-full/vllm/vllm
+ENV AMOS_TP6_PREFILL_BUDGET_CONTROL=1
