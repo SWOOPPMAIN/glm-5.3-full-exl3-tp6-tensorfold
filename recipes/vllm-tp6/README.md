@@ -13,7 +13,8 @@ image from a clean machine or provide a downloadable registry image.
 Do not substitute a stock vLLM image: it lacks the required mixed-K/TP6 patches.
 
 ```text
-Current image ID: sha256:286e0a42c8caa3a7d45a76f006bd400e391e161b6ec9f0bbdc9dacb7dfb0d20e
+Current image ID: sha256:20f485f5fbe17eec01a2b1c1713c53b55503b97b10efac3d011dff0b857f87c6
+E3 boundary base: sha256:286e0a42c8caa3a7d45a76f006bd400e391e161b6ec9f0bbdc9dacb7dfb0d20e
 E3 row32 base: sha256:b4988201229054893df527528c38e8091d4d5392d44c314406e66493ec9300da
 E3 diagnostic base: sha256:340a9bae07ab134120249cf0224108fda7b3706720724bd1b2fe705245e7ce20
 MTP-control base: sha256:2e947348fd26b8d58e4535e0321126935069a5e521784fa573f19fb560975d9d
@@ -32,6 +33,11 @@ The current image also selects [32-row E3 prefill](E3_PREFILL.md). **Every rank*
 requires persistent `/root/.cache/amos-e3-rows.json` and
 `/root/.cache/amos-e3-boundary.json` controls described there. The selected boundary
 is native through 32 rows, E3 above 32; missing controls fail visibly.
+
+The [copy/ngram comparison](COPY_DRAFTING.md) is complete. The current forward
+image retains the tested history/configuration fixes and selects original adaptive
+MTP; copy passed correctness but lost general throughput. No new drafter weights
+or target-precision changes were introduced.
 
 A Docker image ID is not a registry digest. Move an existing image with
 `docker save` / `docker load`, then compare `docker image inspect --format

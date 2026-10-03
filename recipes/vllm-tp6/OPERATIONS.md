@@ -33,7 +33,13 @@ Sources: [Kindling Spark OS](https://github.com/kindlingai/kindling-spark-os),
 
 ## Maintenance and recovery
 
-The subsequent E35 boundary comparison selected the current image and required
+The completed [copy comparison](COPY_DRAFTING.md) selected original adaptive MTP
+on the forward compatibility-fix image. Fresh short/8K/32K/128K numerical checks,
+functional/cancellation checks and native/router/Code/Chat acceptance passed.
+The final six-container inventory confirmed exclusive GPU ownership and clear
+exact-container guards. This pass added no OS reboot or long-duration soak.
+
+The earlier E35 boundary comparison selected the required
 row32 / native-through32 controls in [E3 prefill](E3_PREFILL.md). Both cache
 files must persist on every rank before a restart. Native/router/Code/Chat
 acceptance passed on the selected image; no new OS reboot test was part of E35.

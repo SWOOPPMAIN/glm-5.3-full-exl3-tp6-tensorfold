@@ -50,5 +50,6 @@ The policy wrapper and image builder are byte-identical exports. The row32 patch
 retains the original Mia/ExLlamaV3 notices and native b12x epilogues. Published
 serving results contain all timing samples and receipt hashes; the standalone
 sample analyzer reproduces the local comparison. Native/router/Code/Chat acceptance
-passed on the selected row32 image. Copy-drafting records are source/CPU evidence
-only and do not claim a serving deployment or speed result.
+passed on the selected row32 image. The later copy-drafting comparison is now completed and exported separately; see
+[its quality results, all samples and compatibility repairs](../recipes/vllm-tp6/COPY_DRAFTING.md).
+Original adaptive MTP remains selected on the forward image.

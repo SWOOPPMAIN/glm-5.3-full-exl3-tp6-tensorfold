@@ -56,6 +56,8 @@ These are research references, not a claim that each project's code is installed
   and MTP assembly, bounded memory, sparse attention/indexing, TP6 reductions,
   and distributed request scheduling. It uses TensorFold's keyed sampling;
   the per-follower CPU doorbells adapt MiaAI-Lab's idle-worker store design.
+- Narrow GPU-ngram history-scatter and TP6 metadata-validation repairs; the original
+  proposers, async scheduling and target rejection sampler remain vLLM contributions.
 - Six-rank numerical and performance qualification, host protection, and application integration.
 - This repository's recipes, measurement summaries, source inventory, and documentation.
 

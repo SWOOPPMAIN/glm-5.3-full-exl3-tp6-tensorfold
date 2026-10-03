@@ -17,7 +17,9 @@ numerical gates and is selected: cold prefill improves 3.94% / 3.28% at 8K/32K.
 The native/E3 component and full-model boundary comparisons are complete:
 native through32 / E3 above32 is selected for 4.4–7.7% lower one-token latency
 at65–512-token prompts. Long-prefill medians are essentially unchanged; generation
-has mixed results. Copy drafting remains.
+has mixed results. The [copy-drafting comparison](../recipes/vllm-tp6/COPY_DRAFTING.md)
+is also complete: retain original adaptive MTP after bounded correctness passes
+and substantial general-throughput regressions from standalone GPU copy.
 Keep full GLM, TP6, the original 3.25 bpw experts and the current dense precision.
 Start from [P27 measurements](../results/p27-serving.json), with production serving
 remaining the priority. No numerical speedup promise is supported for this list.
@@ -101,14 +103,15 @@ Long-prefill medians change−0.47/−0.19%, prose+2.64%, code−3.23%; their ra
 overlap. The cached matrix changes+0.87%, and mixed traffic is essentially
 unchanged. These component ratios are not full-model throughput gains.
 
-**Copy drafting:** no new drafter weights are required. Full target verification is
-mandatory. First validate compatibility with the pinned TP6 scheduler; combining it
-with existing MTP is additional implementation work. Flash's DFlash2 checkpoint is
-not established as a compatible full-GLM drafter. [Source and CPU checks](../recipes/vllm-tp6/COPY_DRAFTING.md)
-are complete: the pinned configuration permits asynchronous GPU ngram, while
-CPU ngram disables asynchronous scheduling. An offline launcher is checked.
-A prepared history-scatter fix passes2,048 CPU history-row checks; CUDA and
-full TP6 runtime qualification and timing remain.
+**Copy drafting:** completed with three measurements per arm and cell, MTP controls
+before and after the copy visit. Source-pinned history/configuration repairs passed
+CPU checks, actual TP6 startup, short/8K/32K/128K numerical gates and copy/edit,
+unequal-length and cancellation checks. Standalone GPU copy lost general and C4
+throughput; the isolated 8K repetition result does not justify hybrid complexity.
+Retain original adaptive MTP on the forward fixed image. All samples, control drift,
+counter limitations and replay are in [the recipe](../recipes/vllm-tp6/COPY_DRAFTING.md).
+Exact valid-copy rejection counts and isolated proposer GPU time remain unmeasured;
+the broad end-to-end loss is sufficient to reject this default.
 [vLLM speculative-decoding reference](https://docs.vllm.ai/en/latest/features/speculative_decoding/).
 
 ## New upstream ideas worth inspecting

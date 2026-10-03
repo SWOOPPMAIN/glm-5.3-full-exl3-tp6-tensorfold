@@ -2,53 +2,44 @@
 
 Full GLM-5.3 on **six NVIDIA DGX Sparks**, preserving the original
 **3.25 bpw mixed K3/K4 EXL3 weights**. Serving uses **vLLM P27**.
-TensorFold is an experimental research port and is not serving production.
+TensorFold remains deferred research and is not serving production.
 
-**Status — October 3, 2026 UTC:** production hardening is complete within the
-requested brief-check scope. All six controlled reboots, native API and
-Code/Chat acceptance passed. OS, network and memory settings persist across
-reboot. No 12-hour soak was run. [Operating notes](recipes/vllm-tp6/OPERATIONS.md).
+**October 3, 2026:** all six ordered optimization experiments are complete.
+The selected forward image passed numerical, native API, router and actual
+Code/Chat checks. Original adaptive MTP remains selected; standalone copy
+drafting passed correctness but lost general throughput. No 12-hour soak.
 
 ## Latest serving measurements
 
-| Measurement | vLLM P27 |
+| Measurement | Selected MTP profile |
 | --- | ---: |
-| Prose generation, one request | **36.4 output tok/s median** |
-| Code generation, one request | **47.9 output tok/s median** |
-| Four concurrent requests, cached short mixed workload | **78.6 output tok/s combined median** |
-| Cold prefill, 8K / 32K | **977 / 963 input tok/s** |
-| Time to first token, 8K / 32K | **8.38 / 34.04 s** |
+| Prose / code generation, one request | **35.5 / 48.3 output tok/s** |
+| Cold prefill, 8K / 32K | **979 / 961 input tok/s** |
+| Time to first token, 8K / 32K | **8.37 / 34.09 s** |
 | Configured context / admitted requests | **360,000 tokens / 4** |
 | KV allocation | **24 GiB per rank** |
 
-October 3, three samples per workload across four alternating boundary-policy
-visits in the same six containers. **Row32 E3 now handles prefill above 32 rows:**
-65–512-token cold prompts have **4.4–7.7% lower one-token latency**, with separated
-observed ranges. Long-prefill medians change −0.5% / −0.2%; prose +2.6%, code
-−3.2%, with overlapping ranges. The cached matrix changes +0.9% overall.
-These generation differences are not isolated E3 decode-kernel gains.
-The earlier row64/row32 study's 3.9% / 3.3% cold-prefill gains remain documented.
-Prefill is prompt tokens divided by TTFT. C4 uses 256 output tokens per request;
-single-request generation uses 512. All requests share the cache.
-[Every sample, quality checks and replay](recipes/vllm-tp6/E3_PREFILL.md).
+Three samples per workload, with MTP controls bracketing GPU-copy testing.
+Single-request generation uses 512 output tokens; prefill is prompt tokens / TTFT.
+Four-request results depend on the workload: the earlier E3 short mixed workload
+measured **78.6 combined output tok/s**; the latest copy/edit/prose matrix and every
+sample are in [the completed comparison](recipes/vllm-tp6/COPY_DRAFTING.md).
+These visits are not a new MTP-kernel speedup or a many-boot confidence interval.
 
-New cache replay: repeated 8K / 32K / 128K code-tool histories reached first
-tokens in **0.60 / 0.64 / 0.87 seconds**, versus **8.65 / 35.28 / 142.39 seconds**
-cold. All 72 synthetic checks passed. This validates existing caching; it is
-not a new runtime speedup. [Protocol and results](benchmarks/CACHE_REUSE.md).
+## Optimization outcomes
 
-Prefill-budget update: fixed/adaptive 1536 and 768-token policies failed our
-numerical gate. Serving retains **3072** on a newly qualified scheduler-control
-image; no speedup is claimed. [Results and recipe](recipes/vllm-tp6/PREFILL_BUDGETS.md).
+- **Prompt reuse:** all 72 checks passed. Repeated 8K/32K/128K code-tool histories
+  reached first tokens in **0.60/0.64/0.87 s**. Existing caching retained.
+- **Prefill budget:** smaller/adaptive policies failed fidelity; retain **3072**.
+- **MTP:** 270 measurements plus 72 cost cells; retain original adaptive policy.
+- **Communication:** dual-HCA RoCEnante selected; retain **2 MiB** crossover.
+- **E3:** row32 improves matched cold prefill **3.9%/3.3%** at 8K/32K.
+  Native through 32 rows / E3 above 32 cuts 65–512-token latency **4.4–7.7%**.
+- **Copy drafting:** correctness passed; broad speed regressions reject promotion.
 
-MTP tuning: **270 workload measurements** and **72 cost-calibration cells** are
-complete. Recalibrated policies showed no useful overall gain in the bounded
-screen; the original adaptive policy remains selected. [Results and replay](recipes/vllm-tp6/MTP_TUNING.md).
-
-The latest local TensorFold HTTP measurements remain around 19–21 output
-tok/s for one request and 368–388 cold-prefill tok/s. Its strict numerical
-fidelity gate still fails. The bundled source is the historical TFP21 snapshot;
-[later results through TFP57](results/TENSORFOLD_STATUS.md) are reported separately.
+[Results and limitations](results/README.md) ·
+[Experiment outcomes](docs/PERFORMANCE_EXPERIMENTS.md) ·
+[Upstream ideas reviewed](docs/UPSTREAM_REVIEW_20261003.md)
 
 ## Recipes
 
@@ -56,27 +47,16 @@ fidelity gate still fails. The bundled source is the historical TFP21 snapshot;
 2. [Serve with the qualified vLLM TP6 image](recipes/vllm-tp6/README.md)
 3. [Operate the six-node deployment](recipes/vllm-tp6/OPERATIONS.md)
 4. [Benchmark a candidate](benchmarks/README.md)
-5. [Explore the historical TensorFold port](recipes/tensorfold-tp6/README.md)
+5. [Explore historical TensorFold research](recipes/tensorfold-tp6/README.md)
 
-The serving recipe requires the retained P27 image. A portable image release
-and a verified clean-machine build remain unfinished. Weights and compiled
-artifacts are not included in this repository.
+The serving recipe requires the retained P27-derived image. A portable image
+release and verified clean-machine build remain unfinished. Weights and compiled
+artifacts are not included. All six controlled host reboots passed in the earlier
+hardening pass; the latest comparison did not repeat that OS test.
 
-## Next experiments
-
-[Ranked experiment plan](docs/PERFORMANCE_EXPERIMENTS.md): prompt reuse,
-mixed prefill/decode scheduling, workload-aware MTP, six-rank communication,
-E3 prefill kernels, and target-verified copy/ngram drafting. Prompt reuse has
-been measured; smaller prefill budgets and MTP retuning were rejected for promotion.
-Dual-port communication and its bounded crossover screen are complete; retain
-the 2 MiB cutoff. [E3 row32](recipes/vllm-tp6/E3_PREFILL.md) passed component and
-full-model checks and is selected for repeatable cold-prefill gains. The native/E3
-component comparison passed 1,296 exact checks; the full-model boundary
-comparison is now complete. [Copy/ngram drafting](recipes/vllm-tp6/COPY_DRAFTING.md)
-remains: source/CPU checks, a history-scatter fix and an offline launcher are
-prepared; no serving comparison or promotion yet.
-[Latest upstream review](docs/UPSTREAM_REVIEW_20261003.md).
-TensorFold development is excluded from this optimization goal.
+TensorFold's later local HTTP results remain about 19–21 output tok/s and 368–388
+cold-prefill tok/s, with strict fidelity failing. The bundled source is historical
+TFP21; [later results through TFP57](results/TENSORFOLD_STATUS.md) are separate.
 
 ## Credits
 
@@ -84,5 +64,5 @@ Built on **Z.ai**, **davidsyoung**, **Turboderp / ExLlamaV3**, **vLLM**,
 **local-inference-lab / b12x**, **Ash Hart / TensorFold**, **MiaAI-Lab**,
 **Adapt AI Systems**, **Kindling**, **Matt Mastracci**, and the wider Spark community.
 
-See [CREDITS.md](CREDITS.md), [third-party notices](THIRD_PARTY_NOTICES.md),
-[source provenance](provenance/README.md), and [the roadmap](docs/ROADMAP.md).
+[Credits](CREDITS.md) · [Third-party notices](THIRD_PARTY_NOTICES.md) ·
+[Source provenance](provenance/README.md) · [Roadmap](docs/ROADMAP.md)

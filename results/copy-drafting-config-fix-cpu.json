@@ -1,0 +1,451 @@
+{
+  "phase": "source_validator_checked_cpu_only",
+  "source_sha256": "807a2e4573a8c6002d1748cf4cf82706b564dc317058c6988c8bbc2d809e2d4e",
+  "candidate_sha256": "c2a418e25a3dfb1cba5f773f473cd2328c00b1181da7efbbc8c118b0e19663de",
+  "checks": [
+    {
+      "patched": false,
+      "method": "ngram",
+      "aliases_target": false,
+      "draft_heads_divisible": false,
+      "accepted": false,
+      "events": [
+        "virtual_tp",
+        "draft_validation"
+      ]
+    },
+    {
+      "patched": false,
+      "method": "ngram",
+      "aliases_target": false,
+      "draft_heads_divisible": true,
+      "accepted": true,
+      "events": [
+        "virtual_tp",
+        "draft_validation",
+        "vocab_check"
+      ]
+    },
+    {
+      "patched": false,
+      "method": "ngram",
+      "aliases_target": true,
+      "draft_heads_divisible": false,
+      "accepted": false,
+      "events": [
+        "virtual_tp",
+        "draft_validation"
+      ]
+    },
+    {
+      "patched": false,
+      "method": "ngram",
+      "aliases_target": true,
+      "draft_heads_divisible": true,
+      "accepted": true,
+      "events": [
+        "virtual_tp",
+        "draft_validation",
+        "vocab_check"
+      ]
+    },
+    {
+      "patched": false,
+      "method": "ngram_gpu",
+      "aliases_target": false,
+      "draft_heads_divisible": false,
+      "accepted": false,
+      "events": [
+        "virtual_tp",
+        "draft_validation"
+      ]
+    },
+    {
+      "patched": false,
+      "method": "ngram_gpu",
+      "aliases_target": false,
+      "draft_heads_divisible": true,
+      "accepted": true,
+      "events": [
+        "virtual_tp",
+        "draft_validation",
+        "vocab_check"
+      ]
+    },
+    {
+      "patched": false,
+      "method": "ngram_gpu",
+      "aliases_target": true,
+      "draft_heads_divisible": false,
+      "accepted": false,
+      "events": [
+        "virtual_tp",
+        "draft_validation"
+      ]
+    },
+    {
+      "patched": false,
+      "method": "ngram_gpu",
+      "aliases_target": true,
+      "draft_heads_divisible": true,
+      "accepted": true,
+      "events": [
+        "virtual_tp",
+        "draft_validation",
+        "vocab_check"
+      ]
+    },
+    {
+      "patched": false,
+      "method": "mtp",
+      "aliases_target": false,
+      "draft_heads_divisible": false,
+      "accepted": false,
+      "events": [
+        "virtual_tp",
+        "draft_validation"
+      ]
+    },
+    {
+      "patched": false,
+      "method": "mtp",
+      "aliases_target": false,
+      "draft_heads_divisible": true,
+      "accepted": true,
+      "events": [
+        "virtual_tp",
+        "draft_validation",
+        "vocab_check"
+      ]
+    },
+    {
+      "patched": false,
+      "method": "mtp",
+      "aliases_target": true,
+      "draft_heads_divisible": false,
+      "accepted": false,
+      "events": [
+        "virtual_tp",
+        "draft_validation"
+      ]
+    },
+    {
+      "patched": false,
+      "method": "mtp",
+      "aliases_target": true,
+      "draft_heads_divisible": true,
+      "accepted": true,
+      "events": [
+        "virtual_tp",
+        "draft_validation",
+        "vocab_check"
+      ]
+    },
+    {
+      "patched": false,
+      "method": "eagle",
+      "aliases_target": false,
+      "draft_heads_divisible": false,
+      "accepted": false,
+      "events": [
+        "virtual_tp",
+        "draft_validation"
+      ]
+    },
+    {
+      "patched": false,
+      "method": "eagle",
+      "aliases_target": false,
+      "draft_heads_divisible": true,
+      "accepted": true,
+      "events": [
+        "virtual_tp",
+        "draft_validation",
+        "vocab_check"
+      ]
+    },
+    {
+      "patched": false,
+      "method": "eagle",
+      "aliases_target": true,
+      "draft_heads_divisible": false,
+      "accepted": false,
+      "events": [
+        "virtual_tp",
+        "draft_validation"
+      ]
+    },
+    {
+      "patched": false,
+      "method": "eagle",
+      "aliases_target": true,
+      "draft_heads_divisible": true,
+      "accepted": true,
+      "events": [
+        "virtual_tp",
+        "draft_validation",
+        "vocab_check"
+      ]
+    },
+    {
+      "patched": false,
+      "method": "draft_model",
+      "aliases_target": false,
+      "draft_heads_divisible": false,
+      "accepted": false,
+      "events": [
+        "virtual_tp",
+        "draft_validation"
+      ]
+    },
+    {
+      "patched": false,
+      "method": "draft_model",
+      "aliases_target": false,
+      "draft_heads_divisible": true,
+      "accepted": true,
+      "events": [
+        "virtual_tp",
+        "draft_validation",
+        "vocab_check"
+      ]
+    },
+    {
+      "patched": false,
+      "method": "draft_model",
+      "aliases_target": true,
+      "draft_heads_divisible": false,
+      "accepted": false,
+      "events": [
+        "virtual_tp",
+        "draft_validation"
+      ]
+    },
+    {
+      "patched": false,
+      "method": "draft_model",
+      "aliases_target": true,
+      "draft_heads_divisible": true,
+      "accepted": true,
+      "events": [
+        "virtual_tp",
+        "draft_validation",
+        "vocab_check"
+      ]
+    },
+    {
+      "patched": true,
+      "method": "ngram",
+      "aliases_target": false,
+      "draft_heads_divisible": false,
+      "accepted": false,
+      "events": []
+    },
+    {
+      "patched": true,
+      "method": "ngram",
+      "aliases_target": false,
+      "draft_heads_divisible": true,
+      "accepted": false,
+      "events": []
+    },
+    {
+      "patched": true,
+      "method": "ngram",
+      "aliases_target": true,
+      "draft_heads_divisible": false,
+      "accepted": true,
+      "events": [
+        "vocab_check"
+      ]
+    },
+    {
+      "patched": true,
+      "method": "ngram",
+      "aliases_target": true,
+      "draft_heads_divisible": true,
+      "accepted": true,
+      "events": [
+        "vocab_check"
+      ]
+    },
+    {
+      "patched": true,
+      "method": "ngram_gpu",
+      "aliases_target": false,
+      "draft_heads_divisible": false,
+      "accepted": false,
+      "events": []
+    },
+    {
+      "patched": true,
+      "method": "ngram_gpu",
+      "aliases_target": false,
+      "draft_heads_divisible": true,
+      "accepted": false,
+      "events": []
+    },
+    {
+      "patched": true,
+      "method": "ngram_gpu",
+      "aliases_target": true,
+      "draft_heads_divisible": false,
+      "accepted": true,
+      "events": [
+        "vocab_check"
+      ]
+    },
+    {
+      "patched": true,
+      "method": "ngram_gpu",
+      "aliases_target": true,
+      "draft_heads_divisible": true,
+      "accepted": true,
+      "events": [
+        "vocab_check"
+      ]
+    },
+    {
+      "patched": true,
+      "method": "mtp",
+      "aliases_target": false,
+      "draft_heads_divisible": false,
+      "accepted": false,
+      "events": [
+        "virtual_tp",
+        "draft_validation"
+      ]
+    },
+    {
+      "patched": true,
+      "method": "mtp",
+      "aliases_target": false,
+      "draft_heads_divisible": true,
+      "accepted": true,
+      "events": [
+        "virtual_tp",
+        "draft_validation",
+        "vocab_check"
+      ]
+    },
+    {
+      "patched": true,
+      "method": "mtp",
+      "aliases_target": true,
+      "draft_heads_divisible": false,
+      "accepted": false,
+      "events": [
+        "virtual_tp",
+        "draft_validation"
+      ]
+    },
+    {
+      "patched": true,
+      "method": "mtp",
+      "aliases_target": true,
+      "draft_heads_divisible": true,
+      "accepted": true,
+      "events": [
+        "virtual_tp",
+        "draft_validation",
+        "vocab_check"
+      ]
+    },
+    {
+      "patched": true,
+      "method": "eagle",
+      "aliases_target": false,
+      "draft_heads_divisible": false,
+      "accepted": false,
+      "events": [
+        "virtual_tp",
+        "draft_validation"
+      ]
+    },
+    {
+      "patched": true,
+      "method": "eagle",
+      "aliases_target": false,
+      "draft_heads_divisible": true,
+      "accepted": true,
+      "events": [
+        "virtual_tp",
+        "draft_validation",
+        "vocab_check"
+      ]
+    },
+    {
+      "patched": true,
+      "method": "eagle",
+      "aliases_target": true,
+      "draft_heads_divisible": false,
+      "accepted": false,
+      "events": [
+        "virtual_tp",
+        "draft_validation"
+      ]
+    },
+    {
+      "patched": true,
+      "method": "eagle",
+      "aliases_target": true,
+      "draft_heads_divisible": true,
+      "accepted": true,
+      "events": [
+        "virtual_tp",
+        "draft_validation",
+        "vocab_check"
+      ]
+    },
+    {
+      "patched": true,
+      "method": "draft_model",
+      "aliases_target": false,
+      "draft_heads_divisible": false,
+      "accepted": false,
+      "events": [
+        "virtual_tp",
+        "draft_validation"
+      ]
+    },
+    {
+      "patched": true,
+      "method": "draft_model",
+      "aliases_target": false,
+      "draft_heads_divisible": true,
+      "accepted": true,
+      "events": [
+        "virtual_tp",
+        "draft_validation",
+        "vocab_check"
+      ]
+    },
+    {
+      "patched": true,
+      "method": "draft_model",
+      "aliases_target": true,
+      "draft_heads_divisible": false,
+      "accepted": false,
+      "events": [
+        "virtual_tp",
+        "draft_validation"
+      ]
+    },
+    {
+      "patched": true,
+      "method": "draft_model",
+      "aliases_target": true,
+      "draft_heads_divisible": true,
+      "accepted": true,
+      "events": [
+        "virtual_tp",
+        "draft_validation",
+        "vocab_check"
+      ]
+    }
+  ],
+  "passed": true,
+  "gpu_used": false,
+  "target_validation_changed": false,
+  "limitation": "Runs the actual extracted validator with configuration doubles. Full pinned Pydantic construction, TP6 startup and target fidelity remain runtime gates."
+}

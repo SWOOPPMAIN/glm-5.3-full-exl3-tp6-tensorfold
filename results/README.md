@@ -2,16 +2,22 @@
 
 ## Current serving: vLLM P27
 
-Latest: [E3 row32](e3-row32-serving.json) is qualified and selected. Repeated cold
-prefill is **981.8 / 965.5 tok/s** at 8K/32K, **+3.94% / +3.28%** against the matched
-row64 control. Prose/code medians are **36.83 / 48.65 output tok/s**. Short C4 is
-**78.12 aggregate tok/s**; short/32K C4 medians regress about 2.5%, while the cached
-matrix improves 1.84% overall. Generation varies with unchanged adaptive MTP;
-these are not isolated decode-kernel gains. [Every sample](e3-row32-serving-samples.json)
-and [quality, ranges, selected image and replay](../recipes/vllm-tp6/E3_PREFILL.md).
-Native/Pi/Code/Chat acceptance passed; final memory guards were clear at 10.33 GiB
-minimum available. [Copy drafting](../recipes/vllm-tp6/COPY_DRAFTING.md) has source/CPU
-checks only; its serving comparison remains.
+Latest: [copy/MTP comparison](copy-drafting-serving.json) completed with three
+samples per workload and arm. Original adaptive MTP remains selected on the forward
+compatibility-fix image: **35.53 prose / 48.31 code output tok/s**,
+**978.9 / 961.0 cold input tok/s** at 8K/32K.
+GPU copy passed correctness but lost general generation and C4 throughput.
+[All samples](copy-drafting-serving-samples.json) and [protocol](../recipes/vllm-tp6/COPY_DRAFTING.md).
+Final native/Pi/Code/Chat acceptance passed; sampled minimum available memory was
+**10.06 GiB** with all six exact-container guards clear.
+
+Earlier: [E3 boundary selection](e3-boundary-serving.json) retains native through
+32 rows and E3 above 32 for 4.4–7.7% lower 65–512-token one-token latency.
+Its separate short mixed C4 workload measured 78.59 aggregate tok/s. The previous
+[row32 comparison](e3-row32-serving.json) improved cold prefill 3.94% / 3.28%
+against row64. These controlled results remain valid; differing generation
+measurements across visits are not isolated decode-kernel gains.
+[E3 conditions and replay](../recipes/vllm-tp6/E3_PREFILL.md).
 
 Earlier: [dual-port RoCEnante](communication-dual-roce.json) is selected on the same
 image after short/long numerical and native/Pi/Code/Chat checks. Matched cached

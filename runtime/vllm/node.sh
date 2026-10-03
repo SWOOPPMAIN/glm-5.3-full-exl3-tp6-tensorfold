@@ -8,13 +8,16 @@ MODEL_DIR="${MODEL_DIR:-/model}"
 PROFILE="${PROFILE:-mtp4}"
 DENSE="${DENSE:-bf16}"
 DRAFT_DENSE="${DRAFT_DENSE:-bf16}"
+METHOD=mtp
 
 case "$NODE_RANK" in 0|1|2|3|4|5) ;; *) echo 'invalid TP6 node rank' >&2; exit 2 ;; esac
 case "$PROFILE" in
   target-smoke) LENGTH=8192; SEQS=1; BATCH=256; SPEC=0; EAGER=1 ;;
   mtp4-smoke) LENGTH=32768; SEQS=4; BATCH=1024; SPEC=4; EAGER=0 ;;
   mtp4) LENGTH=360000; SEQS=4; BATCH=1024; SPEC=4; EAGER=0 ;;
-  *) echo 'PROFILE must be target-smoke, mtp4-smoke, or mtp4' >&2; exit 2 ;;
+  ngram4) LENGTH=360000; SEQS=4; BATCH=1024; SPEC=4; EAGER=0; METHOD=ngram ;;
+  ngram-gpu4) LENGTH=360000; SEQS=4; BATCH=1024; SPEC=4; EAGER=0; METHOD=ngram_gpu ;;
+  *) echo 'PROFILE must be target-smoke, mtp4-smoke, mtp4, ngram4, or ngram-gpu4' >&2; exit 2 ;;
 esac
 if [[ -n "${MAX_NUM_BATCHED_TOKENS:-}" ]]; then
   [[ "$MAX_NUM_BATCHED_TOKENS" =~ ^[1-9][0-9]*$ ]] &&
@@ -40,7 +43,7 @@ if [[ "${AMOS_TP6_SHARED_384:-0}" == 1 ]]; then
 fi
 case "${AMOS_TP6_DRAFT_EH:-0}" in 0|1) ;; *) echo 'AMOS_TP6_DRAFT_EH must be 0 or 1' >&2; exit 2 ;; esac
 if [[ "${AMOS_TP6_DRAFT_EH:-0}" == 1 ]]; then
-  [[ "$SPEC" == 4 && "${VLLM_ENABLE_ROCE_ALLREDUCE:-0}" == 1 ]] || {
+  [[ "$METHOD" == mtp && "$SPEC" == 4 && "${VLLM_ENABLE_ROCE_ALLREDUCE:-0}" == 1 ]] || {
     echo 'Draft EH sharding requires MTP4 and TP6 RoCE collectives' >&2; exit 2;
   }
   if [[ "${DRY_RUN:-0}" != 1 ]]; then
@@ -120,8 +123,20 @@ fi
 [[ "$DENSE" != mxfp8 ]] || ARGS+=(
   --quantization-config '{"linear":{"weight":"mxfp8"},"shared_experts":{"weight":"mxfp8"}}')
 if [[ "$SPEC" == 4 ]]; then
-  SPEC_CONFIG="$(python3 - "$DRAFT_DENSE" <<'PY'
+  SPEC_CONFIG="$(python3 - "$DRAFT_DENSE" "$METHOD" <<'PY'
 import json, os, sys
+if sys.argv[2] in ('ngram','ngram_gpu'):
+    disabled = ('AMOS_MTP_ADAPT_WINDOW','AMOS_MTP_FIXED_DEPTH','AMOS_MTP_CALIBRATION',
+                'AMOS_MTP_COST_AWARE','AMOS_MTP_REQUEST_PHASE','AMOS_MTP_TUNING_CONTROL',
+                'AMOS_TP6_DRAFT_EH')
+    if any(os.environ.get(k,'0')!='0' for k in disabled):
+        raise SystemExit('Copy drafting requires explicit disabled MTP-only settings')
+    if os.environ.get('AMOS_TP6_DYNAMIC_GRAPHS')!='1':
+        raise SystemExit('Copy trial requires existing q1..5/C1..4 target graph coverage')
+    print(json.dumps({'method':sys.argv[2],'num_speculative_tokens':4,
+                      'prompt_lookup_min':5,'prompt_lookup_max':5,
+                      'rejection_sample_method':'standard'}))
+    raise SystemExit(0)
 config = {'method': 'mtp', 'num_speculative_tokens': 4, 'moe_backend': 'b12x',
           'attention_backend': 'B12X_MLA_SPARSE', 'draft_sample_method': 'probabilistic',
           'rejection_sample_method': 'standard'}
@@ -150,6 +165,8 @@ if sys.argv[1] == 'mxfp8':
 print(json.dumps(config))
 PY
 )"
+  [[ "$METHOD" != ngram ]] || ARGS+=(--no-async-scheduling)
+  [[ "$METHOD" != ngram_gpu ]] || ARGS+=(--async-scheduling)
   ARGS+=(
     --speculative-config "$SPEC_CONFIG"
     --compilation-config '{"cudagraph_mode":"FULL","cudagraph_capture_sizes":[5,10,15,20]}'

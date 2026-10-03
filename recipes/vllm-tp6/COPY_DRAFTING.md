@@ -1,75 +1,142 @@
-# Target-verified copy drafting
+# Target-verified copy drafting — completed
 
-**Source review and CPU checks only; not deployed or speed-qualified.**
-The target remains full GLM-5.3, original 3.25 bpw EXL3, TP6, target MXFP8,
-360K configured context, four admitted requests and a 3072-token prefill budget.
-No additional drafter checkpoint is required by the pinned ngram implementations.
+**Retain original adaptive MTP.** GPU ngram passed our bounded correctness gates
+but substantially reduced general generation and four-request throughput. The
+selected forward image includes the tested compatibility fixes; its active profile
+is `mtp4`. Full GLM-5.3, original 3.25 bpw EXL3, target/draft MXFP8, TP6,
+360K configured context, four admitted requests and the 3072-token budget remain.
 
-## What the pinned source supports
+## Matched measurements
 
-The vLLM runner contains CPU `ngram` and GPU `ngram_gpu` proposers. Both use
-the native target rejection sampler. Greedy verification accepts matching target
-tokens until the first mismatch. For stochastic sampling, a deterministic copied
-proposal has probability one; the target probability controls acceptance, with
-the rejected proposal excluded from the recovery distribution. Synthetic acceptance
-must remain disabled. This source review is not full-model fidelity evidence.
+Three samples per cell and arm: one MTP control repeat, three GPU-copy repeats,
+then two MTP control repeats. Frozen synthetic prompts, low reasoning, temperature
+zero, seed 17, identical output budgets and separately recorded kernel warmups.
+The copy matrix uses 256 output tokens per request and warmed prefixes. C4 mixes
+exact repetition, edited code, prose and another repetition, with four requests
+observed running. Throughput includes first-token delay and all proposal/verification
+overhead. This differs from the earlier E3 short code/prose/tool workload.
 
-CPU ngram disables asynchronous scheduling in this fork. GPU ngram supports it,
-so it is the preferred compatibility trial. Both reject the existing
-`adaptive_speculative_tokens_window` setting. A standalone trial must explicitly
-disable MTP cost/request-phase/tuning controls and draft-EH sharding, while retaining
-the target's shared384 layout and decode projections. Four speculative tokens allow
-reuse of the existing target graph shapes; variable-length copies and mixed batches
-still need runtime verification.
+| Workload | MTP output tok/s | GPU copy output tok/s | Copy change |
+| --- | ---: | ---: | ---: |
+| edited-code-2048 | 38.45 | 32.96 | -14.3% |
+| edited-code-8192 | 33.78 | 26.50 | -21.5% |
+| mixed-c4-2048 | 71.38 | 34.54 | -51.6% |
+| mixed-c4-8192 | 70.33 | 29.36 | -58.3% |
+| prose-2048 | 33.09 | 22.92 | -30.7% |
+| prose-8192 | 29.96 | 22.59 | -24.6% |
+| repeat-code-2048 | 39.10 | 31.18 | -20.3% |
+| repeat-code-8192 | 51.76 | 55.91 | +8.0% |
 
-## Checks completed
+Standard generation uses 512 output tokens and estimates decode from streaming.
+Cold prefill uses distinct cache salts and divides prompt tokens by TTFT.
 
-- The unchanged CPU proposer passed 400 randomized longest-match oracle checks
-  and four-request history checks through nearly 360K tokens on the coordinator CPU.
-- Its constructor's empty sampled-token lists did not trigger Numba compilation.
-  A real request must warm the proposer before any timing.
-- The GPU proposer's uncompiled tensor logic, run on CPU, passed 400 additional
-  oracle checks. This does not establish CUDA compilation or GPU performance.
-- Three scatter cases at exact context capacity overwrote the last copied-history
-  token with its previous value because padded indices were clamped to the same
-  position. Those cases have no remaining generation space. This is a proposal
-  scratch-history issue; incorrect target output has not been demonstrated.
-- Offline launch checks retained identical non-speculative arguments, preserved
-  the current MTP launch, and rejected inherited MTP-only settings for copy profiles.
-  The deployed launcher was not changed.
-- A prepared scatter fix gives padded history writes distinct destinations using
-  modulo indexing, while masked writes preserve the previous values. Against an
-  independent append oracle, all **2,048 history rows in 512 four-request batches**
-  passed at capacities 8, 32, 128 and 360,000. The original source failed 158 of
-  those batches. This runs the actual proposal method's tensor operations on CPU;
-  CUDA compilation, full-model behavior and speed remain unqualified.
+| Measurement | MTP | GPU copy | Copy change |
+| --- | ---: | ---: | ---: |
+| Prose output tok/s | 35.53 | 24.05 | -32.3% |
+| Code output tok/s | 48.31 | 24.10 | -50.1% |
+| Cold 8K input tok/s | 978.93 | 1004.21 | +2.6% |
+| Cold 32K input tok/s | 961.05 | 983.62 | +2.3% |
 
+Copy's matrix geometric-mean ratio is **0.705** versus MTP.
+The measurements do not justify a hybrid implementation. The 8K exact-repeat gain is narrow (+8.0%, about 55.9 versus 51.8 output tok/s); 2K repetition, edited code, prose and both C4 mixes regress. Per-request routing and shared proposal scheduling would add unmeasured costs and compatibility work. A future hybrid needs a new selector/cost hypothesis and repeated mixed-workload evidence.
+
+[Summary, ranges and quality](../../results/copy-drafting-serving.json) ·
+[Every timed sample](../../results/copy-drafting-serving-samples.json) ·
+[Synthetic fixtures](../../results/copy-drafting-fixtures.json)
+
+## Correctness and scope
+
+All three visits passed the frozen 4,096-position short reference and 512-position
+tails at 8K/32K/128K, followed by eight basic API/tool checks. The numerical gate
+requires coarsened KL ≤0.001, top-1 agreement ≥0.995 and NLL increase ≤0.01.
+The 128K reference covers about 46% common probability mass; this is not full
+360K quality evaluation. Exact-copy and rename-edit AST checks passed, as did
+unequal output lengths, four-stream cancellation and a healthy follow-up.
+No preemptions occurred in the timed matrix. Native, Pi-router and actual Code/Chat
+acceptance passed on the selected MTP image, including tools and memory integration.
+
+Both pinned ngram proposers use vLLM's native target rejection sampler; synthetic
+acceptance stays disabled. GPU ngram allows async scheduling; CPU ngram disables
+it in this fork and was checked on CPU only. Standalone copy explicitly disables
+MTP-only policy and draft-EH hooks while retaining target shared384/projections.
+The runtime trial used four speculative slots and a five-token lookup key.
+
+**Counter limitation:** GPU-worker trimming does not update the engine-core slot
+list used by the draft counter. Reported slots include invalid/no-match positions;
+slots not accepted are not an exact count of valid copied proposals rejected by
+the target. Samples retain raw counters, accepted tokens per wall/server-decode
+time, TTFT and stream gaps. Isolated GPU proposer cost was not measured.
+
+The first MTP visit used the history-fix image. Copy and final MTP used an additional
+ngram-only configuration repair. Target kernels, weights, precision and the MTP
+validation branch are unchanged; both images passed full numerical checks.
+All samples and control drift are retained. Three samples and one copy boot do
+not establish a many-boot confidence interval or long-duration reliability.
+
+## Compatibility fixes and attribution
+
+The initial copy launch failed on all six ranks before loading weights: validating
+the target alias as a separate draft model checked 64 heads against TP6 before
+normal target padding to 72. The conditional repair verifies ngram's target aliases
+and leaves full target padding/validation and model-backed draft validation intact.
+All 40 extracted-validator CPU cases passed, followed by actual six-rank startup
+and the runtime gates above. [Patch/checker](../../benchmarks/ngram_config_fix.py) ·
+[CPU receipt](../../results/copy-drafting-config-fix-cpu.json).
+
+The history-scatter repair gives padded writes unique modulo destinations while
+masked positions preserve prior values. All 2,048 history rows in 512 batches
+passed an independent CPU append oracle at capacities 8/32/128/360000; the original
+failed 158 batches. Matching kernels and the target verifier were unchanged.
+[Patch/checker](../../benchmarks/ngram_scatter_fix.py) ·
+[Receipt](../../results/copy-drafting-scatter-fix-cpu.json).
+
+vLLM supplies the proposers, async scheduling and rejection sampler. Swoopp supplied
+the narrow fixes, TP6 integration, tests and comparison. The underlying model,
+quantization, E3 and collective contributors retain [their credits](../../CREDITS.md).
 [Pinned source review](../../results/copy-drafting-source-review.json) ·
 [CPU proposer checks](../../results/copy-drafting-cpu.json) ·
-[Tensor semantics checks](../../results/copy-drafting-tensor-cpu.json) ·
-[Scatter-fix checks](../../results/copy-drafting-scatter-fix-cpu.json)
+[Tensor semantics](../../results/copy-drafting-tensor-cpu.json).
 
-The [source-pinned patch and checker](../../benchmarks/ngram_scatter_fix.py) take
-the retained original `ngram_proposer_gpu.py` as `--source`, a new `--candidate`
-path and a new `--output` receipt. It changes history scatter only; the matching
-kernel and native target verifier are unchanged. No copy-drafting runtime is
-installed by this preparation.
+## Reproduce
 
-## Remaining trial
+Recompute the published comparison without a GPU:
 
-1. Verify the full pinned configuration and proposal history handling, including
-   terminal requests, cancellations, varying accepted lengths and C1/C4 batches.
-2. Use a separate owned, drained six-GPU window with fresh exact-container
-   8 GiB / 2-second guards. Keep the current target settings and selected E3 policy.
-3. Qualify original short/long numerical references and functional behavior before
-   timing. Target verification is mandatory; copied tokens are only proposals.
-4. Compare exact-repeat code, edited-repeat code and prose controls against the
-   original adaptive MTP policy, with matching prompts and output budgets.
-   Report accepted copies, rejected work, proposal cost, TTFT, stream gaps,
-   single-request generation and aggregate throughput separately.
-5. Investigate combining copy proposals with MTP only if standalone measurements
-   justify the additional implementation. Reopen qualified serving promptly.
+```bash
+python3 benchmarks/analyze_copy_public_samples.py \
+  results/copy-drafting-serving-samples.json \
+  --summary results/copy-drafting-serving.json
+```
 
-There is no copy-drafting serving-speed claim. The proposal and verification
-implementations are from vLLM; their exact source hashes are retained in the review.
-See the repository [credits](../../CREDITS.md).
+The source-pinned checkers accept `--source ORIGINAL --candidate NEW --output RECEIPT`.
+Use the retained original `ngram_proposer_gpu.py` for the scatter checker and
+`config/speculative.py` for the configuration checker. The overlay builders
+[`build_ngram_history.py`](../../runtime/vllm/build_ngram_history.py) and
+[`build_ngram_config.py`](../../runtime/vllm/build_ngram_config.py) take
+`--base-archive --source --checks --output --receipt`; run with `PYTHONPATH=benchmarks`
+from the repository root. Apply history then configuration. They require retained
+image layers and exact source hashes, and emit delta archives. They do not provide
+a clean-machine build or a complete distributable image.
+
+For a new runtime comparison, reserve all six GPUs, drain applications, own the
+maintenance hold and arm fresh exact-container 8 GiB / 2-second guards including
+pressure protections. Use the [launch contract](README.md), selected E3 controls
+and `tuning.json` for MTP; `copy-tuning.json` explicitly disables seven MTP-only
+controls for `ngram-gpu4`. Run numerical and functional gates before timing.
+
+```bash
+python3 benchmarks/copy_matrix.py \
+  --base "$GLM_API" --key-file "$GLM_KEY_FILE" \
+  --image "$QUALIFIED_IMAGE_ID" --profile mtp4 \
+  --tuning-file recipes/vllm-tp6/tuning.json \
+  --fixtures results/copy-drafting-fixtures.json \
+  --label mtp-control-a --repetitions 1 --output mtp-control-a.json
+```
+
+Then run three repeats with the copy profile/tuning and two with MTP, using the
+same fixtures and new output paths. The public client checks rendered token/hash
+identity and measures the matrix; image/profile are operator assertions. It does
+not launch containers, enforce site guards, run the numerical/application gates or
+choose a serving policy. The executed private controller additionally verified all
+six launch configurations and guards. Public-driver packaging checks passed; a
+clean-machine replay remains unverified. Standard cold/decode results use
+[`performance.py`](../../benchmarks/performance.py). Reopen qualified serving promptly.

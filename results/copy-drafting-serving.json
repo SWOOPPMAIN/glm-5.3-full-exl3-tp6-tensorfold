@@ -1,0 +1,1781 @@
+{
+  "phase": "qualified_selected_profile_serving",
+  "image": "sha256:20f485f5fbe17eec01a2b1c1713c53b55503b97b10efac3d011dff0b857f87c6",
+  "selected_profile": "mtp4",
+  "weights_bpw": 3.25,
+  "tp": 6,
+  "dense": "mxfp8",
+  "context": 360000,
+  "admitted_requests": 4,
+  "prefill_budget": 3072,
+  "e3_rows": 32,
+  "native_prefill_boundary": 32,
+  "decision": "Retain original adaptive MTP on the forward compatibility-fix image. Three samples per arm/cell show standalone GPU copy loses 32.3% prose and 50.1% code decode, and 51.6%/58.3% C4 aggregate throughput at 2K/8K. Only exact repetition at 8K improves (+8.0%); edited code and prose regress with separated observed ranges. Copy cold prefill improves 2.6%/2.3%, insufficient to offset generation loss. All three visits pass short/8K/32K/128K numerical gates and functional/cancellation checks. Target verifier, weights, target precision, context and qualified E3/transport settings are retained; no older image is restored.",
+  "outcome": "retained_adaptive_mtp",
+  "comparison": {
+    "phase": "measured_comparison_not_selection",
+    "image": "sha256:20f485f5fbe17eec01a2b1c1713c53b55503b97b10efac3d011dff0b857f87c6",
+    "source_receipts": {
+      "ngram3-mtp-a-serving-bench.json": "428c310172d7674ee1971a84b73b7e9bd424a884ee462b942d04fbad377c1d08",
+      "ngram3-mtp-a-copy-bench.json": "2aa0cda0c5ef21f1b23f5c7d6e684b506711e5baaa9e30eab2c0bb1092d2e016",
+      "ngram3-mtp-a-performance.json": "b8f3ed5b95734c085ef14c7cb4f693e66e8eb1ae4a97d860b0ea1d61cfe7851c",
+      "ngram3-mtp-a-quality-trial.json": "0b0f4673f712ad2456583231278326204e6ffc6b6e3b6e3121c2d6d532ffc4b0",
+      "ngram3-mtp-a-functional.json": "528f88f2105506e4d6ad6a693010fe0ef48e3566f62905a994d2222b275a62de",
+      "ngram3-copy-r1-serving-bench.json": "6c7c7d0a14e5b9d1cb236177e384f567955ebda13c768f239cf59e73079dea83",
+      "ngram3-copy-r1-copy-bench.json": "f127ae4db6507d41cf4171499141eef0d5cec53d6e9ee2294fb790c2b66071e6",
+      "ngram3-copy-r1-performance.json": "3ce4595cb118cfb4f4b71e49abb82acc3dd8b3308f5e3d3872a88774fe7b0a95",
+      "ngram3-copy-r1-quality-trial.json": "f77b4bc59e0450e02086c02418ec7e454467714c5fe9d01bfecd9dd3db5909ad",
+      "ngram3-copy-r1-functional.json": "dea121f6c5b28a4a3e83e623ffcabe7ef9f1eba805b3365b3580a765e690a7b0",
+      "ngram3-mtp-b-serving-bench.json": "308c7ca4d400d5758bfed14a192586a12c9d118cedf3af68b8ca43b844556f41",
+      "ngram3-mtp-b-copy-bench.json": "abb1662cd582456259c153f0765f92956e5609a755533590b8b71631ecf86a52",
+      "ngram3-mtp-b-performance.json": "9b2fe1bec02719c438034036adb9c2e715ba822c2fb63794cca238bc1108c5a8",
+      "ngram3-mtp-b-quality-trial.json": "5dc275ff3ac2db0c1cbee0e06415ac5b7edbd50d9b6819013a84d0c48c4af3b7",
+      "ngram3-mtp-b-functional.json": "841a83d321f721d1c4ca6d80eab507abc3766ed2279e3b29af47450f5673001f"
+    },
+    "visit_images": {
+      "ngram3-mtp-a": "sha256:29163beb83544867447a41049fefecf0da1de1cd5d3eb2b9d4b32b59fc85256a",
+      "ngram3-copy-r1": "sha256:20f485f5fbe17eec01a2b1c1713c53b55503b97b10efac3d011dff0b857f87c6",
+      "ngram3-mtp-b": "sha256:20f485f5fbe17eec01a2b1c1713c53b55503b97b10efac3d011dff0b857f87c6"
+    },
+    "plan_sha256": "0ce91852aaeaca7307e65c550fdc9f400336398a9c143efe8ffe10f60ea8f771",
+    "fixture_sha256": "56aabff9478ba70adcded4377bfd5430f871063a9fc1eec850be3651a018314f",
+    "samples_per_cell_arm": 3,
+    "copy_matrix": [
+      {
+        "cell": "edited-code-2048",
+        "arms": {
+          "mtp4": {
+            "output_tok_s": {
+              "values": [
+                38.448294675378875,
+                35.98228754560021,
+                40.722093820540564
+              ],
+              "median": 38.448294675378875,
+              "minimum": 35.98228754560021,
+              "maximum": 40.722093820540564
+            },
+            "accepted_per_reported_slot": {
+              "values": [
+                0.7260869565217392,
+                0.6541666666666667,
+                0.8160377358490566
+              ],
+              "median": 0.7260869565217392,
+              "minimum": 0.6541666666666667,
+              "maximum": 0.8160377358490566
+            },
+            "reported_draft_slots": 682.0,
+            "accepted_tokens": 497.0,
+            "reported_slots_not_accepted": 185.0,
+            "accepted_per_wall_second": {
+              "values": [
+                25.081504729641686,
+                22.067262283825126,
+                27.519227464662176
+              ],
+              "median": 25.081504729641686,
+              "minimum": 22.067262283825126,
+              "maximum": 27.519227464662176
+            },
+            "ttft_seconds": {
+              "values": [
+                0.4443243518471718,
+                0.44677056977525353,
+                0.4529685787856579
+              ],
+              "median": 0.44677056977525353,
+              "minimum": 0.4443243518471718,
+              "maximum": 0.4529685787856579
+            },
+            "p95_stream_gap": {
+              "values": [
+                0.08638127334415913,
+                0.08530276578385383,
+                0.08907088302075862
+              ],
+              "median": 0.08638127334415913,
+              "minimum": 0.08530276578385383,
+              "maximum": 0.08907088302075862
+            },
+            "minimum_available_gib": 10.06
+          },
+          "ngram-gpu4": {
+            "output_tok_s": {
+              "values": [
+                28.440527744504088,
+                33.18433786109922,
+                32.95764162937536
+              ],
+              "median": 32.95764162937536,
+              "minimum": 28.440527744504088,
+              "maximum": 33.18433786109922
+            },
+            "accepted_per_reported_slot": {
+              "values": [
+                0.09408602150537634,
+                0.173841059602649,
+                0.17269736842105263
+              ],
+              "median": 0.17269736842105263,
+              "minimum": 0.09408602150537634,
+              "maximum": 0.173841059602649
+            },
+            "reported_draft_slots": 1956.0,
+            "accepted_tokens": 280.0,
+            "reported_slots_not_accepted": 1676.0,
+            "accepted_per_wall_second": {
+              "values": [
+                7.776706805137836,
+                13.61076357584148,
+                13.517782699548487
+              ],
+              "median": 13.517782699548487,
+              "minimum": 7.776706805137836,
+              "maximum": 13.61076357584148
+            },
+            "ttft_seconds": {
+              "values": [
+                0.34012084593996406,
+                0.33920024102553725,
+                0.3379205600358546
+              ],
+              "median": 0.33920024102553725,
+              "minimum": 0.3379205600358546,
+              "maximum": 0.34012084593996406
+            },
+            "p95_stream_gap": {
+              "values": [
+                0.07578631285578012,
+                0.0768267194274813,
+                0.07711130660027266
+              ],
+              "median": 0.0768267194274813,
+              "minimum": 0.07578631285578012,
+              "maximum": 0.07711130660027266
+            },
+            "minimum_available_gib": 11.83
+          }
+        },
+        "copy_over_mtp": 0.8571938471559946,
+        "percent_change": -14.280615284400543,
+        "observed_ranges_separated": true
+      },
+      {
+        "cell": "edited-code-8192",
+        "arms": {
+          "mtp4": {
+            "output_tok_s": {
+              "values": [
+                35.640141193358225,
+                33.77925028269941,
+                32.23639319081668
+              ],
+              "median": 33.77925028269941,
+              "minimum": 32.23639319081668,
+              "maximum": 35.640141193358225
+            },
+            "accepted_per_reported_slot": {
+              "values": [
+                0.6596638655462185,
+                0.6,
+                0.5120274914089347
+              ],
+              "median": 0.6,
+              "minimum": 0.5120274914089347,
+              "maximum": 0.6596638655462185
+            },
+            "reported_draft_slots": 779.0,
+            "accepted_tokens": 456.0,
+            "reported_slots_not_accepted": 323.0,
+            "accepted_per_wall_second": {
+              "values": [
+                21.857430341239226,
+                19.792529462519187,
+                18.762588224342522
+              ],
+              "median": 19.792529462519187,
+              "minimum": 18.762588224342522,
+              "maximum": 21.857430341239226
+            },
+            "ttft_seconds": {
+              "values": [
+                0.4523188415914774,
+                0.45153904939070344,
+                0.45235838694497943
+              ],
+              "median": 0.4523188415914774,
+              "minimum": 0.45153904939070344,
+              "maximum": 0.45235838694497943
+            },
+            "p95_stream_gap": {
+              "values": [
+                0.08606918668374419,
+                0.08552241406869143,
+                0.08087584371678531
+              ],
+              "median": 0.08552241406869143,
+              "minimum": 0.08087584371678531,
+              "maximum": 0.08606918668374419
+            },
+            "minimum_available_gib": 9.92
+          },
+          "ngram-gpu4": {
+            "output_tok_s": {
+              "values": [
+                26.50274488952229,
+                28.353295430524497,
+                25.212251259659155
+              ],
+              "median": 26.50274488952229,
+              "minimum": 25.212251259659155,
+              "maximum": 28.353295430524497
+            },
+            "accepted_per_reported_slot": {
+              "values": [
+                0.061893203883495146,
+                0.09042553191489362,
+                0.04072398190045249
+              ],
+              "median": 0.061893203883495146,
+              "minimum": 0.04072398190045249,
+              "maximum": 0.09042553191489362
+            },
+            "reported_draft_slots": 2460.0,
+            "accepted_tokens": 155.0,
+            "reported_slots_not_accepted": 2305.0,
+            "accepted_per_wall_second": {
+              "values": [
+                5.279843708459518,
+                7.5313440987330695,
+                3.5454728333895686
+              ],
+              "median": 5.279843708459518,
+              "minimum": 3.5454728333895686,
+              "maximum": 7.5313440987330695
+            },
+            "ttft_seconds": {
+              "values": [
+                0.31839570589363575,
+                0.32821681583300233,
+                0.31524881115183234
+              ],
+              "median": 0.31839570589363575,
+              "minimum": 0.31524881115183234,
+              "maximum": 0.32821681583300233
+            },
+            "p95_stream_gap": {
+              "values": [
+                0.07440049510914833,
+                0.07651610367465764,
+                0.07426824215799568
+              ],
+              "median": 0.07440049510914833,
+              "minimum": 0.07426824215799568,
+              "maximum": 0.07651610367465764
+            },
+            "minimum_available_gib": 11.77
+          }
+        },
+        "copy_over_mtp": 0.7845865336773357,
+        "percent_change": -21.541346632266432,
+        "observed_ranges_separated": true
+      },
+      {
+        "cell": "mixed-c4-2048",
+        "arms": {
+          "mtp4": {
+            "output_tok_s": {
+              "values": [
+                71.31935269552517,
+                73.27773465992225,
+                71.37719846333253
+              ],
+              "median": 71.37719846333253,
+              "minimum": 71.31935269552517,
+              "maximum": 73.27773465992225
+            },
+            "accepted_per_reported_slot": {
+              "values": [
+                0.6905263157894737,
+                0.706,
+                0.6984978540772532
+              ],
+              "median": 0.6984978540772532,
+              "minimum": 0.6905263157894737,
+              "maximum": 0.706
+            },
+            "reported_draft_slots": 2882.0,
+            "accepted_tokens": 2013.0,
+            "reported_slots_not_accepted": 869.0,
+            "accepted_per_wall_second": {
+              "values": [
+                45.68896032057081,
+                50.52156315420421,
+                45.37749628870067
+              ],
+              "median": 45.68896032057081,
+              "minimum": 45.37749628870067,
+              "maximum": 50.52156315420421
+            },
+            "ttft_seconds": {
+              "values": [
+                1.4248700672760606,
+                1.4747066725976765,
+                1.4248578490223736
+              ],
+              "median": 1.4248700672760606,
+              "minimum": 1.4248578490223736,
+              "maximum": 1.4747066725976765
+            },
+            "p95_stream_gap": {
+              "values": [
+                0.17550357272848488,
+                0.15069300897885113,
+                0.17184860864654183
+              ],
+              "median": 0.17184860864654183,
+              "minimum": 0.15069300897885113,
+              "maximum": 0.17550357272848488
+            },
+            "minimum_available_gib": 9.95
+          },
+          "ngram-gpu4": {
+            "output_tok_s": {
+              "values": [
+                35.36124705960495,
+                31.162442827782332,
+                34.535372278554135
+              ],
+              "median": 34.535372278554135,
+              "minimum": 31.162442827782332,
+              "maximum": 35.36124705960495
+            },
+            "accepted_per_reported_slot": {
+              "values": [
+                0.10774058577405858,
+                0.1105225988700565,
+                0.060909090909090906
+              ],
+              "median": 0.10774058577405858,
+              "minimum": 0.060909090909090906,
+              "maximum": 0.1105225988700565
+            },
+            "reported_draft_slots": 9000.0,
+            "accepted_tokens": 823.0,
+            "reported_slots_not_accepted": 8177.0,
+            "accepted_per_wall_second": {
+              "values": [
+                10.670532559978447,
+                9.525238872163936,
+                6.77891584764588
+              ],
+              "median": 9.525238872163936,
+              "minimum": 6.77891584764588,
+              "maximum": 10.670532559978447
+            },
+            "ttft_seconds": {
+              "values": [
+                1.0023852565791458,
+                0.9986201880965382,
+                1.0015969020314515
+              ],
+              "median": 1.0015969020314515,
+              "minimum": 0.9986201880965382,
+              "maximum": 1.0023852565791458
+            },
+            "p95_stream_gap": {
+              "values": [
+                0.30430089123547077,
+                0.28842989495024085,
+                0.28390810382552445
+              ],
+              "median": 0.28842989495024085,
+              "minimum": 0.28390810382552445,
+              "maximum": 0.30430089123547077
+            },
+            "minimum_available_gib": 11.84
+          }
+        },
+        "copy_over_mtp": 0.4838432023399663,
+        "percent_change": -51.61567976600337,
+        "observed_ranges_separated": true
+      },
+      {
+        "cell": "mixed-c4-8192",
+        "arms": {
+          "mtp4": {
+            "output_tok_s": {
+              "values": [
+                67.46480479355372,
+                70.33498102351734,
+                72.78943306694826
+              ],
+              "median": 70.33498102351734,
+              "minimum": 67.46480479355372,
+              "maximum": 72.78943306694826
+            },
+            "accepted_per_reported_slot": {
+              "values": [
+                0.7125256673511293,
+                0.7211538461538461,
+                0.7340425531914894
+              ],
+              "median": 0.7211538461538461,
+              "minimum": 0.7125256673511293,
+              "maximum": 0.7340425531914894
+            },
+            "reported_draft_slots": 2850.0,
+            "accepted_tokens": 2059.0,
+            "reported_slots_not_accepted": 791.0,
+            "accepted_per_wall_second": {
+              "values": [
+                45.723217311256136,
+                46.3633908114006,
+                49.04756720331475
+              ],
+              "median": 46.3633908114006,
+              "minimum": 45.723217311256136,
+              "maximum": 49.04756720331475
+            },
+            "ttft_seconds": {
+              "values": [
+                1.4207597200293094,
+                1.436311038210988,
+                1.4330808019731194
+              ],
+              "median": 1.4330808019731194,
+              "minimum": 1.4207597200293094,
+              "maximum": 1.436311038210988
+            },
+            "p95_stream_gap": {
+              "values": [
+                0.1544202937744558,
+                0.16458227904513478,
+                0.16939703305251896
+              ],
+              "median": 0.16458227904513478,
+              "minimum": 0.1544202937744558,
+              "maximum": 0.16939703305251896
+            },
+            "minimum_available_gib": 9.99
+          },
+          "ngram-gpu4": {
+            "output_tok_s": {
+              "values": [
+                28.85553565561867,
+                29.356150011600604,
+                31.70740234215376
+              ],
+              "median": 29.356150011600604,
+              "minimum": 28.85553565561867,
+              "maximum": 31.70740234215376
+            },
+            "accepted_per_reported_slot": {
+              "values": [
+                0.10904628330995793,
+                0.10869565217391304,
+                0.08540575916230367
+              ],
+              "median": 0.10869565217391304,
+              "minimum": 0.08540575916230367,
+              "maximum": 0.10904628330995793
+            },
+            "reported_draft_slots": 8760.0,
+            "accepted_tokens": 882.0,
+            "reported_slots_not_accepted": 7878.0,
+            "accepted_per_wall_second": {
+              "values": [
+                8.763741786032623,
+                8.887115726168151,
+                8.081671886037237
+              ],
+              "median": 8.763741786032623,
+              "minimum": 8.081671886037237,
+              "maximum": 8.887115726168151
+            },
+            "ttft_seconds": {
+              "values": [
+                0.9822706172708422,
+                0.884141000919044,
+                0.8760183474514633
+              ],
+              "median": 0.884141000919044,
+              "minimum": 0.8760183474514633,
+              "maximum": 0.9822706172708422
+            },
+            "p95_stream_gap": {
+              "values": [
+                0.31512602735310763,
+                0.30033549396321174,
+                0.3039538713172078
+              ],
+              "median": 0.3039538713172078,
+              "minimum": 0.30033549396321174,
+              "maximum": 0.31512602735310763
+            },
+            "minimum_available_gib": 11.87
+          }
+        },
+        "copy_over_mtp": 0.4173762413013949,
+        "percent_change": -58.26237586986052,
+        "observed_ranges_separated": true
+      },
+      {
+        "cell": "prose-2048",
+        "arms": {
+          "mtp4": {
+            "output_tok_s": {
+              "values": [
+                33.09433008121206,
+                34.23925572989124,
+                32.621347974072876
+              ],
+              "median": 33.09433008121206,
+              "minimum": 32.621347974072876,
+              "maximum": 34.23925572989124
+            },
+            "accepted_per_reported_slot": {
+              "values": [
+                0.5498154981549815,
+                0.5900383141762452,
+                0.5370370370370371
+              ],
+              "median": 0.5498154981549815,
+              "minimum": 0.5370370370370371,
+              "maximum": 0.5900383141762452
+            },
+            "reported_draft_slots": 802.0,
+            "accepted_tokens": 448.0,
+            "reported_slots_not_accepted": 354.0,
+            "accepted_per_wall_second": {
+              "values": [
+                19.261934305080455,
+                20.5970522750127,
+                18.476935375939718
+              ],
+              "median": 19.261934305080455,
+              "minimum": 18.476935375939718,
+              "maximum": 20.5970522750127
+            },
+            "ttft_seconds": {
+              "values": [
+                0.4297082908451557,
+                0.4496280588209629,
+                0.4383821887895465
+              ],
+              "median": 0.4383821887895465,
+              "minimum": 0.4297082908451557,
+              "maximum": 0.4496280588209629
+            },
+            "p95_stream_gap": {
+              "values": [
+                0.0816162769217044,
+                0.08487578802742063,
+                0.08348254992160946
+              ],
+              "median": 0.08348254992160946,
+              "minimum": 0.0816162769217044,
+              "maximum": 0.08487578802742063
+            },
+            "minimum_available_gib": 10.06
+          },
+          "ngram-gpu4": {
+            "output_tok_s": {
+              "values": [
+                22.994802373500885,
+                22.709032535995618,
+                22.92463874747595
+              ],
+              "median": 22.92463874747595,
+              "minimum": 22.709032535995618,
+              "maximum": 22.994802373500885
+            },
+            "accepted_per_reported_slot": {
+              "values": [
+                0.001976284584980237,
+                0,
+                0
+              ],
+              "median": 0,
+              "minimum": 0,
+              "maximum": 0.001976284584980237
+            },
+            "reported_draft_slots": 3052.0,
+            "accepted_tokens": 2.0,
+            "reported_slots_not_accepted": 3050.0,
+            "accepted_per_wall_second": {
+              "values": [
+                0.17964689354297567,
+                0.0,
+                0.0
+              ],
+              "median": 0.0,
+              "minimum": 0.0,
+              "maximum": 0.17964689354297567
+            },
+            "ttft_seconds": {
+              "values": [
+                0.2736568977124989,
+                0.2743783826008439,
+                0.27072103787213564
+              ],
+              "median": 0.2736568977124989,
+              "minimum": 0.27072103787213564,
+              "maximum": 0.2743783826008439
+            },
+            "p95_stream_gap": {
+              "values": [
+                0.046398728108033534,
+                0.046132131153717636,
+                0.04481230282690376
+              ],
+              "median": 0.046132131153717636,
+              "minimum": 0.04481230282690376,
+              "maximum": 0.046398728108033534
+            },
+            "minimum_available_gib": 11.88
+          }
+        },
+        "copy_over_mtp": 0.6927059315363048,
+        "percent_change": -30.72940684636952,
+        "observed_ranges_separated": true
+      },
+      {
+        "cell": "prose-8192",
+        "arms": {
+          "mtp4": {
+            "output_tok_s": {
+              "values": [
+                29.768191374380272,
+                29.964769527032455,
+                32.60068201313312
+              ],
+              "median": 29.964769527032455,
+              "minimum": 29.768191374380272,
+              "maximum": 32.60068201313312
+            },
+            "accepted_per_reported_slot": {
+              "values": [
+                0.46808510638297873,
+                0.45454545454545453,
+                0.5261324041811847
+              ],
+              "median": 0.46808510638297873,
+              "minimum": 0.45454545454545453,
+              "maximum": 0.5261324041811847
+            },
+            "reported_draft_slots": 877.0,
+            "accepted_tokens": 423.0,
+            "reported_slots_not_accepted": 454.0,
+            "accepted_per_wall_second": {
+              "values": [
+                15.349223677414829,
+                16.386983335095874,
+                19.229308531183985
+              ],
+              "median": 16.386983335095874,
+              "minimum": 15.349223677414829,
+              "maximum": 19.229308531183985
+            },
+            "ttft_seconds": {
+              "values": [
+                0.4532644310966134,
+                0.4620323949493468,
+                0.4631523545831442
+              ],
+              "median": 0.4620323949493468,
+              "minimum": 0.4532644310966134,
+              "maximum": 0.4631523545831442
+            },
+            "p95_stream_gap": {
+              "values": [
+                0.08216057675890624,
+                0.08612582506611943,
+                0.08493005586788058
+              ],
+              "median": 0.08493005586788058,
+              "minimum": 0.08216057675890624,
+              "maximum": 0.08612582506611943
+            },
+            "minimum_available_gib": 10.04
+          },
+          "ngram-gpu4": {
+            "output_tok_s": {
+              "values": [
+                22.486996725513468,
+                22.592900118199545,
+                22.76012572609508
+              ],
+              "median": 22.592900118199545,
+              "minimum": 22.486996725513468,
+              "maximum": 22.76012572609508
+            },
+            "accepted_per_reported_slot": {
+              "values": [
+                0,
+                0,
+                0.002976190476190476
+              ],
+              "median": 0,
+              "minimum": 0,
+              "maximum": 0.002976190476190476
+            },
+            "reported_draft_slots": 3048.0,
+            "accepted_tokens": 3.0,
+            "reported_slots_not_accepted": 3045.0,
+            "accepted_per_wall_second": {
+              "values": [
+                0.0,
+                0.0,
+                0.2667202233526767
+              ],
+              "median": 0.0,
+              "minimum": 0.0,
+              "maximum": 0.2667202233526767
+            },
+            "ttft_seconds": {
+              "values": [
+                0.3352413489483297,
+                0.33432260900735855,
+                0.3334627649746835
+              ],
+              "median": 0.33432260900735855,
+              "minimum": 0.3334627649746835,
+              "maximum": 0.3352413489483297
+            },
+            "p95_stream_gap": {
+              "values": [
+                0.04610541181173176,
+                0.04599944250658154,
+                0.045948893995955586
+              ],
+              "median": 0.04599944250658154,
+              "minimum": 0.045948893995955586,
+              "maximum": 0.04610541181173176
+            },
+            "minimum_available_gib": 11.74
+          }
+        },
+        "copy_over_mtp": 0.7539821088167409,
+        "percent_change": -24.60178911832591,
+        "observed_ranges_separated": true
+      },
+      {
+        "cell": "repeat-code-2048",
+        "arms": {
+          "mtp4": {
+            "output_tok_s": {
+              "values": [
+                38.71461917854418,
+                39.59039244893655,
+                39.104834813711655
+              ],
+              "median": 39.104834813711655,
+              "minimum": 38.71461917854418,
+              "maximum": 39.59039244893655
+            },
+            "accepted_per_reported_slot": {
+              "values": [
+                0.6258741258741258,
+                0.7172131147540983,
+                0.6425992779783394
+              ],
+              "median": 0.6425992779783394,
+              "minimum": 0.6258741258741258,
+              "maximum": 0.7172131147540983
+            },
+            "reported_draft_slots": 807.0,
+            "accepted_tokens": 532.0,
+            "reported_slots_not_accepted": 275.0,
+            "accepted_per_wall_second": {
+              "values": [
+                27.06998762874769,
+                27.063744838140217,
+                27.190080456408886
+              ],
+              "median": 27.06998762874769,
+              "minimum": 27.063744838140217,
+              "maximum": 27.190080456408886
+            },
+            "ttft_seconds": {
+              "values": [
+                0.4451302420347929,
+                0.4427955592982471,
+                0.4477527840062976
+              ],
+              "median": 0.4451302420347929,
+              "minimum": 0.4427955592982471,
+              "maximum": 0.4477527840062976
+            },
+            "p95_stream_gap": {
+              "values": [
+                0.08689524689689278,
+                0.0865860795136541,
+                0.08906794420909137
+              ],
+              "median": 0.08689524689689278,
+              "minimum": 0.0865860795136541,
+              "maximum": 0.08906794420909137
+            },
+            "minimum_available_gib": 10.07
+          },
+          "ngram-gpu4": {
+            "output_tok_s": {
+              "values": [
+                31.175511025130437,
+                31.029503360405744,
+                33.283260795110884
+              ],
+              "median": 31.175511025130437,
+              "minimum": 31.029503360405744,
+              "maximum": 33.283260795110884
+            },
+            "accepted_per_reported_slot": {
+              "values": [
+                0.1402439024390244,
+                0.13855421686746988,
+                0.17785234899328858
+              ],
+              "median": 0.1402439024390244,
+              "minimum": 0.13855421686746988,
+              "maximum": 0.17785234899328858
+            },
+            "reported_draft_slots": 1916.0,
+            "accepted_tokens": 290.0,
+            "reported_slots_not_accepted": 1626.0,
+            "accepted_per_wall_second": {
+              "values": [
+                11.203699274656252,
+                11.151227770145814,
+                13.7813501729756
+              ],
+              "median": 11.203699274656252,
+              "minimum": 11.151227770145814,
+              "maximum": 13.7813501729756
+            },
+            "ttft_seconds": {
+              "values": [
+                0.3428458580747247,
+                0.33755822479724884,
+                0.3410401148721576
+              ],
+              "median": 0.3410401148721576,
+              "minimum": 0.33755822479724884,
+              "maximum": 0.3428458580747247
+            },
+            "p95_stream_gap": {
+              "values": [
+                0.07658659117296339,
+                0.07604270610027015,
+                0.07757428009063005
+              ],
+              "median": 0.07658659117296339,
+              "minimum": 0.07604270610027015,
+              "maximum": 0.07757428009063005
+            },
+            "minimum_available_gib": 11.88
+          }
+        },
+        "copy_over_mtp": 0.7972290683145683,
+        "percent_change": -20.27709316854317,
+        "observed_ranges_separated": true
+      },
+      {
+        "cell": "repeat-code-8192",
+        "arms": {
+          "mtp4": {
+            "output_tok_s": {
+              "values": [
+                52.05810685097996,
+                51.569525167238616,
+                51.764714549986685
+              ],
+              "median": 51.764714549986685,
+              "minimum": 51.569525167238616,
+              "maximum": 52.05810685097996
+            },
+            "accepted_per_reported_slot": {
+              "values": [
+                0.9759615384615384,
+                0.9759615384615384,
+                0.9759615384615384
+              ],
+              "median": 0.9759615384615384,
+              "minimum": 0.9759615384615384,
+              "maximum": 0.9759615384615384
+            },
+            "reported_draft_slots": 624.0,
+            "accepted_tokens": 609.0,
+            "reported_slots_not_accepted": 15.0,
+            "accepted_per_wall_second": {
+              "values": [
+                41.280451916988014,
+                40.89302190995875,
+                41.047800990809755
+              ],
+              "median": 41.047800990809755,
+              "minimum": 40.89302190995875,
+              "maximum": 41.280451916988014
+            },
+            "ttft_seconds": {
+              "values": [
+                0.5247702351771295,
+                0.5506400312297046,
+                0.5317824981175363
+              ],
+              "median": 0.5317824981175363,
+              "minimum": 0.5247702351771295,
+              "maximum": 0.5506400312297046
+            },
+            "p95_stream_gap": {
+              "values": [
+                0.08996801008470356,
+                0.08915130491368473,
+                0.08982345391996205
+              ],
+              "median": 0.08982345391996205,
+              "minimum": 0.08915130491368473,
+              "maximum": 0.08996801008470356
+            },
+            "minimum_available_gib": 10.06
+          },
+          "ngram-gpu4": {
+            "output_tok_s": {
+              "values": [
+                54.484324171855384,
+                55.99034118929201,
+                55.90768452512766
+              ],
+              "median": 55.90768452512766,
+              "minimum": 54.484324171855384,
+              "maximum": 55.99034118929201
+            },
+            "accepted_per_reported_slot": {
+              "values": [
+                0.853448275862069,
+                0.853448275862069,
+                0.853448275862069
+              ],
+              "median": 0.853448275862069,
+              "minimum": 0.853448275862069,
+              "maximum": 0.853448275862069
+            },
+            "reported_draft_slots": 696.0,
+            "accepted_tokens": 594.0,
+            "reported_slots_not_accepted": 102.0,
+            "accepted_per_wall_second": {
+              "values": [
+                42.1402194766694,
+                43.30502951359304,
+                43.24109974990343
+              ],
+              "median": 43.24109974990343,
+              "minimum": 42.1402194766694,
+              "maximum": 43.30502951359304
+            },
+            "ttft_seconds": {
+              "values": [
+                0.49842373514547944,
+                0.3876114250160754,
+                0.3883837847970426
+              ],
+              "median": 0.3883837847970426,
+              "minimum": 0.3876114250160754,
+              "maximum": 0.49842373514547944
+            },
+            "p95_stream_gap": {
+              "values": [
+                0.07907362589612603,
+                0.07918681493028998,
+                0.07898727152496576
+              ],
+              "median": 0.07907362589612603,
+              "minimum": 0.07898727152496576,
+              "maximum": 0.07918681493028998
+            },
+            "minimum_available_gib": 11.87
+          }
+        },
+        "copy_over_mtp": 1.0800346338458082,
+        "percent_change": 8.003463384580822,
+        "observed_ranges_separated": true
+      }
+    ],
+    "conventional": {
+      "cold-prefill-32768": {
+        "mtp": {
+          "values": [
+            965.585605291381,
+            961.0480605314341,
+            959.729238153645
+          ],
+          "median": 961.0480605314341,
+          "minimum": 959.729238153645,
+          "maximum": 965.585605291381
+        },
+        "copy": {
+          "values": [
+            984.796841410308,
+            983.6218024025636,
+            983.3114949751496
+          ],
+          "median": 983.6218024025636,
+          "minimum": 983.3114949751496,
+          "maximum": 984.796841410308
+        },
+        "percent_change": 2.348867116868947,
+        "lower_is_better": false
+      },
+      "cold-prefill-8192": {
+        "mtp": {
+          "values": [
+            981.5636466081405,
+            978.9278657063601,
+            973.5277168039677
+          ],
+          "median": 978.9278657063601,
+          "minimum": 973.5277168039677,
+          "maximum": 981.5636466081405
+        },
+        "copy": {
+          "values": [
+            1004.2108327690161,
+            1005.8284191639642,
+            999.7525922316761
+          ],
+          "median": 1004.2108327690161,
+          "minimum": 999.7525922316761,
+          "maximum": 1005.8284191639642
+        },
+        "percent_change": 2.582720131724181,
+        "lower_is_better": false
+      },
+      "cold-ttft-32768": {
+        "mtp": {
+          "values": [
+            33.93381158588454,
+            34.094028535764664,
+            34.14087921613827
+          ],
+          "median": 34.094028535764664,
+          "minimum": 33.93381158588454,
+          "maximum": 34.14087921613827
+        },
+        "copy": {
+          "values": [
+            33.27183701470494,
+            33.311583700124174,
+            33.32209596596658
+          ],
+          "median": 33.311583700124174,
+          "minimum": 33.27183701470494,
+          "maximum": 33.32209596596658
+        },
+        "percent_change": -2.2949615203721185,
+        "lower_is_better": true
+      },
+      "cold-ttft-8192": {
+        "mtp": {
+          "values": [
+            8.345867360010743,
+            8.368338758125901,
+            8.414757852908224
+          ],
+          "median": 8.368338758125901,
+          "minimum": 8.345867360010743,
+          "maximum": 8.414757852908224
+        },
+        "copy": {
+          "values": [
+            8.157649502158165,
+            8.144530263729393,
+            8.194027265999466
+          ],
+          "median": 8.157649502158165,
+          "minimum": 8.144530263729393,
+          "maximum": 8.194027265999466
+        },
+        "percent_change": -2.517695113180629,
+        "lower_is_better": true
+      },
+      "decode-code": {
+        "mtp": {
+          "values": [
+            50.02519764914069,
+            47.16718131488797,
+            48.30681229689182
+          ],
+          "median": 48.30681229689182,
+          "minimum": 47.16718131488797,
+          "maximum": 50.02519764914069
+        },
+        "copy": {
+          "values": [
+            24.193583420107014,
+            24.10269030697879,
+            24.006479060486566
+          ],
+          "median": 24.10269030697879,
+          "minimum": 24.006479060486566,
+          "maximum": 24.193583420107014
+        },
+        "percent_change": -50.104986934669625,
+        "lower_is_better": false
+      },
+      "decode-prose": {
+        "mtp": {
+          "values": [
+            35.532096686462616,
+            37.22191414826985,
+            34.68641322332152
+          ],
+          "median": 35.532096686462616,
+          "minimum": 34.68641322332152,
+          "maximum": 37.22191414826985
+        },
+        "copy": {
+          "values": [
+            24.048706206340263,
+            24.03948490164747,
+            24.09165068245362
+          ],
+          "median": 24.048706206340263,
+          "minimum": 24.03948490164747,
+          "maximum": 24.09165068245362
+        },
+        "percent_change": -32.3183587544875,
+        "lower_is_better": false
+      }
+    },
+    "by_visit": {
+      "ngram3-mtp-a": {
+        "repeat-code-2048": {
+          "values": [
+            38.71461917854418
+          ],
+          "median": 38.71461917854418
+        },
+        "edited-code-2048": {
+          "values": [
+            38.448294675378875
+          ],
+          "median": 38.448294675378875
+        },
+        "prose-2048": {
+          "values": [
+            33.09433008121206
+          ],
+          "median": 33.09433008121206
+        },
+        "repeat-code-8192": {
+          "values": [
+            52.05810685097996
+          ],
+          "median": 52.05810685097996
+        },
+        "edited-code-8192": {
+          "values": [
+            35.640141193358225
+          ],
+          "median": 35.640141193358225
+        },
+        "prose-8192": {
+          "values": [
+            29.768191374380272
+          ],
+          "median": 29.768191374380272
+        },
+        "mixed-c4-2048": {
+          "values": [
+            71.31935269552517
+          ],
+          "median": 71.31935269552517
+        },
+        "mixed-c4-8192": {
+          "values": [
+            67.46480479355372
+          ],
+          "median": 67.46480479355372
+        }
+      },
+      "ngram3-copy-r1": {
+        "repeat-code-2048": {
+          "values": [
+            31.175511025130437,
+            31.029503360405744,
+            33.283260795110884
+          ],
+          "median": 31.175511025130437
+        },
+        "edited-code-2048": {
+          "values": [
+            28.440527744504088,
+            33.18433786109922,
+            32.95764162937536
+          ],
+          "median": 32.95764162937536
+        },
+        "prose-2048": {
+          "values": [
+            22.994802373500885,
+            22.709032535995618,
+            22.92463874747595
+          ],
+          "median": 22.92463874747595
+        },
+        "repeat-code-8192": {
+          "values": [
+            54.484324171855384,
+            55.99034118929201,
+            55.90768452512766
+          ],
+          "median": 55.90768452512766
+        },
+        "edited-code-8192": {
+          "values": [
+            26.50274488952229,
+            28.353295430524497,
+            25.212251259659155
+          ],
+          "median": 26.50274488952229
+        },
+        "prose-8192": {
+          "values": [
+            22.486996725513468,
+            22.592900118199545,
+            22.76012572609508
+          ],
+          "median": 22.592900118199545
+        },
+        "mixed-c4-2048": {
+          "values": [
+            35.36124705960495,
+            31.162442827782332,
+            34.535372278554135
+          ],
+          "median": 34.535372278554135
+        },
+        "mixed-c4-8192": {
+          "values": [
+            28.85553565561867,
+            29.356150011600604,
+            31.70740234215376
+          ],
+          "median": 29.356150011600604
+        }
+      },
+      "ngram3-mtp-b": {
+        "repeat-code-2048": {
+          "values": [
+            39.59039244893655,
+            39.104834813711655
+          ],
+          "median": 39.3476136313241
+        },
+        "edited-code-2048": {
+          "values": [
+            35.98228754560021,
+            40.722093820540564
+          ],
+          "median": 38.35219068307039
+        },
+        "prose-2048": {
+          "values": [
+            34.23925572989124,
+            32.621347974072876
+          ],
+          "median": 33.43030185198206
+        },
+        "repeat-code-8192": {
+          "values": [
+            51.569525167238616,
+            51.764714549986685
+          ],
+          "median": 51.66711985861265
+        },
+        "edited-code-8192": {
+          "values": [
+            33.77925028269941,
+            32.23639319081668
+          ],
+          "median": 33.007821736758046
+        },
+        "prose-8192": {
+          "values": [
+            29.964769527032455,
+            32.60068201313312
+          ],
+          "median": 31.282725770082784
+        },
+        "mixed-c4-2048": {
+          "values": [
+            73.27773465992225,
+            71.37719846333253
+          ],
+          "median": 72.32746656162739
+        },
+        "mixed-c4-8192": {
+          "values": [
+            70.33498102351734,
+            72.78943306694826
+          ],
+          "median": 71.56220704523281
+        }
+      }
+    },
+    "mtp_b_vs_a_percent": {
+      "repeat-code-2048": 1.635026938688644,
+      "edited-code-2048": -0.24995644961602892,
+      "prose-2048": 1.0151943548805553,
+      "repeat-code-8192": -0.7510587995190443,
+      "edited-code-8192": -7.385827801071477,
+      "prose-8192": 5.0877608809179575,
+      "mixed-c4-2048": 1.413520773815824,
+      "mixed-c4-8192": 6.07339228834558
+    },
+    "copy_matrix_geomean_ratio": 0.7050750991865232,
+    "limitations": [
+      "Three measurements per cell and arm, with MTP bracketing one copy boot; not a many-boot confidence interval.",
+      "The first MTP control predates a ngram-only configuration-validation repair. Remaining arms use the repaired image; target kernels/weights/precision and the MTP validation path are unchanged. Both images receive full numerical gates.",
+      "The synthetic repetitive/edit workloads favor prompt lookup; prose is the non-copy control. All retain low reasoning.",
+      "Fixed output budgets measure throughput, not completed-task quality; separate functional and numerical receipts apply.",
+      "SSE decode timing is an estimate; a speculative step can emit multiple tokens.",
+      "Server decode and wall timings include drafting, target verification and scheduling; no isolated GPU proposal timer.",
+      "For GPU ngram, worker-local trimming does not update the engine-core scheduled-slot list. The public draft-token counter can include invalid/no-match slots; unaccepted slots are not an exact count of valid copies rejected by the target. Accepted tokens and end-to-end rates remain separately reported.",
+      "Memory minima are observed guard samples, not guaranteed global minima."
+    ]
+  },
+  "quality": [
+    {
+      "label": "ngram3-mtp-a",
+      "profile": "mtp4",
+      "image": "sha256:29163beb83544867447a41049fefecf0da1de1cd5d3eb2b9d4b32b59fc85256a",
+      "short": {
+        "thresholds": {
+          "max_kl": 0.001,
+          "min_top1": 0.995,
+          "max_nll_delta": 0.01
+        },
+        "summary": {
+          "positions": 4096,
+          "mean_coarsened_kl": 5.069549738019353e-10,
+          "top1_agreement": 1,
+          "mean_common_reference_mass": 0.9995512817500845,
+          "mean_nll_delta": -7.956259651109576e-09
+        },
+        "passed": true,
+        "reference_sha256": "9e9e2fe042e38fcf6af3b500d721deb9d616f3da0c2d2032671a4072ceaf3a58"
+      },
+      "long": {
+        "thresholds": {
+          "max_coarsened_kl": 0.001,
+          "min_top1": 0.995,
+          "max_nll_delta": 0.01
+        },
+        "reference_sha256": "d3b321c96f516b74af1e41c6b30d8439cc346c8f440da6438ff4e12f59732287",
+        "cases": [
+          {
+            "context": 8192,
+            "summary": {
+              "positions": 512,
+              "mean_coarsened_kl": 2.721325492030414e-15,
+              "top1_agreement": 1,
+              "mean_common_reference_mass": 0.9991739549163815,
+              "mean_nll_delta": 2.1827872842550278e-10
+            },
+            "passed": true
+          },
+          {
+            "context": 32768,
+            "summary": {
+              "positions": 512,
+              "mean_coarsened_kl": 0,
+              "top1_agreement": 1,
+              "mean_common_reference_mass": 0.9978193007741218,
+              "mean_nll_delta": 0.0
+            },
+            "passed": true
+          },
+          {
+            "context": 131072,
+            "summary": {
+              "positions": 512,
+              "mean_coarsened_kl": 2.05238423798726e-11,
+              "top1_agreement": 1,
+              "mean_common_reference_mass": 0.4608117383047953,
+              "mean_nll_delta": 2.1886080503463745e-07
+            },
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "basic_checks": [
+        {
+          "case": "arithmetic",
+          "passed": true
+        },
+        {
+          "case": "sorting",
+          "passed": true
+        },
+        {
+          "case": "code_trace",
+          "passed": true
+        },
+        {
+          "case": "extraction",
+          "passed": true
+        },
+        {
+          "case": "negation",
+          "passed": true
+        },
+        {
+          "case": "unicode",
+          "passed": true
+        },
+        {
+          "case": "finite_logprobs",
+          "passed": true
+        },
+        {
+          "case": "tool_call",
+          "passed": true
+        }
+      ],
+      "functional_checks": [
+        {
+          "kind": "exact-copy",
+          "passed": true
+        },
+        {
+          "kind": "edited-copy",
+          "passed": true
+        },
+        {
+          "kind": "unequal-completions",
+          "passed": true,
+          "peak_running": 4.0,
+          "all_four_started": true,
+          "followup_passed": true
+        },
+        {
+          "kind": "cancellation",
+          "passed": true,
+          "peak_running": 4.0,
+          "all_four_started": true,
+          "followup_passed": true
+        }
+      ]
+    },
+    {
+      "label": "ngram3-copy-r1",
+      "profile": "ngram-gpu4",
+      "image": "sha256:20f485f5fbe17eec01a2b1c1713c53b55503b97b10efac3d011dff0b857f87c6",
+      "short": {
+        "thresholds": {
+          "max_kl": 0.001,
+          "min_top1": 0.995,
+          "max_nll_delta": 0.01
+        },
+        "summary": {
+          "positions": 4096,
+          "mean_coarsened_kl": 5.069549738019353e-10,
+          "top1_agreement": 1,
+          "mean_common_reference_mass": 0.9995512817500845,
+          "mean_nll_delta": -7.956259651109576e-09
+        },
+        "passed": true,
+        "reference_sha256": "9e9e2fe042e38fcf6af3b500d721deb9d616f3da0c2d2032671a4072ceaf3a58"
+      },
+      "long": {
+        "thresholds": {
+          "max_coarsened_kl": 0.001,
+          "min_top1": 0.995,
+          "max_nll_delta": 0.01
+        },
+        "reference_sha256": "d3b321c96f516b74af1e41c6b30d8439cc346c8f440da6438ff4e12f59732287",
+        "cases": [
+          {
+            "context": 8192,
+            "summary": {
+              "positions": 512,
+              "mean_coarsened_kl": 2.721325492030414e-15,
+              "top1_agreement": 1,
+              "mean_common_reference_mass": 0.9991739549163815,
+              "mean_nll_delta": 2.1827872842550278e-10
+            },
+            "passed": true
+          },
+          {
+            "context": 32768,
+            "summary": {
+              "positions": 512,
+              "mean_coarsened_kl": 0,
+              "top1_agreement": 1,
+              "mean_common_reference_mass": 0.9978193007741218,
+              "mean_nll_delta": 0.0
+            },
+            "passed": true
+          },
+          {
+            "context": 131072,
+            "summary": {
+              "positions": 512,
+              "mean_coarsened_kl": 2.037543306798227e-11,
+              "top1_agreement": 1,
+              "mean_common_reference_mass": 0.4608117383047953,
+              "mean_nll_delta": 2.076849341392517e-07
+            },
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "basic_checks": [
+        {
+          "case": "arithmetic",
+          "passed": true
+        },
+        {
+          "case": "sorting",
+          "passed": true
+        },
+        {
+          "case": "code_trace",
+          "passed": true
+        },
+        {
+          "case": "extraction",
+          "passed": true
+        },
+        {
+          "case": "negation",
+          "passed": true
+        },
+        {
+          "case": "unicode",
+          "passed": true
+        },
+        {
+          "case": "finite_logprobs",
+          "passed": true
+        },
+        {
+          "case": "tool_call",
+          "passed": true
+        }
+      ],
+      "functional_checks": [
+        {
+          "kind": "exact-copy",
+          "passed": true
+        },
+        {
+          "kind": "edited-copy",
+          "passed": true
+        },
+        {
+          "kind": "unequal-completions",
+          "passed": true,
+          "peak_running": 4.0,
+          "all_four_started": true,
+          "followup_passed": true
+        },
+        {
+          "kind": "cancellation",
+          "passed": true,
+          "peak_running": 4.0,
+          "all_four_started": true,
+          "followup_passed": true
+        }
+      ]
+    },
+    {
+      "label": "ngram3-mtp-b",
+      "profile": "mtp4",
+      "image": "sha256:20f485f5fbe17eec01a2b1c1713c53b55503b97b10efac3d011dff0b857f87c6",
+      "short": {
+        "thresholds": {
+          "max_kl": 0.001,
+          "min_top1": 0.995,
+          "max_nll_delta": 0.01
+        },
+        "summary": {
+          "positions": 4096,
+          "mean_coarsened_kl": 5.069549738019353e-10,
+          "top1_agreement": 1,
+          "mean_common_reference_mass": 0.9995512817500845,
+          "mean_nll_delta": -7.956259651109576e-09
+        },
+        "passed": true,
+        "reference_sha256": "9e9e2fe042e38fcf6af3b500d721deb9d616f3da0c2d2032671a4072ceaf3a58"
+      },
+      "long": {
+        "thresholds": {
+          "max_coarsened_kl": 0.001,
+          "min_top1": 0.995,
+          "max_nll_delta": 0.01
+        },
+        "reference_sha256": "d3b321c96f516b74af1e41c6b30d8439cc346c8f440da6438ff4e12f59732287",
+        "cases": [
+          {
+            "context": 8192,
+            "summary": {
+              "positions": 512,
+              "mean_coarsened_kl": 2.721325492030414e-15,
+              "top1_agreement": 1,
+              "mean_common_reference_mass": 0.9991739549163815,
+              "mean_nll_delta": 2.1827872842550278e-10
+            },
+            "passed": true
+          },
+          {
+            "context": 32768,
+            "summary": {
+              "positions": 512,
+              "mean_coarsened_kl": 0,
+              "top1_agreement": 1,
+              "mean_common_reference_mass": 0.9978193007741218,
+              "mean_nll_delta": 0.0
+            },
+            "passed": true
+          },
+          {
+            "context": 131072,
+            "summary": {
+              "positions": 512,
+              "mean_coarsened_kl": 2.05238423798726e-11,
+              "top1_agreement": 1,
+              "mean_common_reference_mass": 0.4608117383047953,
+              "mean_nll_delta": 2.1886080503463745e-07
+            },
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "basic_checks": [
+        {
+          "case": "arithmetic",
+          "passed": true
+        },
+        {
+          "case": "sorting",
+          "passed": true
+        },
+        {
+          "case": "code_trace",
+          "passed": true
+        },
+        {
+          "case": "extraction",
+          "passed": true
+        },
+        {
+          "case": "negation",
+          "passed": true
+        },
+        {
+          "case": "unicode",
+          "passed": true
+        },
+        {
+          "case": "finite_logprobs",
+          "passed": true
+        },
+        {
+          "case": "tool_call",
+          "passed": true
+        }
+      ],
+      "functional_checks": [
+        {
+          "kind": "exact-copy",
+          "passed": true
+        },
+        {
+          "kind": "edited-copy",
+          "passed": true
+        },
+        {
+          "kind": "unequal-completions",
+          "passed": true,
+          "peak_running": 4.0,
+          "all_four_started": true,
+          "followup_passed": true
+        },
+        {
+          "kind": "cancellation",
+          "passed": true,
+          "peak_running": 4.0,
+          "all_four_started": true,
+          "followup_passed": true
+        }
+      ]
+    }
+  ],
+  "native_router_code_chat_acceptance": "passed",
+  "exclusive_six_gpus": true,
+  "minimum_final_available_gib": 10.06,
+  "configuration_repair": {
+    "original_failure": "SpeculativeConfig revalidates an alias of target model as a draft even for ngram, before full TP6 target head padding. No copy speed or quality result exists.",
+    "source_sha256": "807a2e4573a8c6002d1748cf4cf82706b564dc317058c6988c8bbc2d809e2d4e",
+    "candidate_sha256": "c2a418e25a3dfb1cba5f773f473cd2328c00b1181da7efbbc8c118b0e19663de",
+    "cpu_validator_cases": 40,
+    "target_validation_changed": false
+  },
+  "counter_limitation": "Keep raw metrics. Public reporting labels the counter as reported draft slots and the difference from accepted tokens as slots not accepted. Do not claim every such slot was a real proposed copy rejected by the target. Exact valid-proposal rejection and isolated proposer GPU time are not measured. Wall rates and accepted tokens per wall/server decode time include all observed overhead.",
+  "hybrid_assessment": "Do not build a hybrid in this goal. The 8K exact-repeat gain is narrow (+8.0%, about 55.9 versus 51.8 output tok/s); 2K repetition, edited code, prose and both C4 mixes regress. Per-request routing and shared proposal scheduling would add unmeasured costs and compatibility work. A future hybrid needs a new selector/cost hypothesis and repeated mixed-workload evidence.",
+  "source_evidence": {
+    "ngram3-window.json": "cc875ac0f47503a5fa6d979bdacbb53844c38b3aa782cc5ecd45fa0a1ece76af",
+    "ngram3-comparison.json": "f3e488960b780017169f3d998485830138ce0ae8ba66ee8341b10c5ce81c3792",
+    "ngram3-serving-plan.json": "0ce91852aaeaca7307e65c550fdc9f400336398a9c143efe8ffe10f60ea8f771",
+    "ngram3-decision.json": "85f953f7e931751ad0fae8f0333514b301d2ddda7cc2ad86aa4173650de1cc2c",
+    "ngram3-final-policy.json": "a2a262b70ee2e88e38de8c3e5ae9c599f43515cacb1f8f7b4c31dcdf67eacdc0",
+    "ngram3-application-acceptance.json": "f2c858efd700258512f56ee49cb67113f5a1ab89f7ceb5a397efc3379b93e9dc",
+    "ngram3-final-serving.json": "243c17703727f53c959c713e94fc17d8642f23b42f59d7cb4e743084406e8117",
+    "ngram3-mtp-a-serving-bench.json": "428c310172d7674ee1971a84b73b7e9bd424a884ee462b942d04fbad377c1d08",
+    "ngram3-mtp-a-copy-bench.json": "2aa0cda0c5ef21f1b23f5c7d6e684b506711e5baaa9e30eab2c0bb1092d2e016",
+    "ngram3-mtp-a-performance.json": "b8f3ed5b95734c085ef14c7cb4f693e66e8eb1ae4a97d860b0ea1d61cfe7851c",
+    "ngram3-mtp-a-quality-trial.json": "0b0f4673f712ad2456583231278326204e6ffc6b6e3b6e3121c2d6d532ffc4b0",
+    "ngram3-mtp-a-short.json": "adebfdceb94df70b66ba4241f37fb38ab3be75581af66b7f95dfb875d173b42d",
+    "ngram3-mtp-a-long.json": "c97d99903ed9ea14141e76832d8177f76e87885f641a7909449a61dedf34f4c2",
+    "ngram3-mtp-a-basic.json": "eb39a1031c3079014228a59bd727f275d9e06d70292b7c4adc112b423a8c069c",
+    "ngram3-mtp-a-functional.json": "528f88f2105506e4d6ad6a693010fe0ef48e3566f62905a994d2222b275a62de",
+    "ngram3-copy-r1-serving-bench.json": "6c7c7d0a14e5b9d1cb236177e384f567955ebda13c768f239cf59e73079dea83",
+    "ngram3-copy-r1-copy-bench.json": "f127ae4db6507d41cf4171499141eef0d5cec53d6e9ee2294fb790c2b66071e6",
+    "ngram3-copy-r1-performance.json": "3ce4595cb118cfb4f4b71e49abb82acc3dd8b3308f5e3d3872a88774fe7b0a95",
+    "ngram3-copy-r1-quality-trial.json": "f77b4bc59e0450e02086c02418ec7e454467714c5fe9d01bfecd9dd3db5909ad",
+    "ngram3-copy-r1-short.json": "9a56b2acebfc093b85b744c7d63fe1d85cbf6ee73d9b3087e2a0979973bb72e0",
+    "ngram3-copy-r1-long.json": "38e1676fa0706ea6970d63352024510428f8217fa9b97d697ae35661d64cf0dd",
+    "ngram3-copy-r1-basic.json": "1f471481a0150cd39d954a4d1730fb67514bee19f10ea42decf359092bbd12b0",
+    "ngram3-copy-r1-functional.json": "dea121f6c5b28a4a3e83e623ffcabe7ef9f1eba805b3365b3580a765e690a7b0",
+    "ngram3-mtp-b-serving-bench.json": "308c7ca4d400d5758bfed14a192586a12c9d118cedf3af68b8ca43b844556f41",
+    "ngram3-mtp-b-copy-bench.json": "abb1662cd582456259c153f0765f92956e5609a755533590b8b71631ecf86a52",
+    "ngram3-mtp-b-performance.json": "9b2fe1bec02719c438034036adb9c2e715ba822c2fb63794cca238bc1108c5a8",
+    "ngram3-mtp-b-quality-trial.json": "5dc275ff3ac2db0c1cbee0e06415ac5b7edbd50d9b6819013a84d0c48c4af3b7",
+    "ngram3-mtp-b-short.json": "c9a05d1f97e57b37b9177225237079e17a47f0a0613d1182a02838aa885e8aee",
+    "ngram3-mtp-b-long.json": "9e5e84329091601e2475c9dd2e87961ffc59a8dca82db3420efd4cfccbc2aafb",
+    "ngram3-mtp-b-basic.json": "2618cf44dd8b11a5ebc3e91279659a8aa14c308362faca0956ee36bc10ef40b4",
+    "ngram3-mtp-b-functional.json": "841a83d321f721d1c4ca6d80eab507abc3766ed2279e3b29af47450f5673001f",
+    "ngram3-copy-startup-failure.json": "410a24a0ac60862b76dddba4239b80125e62e5d1df4a78a1c20dfe9e21b5d8ab",
+    "ngram3-config-cpu-checks.json": "c8d957e7a013bd39508a731021331a9256ee37a24f9b95d36af754d7a9c5e3ca",
+    "ngram3-counter-semantics.json": "ce2baba6222fb127deb19cd7779887bfede6996a59c39466ca096f4eea0e00a6",
+    "ngram3-fixtures.json": "56aabff9478ba70adcded4377bfd5430f871063a9fc1eec850be3651a018314f"
+  },
+  "limitations": [
+    "Three measurements per cell and arm, with MTP bracketing one copy boot; not a many-boot confidence interval.",
+    "The first MTP control predates a ngram-only configuration-validation repair. Remaining arms use the repaired image; target kernels/weights/precision and the MTP validation path are unchanged. Both images receive full numerical gates.",
+    "The synthetic repetitive/edit workloads favor prompt lookup; prose is the non-copy control. All retain low reasoning.",
+    "Fixed output budgets measure throughput, not completed-task quality; separate functional and numerical receipts apply.",
+    "SSE decode timing is an estimate; a speculative step can emit multiple tokens.",
+    "Server decode and wall timings include drafting, target verification and scheduling; no isolated GPU proposal timer.",
+    "For GPU ngram, worker-local trimming does not update the engine-core scheduled-slot list. The public draft-token counter can include invalid/no-match slots; unaccepted slots are not an exact count of valid copies rejected by the target. Accepted tokens and end-to-end rates remain separately reported.",
+    "Memory minima are observed guard samples, not guaranteed global minima.",
+    "Numerical checks cover4096 short positions and512-token tails at8K/32K/128K; not full360K quality. The128K reference common mass is about46%."
+  ],
+  "tensorfold_work": false
+}

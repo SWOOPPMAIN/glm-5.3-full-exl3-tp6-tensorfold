@@ -26,6 +26,12 @@
       "change": null
     },
     {
+      "path": "benchmarks/analyze_copy_public_samples.py",
+      "sha256": "79a289196e36f3b5ac104b4a891e66fee71a81acff574d35300c8150902b77b3",
+      "origin": "amos-recipes@2359d9f5d344220f45bed8cab50640295a7d62d7:analyze_copy_public_samples.py",
+      "change": null
+    },
+    {
       "path": "benchmarks/analyze_e3_boundary_public_samples.py",
       "sha256": "78031d09a0fbac8c404d0f2e8100877505f4c0754a176ef3432f3302a340b3f3",
       "origin": "amos-recipes@2ee53b8d80f6140e08386faeb1bd41172540d0c1:analyze_e3_boundary_public_samples.py",
@@ -71,6 +77,12 @@
       "path": "benchmarks/comm_sizes_host.py",
       "sha256": "46618bd5ab97aed1cb6b544e5f27c7839c376d5e72099b2c628910da4cd7e679",
       "origin": "amos-recipes@963f633371eee9f3ef2e0f9715401422d6c64ea5:comm_sizes_host.py",
+      "change": null
+    },
+    {
+      "path": "benchmarks/copy_matrix.py",
+      "sha256": "23b3b2ce8f9e9a07c6be21634a31a30965b50fa635a6177f3a4fb49ab74038e4",
+      "origin": "amos-recipes@2359d9f5d344220f45bed8cab50640295a7d62d7:copy_matrix.py",
       "change": null
     },
     {
@@ -132,6 +144,12 @@
       "sha256": "41f10410541c336db8344b1fb785011769229c41231569eade5f469b0eafc8cd",
       "origin": "amos-recipes@d0486aaf699729638c36fafa1e46e3fe74fe3dd0:runtime/exl3-tp6/mtp_overlap_cost.py",
       "change": "Use portable stream/idle imports and external host guards; identical native-counter timing math, memory field null."
+    },
+    {
+      "path": "benchmarks/ngram_config_fix.py",
+      "sha256": "71fe0a71a8a80ee8af14c9e213c324618ab9b59327cd75eb0397013d0649f7a1",
+      "origin": "amos-recipes@2359d9f5d344220f45bed8cab50640295a7d62d7:ngram_config_fix.py",
+      "change": null
     },
     {
       "path": "benchmarks/ngram_scatter_fix.py",
@@ -3158,6 +3176,12 @@
       "change": null
     },
     {
+      "path": "recipes/vllm-tp6/copy-tuning.json",
+      "sha256": "120916731d2e27eab8b2e81554c2bc5b35b0523c88dbe526304e2f1dbb71e0e7",
+      "origin": "amos-recipes@2359d9f5d344220f45bed8cab50640295a7d62d7:ngram2-controller-preparation.json",
+      "change": "Standalone copy settings; retain target/E3/transport, disable MTP-only controls."
+    },
+    {
       "path": "recipes/vllm-tp6/tuning.json",
       "sha256": "48ea2b58cf0f2d3754067b14fac9fecaae3b919d7b8031d6d77b1898edcf28c4",
       "origin": "amos-recipes@c69f8b66c6c5ca72a00b732c589bc2a55bd89c3e:qualification/serving-optimization-20261003/comm2-dual-roce-tuning.json",
@@ -3206,16 +3230,40 @@
       "change": "Add local source revision; selected numerical/profile/acceptance fields and original receipt hashes only."
     },
     {
+      "path": "results/copy-drafting-config-fix-cpu.json",
+      "sha256": "c8d957e7a013bd39508a731021331a9256ee37a24f9b95d36af754d7a9c5e3ca",
+      "origin": "amos-recipes@2359d9f5d344220f45bed8cab50640295a7d62d7:export_copy_drafting.py / ngram3 qualification",
+      "change": "Whitelisted export with receipt hashes; excludes site identities, credentials and generated conversations."
+    },
+    {
       "path": "results/copy-drafting-cpu.json",
       "sha256": "57672f8a5ee51d021c6ee6b9b0f53ce9aaff9b4669cba9527264e4064f81c5da",
       "origin": "amos-recipes@1ec92c9d2a3ce7c556884fb662f1ea6f1da1027c:qualification/serving-optimization-20261003/ngram1-cpu-source-checks.json",
       "change": null
     },
     {
+      "path": "results/copy-drafting-fixtures.json",
+      "sha256": "56aabff9478ba70adcded4377bfd5430f871063a9fc1eec850be3651a018314f",
+      "origin": "amos-recipes@2359d9f5d344220f45bed8cab50640295a7d62d7:export_copy_drafting.py / ngram3 qualification",
+      "change": "Whitelisted export with receipt hashes; excludes site identities, credentials and generated conversations."
+    },
+    {
       "path": "results/copy-drafting-scatter-fix-cpu.json",
       "sha256": "66ae816b5945737c4ee731f6ac958192591febef5e4b14a6d296f883722b8649",
       "origin": "amos-recipes@2ee53b8d80f6140e08386faeb1bd41172540d0c1:qualification/serving-optimization-20261003/ngram2-scatter-cpu-checks.json",
       "change": null
+    },
+    {
+      "path": "results/copy-drafting-serving-samples.json",
+      "sha256": "967bd7e08b452058dc2f6c018b94f2fcc5dc8a176d60fde84a0eb945d9820c9b",
+      "origin": "amos-recipes@2359d9f5d344220f45bed8cab50640295a7d62d7:export_copy_drafting.py / ngram3 qualification",
+      "change": "Whitelisted export with receipt hashes; excludes site identities, credentials and generated conversations."
+    },
+    {
+      "path": "results/copy-drafting-serving.json",
+      "sha256": "c46d29ab14473c6b7c1f77be4e5efa32a3b576a10a610d8a261666d6a0b888c9",
+      "origin": "amos-recipes@2359d9f5d344220f45bed8cab50640295a7d62d7:export_copy_drafting.py / ngram3 qualification",
+      "change": "Whitelisted export with receipt hashes; excludes site identities, credentials and generated conversations."
     },
     {
       "path": "results/copy-drafting-source-review.json",
@@ -3566,6 +3614,18 @@
       "change": null
     },
     {
+      "path": "runtime/vllm/build_ngram_config.py",
+      "sha256": "35473bb41755f243383f2a2e714cc200070b51eca3470bc020d7ed6233ddf783",
+      "origin": "amos-recipes@2359d9f5d344220f45bed8cab50640295a7d62d7:build_ngram_config.py",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/build_ngram_history.py",
+      "sha256": "34f836537bcaa2f2af583bd264efd2213a641eec69273b1d6e1a5abc28ea5191",
+      "origin": "amos-recipes@2359d9f5d344220f45bed8cab50640295a7d62d7:build_ngram_history.py",
+      "change": null
+    },
+    {
       "path": "runtime/vllm/canonical_index_oracle.py",
       "sha256": "8035da4b3f8b5b654989894ef05148e10806994b751928286a0a45b4e61057f9",
       "origin": "amos-recipes@173f4c5:canonical_index_oracle.py",
@@ -3717,9 +3777,10 @@
     },
     {
       "path": "runtime/vllm/node.sh",
-      "sha256": "9d828fa67dc96e76256de66a120c457ac9adb4316efc75de91c1ed407e638939",
-      "origin": "amos-recipes@173f4c5:node.sh",
-      "change": null
+      "sha256": "32e66099717cecea258f1dc8280d553854779ff9d09016d486157e42fb5b3b31",
+      "origin": "amos-recipes@2359d9f5d344220f45bed8cab50640295a7d62d7:node.sh",
+      "change": "Adds opt-in copy profiles; MTP default retained.",
+      "previous_origin": "amos-recipes@173f4c5:node.sh"
     },
     {
       "path": "runtime/vllm/patch_canonical_index_topk.py",

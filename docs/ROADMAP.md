@@ -10,14 +10,16 @@
 
 [Current measurements](../results/README.md) · [operations](../recipes/vllm-tp6/OPERATIONS.md)
 
-## Optional performance work
+## Ordered optimization goal: completed
 
-The [ranked experiment plan](PERFORMANCE_EXPERIMENTS.md) records completed prompt
-reuse, prefill-budget, MTP and communication comparisons. Row32 E3 prefill is
-qualified and selected after repeated full-model measurements. A measured native/E3
-crossover follow-up and target-verified copy/ngram serving comparison remain.
-Copy drafting has pinned source/CPU checks and an offline launch candidate.
-Preserve current weights/precision and qualify each change before promotion.
+All six [experiments](PERFORMANCE_EXPERIMENTS.md) have measured outcomes:
+retain existing prompt reuse, 3072 prefill and original adaptive MTP; select
+dual-HCA RoCEnante with the 2 MiB cutoff and row32 E3 above 32 rows; reject
+standalone copy drafting as a general default. The selected forward image passed
+native/router/Code/Chat acceptance. Original weights, precision and context remain.
+
+[Upstream candidates](UPSTREAM_REVIEW_20261003.md) such as short-context DSA,
+confidence stopping and UVM packing remain separate, unqualified future work.
 
 ## TensorFold: deferred research
 
