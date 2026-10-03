@@ -1,6 +1,10 @@
 # Ranked performance experiments — October 3, 2026
 
-**Proposals only. No experiments were launched for this publication.**
+**Active vLLM optimization scope. TensorFold work is excluded.**
+Prompt-cache replay results are recorded in [cache reuse](../results/cache-reuse.json)
+and its [reproduction protocol](../benchmarks/CACHE_REUSE.md).
+The remaining five experiments have no promoted change yet; no new serving
+speedup is claimed.
 Keep full GLM, TP6, the original 3.25 bpw experts and the current dense precision.
 Start from [P27 measurements](../results/p27-serving.json), with production serving
 remaining the priority. No numerical speedup promise is supported for this list.
@@ -13,11 +17,13 @@ remaining the priority. No numerical speedup promise is supported for this list.
 | 4 | Six-rank communication crossover | Less waiting between compute steps | Use observed P27 message sizes; compare small-message RoCE thresholds, larger-message NCCL and per-rank skew on the already-enabled dual rails |
 | 5 | E3 prefill layout and dispatch | Higher genuinely uncached prefill throughput | Native/E3 crossover and row tiles on real mixed-K/routed inputs, then cold 8K/32K; preserve activation/reduction order |
 | 6 | Target-verified copy/ngram drafting | Faster repeated code and boilerplate | Standalone proposal method versus current MTP on exact-repeat, edited-repeat and prose controls; count verification waste |
-| 7 | TensorFold arithmetic repair, then kernel tuning | Enables a later backend comparison | Reproduce the first divergent boundary on saved real inputs; preserve the reduction tree before trying wider row reuse |
 
 ## Why this order
 
-**Prompt reuse:** raw cold-prefill tok/s does not describe an agent that repeatedly
+**Prompt reuse:** the first completed replay found no avoidable loss relative to
+the native MTP cache allowance across three alternating 8K/32K/128K histories.
+Keep the existing policy; additional cache-policy changes are not justified by
+these measurements. Raw cold-prefill tok/s does not describe an agent that repeatedly
 resends almost the same history. First establish whether the current serving path
 actually retains those shared tokens; do not assume caching is absent. Keep prompt
 rendering stable where semantics allow, and test branch/fork reuse and eviction.

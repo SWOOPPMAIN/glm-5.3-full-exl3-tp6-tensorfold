@@ -3606,6 +3606,24 @@
       "sha256": "d72fef89c1dd61210cdb80f2fb429c26ca937fd34aa5eb248dc05daa609b5d9f",
       "origin": "amos-recipes@bb49dce1a426a80e7c8c638a5b247b1e865dfb69: selected fields from tfp54-benchmark-summary.json, tfp49-quality-summary.json, tfp56-expert-summary.json, tfp57-latent-summary.json, p25r2-component-summary.json",
       "change": "Public measurement fields only; private fleet mappings, paths, IDs and application data omitted."
+    },
+    {
+      "path": "benchmarks/cache_fixtures.py",
+      "sha256": "00c90d385b736df6d111f1ede0e19caefdc0e276509e9a9d172280ded0bed44d",
+      "origin": "serving-runtime@1e5912b:cache_reuse.py",
+      "change": "Seven fixture definitions copied exactly; public CLI accepts base and credential-file arguments. Actual8K fixture equivalence verified."
+    },
+    {
+      "path": "results/cache-reuse.json",
+      "sha256": "fe921da3e2fa154465c8c35ce0b9a0b44a6d30b94b959220290609ae2ae5d48e",
+      "origin": "serving-runtime:qualification/serving-optimization-20261003/cache-summary.json",
+      "change": "Selected measured summary with fixture and original-receipt hashes; no private site metadata."
+    },
+    {
+      "path": "results/cache-reuse-samples.json",
+      "sha256": "4cbebacd02418e892347552d97aa4196267611eb8429b8e1d3d23570d5ad9e99",
+      "origin": "serving-runtime:qualification/serving-optimization-20261003/cache-{8k-r3,32k-r1,128k-r1}.json",
+      "change": "Selected72 synthetic per-request timing,cache,fidelity andcounter records; generated text/site information omitted."
     }
   ]
 }

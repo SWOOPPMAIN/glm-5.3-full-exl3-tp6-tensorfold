@@ -20,11 +20,13 @@
   "pending_scheduling_source_revision": "82b24104bf7fefea69788d5d493eeae5c5493d45",
   "latest_publication": {
     "date": "2026-10-03",
-    "scope": "Current P27 tuning, selected measurement summaries, hardening operations and proposed experiments. Historical TensorFold executable snapshot retained.",
+    "scope": "Current vLLM prompt-cache replay;72 synthetic requests and three native/Code/Chat acceptance windows. Public fixture CLI verified against deployed /render.",
     "repository_check": true,
-    "import_hashes_verified": 601,
+    "import_hashes_verified": 604,
     "placement_tests_passed": 4,
     "node_bash_syntax": true,
-    "inference_benchmarks_run": false
+    "inference_benchmarks_run": true,
+    "inference_configuration_changed": false,
+    "fixture_cli_live_equivalence": true
   }
 }

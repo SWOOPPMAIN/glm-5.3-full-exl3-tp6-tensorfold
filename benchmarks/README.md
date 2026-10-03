@@ -27,3 +27,9 @@ Record image/source revisions, prompt/output lengths, MTP configuration,
 prefix-cache hits, preemptions, concurrency, TTFT and output tok/s. Compare
 numerical correctness before promoting a speed result. Test the real client
 and router path after native API qualification.
+
+## Prompt-cache residency
+
+See [the synthetic Code/tool replay protocol](CACHE_REUSE.md) and
+[per-request samples](../results/cache-reuse-samples.json). Keep cold prefill,
+cached first-token latency, generation and aggregate throughput separate.

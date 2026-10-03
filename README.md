@@ -26,6 +26,11 @@ is claimed from that work. Prefill is prompt tokens divided by time to first
 token. Concurrent requests share the cache; four full-length contexts are
 not promised. [Samples, quality checks and limitations](results/README.md).
 
+New cache replay: repeated 8K / 32K / 128K code-tool histories reached first
+tokens in **0.60 / 0.64 / 0.87 seconds**, versus **8.65 / 35.28 / 142.39 seconds**
+cold. All 72 synthetic checks passed. This validates existing caching; it is
+not a new runtime speedup. [Protocol and results](benchmarks/CACHE_REUSE.md).
+
 The latest local TensorFold HTTP measurements remain around 19–21 output
 tok/s for one request and 368–388 cold-prefill tok/s. Its strict numerical
 fidelity gate still fails. The bundled source is the historical TFP21 snapshot;
@@ -47,8 +52,9 @@ artifacts are not included in this repository.
 
 [Ranked experiment plan](docs/PERFORMANCE_EXPERIMENTS.md): prompt reuse,
 mixed prefill/decode scheduling, workload-aware MTP, six-rank communication,
-and E3 prefill kernels. These are proposed tests, not measured gains.
-TensorFold remains outside the production completion requirements.
+E3 prefill kernels, and target-verified copy/ngram drafting. Prompt reuse has
+been measured; the remaining experiments have no new promoted gains.
+TensorFold development is excluded from this optimization goal.
 
 ## Credits
 

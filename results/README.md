@@ -170,3 +170,12 @@ host-memory guard stop during the final automatic HTTP concurrency measurements.
 The 125 CPU tests and 8,218-token scheduling parity passed; the complete GPU
 qualification was incomplete in that attempt. The bundled source remains TFP21;
 later local qualification and current blockers are in [the status report](TENSORFOLD_STATUS.md).
+
+## Current vLLM prompt-cache replay
+
+[Summary](cache-reuse.json), [72 per-request samples](cache-reuse-samples.json),
+and [reproduction protocol](../benchmarks/CACHE_REUSE.md). Three alternating
+code/tool conversations retain their prefixes at 8K, 32K and 128K; no avoidable
+misses were observed relative to the native MTP block allowance. The inference
+configuration was unchanged. These short-answer fixtures do not remeasure
+code/prose generation or four-request throughput.
