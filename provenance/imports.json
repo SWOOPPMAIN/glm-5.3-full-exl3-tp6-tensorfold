@@ -3834,6 +3834,30 @@
       "sha256": "ccc5049b65534889837ab310ddc7fa5559707c4e657a0ef3650babec16606329",
       "origin": "amos-recipes@c367d0b4a6bf35b0dd9f8ee607b4060b85e3465a:test_e3_capture.py",
       "change": "Resolve the published runtime directory for standalone CPU tests."
+    },
+    {
+      "path": "benchmarks/e3_rows_check.py",
+      "sha256": "3f5e34ea47a1137a6b57cc29ce58769362df87d05efcbdf03bb58357a8e2e750",
+      "origin": "amos-recipes@79a2358b90fdcb5ed58bee399eb42294cd87e6ae:e3_rows_check.py",
+      "change": null
+    },
+    {
+      "path": "benchmarks/grouped_prefill_kernel_check.py",
+      "sha256": "4e4250febb544b7582842d1814c2ff76f9b3170764324502cbbd41cbf1ecca46",
+      "origin": "amos-recipes@79a2358b90fdcb5ed58bee399eb42294cd87e6ae:grouped_prefill_kernel_check.py",
+      "change": null
+    },
+    {
+      "path": "benchmarks/analyze_e3_rows.py",
+      "sha256": "3e93168262602b8665f3c0ac273850dd6727bd2b4285f069842c329a7269ed9f",
+      "origin": "amos-recipes@79a2358b90fdcb5ed58bee399eb42294cd87e6ae:analyze_e3_rows.py",
+      "change": null
+    },
+    {
+      "path": "benchmarks/e3-row32.patch",
+      "sha256": "02fc237759cf613bffee31a8e802ed8c7034f456bf622db5dd308d5e848157ea",
+      "origin": "amos-recipes@79a2358b90fdcb5ed58bee399eb42294cd87e6ae:e3-row32.patch",
+      "change": null
     }
   ]
 }

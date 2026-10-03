@@ -67,8 +67,9 @@ E3 prefill kernels, and target-verified copy/ngram drafting. Prompt reuse has
 been measured; smaller prefill budgets and MTP retuning were rejected for promotion.
 Dual-port communication and its bounded crossover screen are complete; retain
 the 2 MiB cutoff. [E3 route capture](recipes/vllm-tp6/E3_PREFILL.md) found about
-26.5% unused tile capacity; a smaller-tile candidate is compiled but untested.
-E3 kernel comparisons and copy/ngram drafting remain.
+26.5% unused tile capacity. The 32-row candidate passed 468 exact component checks
+and ran 13.5% faster at 3072 rows in isolated tests; full-model validation remains.
+This is not a serving-speed claim. Copy/ngram drafting also remains.
 TensorFold development is excluded from this optimization goal.
 
 ## Credits

@@ -1,0 +1,71 @@
+{
+  "phase": "component_passed_current_serving",
+  "at": 1791022441.3971503,
+  "serving_image": "sha256:340a9bae07ab134120249cf0224108fda7b3706720724bd1b2fe705245e7ce20",
+  "candidate_deployed": false,
+  "short_long_quality": "Reused exact-image E31 qualification; fresh8functional/native/Pi/Code/Chat checks passed on resumed CIDs.",
+  "exact_comparisons": 468,
+  "timed_cells": 180,
+  "total_timed_calls": 2880,
+  "summaries": [
+    {
+      "rows": 513,
+      "cells": 36,
+      "geomean_speed_ratio": 1.3755682222277468,
+      "equivalent_geomean_latency_reduction": 0.27302769587066367,
+      "min_cell_speed_ratio": 1.2664102230516496,
+      "max_cell_speed_ratio": 1.5163076638795014,
+      "faster_cells": 36
+    },
+    {
+      "rows": 768,
+      "cells": 36,
+      "geomean_speed_ratio": 1.302414496735356,
+      "equivalent_geomean_latency_reduction": 0.2321952784565826,
+      "min_cell_speed_ratio": 1.2017065464622139,
+      "max_cell_speed_ratio": 1.4109883710944258,
+      "faster_cells": 36
+    },
+    {
+      "rows": 1024,
+      "cells": 36,
+      "geomean_speed_ratio": 1.2654524744047349,
+      "equivalent_geomean_latency_reduction": 0.20976882164587252,
+      "min_cell_speed_ratio": 1.2041209291715658,
+      "max_cell_speed_ratio": 1.352115016484898,
+      "faster_cells": 36
+    },
+    {
+      "rows": 1536,
+      "cells": 36,
+      "geomean_speed_ratio": 1.2201832317766281,
+      "equivalent_geomean_latency_reduction": 0.18045095690754076,
+      "min_cell_speed_ratio": 1.1378373309634988,
+      "max_cell_speed_ratio": 1.2798785903064847,
+      "faster_cells": 36
+    },
+    {
+      "rows": 3072,
+      "cells": 36,
+      "geomean_speed_ratio": 1.1345363261483072,
+      "equivalent_geomean_latency_reduction": 0.11858265182662875,
+      "min_cell_speed_ratio": 1.076058122540891,
+      "max_cell_speed_ratio": 1.1904540021256782,
+      "faster_cells": 36
+    }
+  ],
+  "minimum_final_available_gib": 14.07,
+  "application_acceptance": "passed",
+  "serving": true,
+  "maintenance": false,
+  "source_evidence": {
+    "e32-component-summary.json": "cbd80ecff0f07a0cf82e92871f03f25b0d6b6cb4278f040410e4967be3bc19de",
+    "e32-window.json": "05698d4ec86cbd4ec4cf55e94b6801c5df269ad397c0a2f72334ac8f06e8fffc",
+    "e32-resumed-current-quality-trial.json": "26e84e0d4f1d2cdf3a00a9d2e3b5bc17fc0ba79432685f162efc2059a1b413ce",
+    "e32-final-serving.json": "57076821d2a3bd8d870257ab1bf1cac2e893bda3c67e43072d497da572dfda5b",
+    "e32-application-acceptance.json": "cb70d9e7495bf3f5b0ef8f27434300919a5596a44573e633e7e324dddfc75eb6",
+    "e3-rows-build.json": "55c8940eee0e1228c8068af6f5801373466be82d395980ec353d48f73c945ea2",
+    "e3-rows-distribution.json": "bdbf9adf66bd5c5d2fe90c93644a01c8b7ec7cda713a5a97f81b52ffb3840067"
+  },
+  "next": "Full-model row32/64 numerical qualification and balanced serving comparison. A required-control comparison image is staged CPU-only; no policy file installed and no candidate serving deployment yet."
+}

@@ -1,6 +1,6 @@
 # E3 prefill: actual TP6 routes
 
-October 3, 2026. **Diagnostic complete; kernel optimization remains in progress.**
+October 3, 2026. **Component comparison passed; full-model row32 qualification remains.**
 The original 3.25 bpw weights, 3072-token budget, adaptive MTP, 512-row native/E3
 boundary, dual-port RoCEnante and 2 MiB crossover remain selected. TensorFold
 development is excluded.
@@ -33,10 +33,44 @@ The CPU compiler also found a concrete tradeoff:
 | Experimental 32-row | 225 | 32 bytes | 0 / 0 bytes |
 
 The rebuilt 64-row kernel's machine-code sections match the installed binary.
-The 32-row candidate changes only the two `FM_MB_*` constants from 4 to 2. It is
-**compiled only, not GPU-tested or promoted**. Static compiler spill reports do
-not establish runtime traffic or speed. Next: exact captured-input comparisons,
-then full-model quality gates and repeated serving timings if the component wins.
+The CUDA candidate changes only the two `FM_MB_*` constants from 4 to 2; its
+Python route planner and shared-memory launch size change to match. Static
+compiler spill reports alone do not establish runtime traffic or speed.
+
+## Exact-input GPU comparison
+
+All six serving ranks were drained and stopped before isolated tests. Each probe
+waited for its exact container's fresh 8 GiB / 2-second memory guard before CUDA
+initialization. Containers had a 4 GiB memory limit, a 2 GiB Torch budget and a
+280-second process deadline. Peak Torch allocation was **1.435 GiB**.
+
+Across layers 3/40/77, six ranks and code/prose captures, **468 bitwise output
+comparisons passed**, including CUDA graphs replayed with changing inputs and
+routes. Smaller row counts use prefixes of the captured 3072-row operands.
+Both kernels matched the original serving-local outputs.
+
+| Rows | Row32 / row64 speed ratio, geometric mean | Equivalent latency reduction | Faster measured cells |
+| --- | ---: | ---: | ---: |
+| 513 | 1.376× | 27.3% | 36 / 36 |
+| 768 | 1.302× | 23.2% | 36 / 36 |
+| 1024 | 1.265× | 21.0% | 36 / 36 |
+| 1536 | 1.220× | 18.0% | 36 / 36 |
+| 3072 | **1.135×** | **11.9%** | **36 / 36** |
+
+There were eight samples per arm/cell, alternating execution order, for 2,880
+timed calls across 180 cells. A 64 MiB cache flush preceded each call and was
+excluded from timing. Times include routing and native epilogues. Both arms
+used one shared stream-local scratch arena. These are isolated component
+results with one layer resident; **they are not full-model tok/s gains**.
+
+The current row64 serving image was explicitly resumed, with fresh functional,
+native, Pi-router, Code and Chat acceptance. Its existing exact-image short/long
+numerical qualification was reused, not reported as rerun. Final available RAM
+was at least 14.07 GiB. Row32 is **not promoted**. A comparison image has been
+staged for full-model numerical gates and balanced serving measurements.
+
+[All samples and comparison checks](../../results/e3-row32-component.json) ·
+[Serving closeout](../../results/e3-row32-outcome.json)
 
 [Route results and qualification](../../results/e3-prefill-diagnostic.json) ·
 [Compiler results and source hashes](../../results/e3-row32-compile.json)
@@ -62,6 +96,35 @@ not retained. Prose used a nonstreaming completion with verified usage.
 
 No new serving speed is reported here. The communication comparison remains
 the latest throughput measurement.
+
+### Reproduce the component candidate
+
+Apply [the exact tested delta](../../benchmarks/e3-row32.patch) to a separate copy
+of `runtime/vllm/e3`, preserving the vendor headers and licenses, then use its
+`build.sh` with CUDA 13.0 / `sm_121a`. Keep generated binaries out of Git. The
+recipe uses the retained image and is not a clean-machine serving build.
+
+Stage [the probe](../../benchmarks/e3_rows_check.py), its
+[real-weight loader helper](../../benchmarks/grouped_prefill_kernel_check.py),
+the modified runtime/binary under `row32/`, and a manifest containing the exact
+image ID, probe-file hashes, imported runtime hashes and capture-file hashes.
+The helper's historical standalone validation entry point has older pins;
+this probe imports only its loader and uses its own manifest checks.
+
+After stopping all six serving ranks and verifying every GPU is free, start
+one bounded probe per rank for a single layer. Mount that rank's original
+shards at `/model`, private captures at `/captures`, and its unique test directory
+at `/probe`. Bind the unchanged memory guard to the recorded container ID, verify
+it is fresh, armed and clear with at least 12 GiB available, then create
+`/probe/go`. Never reuse the directory, release it before the guard, or run this
+alongside serving. Inspect terminal states before the next layer or a deliberate
+same-image serving resume.
+
+Collect all 18 result files and run
+[`analyze_e3_rows.py`](../../benchmarks/analyze_e3_rows.py). It checks the exact
+comparison counts, alternating sample order and one-arena contract before
+summarizing ratios. Full-model qualification and application acceptance remain
+separate requirements for promotion.
 
 ## Reproduction
 

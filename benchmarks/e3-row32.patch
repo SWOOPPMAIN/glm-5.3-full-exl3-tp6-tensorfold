@@ -1,0 +1,47 @@
+--- a/amos_e3/runtime.py
++++ b/amos_e3/runtime.py
+@@ -14,7 +14,7 @@
+ LOG = logging.getLogger('vllm.glm6_e3')
+ _MODULES = {}
+ _SCRATCH = {}
+-SMEM = 49152  # dual gate/up A pipelines + maximum K4 B pipelines
++SMEM = 32768  # dual gate/up A pipelines + maximum K4 B pipelines
+ 
+ 
+ class DeviceModule:
+@@ -114,18 +114,18 @@
+     counts = counts[:experts]
+     cumulative = counts.cumsum(0)
+     offsets = cumulative - counts
+-    tiles = (counts + 63) // 64
++    tiles = (counts + 31) // 32
+     tile_cum = tiles.cumsum(0)
+     tile_off = tile_cum - tiles
+-    seg = torch.arange((m*k + 63)//64 + experts, device=topk_ids.device)
++    seg = torch.arange((m*k + 31)//32 + experts, device=topk_ids.device)
+     exp = torch.searchsorted(tile_cum, seg, right=True).clamp(max=experts - 1)
+     tile = seg - tile_off[exp]
+     return dict(row_token=(order // k).contiguous(),
+         row_expert=sorted_keys.to(torch.int32), row_route=order.contiguous(),
+         row_weight=topk_weights.reshape(-1)[order].to(torch.float32),
+         num_rows=cumulative[-1:].to(torch.int32), num_segs=tile_cum[-1:].to(torch.int32),
+-        seg_expert=exp.to(torch.int32), seg_row0=(offsets[exp] + tile*64).to(torch.int32),
+-        seg_rows=(counts[exp] - tile*64).clamp(min=0, max=64).to(torch.int32))
++        seg_expert=exp.to(torch.int32), seg_row0=(offsets[exp] + tile*32).to(torch.int32),
++        seg_rows=(counts[exp] - tile*32).clamp(min=0, max=32).to(torch.int32))
+ 
+ 
+ def apply(layer, x, weights, ids, *, grid_cap=512, stream_scratch=False):
+--- a/amos_e3/grouped_fragments.cu
++++ b/amos_e3/grouped_fragments.cu
+@@ -35,8 +35,8 @@
+ constexpr int FM_B_STAGE_WORDS = 2 * FM_WARPS * 64; // maximum K4 shared allocation
+ constexpr float FM_HAD_SCALE = 0.088388347648f; // 1/sqrt(128)
+ 
+-constexpr int FM_MB_GATEUP = 4;                 // 64-row tiles, 2 B streams
+-constexpr int FM_MB_DOWN = 4;                   // 64-row tiles, 2 B streams (256 cols)
++constexpr int FM_MB_GATEUP = 2;                 // 64-row tiles, 2 B streams
++constexpr int FM_MB_DOWN = 2;                   // 64-row tiles, 2 B streams (256 cols)
+ 
+ template <int MB, int NS>
+ constexpr int fm_smem_bytes()
