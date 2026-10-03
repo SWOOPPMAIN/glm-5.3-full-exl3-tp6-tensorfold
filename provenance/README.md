@@ -42,3 +42,13 @@ tuning file is imported exactly. Existing direct vLLM integration modules were
 checked against the current workspace and were unchanged; this is not a complete
 P27 image export. No later TensorFold source refresh is implied by the result reports.
 Private node addresses, container IDs, credentials and application records remain local.
+
+## E3 row32 serving qualification
+
+Source/results revision: `1ec92c9d2a3ce7c556884fb662f1ea6f1da1027c`.
+The policy wrapper and image builder are byte-identical exports. The row32 patch
+retains the original Mia/ExLlamaV3 notices and native b12x epilogues. Published
+serving results contain all timing samples and receipt hashes; the standalone
+sample analyzer reproduces the local comparison. Native/router/Code/Chat acceptance
+passed on the selected row32 image. Copy-drafting records are source/CPU evidence
+only and do not claim a serving deployment or speed result.

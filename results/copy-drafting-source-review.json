@@ -1,0 +1,166 @@
+{
+  "phase": "source_compatibility_review_complete_runtime_pending",
+  "at": 1791023661.0549657,
+  "image": "sha256:b4988201229054893df527528c38e8091d4d5392d44c314406e66493ec9300da",
+  "source_files": {
+    "v1/spec_decode/ngram_proposer.py": {
+      "bytes": 11160,
+      "sha256": "5051e1bca645fe4befec0a6340f0dfc169fbcbe070ac1da508b72f8ee9c91736"
+    },
+    "v1/spec_decode/ngram_proposer_gpu.py": {
+      "bytes": 25334,
+      "sha256": "6b304fb5a2b7a2e4b6ac05c90c49d228975a7b1f7d566dc1445f048992163b72"
+    },
+    "v1/worker/gpu_model_runner.py": {
+      "bytes": 374513,
+      "sha256": "bf476762b15dd03a7fe7b1dec0f05938209acea801bdcfbd43d0e92c7e9d2f29"
+    },
+    "config/speculative.py": {
+      "bytes": 80340,
+      "sha256": "807a2e4573a8c6002d1748cf4cf82706b564dc317058c6988c8bbc2d809e2d4e"
+    },
+    "amos_request_phase_mtp.py": {
+      "bytes": 10751,
+      "sha256": "bcf5a40633b2b65cb6ce8b9ea2f6a386ad23d0fe307d526fa239c5126ee94255"
+    },
+    "v1/sample/rejection_sampler.py": {
+      "bytes": 38319,
+      "sha256": "c6c5875cc66d4a50acc2ef4ec88276540fba2c302a5b9fbe810e14275d119b9e"
+    },
+    "v1/core/sched/scheduler.py": {
+      "bytes": 154145,
+      "sha256": "9000a07cab9705182b2b667e3f505395f22378a9377586b5b3e3e3ff7a50422d"
+    },
+    "v1/cudagraph_dispatcher.py": {
+      "bytes": 15896,
+      "sha256": "83ac38c115b033b968fde03aa1603bac57bf333fa5ca60a131091fec5129867a"
+    },
+    "config/vllm.py": {
+      "bytes": 117558,
+      "sha256": "61c72f607301f159268d27ea878990ba3941260ec5ba3400a2300354bd0ebbff"
+    },
+    "amos_prefill_budget.py": {
+      "bytes": 3252,
+      "sha256": "5899084d9222bb12419bb7ff207f1a977637730a1117d69af8bf1dfafccf98f6"
+    },
+    "amos_cost_aware_mtp.py": {
+      "bytes": 6862,
+      "sha256": "c354882dc52b7f6627e9926172df8a1e02d20eeb779207198092955f3d5692f0"
+    },
+    "amos_dynamic_graphs.py": {
+      "bytes": 6628,
+      "sha256": "7ee03ca15070e1e96f2f033d02b4d7ba6e6ab9f2597eca030454301a579fbb00"
+    },
+    "amos_mtp_tuning.py": {
+      "bytes": 4095,
+      "sha256": "22ec81965900bda062dad9b74f13e4f464c1b74e88741c066ecaf73c5e320c07"
+    },
+    "amos_shared_expert_padding.py": {
+      "bytes": 2300,
+      "sha256": "04979570134066bfb86cf0e4f6ad92e0f74acb282e4e2715dca5954c14cebe3f",
+      "origin": "current operator source; target shared geometry unchanged"
+    },
+    "node.sh": {
+      "bytes": 8356,
+      "sha256": "9d828fa67dc96e76256de66a120c457ac9adb4316efc75de91c1ed407e638939",
+      "origin": "current operator source; target shared geometry unchanged"
+    }
+  },
+  "gpu_work_executed": false,
+  "serving_modified": false,
+  "findings": [
+    {
+      "area": "proposal",
+      "evidence": "v1/spec_decode/ngram_proposer.py",
+      "finding": "CPU proposer uses canonical token history and returns up to4 copied tokens; load_model is empty.400 randomized longest-match oracle checks and four-request long-history smoke passed on coordinator CPU."
+    },
+    {
+      "area": "warmup",
+      "evidence": "v1/spec_decode/ngram_proposer.py",
+      "finding": "Constructor passes empty sampled lists, leaving zero compiled batch-proposer signatures. First real proposal triggered JIT; explicitly warm before timing. Local JIT time is not a DGX Spark measurement."
+    },
+    {
+      "area": "verification",
+      "evidence": "v1/sample/rejection_sampler.py",
+      "finding": "Native greedy kernel accepts matching target argmax until first mismatch, then emits target token. Stochastic no-draft-probability branch treats deterministic copy as probability1, accepts with target probability, and recovers from target distribution excluding proposed token. Synthetic rejection mode must remain disabled."
+    },
+    {
+      "area": "configuration",
+      "evidence": "config/speculative.py",
+      "finding": "ngram/ngram_gpu explicitly reject adaptive_speculative_tokens_window. Omit this configuration for standalone copy drafting; num_speculative_tokens remains4."
+    },
+    {
+      "area": "controllers",
+      "evidence": "v1/core/sched/scheduler.py",
+      "finding": "Current image enables MTP request-phase and cost-aware controllers; disable both explicitly for ngram. CPU scheduler calls install unconditionally, so method flag alone is insufficient."
+    },
+    {
+      "area": "graphs",
+      "evidence": "amos_dynamic_graphs.py",
+      "finding": "Exact target q1..5/C1..4 graph extension validates geometry and four speculative tokens rather than drafter method. Potentially reusable, but ngram variable proposal lengths and mixed-batch fallback need runtime verification."
+    },
+    {
+      "area": "target_geometry",
+      "evidence": "amos_shared_expert_padding.py",
+      "finding": "Keep shared384 and decode-projection target settings. Disable draft-EH sharding because ngram has no DeepSeek MTP draft model. Do not switch target precision or the3072 prefill budget."
+    },
+    {
+      "area": "async_scheduling",
+      "evidence": "config/vllm.py:1188-1243",
+      "finding": "Pinned config disables async scheduling for CPU ngram but supports ngram_gpu. Prioritize GPU ngram compatibility to preserve current scheduling; CPU is a separately reported fallback comparison, not equivalent configuration."
+    },
+    {
+      "area": "tensor_semantics",
+      "evidence": "ngram1-tensor-cpu-checks.json",
+      "finding": "Uncompiled GPU-proposer tensor logic executed on CPU matched400 random longest-match oracle cases. Three near-capacity scatter cases overwrote the final newly sampled proposal-history token with its old value due to duplicate clamped indices. All three reach exact capacity; no remaining generation space, and target history/output corruption is not established. Verify/fix terminal masking when preparing GPU path."
+    }
+  ],
+  "required_launch_changes": {
+    "proposal_method": "ngram",
+    "num_speculative_tokens": 4,
+    "prompt_lookup_min": 5,
+    "prompt_lookup_max": 5,
+    "rejection_sample_method": "standard",
+    "omit": [
+      "adaptive_speculative_tokens_window",
+      "MTP draft quantization config",
+      "MTP draft attention/moe config"
+    ],
+    "explicit_environment_overrides": {
+      "AMOS_MTP_COST_AWARE": 0,
+      "AMOS_MTP_ADAPT_WINDOW": 0,
+      "AMOS_MTP_REQUEST_PHASE": 0,
+      "AMOS_MTP_TUNING_CONTROL": 0,
+      "AMOS_TP6_DRAFT_EH": 0
+    },
+    "keep": [
+      "TP6",
+      "360000 context",
+      "C4",
+      "original mixed-K3/K4 EXL3",
+      "target MXFP8",
+      "shared384",
+      "target decode projections",
+      "prefill3072",
+      "dual-HCA RoCEnante2MiB",
+      "qualified E3 policy",
+      "all-depth target graphs pending runtime check"
+    ],
+    "preferred_proposal_method": "ngram_gpu"
+  },
+  "next": [
+    "Finish E33 and reopen qualified serving before another exclusive window.",
+    "Prepare explicit launcher/config support and CPU dry-run checks without mutating deployed controller.",
+    "Warm real ngram requests; qualify numerical references and functional output before speed tests.",
+    "Compare repetitive code, edited-repeat and prose controls against current adaptive MTP, C1/C4, same output budgets; count accepted copy tokens, rejected verification work, CPU proposal cost, TTFT, token gaps and throughput.",
+    "Only investigate combined proposals if standalone evidence justifies the added complexity."
+  ],
+  "evidence": {
+    "ngram1-cpu-source-checks.json": "57672f8a5ee51d021c6ee6b9b0f53ce9aaff9b4669cba9527264e4064f81c5da",
+    "ngram1-tensor-cpu-checks.json": "b2a316d6c7f39e71c94da1183d6cd28be4d4ea7496c756e2424010325f2f6b9d"
+  },
+  "limitations": [
+    "Read-only source review and isolated CPU proposer checks are not TP6 serving compatibility or quality qualification.",
+    "No full-model copy-drafting performance claim."
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "phase": "cpu_tensor_semantics_checked",
+  "source_sha256": "6b304fb5a2b7a2e4b6ac05c90c49d228975a7b1f7d566dc1445f048992163b72",
+  "gpu_used": false,
+  "target_model_loaded": false,
+  "compile_decorator_removed": true,
+  "proposal_oracle_checks": 400,
+  "boundary_scatter_cases": [
+    {
+      "prior_tokens": 20,
+      "new_count": 1,
+      "correct_history": true,
+      "final_token": 6,
+      "expected_final_token": 6
+    },
+    {
+      "prior_tokens": 20,
+      "new_count": 5,
+      "correct_history": true,
+      "final_token": 6,
+      "expected_final_token": 6
+    },
+    {
+      "prior_tokens": 125,
+      "new_count": 1,
+      "correct_history": true,
+      "final_token": 6,
+      "expected_final_token": 6
+    },
+    {
+      "prior_tokens": 125,
+      "new_count": 3,
+      "correct_history": false,
+      "final_token": 6,
+      "expected_final_token": 103
+    },
+    {
+      "prior_tokens": 126,
+      "new_count": 1,
+      "correct_history": true,
+      "final_token": 6,
+      "expected_final_token": 6
+    },
+    {
+      "prior_tokens": 126,
+      "new_count": 2,
+      "correct_history": false,
+      "final_token": 6,
+      "expected_final_token": 102
+    },
+    {
+      "prior_tokens": 127,
+      "new_count": 1,
+      "correct_history": false,
+      "final_token": 6,
+      "expected_final_token": 101
+    }
+  ],
+  "boundary_scatter_all_passed": false,
+  "limitations": [
+    "Uncompiled PyTorch CPU semantics, not GPU scheduling/compilation qualification.",
+    "Boundary scatter disagreements affect proposed copies; target verification remains required and this test makes no claim of incorrect final output."
+  ]
+}

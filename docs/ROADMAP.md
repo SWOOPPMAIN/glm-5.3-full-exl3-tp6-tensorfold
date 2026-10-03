@@ -12,9 +12,11 @@
 
 ## Optional performance work
 
-The [ranked experiment plan](PERFORMANCE_EXPERIMENTS.md) starts with prompt reuse,
-mixed prefill/decode scheduling and retuning the current MTP policy. Six-rank
-communication and E3 prefill follow. These are proposed tests, not promised gains.
+The [ranked experiment plan](PERFORMANCE_EXPERIMENTS.md) records completed prompt
+reuse, prefill-budget, MTP and communication comparisons. Row32 E3 prefill is
+qualified and selected after repeated full-model measurements. A measured native/E3
+crossover follow-up and target-verified copy/ngram serving comparison remain.
+Copy drafting has pinned source/CPU checks and an offline launch candidate.
 Preserve current weights/precision and qualify each change before promotion.
 
 ## TensorFold: deferred research

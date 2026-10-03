@@ -1,0 +1,1069 @@
+{
+  "phase": "qualified_selected_policy_serving",
+  "image": "sha256:b4988201229054893df527528c38e8091d4d5392d44c314406e66493ec9300da",
+  "selected_rows": 32,
+  "decision": "Select row32 for repeated cold-prefill gains of3.94% at8K and3.28% at32K, with non-overlapping observed timing ranges. Both row64 and row32 passed original short/8K/32K/128K numerical and eight functional gates on these same six containers. Cached-matrix median geomean improved1.84%; conventional generation medians were36.83prose/48.65code. C4 short and32K medians fell2.44%/2.59%, while8K rose1.53%, with overlapping per-arm ranges and variable MTP acceptance. These are disclosed tradeoffs; cached-generation changes are not attributed solely to the unchanged decode kernels. Preserve the current512 native boundary,3072budget,adaptiveMTP,dual-HCA2MiBtransport,weights,precision and360Kcontext. No older image or automatic fallback is selected.",
+  "weights_bpw": 3.25,
+  "tp": 6,
+  "prefill_budget": 3072,
+  "native_prefill_boundary": 512,
+  "context": 360000,
+  "admitted_requests": 4,
+  "mtp_policy": "original",
+  "comparison": {
+    "phase": "measurement_summary_only",
+    "sources": {
+      "e33-plan.json": "10ac75336385770ec8b5ab670fafe006d1306fb045fd0f39c7a6b3a2e4d896fa",
+      "e33-control64-quality-quality-trial.json": "f1804218a0166c54d99968514eb9248bb3c1484d3212899d06b5c75cb5ed0ef4",
+      "e33-control64-quality-short.json": "895742044bd9583b92f69a31cd906221780a0dd75ba5d26539ea8445e2005a04",
+      "e33-control64-quality-long.json": "a6d07a00bad30c63c7b4f9d37de21099474ff5759185758c41e57cfddd89e437",
+      "e33-control64-quality-basic.json": "387dfc97b0b22d8f56d7a640bf4d8b3c1aa6a87ad52892935d55eaadf40ba1cb",
+      "e33-candidate32-quality-quality-trial.json": "701d4151b63c3637aaf88d247283239d8b5b2439231fabaee75adf678bf7f929",
+      "e33-candidate32-quality-short.json": "17b49c49c6d4fb4a36aa8d59e2e153792c1d835fa934bb7f0e460d827044b67f",
+      "e33-candidate32-quality-long.json": "dc1ae5d2fb6bf14dcb75d0c65baa9f13661096d8d9bd38d266f200dc54892982",
+      "e33-candidate32-quality-basic.json": "639c596d2641ff1079e696a2e17325e956e294c0d0b9847d1a306b0b3ce6b3e3",
+      "e33-control64-a-serving-bench.json": "b064cd2e1c38919dd665b6b61f926689da3b9aab40d75e285b27dbf386dbf2b5",
+      "e33-control64-a-bench.json": "7f881d01944b9f1a2771ce64dc890affac8065050905954bc8c9fe56601ef312",
+      "e33-control64-a-performance.json": "2019ad669452b213658f706faa3a203c13d120175ffafb6559425de768628a63",
+      "e33-control64-b-serving-bench.json": "e2a06807f336b0df4dc85fea4b22dd40d69ea7427bfa67b0d38ba39df3d83561",
+      "e33-control64-b-bench.json": "e634765dfb565f31c8ddefd89da44ef978e4c9bb5be76edddc54404144765f28",
+      "e33-control64-b-performance.json": "d286292e0736b464c7b3ecb8e46168de89471dc30ec01ab38d814b25bc12b1d2",
+      "e33-candidate32-a-serving-bench.json": "eb90d118012b6c323cc6194a5b1a8ede6fa1f76fedbe7463e9bce3902e2de68d",
+      "e33-candidate32-a-bench.json": "a293438fb3267c934c6e0d0467e2bd643d589833bdab0cdc4ea551d48d6f39d0",
+      "e33-candidate32-a-performance.json": "ce679c9b23b1a0f90862a9e5fee1c4ae30cd71d7cde4ec8f4cceb66dbaf2cf96",
+      "e33-candidate32-b-serving-bench.json": "99a465f642482315d47e86d6bb513c1446b906f189a0849f0e426384129f8eef",
+      "e33-candidate32-b-bench.json": "bdee2736b7697ecd932fac706d01aa2359591fabc16f09e798ba9f5a0be2c5de",
+      "e33-candidate32-b-performance.json": "ba1e5293e6a3c7a2e2a6e200caa7c39a26ed33243e1f2dfa84584cedfbd3b359"
+    },
+    "control": {
+      "image": "sha256:b4988201229054893df527528c38e8091d4d5392d44c314406e66493ec9300da",
+      "tuning": {
+        "MAX_NUM_BATCHED_TOKENS": 3072,
+        "VLLM_EXL3_PREFILL_BLOCK_M": 32,
+        "VLLM_DCP_QUERY_SPLIT": 1,
+        "VLLM_DCP_QUERY_SPLIT_MIN_CONTEXT_TOKENS": 32768,
+        "AMOS_TP6_DYNAMIC_GRAPHS": 1,
+        "AMOS_PERFORMANCE_CORES": 1,
+        "AMOS_TORCH_PROFILER": 1,
+        "AMOS_TP6_DECODE_PROJECTIONS": 1,
+        "AMOS_TP6_DRAFT_EH": 1,
+        "AMOS_MTP_ADAPT_WINDOW": 16,
+        "AMOS_MTP_COST_AWARE": 1,
+        "AMOS_TP6_SHARED_384": 1,
+        "AMOS_TP6_E3_PREFILL": 1,
+        "AMOS_TP6_NCCL_RAILS": 2,
+        "AMOS_TP6_ROCE_RAILS": 2,
+        "VLLM_ROCE_ALLREDUCE_MAX_SIZE": 2097152
+      },
+      "matrix_fixture_sha256": "542ce05b3bdc49d352097b31a9553f152ee1cf597445570858fd15d35681aadd",
+      "performance_fixture_sha256": "2fada2edd75499dc84f1f151ef579cf0f2f4e8619bcd980e55f5282c3b000626",
+      "visits": [
+        "e33-control64-a-serving-bench.json",
+        "e33-control64-b-serving-bench.json"
+      ],
+      "cells": [
+        {
+          "fixtures": [
+            "code-0"
+          ],
+          "requests": 1,
+          "repetitions": 3,
+          "output_tokens": [
+            256
+          ],
+          "median_output_tok_s": 41.91467504184528,
+          "range_output_tok_s": [
+            41.868089925321335,
+            44.949913921772016
+          ],
+          "median_accepted_per_wall_second": 29.76559518128314,
+          "median_p95_stream_gap": 0.08131794387008995
+        },
+        {
+          "fixtures": [
+            "code-0",
+            "prose-0",
+            "tools-0",
+            "code-0"
+          ],
+          "requests": 4,
+          "repetitions": 3,
+          "output_tokens": [
+            256,
+            256,
+            256,
+            256
+          ],
+          "median_output_tok_s": 80.07196595970936,
+          "range_output_tok_s": [
+            76.8577475181546,
+            83.47506478729537
+          ],
+          "median_accepted_per_wall_second": 52.90558305366669,
+          "median_p95_stream_gap": 0.1434516759123653
+        },
+        {
+          "fixtures": [
+            "code-32768"
+          ],
+          "requests": 1,
+          "repetitions": 3,
+          "output_tokens": [
+            256
+          ],
+          "median_output_tok_s": 38.95984328145375,
+          "range_output_tok_s": [
+            38.486444591880996,
+            39.00709281588094
+          ],
+          "median_accepted_per_wall_second": 25.87177092909038,
+          "median_p95_stream_gap": 0.08226976210717112
+        },
+        {
+          "fixtures": [
+            "code-32768",
+            "prose-32768",
+            "tools-32768",
+            "code-32768"
+          ],
+          "requests": 4,
+          "repetitions": 3,
+          "output_tokens": [
+            256,
+            256,
+            256,
+            256
+          ],
+          "median_output_tok_s": 68.72757222116402,
+          "range_output_tok_s": [
+            66.31388016162447,
+            70.01340101868055
+          ],
+          "median_accepted_per_wall_second": 43.827250644941515,
+          "median_p95_stream_gap": 0.16770091296639295
+        },
+        {
+          "fixtures": [
+            "code-8192"
+          ],
+          "requests": 1,
+          "repetitions": 3,
+          "output_tokens": [
+            256
+          ],
+          "median_output_tok_s": 40.5046077023214,
+          "range_output_tok_s": [
+            36.70941102462197,
+            41.38090324897094
+          ],
+          "median_accepted_per_wall_second": 29.112686786043504,
+          "median_p95_stream_gap": 0.08741978262551126
+        },
+        {
+          "fixtures": [
+            "code-8192",
+            "prose-8192",
+            "tools-8192",
+            "code-8192"
+          ],
+          "requests": 4,
+          "repetitions": 3,
+          "output_tokens": [
+            256,
+            256,
+            256,
+            256
+          ],
+          "median_output_tok_s": 69.46830752175546,
+          "range_output_tok_s": [
+            68.2395016684043,
+            72.94583590569425
+          ],
+          "median_accepted_per_wall_second": 45.52073666708781,
+          "median_p95_stream_gap": 0.16157563771121203
+        },
+        {
+          "fixtures": [
+            "prose-0"
+          ],
+          "requests": 1,
+          "repetitions": 3,
+          "output_tokens": [
+            256
+          ],
+          "median_output_tok_s": 33.37710209268812,
+          "range_output_tok_s": [
+            32.50182294710533,
+            33.93357833895529
+          ],
+          "median_accepted_per_wall_second": 18.253102706938815,
+          "median_p95_stream_gap": 0.07508713749703019
+        },
+        {
+          "fixtures": [
+            "prose-32768"
+          ],
+          "requests": 1,
+          "repetitions": 3,
+          "output_tokens": [
+            256
+          ],
+          "median_output_tok_s": 30.92563779585005,
+          "range_output_tok_s": [
+            30.664581444079026,
+            32.76348991966628
+          ],
+          "median_accepted_per_wall_second": 17.51647453280569,
+          "median_p95_stream_gap": 0.0818834382807836
+        },
+        {
+          "fixtures": [
+            "prose-8192"
+          ],
+          "requests": 1,
+          "repetitions": 3,
+          "output_tokens": [
+            256
+          ],
+          "median_output_tok_s": 30.756630929958718,
+          "range_output_tok_s": [
+            29.917847052249545,
+            31.258556941984857
+          ],
+          "median_accepted_per_wall_second": 16.099174002400265,
+          "median_p95_stream_gap": 0.08217528183013201
+        },
+        {
+          "fixtures": [
+            "tools-0"
+          ],
+          "requests": 1,
+          "repetitions": 3,
+          "output_tokens": [
+            256
+          ],
+          "median_output_tok_s": 44.24616985280413,
+          "range_output_tok_s": [
+            43.72602855601897,
+            47.991895203625475
+          ],
+          "median_accepted_per_wall_second": 32.83895418762806,
+          "median_p95_stream_gap": 0.08275077457074076
+        },
+        {
+          "fixtures": [
+            "tools-32768"
+          ],
+          "requests": 1,
+          "repetitions": 3,
+          "output_tokens": [
+            256
+          ],
+          "median_output_tok_s": 37.236040783363265,
+          "range_output_tok_s": [
+            35.58810242255823,
+            41.9049920052013
+          ],
+          "median_accepted_per_wall_second": 24.727058332702168,
+          "median_p95_stream_gap": 0.08737896904349327
+        },
+        {
+          "fixtures": [
+            "tools-8192"
+          ],
+          "requests": 1,
+          "repetitions": 3,
+          "output_tokens": [
+            256
+          ],
+          "median_output_tok_s": 42.0355916728248,
+          "range_output_tok_s": [
+            37.73298173394163,
+            42.204465241948974
+          ],
+          "median_accepted_per_wall_second": 29.67501462324537,
+          "median_p95_stream_gap": 0.08417872893624008
+        }
+      ],
+      "prefill": [
+        {
+          "context": 8192,
+          "repetitions": 3,
+          "median_ttft_seconds": 8.672597330994904,
+          "median_prompt_tok_s_by_ttft": 944.5843831262288,
+          "range_prompt_tok_s_by_ttft": [
+            942.0786452433041,
+            946.7100195882263
+          ],
+          "range_ttft_seconds": [
+            8.65312485396862,
+            8.695664678700268
+          ]
+        },
+        {
+          "context": 32768,
+          "repetitions": 3,
+          "median_ttft_seconds": 35.05283046886325,
+          "median_prompt_tok_s_by_ttft": 934.7604619006561,
+          "range_prompt_tok_s_by_ttft": [
+            933.4122738642558,
+            935.3650671828128
+          ],
+          "range_ttft_seconds": [
+            35.030172870028764,
+            35.103459550999105
+          ]
+        }
+      ],
+      "decode_medians": {
+        "prose": 35.35524785665019,
+        "code": 47.73716363237456
+      },
+      "conventional_samples_by_visit": [
+        {
+          "visit": "e33-control64-a-serving-bench.json",
+          "decode": [
+            {
+              "case": "prose",
+              "tok_s": 35.83745163485172
+            },
+            {
+              "case": "code",
+              "tok_s": 47.73716363237456
+            }
+          ],
+          "prefill": [
+            {
+              "context": 8192,
+              "ttft_seconds": 8.65312485396862,
+              "tok_s": 946.7100195882263
+            },
+            {
+              "context": 32768,
+              "ttft_seconds": 35.05283046886325,
+              "tok_s": 934.7604619006561
+            }
+          ]
+        },
+        {
+          "visit": "e33-control64-b-serving-bench.json",
+          "decode": [
+            {
+              "case": "prose",
+              "tok_s": 35.35524785665019
+            },
+            {
+              "case": "code",
+              "tok_s": 46.762343360199694
+            },
+            {
+              "case": "prose",
+              "tok_s": 33.759411406085064
+            },
+            {
+              "case": "code",
+              "tok_s": 48.95255040271821
+            }
+          ],
+          "prefill": [
+            {
+              "context": 8192,
+              "ttft_seconds": 8.672597330994904,
+              "tok_s": 944.5843831262288
+            },
+            {
+              "context": 8192,
+              "ttft_seconds": 8.695664678700268,
+              "tok_s": 942.0786452433041
+            },
+            {
+              "context": 32768,
+              "ttft_seconds": 35.030172870028764,
+              "tok_s": 935.3650671828128
+            },
+            {
+              "context": 32768,
+              "ttft_seconds": 35.103459550999105,
+              "tok_s": 933.4122738642558
+            }
+          ]
+        }
+      ],
+      "decode_ranges": {
+        "prose": [
+          33.759411406085064,
+          35.83745163485172
+        ],
+        "code": [
+          46.762343360199694,
+          48.95255040271821
+        ]
+      }
+    },
+    "candidate": {
+      "image": "sha256:b4988201229054893df527528c38e8091d4d5392d44c314406e66493ec9300da",
+      "tuning": {
+        "MAX_NUM_BATCHED_TOKENS": 3072,
+        "VLLM_EXL3_PREFILL_BLOCK_M": 32,
+        "VLLM_DCP_QUERY_SPLIT": 1,
+        "VLLM_DCP_QUERY_SPLIT_MIN_CONTEXT_TOKENS": 32768,
+        "AMOS_TP6_DYNAMIC_GRAPHS": 1,
+        "AMOS_PERFORMANCE_CORES": 1,
+        "AMOS_TORCH_PROFILER": 1,
+        "AMOS_TP6_DECODE_PROJECTIONS": 1,
+        "AMOS_TP6_DRAFT_EH": 1,
+        "AMOS_MTP_ADAPT_WINDOW": 16,
+        "AMOS_MTP_COST_AWARE": 1,
+        "AMOS_TP6_SHARED_384": 1,
+        "AMOS_TP6_E3_PREFILL": 1,
+        "AMOS_TP6_NCCL_RAILS": 2,
+        "AMOS_TP6_ROCE_RAILS": 2,
+        "VLLM_ROCE_ALLREDUCE_MAX_SIZE": 2097152
+      },
+      "matrix_fixture_sha256": "542ce05b3bdc49d352097b31a9553f152ee1cf597445570858fd15d35681aadd",
+      "performance_fixture_sha256": "2fada2edd75499dc84f1f151ef579cf0f2f4e8619bcd980e55f5282c3b000626",
+      "visits": [
+        "e33-candidate32-a-serving-bench.json",
+        "e33-candidate32-b-serving-bench.json"
+      ],
+      "cells": [
+        {
+          "fixtures": [
+            "code-0"
+          ],
+          "requests": 1,
+          "repetitions": 3,
+          "output_tokens": [
+            256
+          ],
+          "median_output_tok_s": 44.085772457129615,
+          "range_output_tok_s": [
+            40.92310320680614,
+            44.32087665320924
+          ],
+          "median_accepted_per_wall_second": 31.170018807579922,
+          "median_p95_stream_gap": 0.08142565982416272
+        },
+        {
+          "fixtures": [
+            "code-0",
+            "prose-0",
+            "tools-0",
+            "code-0"
+          ],
+          "requests": 4,
+          "repetitions": 3,
+          "output_tokens": [
+            256,
+            256,
+            256,
+            256
+          ],
+          "median_output_tok_s": 78.11562600495121,
+          "range_output_tok_s": [
+            74.55129900003391,
+            79.20901649996009
+          ],
+          "median_accepted_per_wall_second": 49.50882937227865,
+          "median_p95_stream_gap": 0.14661963620455937
+        },
+        {
+          "fixtures": [
+            "code-32768"
+          ],
+          "requests": 1,
+          "repetitions": 3,
+          "output_tokens": [
+            256
+          ],
+          "median_output_tok_s": 39.0603399988437,
+          "range_output_tok_s": [
+            38.56295964037406,
+            40.587616302746056
+          ],
+          "median_accepted_per_wall_second": 25.63334812424118,
+          "median_p95_stream_gap": 0.08328118855133652
+        },
+        {
+          "fixtures": [
+            "code-32768",
+            "prose-32768",
+            "tools-32768",
+            "code-32768"
+          ],
+          "requests": 4,
+          "repetitions": 3,
+          "output_tokens": [
+            256,
+            256,
+            256,
+            256
+          ],
+          "median_output_tok_s": 66.94718460622028,
+          "range_output_tok_s": [
+            65.17127545702746,
+            71.08083348006745
+          ],
+          "median_accepted_per_wall_second": 41.84199037888767,
+          "median_p95_stream_gap": 0.1669205285026692
+        },
+        {
+          "fixtures": [
+            "code-8192"
+          ],
+          "requests": 1,
+          "repetitions": 3,
+          "output_tokens": [
+            256
+          ],
+          "median_output_tok_s": 41.092345708617145,
+          "range_output_tok_s": [
+            41.01468121763217,
+            42.78240337880251
+          ],
+          "median_accepted_per_wall_second": 29.535123478068574,
+          "median_p95_stream_gap": 0.08518770802766085
+        },
+        {
+          "fixtures": [
+            "code-8192",
+            "prose-8192",
+            "tools-8192",
+            "code-8192"
+          ],
+          "requests": 4,
+          "repetitions": 3,
+          "output_tokens": [
+            256,
+            256,
+            256,
+            256
+          ],
+          "median_output_tok_s": 70.5343246016161,
+          "range_output_tok_s": [
+            70.00955804096823,
+            72.7403049741371
+          ],
+          "median_accepted_per_wall_second": 46.6325564016544,
+          "median_p95_stream_gap": 0.1637218250078149
+        },
+        {
+          "fixtures": [
+            "prose-0"
+          ],
+          "requests": 1,
+          "repetitions": 3,
+          "output_tokens": [
+            256
+          ],
+          "median_output_tok_s": 34.21583198264396,
+          "range_output_tok_s": [
+            32.40960094720666,
+            34.506229434418835
+          ],
+          "median_accepted_per_wall_second": 18.578127521826215,
+          "median_p95_stream_gap": 0.07444464960135519
+        },
+        {
+          "fixtures": [
+            "prose-32768"
+          ],
+          "requests": 1,
+          "repetitions": 3,
+          "output_tokens": [
+            256
+          ],
+          "median_output_tok_s": 31.624371381125588,
+          "range_output_tok_s": [
+            30.993012899637172,
+            32.41292142690382
+          ],
+          "median_accepted_per_wall_second": 18.03890203924195,
+          "median_p95_stream_gap": 0.08256400406826286
+        },
+        {
+          "fixtures": [
+            "prose-8192"
+          ],
+          "requests": 1,
+          "repetitions": 3,
+          "output_tokens": [
+            256
+          ],
+          "median_output_tok_s": 32.52086652745766,
+          "range_output_tok_s": [
+            30.345521274987956,
+            34.10952075368845
+          ],
+          "median_accepted_per_wall_second": 18.292987421694935,
+          "median_p95_stream_gap": 0.0835615994874388
+        },
+        {
+          "fixtures": [
+            "tools-0"
+          ],
+          "requests": 1,
+          "repetitions": 3,
+          "output_tokens": [
+            256
+          ],
+          "median_output_tok_s": 46.44801887462468,
+          "range_output_tok_s": [
+            45.76835383131877,
+            48.932473738903546
+          ],
+          "median_accepted_per_wall_second": 34.836014155968506,
+          "median_p95_stream_gap": 0.08188731046393513
+        },
+        {
+          "fixtures": [
+            "tools-32768"
+          ],
+          "requests": 1,
+          "repetitions": 3,
+          "output_tokens": [
+            256
+          ],
+          "median_output_tok_s": 38.452039064471215,
+          "range_output_tok_s": [
+            37.48300240780365,
+            39.453856969412584
+          ],
+          "median_accepted_per_wall_second": 26.58598013441955,
+          "median_p95_stream_gap": 0.08781540906056762
+        },
+        {
+          "fixtures": [
+            "tools-8192"
+          ],
+          "requests": 1,
+          "repetitions": 3,
+          "output_tokens": [
+            256
+          ],
+          "median_output_tok_s": 42.1708103178585,
+          "range_output_tok_s": [
+            41.450524149129905,
+            45.13300116083109
+          ],
+          "median_accepted_per_wall_second": 30.804459099373204,
+          "median_p95_stream_gap": 0.08673419512342662
+        }
+      ],
+      "prefill": [
+        {
+          "context": 8192,
+          "repetitions": 3,
+          "median_ttft_seconds": 8.344165240880102,
+          "median_prompt_tok_s_by_ttft": 981.7638749368712,
+          "range_prompt_tok_s_by_ttft": [
+            979.7100323347325,
+            982.7053804996102
+          ],
+          "range_ttft_seconds": [
+            8.336170903872699,
+            8.361657765693963
+          ]
+        },
+        {
+          "context": 32768,
+          "repetitions": 3,
+          "median_ttft_seconds": 33.93827942479402,
+          "median_prompt_tok_s_by_ttft": 965.4584898037702,
+          "range_prompt_tok_s_by_ttft": [
+            964.0988441907684,
+            965.8304586943789
+          ],
+          "range_ttft_seconds": [
+            33.925208824221045,
+            33.98614177107811
+          ]
+        }
+      ],
+      "decode_medians": {
+        "prose": 36.82929111552371,
+        "code": 48.648567046171046
+      },
+      "conventional_samples_by_visit": [
+        {
+          "visit": "e33-candidate32-a-serving-bench.json",
+          "decode": [
+            {
+              "case": "prose",
+              "tok_s": 37.68562140260218
+            },
+            {
+              "case": "code",
+              "tok_s": 48.648567046171046
+            }
+          ],
+          "prefill": [
+            {
+              "context": 8192,
+              "ttft_seconds": 8.336170903872699,
+              "tok_s": 982.7053804996102
+            },
+            {
+              "context": 32768,
+              "ttft_seconds": 33.925208824221045,
+              "tok_s": 965.8304586943789
+            }
+          ]
+        },
+        {
+          "visit": "e33-candidate32-b-serving-bench.json",
+          "decode": [
+            {
+              "case": "prose",
+              "tok_s": 34.96935226293856
+            },
+            {
+              "case": "code",
+              "tok_s": 54.89422304986851
+            },
+            {
+              "case": "prose",
+              "tok_s": 36.82929111552371
+            },
+            {
+              "case": "code",
+              "tok_s": 48.305231895438155
+            }
+          ],
+          "prefill": [
+            {
+              "context": 8192,
+              "ttft_seconds": 8.344165240880102,
+              "tok_s": 981.7638749368712
+            },
+            {
+              "context": 8192,
+              "ttft_seconds": 8.361657765693963,
+              "tok_s": 979.7100323347325
+            },
+            {
+              "context": 32768,
+              "ttft_seconds": 33.93827942479402,
+              "tok_s": 965.4584898037702
+            },
+            {
+              "context": 32768,
+              "ttft_seconds": 33.98614177107811,
+              "tok_s": 964.0988441907684
+            }
+          ]
+        }
+      ],
+      "decode_ranges": {
+        "prose": [
+          34.96935226293856,
+          37.68562140260218
+        ],
+        "code": [
+          48.305231895438155,
+          54.89422304986851
+        ]
+      }
+    },
+    "control_e3_rows": 64,
+    "candidate_e3_rows": 32,
+    "visits": [
+      {
+        "name": "control64-a",
+        "rows": 64,
+        "repetitions": 1
+      },
+      {
+        "name": "candidate32-a",
+        "rows": 32,
+        "repetitions": 1
+      },
+      {
+        "name": "control64-b",
+        "rows": 64,
+        "repetitions": 2
+      },
+      {
+        "name": "candidate32-b",
+        "rows": 32,
+        "repetitions": 2
+      }
+    ],
+    "same_six_containers": true,
+    "prefill_ratios": [
+      {
+        "context": 8192,
+        "ratio": 1.0393606886529205,
+        "control_ttft": 8.672597330994904,
+        "candidate_ttft": 8.344165240880102
+      },
+      {
+        "context": 32768,
+        "ratio": 1.0328405288352651,
+        "control_ttft": 35.05283046886325,
+        "candidate_ttft": 33.93827942479402
+      }
+    ],
+    "decode_ratios": {
+      "prose": 1.041692346914102,
+      "code": 1.019092114915231
+    },
+    "matrix_comparisons": [
+      {
+        "fixtures": [
+          "code-0"
+        ],
+        "requests": 1,
+        "throughput_ratio": 1.0517980257061956,
+        "accepted_per_wall_second_ratio": 1.0471827832685132
+      },
+      {
+        "fixtures": [
+          "code-0",
+          "prose-0",
+          "tools-0",
+          "code-0"
+        ],
+        "requests": 4,
+        "throughput_ratio": 0.9755677292132112,
+        "accepted_per_wall_second_ratio": 0.9357959314437113
+      },
+      {
+        "fixtures": [
+          "code-32768"
+        ],
+        "requests": 1,
+        "throughput_ratio": 1.0025794949087434,
+        "accepted_per_wall_second_ratio": 0.9907844420274642
+      },
+      {
+        "fixtures": [
+          "code-32768",
+          "prose-32768",
+          "tools-32768",
+          "code-32768"
+        ],
+        "requests": 4,
+        "throughput_ratio": 0.9740950020871609,
+        "accepted_per_wall_second_ratio": 0.9547026054146753
+      },
+      {
+        "fixtures": [
+          "code-8192"
+        ],
+        "requests": 1,
+        "throughput_ratio": 1.0145103986839024,
+        "accepted_per_wall_second_ratio": 1.0145103986839024
+      },
+      {
+        "fixtures": [
+          "code-8192",
+          "prose-8192",
+          "tools-8192",
+          "code-8192"
+        ],
+        "requests": 4,
+        "throughput_ratio": 1.0153453728454058,
+        "accepted_per_wall_second_ratio": 1.0244244670884346
+      },
+      {
+        "fixtures": [
+          "prose-0"
+        ],
+        "requests": 1,
+        "throughput_ratio": 1.0251289008742188,
+        "accepted_per_wall_second_ratio": 1.0178065515822603
+      },
+      {
+        "fixtures": [
+          "prose-32768"
+        ],
+        "requests": 1,
+        "throughput_ratio": 1.0225939911049886,
+        "accepted_per_wall_second_ratio": 1.0298249231292422
+      },
+      {
+        "fixtures": [
+          "prose-8192"
+        ],
+        "requests": 1,
+        "throughput_ratio": 1.0573611460083712,
+        "accepted_per_wall_second_ratio": 1.1362686942179512
+      },
+      {
+        "fixtures": [
+          "tools-0"
+        ],
+        "requests": 1,
+        "throughput_ratio": 1.0497636073166456,
+        "accepted_per_wall_second_ratio": 1.0608137505515578
+      },
+      {
+        "fixtures": [
+          "tools-32768"
+        ],
+        "requests": 1,
+        "throughput_ratio": 1.0326564869821295,
+        "accepted_per_wall_second_ratio": 1.0751776364460996
+      },
+      {
+        "fixtures": [
+          "tools-8192"
+        ],
+        "requests": 1,
+        "throughput_ratio": 1.0032167655944075,
+        "accepted_per_wall_second_ratio": 1.0380604522177086
+      }
+    ],
+    "matrix_geomean_ratio": 1.018381778460616,
+    "analyzer_sha256": "2ae9324a7ed13eef285cabad08d1ae76423736280da05b18803d22820a89897c",
+    "promoted": false,
+    "limitations": [
+      "Three samples per workload/policy across two visits in the same six containers; inspect ranges and workload regressions.",
+      "Cold prefill is prompt tokens divided by first-token latency, not isolated attention-kernel throughput.",
+      "Cached matrix uses256 output tokens; conventional code/prose tests use512. Adaptive MTP remains unchanged.",
+      "A source/kernel policy comparison does not prove every observed cached-generation fluctuation is caused by E3.",
+      "Numerical gates precede timing; final native/Pi/Code/Chat acceptance remains required for promotion."
+    ]
+  },
+  "quality": {
+    "phase": "both_policies_qualified",
+    "reported_numerical_summaries_identical": true,
+    "policies": {
+      "control64": {
+        "short": {
+          "positions": 4096,
+          "mean_coarsened_kl": 5.069549738019353e-10,
+          "top1_agreement": 1,
+          "mean_common_reference_mass": 0.9995512817500845,
+          "mean_nll_delta": -7.956259651109576e-09
+        },
+        "long": [
+          {
+            "context": 8192,
+            "summary": {
+              "positions": 512,
+              "mean_coarsened_kl": 2.721325492030414e-15,
+              "top1_agreement": 1,
+              "mean_common_reference_mass": 0.9991739549163815,
+              "mean_nll_delta": 2.1827872842550278e-10
+            },
+            "passed": true
+          },
+          {
+            "context": 32768,
+            "summary": {
+              "positions": 512,
+              "mean_coarsened_kl": 0,
+              "top1_agreement": 1,
+              "mean_common_reference_mass": 0.9978193007741218,
+              "mean_nll_delta": 0.0
+            },
+            "passed": true
+          },
+          {
+            "context": 131072,
+            "summary": {
+              "positions": 512,
+              "mean_coarsened_kl": 2.05238423798726e-11,
+              "top1_agreement": 1,
+              "mean_common_reference_mass": 0.4608117383047953,
+              "mean_nll_delta": 2.1886080503463745e-07
+            },
+            "passed": true
+          }
+        ],
+        "functional_cases": 8,
+        "passed": true
+      },
+      "candidate32": {
+        "short": {
+          "positions": 4096,
+          "mean_coarsened_kl": 5.069549738019353e-10,
+          "top1_agreement": 1,
+          "mean_common_reference_mass": 0.9995512817500845,
+          "mean_nll_delta": -7.956259651109576e-09
+        },
+        "long": [
+          {
+            "context": 8192,
+            "summary": {
+              "positions": 512,
+              "mean_coarsened_kl": 2.721325492030414e-15,
+              "top1_agreement": 1,
+              "mean_common_reference_mass": 0.9991739549163815,
+              "mean_nll_delta": 2.1827872842550278e-10
+            },
+            "passed": true
+          },
+          {
+            "context": 32768,
+            "summary": {
+              "positions": 512,
+              "mean_coarsened_kl": 0,
+              "top1_agreement": 1,
+              "mean_common_reference_mass": 0.9978193007741218,
+              "mean_nll_delta": 0.0
+            },
+            "passed": true
+          },
+          {
+            "context": 131072,
+            "summary": {
+              "positions": 512,
+              "mean_coarsened_kl": 2.05238423798726e-11,
+              "top1_agreement": 1,
+              "mean_common_reference_mass": 0.4608117383047953,
+              "mean_nll_delta": 2.1886080503463745e-07
+            },
+            "passed": true
+          }
+        ],
+        "functional_cases": 8,
+        "passed": true
+      }
+    },
+    "limitations": [
+      "Identical reported diagnostics do not independently establish bitwise equality of every full-model activation or every possible output.",
+      "128K comparison covers512tailpositions with coarsened KL and about46%common reference mass."
+    ]
+  },
+  "native_router_code_chat_acceptance": "passed",
+  "same_six_containers_throughout": true,
+  "exclusive_six_gpus": true,
+  "minimum_final_available_gib": 10.33,
+  "measured_cached_cells": 72,
+  "conventional_decode_measurements": 12,
+  "cold_prefill_measurements": 12,
+  "source_evidence": {
+    "e33-window.json": "5104d8c4d186f2f02fa0549aa0c0112a1abb2e96c89f2672df220055b98f0e12",
+    "e33-comparison.json": "40ce41d150bb9bdcf6805a0d987fafdb7475aaf920fde6d86f672e28e3ef085a",
+    "e33-quality-summary.json": "505082bc1c84fe36c03e32a7f0b9e24c781f8c45b17dd9d0106d4bdd34596d4a",
+    "e33-decision.json": "8600cc8ebe3eb5730a4a304908aa806820d5661b44c5796b7dbde00740a1c921",
+    "e33-final-serving.json": "01c9d1ea6bfee170900231ba6ba1a21dcf66ce206aaaaec7e4a8300d942949ec",
+    "e33-final-policy.json": "9d74e2232fd377a5aa741fe97159df45624515c6dd279442cb172cf05e965343",
+    "e33-application-acceptance.json": "d77f414161d568afa09236600cddd43deef2bfbd122275706aa7afbfb0d1fb7c",
+    "e33-control64-a-serving-bench.json": "b064cd2e1c38919dd665b6b61f926689da3b9aab40d75e285b27dbf386dbf2b5",
+    "e33-control64-a-bench.json": "7f881d01944b9f1a2771ce64dc890affac8065050905954bc8c9fe56601ef312",
+    "e33-control64-a-performance.json": "2019ad669452b213658f706faa3a203c13d120175ffafb6559425de768628a63",
+    "e33-candidate32-a-serving-bench.json": "eb90d118012b6c323cc6194a5b1a8ede6fa1f76fedbe7463e9bce3902e2de68d",
+    "e33-candidate32-a-bench.json": "a293438fb3267c934c6e0d0467e2bd643d589833bdab0cdc4ea551d48d6f39d0",
+    "e33-candidate32-a-performance.json": "ce679c9b23b1a0f90862a9e5fee1c4ae30cd71d7cde4ec8f4cceb66dbaf2cf96",
+    "e33-control64-b-serving-bench.json": "e2a06807f336b0df4dc85fea4b22dd40d69ea7427bfa67b0d38ba39df3d83561",
+    "e33-control64-b-bench.json": "e634765dfb565f31c8ddefd89da44ef978e4c9bb5be76edddc54404144765f28",
+    "e33-control64-b-performance.json": "d286292e0736b464c7b3ecb8e46168de89471dc30ec01ab38d814b25bc12b1d2",
+    "e33-candidate32-b-serving-bench.json": "99a465f642482315d47e86d6bb513c1446b906f189a0849f0e426384129f8eef",
+    "e33-candidate32-b-bench.json": "bdee2736b7697ecd932fac706d01aa2359591fabc16f09e798ba9f5a0be2c5de",
+    "e33-candidate32-b-performance.json": "ba1e5293e6a3c7a2e2a6e200caa7c39a26ed33243e1f2dfa84584cedfbd3b359"
+  },
+  "limitations": [
+    "Three samples per workload/policy across two visits in the same six containers; inspect ranges and workload regressions.",
+    "Cold prefill is prompt tokens divided by first-token latency, not isolated attention-kernel throughput.",
+    "Cached matrix uses256 output tokens; conventional code/prose tests use512. Adaptive MTP remains unchanged.",
+    "A source/kernel policy comparison does not prove every observed cached-generation fluctuation is caused by E3.",
+    "Numerical gates precede timing; final native/Pi/Code/Chat acceptance remains required for promotion.",
+    "Identical reported diagnostics do not independently establish bitwise equality of every full-model activation or every possible output.",
+    "128K comparison covers512tailpositions with coarsened KL and about46%common reference mass."
+  ],
+  "tensorfold_work": false
+}

@@ -2,7 +2,18 @@
 
 ## Current serving: vLLM P27
 
-Latest: [dual-port RoCEnante](communication-dual-roce.json) is selected on the same
+Latest: [E3 row32](e3-row32-serving.json) is qualified and selected. Repeated cold
+prefill is **981.8 / 965.5 tok/s** at 8K/32K, **+3.94% / +3.28%** against the matched
+row64 control. Prose/code medians are **36.83 / 48.65 output tok/s**. Short C4 is
+**78.12 aggregate tok/s**; short/32K C4 medians regress about 2.5%, while the cached
+matrix improves 1.84% overall. Generation varies with unchanged adaptive MTP;
+these are not isolated decode-kernel gains. [Every sample](e3-row32-serving-samples.json)
+and [quality, ranges, selected image and replay](../recipes/vllm-tp6/E3_PREFILL.md).
+Native/Pi/Code/Chat acceptance passed; final memory guards were clear at 10.33 GiB
+minimum available. [Copy drafting](../recipes/vllm-tp6/COPY_DRAFTING.md) has source/CPU
+checks only; its serving comparison remains.
+
+Earlier: [dual-port RoCEnante](communication-dual-roce.json) is selected on the same
 image after short/long numerical and native/Pi/Code/Chat checks. Matched cached
 workloads improve 2.37% overall, with C4 gains of 3.0–4.2%; code generation is
 47.79 tok/s (+2.3%) and prose is 35.18 tok/s (−2.0%). Cold prefill remains about

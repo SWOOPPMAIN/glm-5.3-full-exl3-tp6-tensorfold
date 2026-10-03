@@ -3858,6 +3858,72 @@
       "sha256": "02fc237759cf613bffee31a8e802ed8c7034f456bf622db5dd308d5e848157ea",
       "origin": "amos-recipes@79a2358b90fdcb5ed58bee399eb42294cd87e6ae:e3-row32.patch",
       "change": null
+    },
+    {
+      "path": "runtime/vllm/amos_e3_policy.py",
+      "sha256": "dfb452cf7e46f5e77b97498ecf14671e154c45ee810f3a7b6aa88101e121504e",
+      "origin": "amos-recipes@1ec92c9d2a3ce7c556884fb662f1ea6f1da1027c:amos_e3_policy.py",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/build_e3_rows.py",
+      "sha256": "74e31c2ba3b6b4de7987ed3d8139a69cd88cb890d014e0746650c34546e8d89c",
+      "origin": "amos-recipes@1ec92c9d2a3ce7c556884fb662f1ea6f1da1027c:build_e3_rows.py",
+      "change": null
+    },
+    {
+      "path": "benchmarks/test_e3_rows_policy.py",
+      "sha256": "f6528278ece28b807c5bc8ea824a47ab5a385151f54fc18340b10efb5d3f100e",
+      "origin": "amos-recipes@1ec92c9d2a3ce7c556884fb662f1ea6f1da1027c:test_e3_rows_policy.py",
+      "change": null
+    },
+    {
+      "path": "benchmarks/analyze_e3_public_samples.py",
+      "sha256": "cb90d905d2573807f8e85d0fe23acf1f73e9575f66f53fbcb18890d1b0350a35",
+      "origin": "amos-recipes@1ec92c9d2a3ce7c556884fb662f1ea6f1da1027c:analyze_e3_public_samples.py",
+      "change": null
+    },
+    {
+      "path": "benchmarks/ngram_source_check.py",
+      "sha256": "77485e2950a6983b308f32f173e534d686d17ad5d0326654340371e2907ef973",
+      "origin": "amos-recipes@1ec92c9d2a3ce7c556884fb662f1ea6f1da1027c:ngram_source_check.py",
+      "change": null
+    },
+    {
+      "path": "benchmarks/ngram_tensor_cpu_check.py",
+      "sha256": "a34adab02c2beb0e7fbbe2571bd74ccdf8ab7f3e47cdc675800ce4974af9ca51",
+      "origin": "amos-recipes@1ec92c9d2a3ce7c556884fb662f1ea6f1da1027c:ngram_tensor_cpu_check.py",
+      "change": null
+    },
+    {
+      "path": "results/copy-drafting-source-review.json",
+      "sha256": "cb4deecd3daff9c6b7cd37c0c2e207afe55992983948178838cc33220aa7d028",
+      "origin": "amos-recipes@1ec92c9d2a3ce7c556884fb662f1ea6f1da1027c:qualification/serving-optimization-20261003/ngram1-source-review.json",
+      "change": null
+    },
+    {
+      "path": "results/copy-drafting-cpu.json",
+      "sha256": "57672f8a5ee51d021c6ee6b9b0f53ce9aaff9b4669cba9527264e4064f81c5da",
+      "origin": "amos-recipes@1ec92c9d2a3ce7c556884fb662f1ea6f1da1027c:qualification/serving-optimization-20261003/ngram1-cpu-source-checks.json",
+      "change": null
+    },
+    {
+      "path": "results/copy-drafting-tensor-cpu.json",
+      "sha256": "b2a316d6c7f39e71c94da1183d6cd28be4d4ea7496c756e2424010325f2f6b9d",
+      "origin": "amos-recipes@1ec92c9d2a3ce7c556884fb662f1ea6f1da1027c:qualification/serving-optimization-20261003/ngram1-tensor-cpu-checks.json",
+      "change": null
+    },
+    {
+      "path": "results/e3-row32-serving.json",
+      "sha256": "9c2fc5fbcbaea7ced06a308172045e8fa2205566c0d0dc444d636009a249078e",
+      "origin": "amos-recipes@1ec92c9d2a3ce7c556884fb662f1ea6f1da1027c:qualification/serving-optimization-20261003/e33-comparison.json",
+      "change": "Allowlisted comparison, quality and selected-serving fields, with original receipt hashes; private identities and generated text omitted."
+    },
+    {
+      "path": "results/e3-row32-serving-samples.json",
+      "sha256": "7e63f5a4b4b457e09ffd1ecc66374435d92a177e89c4bc6524d7eb525d70b0d8",
+      "origin": "amos-recipes@1ec92c9d2a3ce7c556884fb662f1ea6f1da1027c:qualification/serving-optimization-20261003/e33-comparison.json",
+      "change": "All scalar timing samples and synthetic stream metadata from the source receipts; private identities and generated text omitted; standalone recomputation matches private analysis."
     }
   ]
 }

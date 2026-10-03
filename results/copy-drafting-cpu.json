@@ -1,0 +1,67 @@
+{
+  "phase": "cpu_source_checks_passed",
+  "source_sha256": "5051e1bca645fe4befec0a6340f0dfc169fbcbe070ac1da508b72f8ee9c91736",
+  "gpu_used": false,
+  "vllm_runtime_loaded": false,
+  "target_model_loaded": false,
+  "config_type_import_replaced": true,
+  "proposer_implementation_changed": false,
+  "proposal_examples": [
+    [
+      20,
+      21,
+      22,
+      23
+    ],
+    [],
+    [],
+    []
+  ],
+  "randomized_oracle_checks": 400,
+  "batch_jit_signatures_after_constructor": 0,
+  "batch_jit_signatures_after_requests": 1,
+  "first_actual_proposal_seconds": 1.4694318119436502,
+  "long_context_local_cpu_samples": [
+    {
+      "context": 8192,
+      "requests": 4,
+      "seconds": [
+        0.00012551993131637573,
+        9.49581153690815e-05,
+        9.527569636702538e-05
+      ]
+    },
+    {
+      "context": 32768,
+      "requests": 4,
+      "seconds": [
+        0.0002544410526752472,
+        0.0002509532496333122,
+        0.00024319300428032875
+      ]
+    },
+    {
+      "context": 131072,
+      "requests": 4,
+      "seconds": [
+        0.0008838395588099957,
+        0.0008732220157980919,
+        0.0008716778829693794
+      ]
+    },
+    {
+      "context": 359995,
+      "requests": 4,
+      "seconds": [
+        0.00242057116702199,
+        0.0023697298020124435,
+        0.002383529208600521
+      ]
+    }
+  ],
+  "limitations": [
+    "Local coordinator CPU, not DGX Spark or serving throughput.",
+    "Constructor smoke uses8192 maximum then proposal capacity360000; no full vLLM configuration or target verification is tested.",
+    "Proposal correctness alone does not establish TP6 scheduler/graph compatibility or generated-output fidelity."
+  ]
+}

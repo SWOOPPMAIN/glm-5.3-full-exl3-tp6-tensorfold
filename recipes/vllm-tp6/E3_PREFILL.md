@@ -1,6 +1,6 @@
 # E3 prefill: actual TP6 routes
 
-October 3, 2026. **Component comparison passed; full-model row32 qualification remains.**
+October 3, 2026. **Row32 is qualified and selected in full-model serving.**
 The original 3.25 bpw weights, 3072-token budget, adaptive MTP, 512-row native/E3
 boundary, dual-port RoCEnante and 2 MiB crossover remain selected. TensorFold
 development is excluded.
@@ -15,7 +15,7 @@ ownership rule `(4 * expert + source_piece) % 6`; weights were not repartitioned
 
 | Geometry, across all layers/ranks | Code | Prose |
 | --- | ---: | ---: |
-| Unused capacity in current 64-row tiles | 26.46% | 26.64% |
+| Unused capacity in 64-row control tiles | 26.46% | 26.64% |
 | Estimated padded-row reduction with 32-row tiles | 14.05% | 14.13% |
 | Estimated segment-count increase with 32-row tiles | 71.91% | 71.74% |
 | Mean per-layer maximum/mean padded rank work | 1.044 | 1.044 |
@@ -29,7 +29,7 @@ The CPU compiler also found a concrete tradeoff:
 
 | Gate/up kernel | Registers/thread | Stack frame | Reported spill stores / loads |
 | --- | ---: | ---: | ---: |
-| Current 64-row | 255 | 176 bytes | 752 / 764 bytes |
+| 64-row control | 255 | 176 bytes | 752 / 764 bytes |
 | Experimental 32-row | 225 | 32 bytes | 0 / 0 bytes |
 
 The rebuilt 64-row kernel's machine-code sections match the installed binary.
@@ -63,11 +63,11 @@ excluded from timing. Times include routing and native epilogues. Both arms
 used one shared stream-local scratch arena. These are isolated component
 results with one layer resident; **they are not full-model tok/s gains**.
 
-The current row64 serving image was explicitly resumed, with fresh functional,
+After the component comparison, the row64 image was explicitly resumed with fresh functional,
 native, Pi-router, Code and Chat acceptance. Its existing exact-image short/long
 numerical qualification was reused, not reported as rerun. Final available RAM
-was at least 14.07 GiB. Row32 is **not promoted**. A comparison image has been
-staged for full-model numerical gates and balanced serving measurements.
+was at least 14.07 GiB. This component-stage closeout is historical; the full-model
+comparison and selected row32 image below supersede it.
 
 [All samples and comparison checks](../../results/e3-row32-component.json) ·
 [Serving closeout](../../results/e3-row32-outcome.json)
@@ -75,7 +75,88 @@ staged for full-model numerical gates and balanced serving measurements.
 [Route results and qualification](../../results/e3-prefill-diagnostic.json) ·
 [Compiler results and source hashes](../../results/e3-row32-compile.json)
 
-## What is serving
+## Full-model comparison and selected serving
+
+Four alternating visits (row64, row32, row64, row32) used the same six containers,
+weights, precision, 3072 budget, 512-row native boundary, original adaptive MTP and
+communication settings. Each workload has three measured samples per policy,
+spread across two visits. Kernels and exact prompts were warmed separately.
+
+| Measurement | Row64 control | Selected row32 | Change |
+| --- | ---: | ---: | ---: |
+| Cold 8K prefill | 944.6 tok/s | **981.8 tok/s** | **+3.94%** |
+| Cold 32K prefill | 934.8 tok/s | **965.5 tok/s** | **+3.28%** |
+| Cold 8K / 32K TTFT | 8.673 / 35.053 s | **8.344 / 33.938 s** | Lower |
+| Prose, 512 output tokens | 35.36 tok/s | 36.83 tok/s | +4.17% |
+| Code, 512 output tokens | 47.74 tok/s | 48.65 tok/s | +1.91% |
+| Cached short C4, aggregate | 80.07 tok/s | 78.12 tok/s | −2.44% |
+| Cached 8K C4, aggregate | 69.47 tok/s | 70.53 tok/s | +1.53% |
+| Cached 32K C4, aggregate | 68.73 tok/s | 66.95 tok/s | −2.59% |
+
+Cold-prefill ranges do not overlap: 8K control **942.1–946.7** versus row32
+**979.7–982.7** tok/s; 32K control **933.4–935.4** versus row32 **964.1–965.8**.
+These are observed ranges, not confidence intervals. The 12-cell cached matrix
+improves 1.84% by geometric mean, with workload regressions shown above. Generation
+and MTP acceptance vary between repeats; the decode kernels are unchanged, so those
+differences are not an isolated E3 decode-speed claim. The highest single code
+sample was 54.9 tok/s; use the 48.65 median, not that sample, as the representative result.
+
+Both policies passed the 4096-position short reference, 512-position tails at
+8K/32K/128K and eight functional checks before timing. Their reported numerical
+summaries were identical, with 100% top-1 agreement against the frozen reference.
+The 128K coarsened diagnostic covers about 46% common reference mass; it is not
+comprehensive 360K quality evaluation. No preemption occurred in the 72 cached
+measurements. There were also 12 conventional decode and 12 cold-prefill measurements.
+
+Row32 was explicitly selected on all six ranks. Native API, Pi-router, Code and
+Chat acceptance passed after reopening. All six GPUs remained exclusively owned;
+final available memory was at least **10.33 GiB**, with the exact-container guards
+clear. No 12-hour soak was run.
+
+[Results, quality and decision](../../results/e3-row32-serving.json) ·
+[Every timed sample](../../results/e3-row32-serving-samples.json)
+
+Recalculate the published timing comparison:
+
+```sh
+python3 benchmarks/analyze_e3_public_samples.py --samples results/e3-row32-serving-samples.json
+```
+
+### Image and persistent policy
+
+Selected image ID:
+`sha256:b4988201229054893df527528c38e8091d4d5392d44c314406e66493ec9300da`.
+This is a local Docker image ID, not a pullable registry digest.
+
+Every rank requires this persistent file at `/root/.cache/amos-e3-rows.json`:
+
+```json
+{"revision":"e33-selected32","rows":32}
+```
+
+Install it in the rank's mounted cache **before startup**. Missing/invalid controls
+fail visibly. Change policies only while the six-rank service is idle and drained.
+Each rank latches the choice at target layer 3 for the whole prefill chunk; row32
+and row64 share one scratch arena. Verify all six `.applied.json` acknowledgments
+against the exact control digest after a real uncached prompt above 512 rows.
+The image retains the 512-row native boundary; lowering it needs a separate
+actual-route native/row32 comparison and full-model qualification.
+
+[The builder](../../runtime/vllm/build_e3_rows.py) appends one layer to the exact
+124-layer diagnostic base. Inputs are that retained base archive, the E32 probe
+manifest and tested `row32/runtime.py`/binary, and the row32 CUDA source produced
+by the patch below. It installs both kernels and the required policy wrapper in
+both vLLM source roots, preserving image configuration and all weights. Its original
+`amos_grouped_prefill.py` input remains in this repository; the builder changes its
+import to the policy wrapper. This is not a clean-machine build.
+
+CPU control checks:
+
+```sh
+PYTHONPATH=runtime/vllm python3 benchmarks/test_e3_rows_policy.py
+```
+
+## Historical diagnostic capture (E31)
 
 A source-only diagnostic image is qualified:
 `sha256:340a9bae07ab134120249cf0224108fda7b3706720724bd1b2fe705245e7ce20`.
@@ -94,8 +175,8 @@ The model stayed healthy; all 75 captures on every rank were already present
 and were hash-verified without repeating that request. Its original usage was
 not retained. Prose used a nonstreaming completion with verified usage.
 
-No new serving speed is reported here. The communication comparison remains
-the latest throughput measurement.
+The diagnostic capture itself did not measure serving speed. The E33 comparison
+above supplies the latest serving measurements.
 
 ### Reproduce the component candidate
 

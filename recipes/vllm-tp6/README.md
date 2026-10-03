@@ -13,7 +13,9 @@ image from a clean machine or provide a downloadable registry image.
 Do not substitute a stock vLLM image: it lacks the required mixed-K/TP6 patches.
 
 ```text
-Current image ID: sha256:2e947348fd26b8d58e4535e0321126935069a5e521784fa573f19fb560975d9d
+Current image ID: sha256:b4988201229054893df527528c38e8091d4d5392d44c314406e66493ec9300da
+E3 diagnostic base: sha256:340a9bae07ab134120249cf0224108fda7b3706720724bd1b2fe705245e7ce20
+MTP-control base: sha256:2e947348fd26b8d58e4535e0321126935069a5e521784fa573f19fb560975d9d
 Budget-control base: sha256:7176241a30ba8349fccb979ad7a35d0eba422d23017543da8c0147b28cb0c1cd
 P27 base image ID: sha256:8935c96fe1670c4016bbc47c905477cb652a5a2b89214c0e952920d2ed232e90
 ```
@@ -25,6 +27,9 @@ install both persistent control files and read their qualification limits:
 Smaller/adaptive budgets failed the numerical gate; MTP retuning finished without
 a promoted policy. [Dual-port RoCEnante](COMMUNICATION.md) is now selected for
 modest overall and concurrent gains, with explicit per-workload tradeoffs.
+The current image also selects [32-row E3 prefill](E3_PREFILL.md). **Every rank**
+requires the persistent `/root/.cache/amos-e3-rows.json` control described there;
+a missing file is an error, not an implicit kernel selection.
 
 A Docker image ID is not a registry digest. Move an existing image with
 `docker save` / `docker load`, then compare `docker image inspect --format
@@ -65,7 +70,8 @@ guards; its site-specific host mappings and credentials are deliberately absent 
 2. Confirm the image ID and verified local shard on every rank.
 3. Mount the rank directory at `/model:ro`, the entrypoint at
    `/opt/amos-tp6/node.sh:ro`, and a writable persistent local cache at
-   `/root/.cache`. Rank 0 requires both control files described above.
+   `/root/.cache`. Rank 0 requires the prefill/MTP controls; every rank also
+   requires the selected E3 row control described above.
 4. Use host network/IPC, GPU access, `/dev/infiniband`, unlimited memlock,
    `IPC_LOCK`, and the host's performance CPU cores.
 5. Set `NODE_RANK`, `HEAD_IP`, `VLLM_HOST_IP`, `NCCL_SOCKET_IFNAME`,

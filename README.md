@@ -13,21 +13,22 @@ reboot. No 12-hour soak was run. [Operating notes](recipes/vllm-tp6/OPERATIONS.m
 
 | Measurement | vLLM P27 |
 | --- | ---: |
-| Prose generation, one request | **35.2 output tok/s median** |
-| Code generation, one request | **47.8 output tok/s median** |
-| Four concurrent requests, cached short mixed workload | **78.3 output tok/s combined median** |
-| Cold prefill, 8K / 32K | **939 / 931 input tok/s** |
-| Time to first token, 8K / 32K | **8.72 / 35.19 s** |
+| Prose generation, one request | **36.8 output tok/s median** |
+| Code generation, one request | **48.6 output tok/s median** |
+| Four concurrent requests, cached short mixed workload | **78.1 output tok/s combined median** |
+| Cold prefill, 8K / 32K | **982 / 965 input tok/s** |
+| Time to first token, 8K / 32K | **8.34 / 33.94 s** |
 | Configured context / admitted requests | **360,000 tokens / 4** |
 | KV allocation | **24 GiB per rank** |
 
-October 3, three samples per workload. Dual-port RoCEnante is selected on the same
-image: **+2.4%** across the matched cached workload matrix and **+3–4%** at C4.
-Code improves 2.3%, prose falls 2.0%, and cold prefill is unchanged versus the
-matched single-port control. Prefill is prompt tokens divided by TTFT; the C4
-matrix uses 256 output tokens per request, while generation tests use 512.
-Concurrent requests share the cache; four full-length contexts are not promised.
-[Samples, quality, tradeoffs and recipe](recipes/vllm-tp6/COMMUNICATION.md).
+October 3, three samples per workload across alternating row64/row32 visits in
+one six-rank deployment. **32-row E3 prefill is selected:** cold prefill improves
+**3.9% / 3.3%** at 8K/32K. The cached matrix improves 1.8% overall, but short and
+32K C4 medians fall 2.4% / 2.6%; this is not a uniform speedup. Generation varies
+with unchanged adaptive MTP and is not an isolated E3 decode-kernel gain.
+Prefill is prompt tokens divided by TTFT. C4 uses 256 output tokens per request;
+single-request generation uses 512. All requests share the cache.
+[Every sample, quality checks and replay](recipes/vllm-tp6/E3_PREFILL.md).
 
 New cache replay: repeated 8K / 32K / 128K code-tool histories reached first
 tokens in **0.60 / 0.64 / 0.87 seconds**, versus **8.65 / 35.28 / 142.39 seconds**
@@ -66,10 +67,11 @@ mixed prefill/decode scheduling, workload-aware MTP, six-rank communication,
 E3 prefill kernels, and target-verified copy/ngram drafting. Prompt reuse has
 been measured; smaller prefill budgets and MTP retuning were rejected for promotion.
 Dual-port communication and its bounded crossover screen are complete; retain
-the 2 MiB cutoff. [E3 route capture](recipes/vllm-tp6/E3_PREFILL.md) found about
-26.5% unused tile capacity. The 32-row candidate passed 468 exact component checks
-and ran 13.5% faster at 3072 rows in isolated tests; full-model validation remains.
-This is not a serving-speed claim. Copy/ngram drafting also remains.
+the 2 MiB cutoff. [E3 row32](recipes/vllm-tp6/E3_PREFILL.md) passed component and
+full-model checks and is selected for repeatable cold-prefill gains. A native/E3
+crossover follow-up and [copy/ngram drafting](recipes/vllm-tp6/COPY_DRAFTING.md)
+remain. Copy drafting has source/CPU checks and an offline launcher; no serving
+comparison or promotion yet.
 TensorFold development is excluded from this optimization goal.
 
 ## Credits
