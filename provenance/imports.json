@@ -3660,6 +3660,60 @@
       "sha256": "bf0f14dceac8b760d107b8fa7e10081e1c5d1acfc0cc2d9e2d60f0ac01cb7a0a",
       "origin": "amos-recipes@5bd4d47ce20866232283569ed2803b460728de8d:qualification/serving-optimization-20261003/prefill-budget-summary.json",
       "change": "Selected public summary plus source revision and packaging metadata; source receipt hashes retained. No raw application records or site mappings."
+    },
+    {
+      "path": "runtime/vllm/amos_mtp_tuning.py",
+      "sha256": "22ec81965900bda062dad9b74f13e4f464c1b74e88741c066ecaf73c5e320c07",
+      "origin": "amos-recipes@e788e69b84038f213ec3623b3eb86312ee4122b3:runtime/exl3-tp6/amos_mtp_tuning.py",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/patch_mtp_tuning.py",
+      "sha256": "9132d4928176af461b2162230dd7ae53948dd6a1dbeb04bd215ce676b28fb27f",
+      "origin": "amos-recipes@e788e69b84038f213ec3623b3eb86312ee4122b3:runtime/exl3-tp6/patch_mtp_tuning.py",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/build_mtp_tuning.py",
+      "sha256": "ca3828007974c12967a6c38c12cffba50f13b06caa202ce87492df1436a29577",
+      "origin": "amos-recipes@e788e69b84038f213ec3623b3eb86312ee4122b3:runtime/exl3-tp6/build_mtp_tuning.py",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/test_mtp_tuning.py",
+      "sha256": "208a8ed9e5cb3ca92b82f03aa996d3caa7d75dc01e95a98bc5145e7b98ad6263",
+      "origin": "amos-recipes@e788e69b84038f213ec3623b3eb86312ee4122b3:runtime/exl3-tp6/test_mtp_tuning.py",
+      "change": null
+    },
+    {
+      "path": "benchmarks/analyze_mtp_matrix.py",
+      "sha256": "f543fcf6fbae79417d1a0edd6e5d8b04a7edef7dc93e993e5c1d2e2a3bf04ca1",
+      "origin": "amos-recipes@e788e69b84038f213ec3623b3eb86312ee4122b3:runtime/exl3-tp6/analyze_mtp_matrix.py",
+      "change": null
+    },
+    {
+      "path": "benchmarks/mtp-fixtures.json",
+      "sha256": "542ce05b3bdc49d352097b31a9553f152ee1cf597445570858fd15d35681aadd",
+      "origin": "amos-recipes@e788e69b84038f213ec3623b3eb86312ee4122b3:qualification/serving-optimization-20261003/mtp-fixtures.json",
+      "change": null
+    },
+    {
+      "path": "results/mtp-first-pass.json",
+      "sha256": "775fb2a489321e41031f8ce04ccc536af9b665d6ecd8256d97adbf81b55e0b11",
+      "origin": "amos-recipes@e788e69b84038f213ec3623b3eb86312ee4122b3:qualification/serving-optimization-20261003/mtp-first-pass.json",
+      "change": "Add source revision; selected timing/quality metadata only."
+    },
+    {
+      "path": "benchmarks/mtp_matrix.py",
+      "sha256": "60041c73e75178bfa74cd2b1a91fb1c3c03aecb3cd13cffad07fe8687609a931",
+      "origin": "amos-recipes@e788e69b84038f213ec3623b3eb86312ee4122b3:runtime/exl3-tp6/{mtp_trials.py,cache_reuse.py,mixed_prefill.py}",
+      "change": "Export identical stream, idle, percentile, measurement and benchmark functions with a portable API/key-file CLI; site-owned guard verification remains external and memory sample is null."
+    },
+    {
+      "path": "runtime/vllm/amos_mtp_costs.json",
+      "sha256": "bc00bb014bfc46ac5cdfa8fe5d717c44ec456f19191dae5af447da7b5074fd7f",
+      "origin": "amos-recipes@e788e69b84038f213ec3623b3eb86312ee4122b3:runtime/exl3-tp6/amos_mtp_costs.json",
+      "change": null
     }
   ]
 }

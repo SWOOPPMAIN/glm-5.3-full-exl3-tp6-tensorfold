@@ -14,4 +14,5 @@ jobs:
       - run: python3 -m pip install -r requirements-check.txt
       - run: python3 -m unittest discover -s weights -p 'test_placement.py'
       - run: python3 -m unittest discover -s runtime/vllm -p 'test_prefill_budget.py'
+      - run: python3 -m unittest discover -s runtime/vllm -p 'test_mtp_tuning.py'
       - run: bash -n runtime/vllm/node.sh

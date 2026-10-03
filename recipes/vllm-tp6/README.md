@@ -12,14 +12,16 @@ image from a clean machine or provide a downloadable registry image.
 Do not substitute a stock vLLM image: it lacks the required mixed-K/TP6 patches.
 
 ```text
-Current image ID: sha256:7176241a30ba8349fccb979ad7a35d0eba422d23017543da8c0147b28cb0c1cd
+Current image ID: sha256:2e947348fd26b8d58e4535e0321126935069a5e521784fa573f19fb560975d9d
+Budget-control base: sha256:7176241a30ba8349fccb979ad7a35d0eba422d23017543da8c0147b28cb0c1cd
 P27 base image ID: sha256:8935c96fe1670c4016bbc47c905477cb652a5a2b89214c0e952920d2ed232e90
 ```
 
-The October 3 image adds a bounded scheduler control and repairs image layer
-depth. It retains the qualified **3072** policy. Before starting rank 0, install
-the required persistent [control file and read its qualification limits](PREFILL_BUDGETS.md).
-Smaller/adaptive budgets failed the numerical gate and are not serving.
+The October 3 image adds bounded prefill and MTP controls. It retains qualified
+**3072** prefill and the **original adaptive MTP policy**. Before starting rank 0,
+install both persistent control files and read their qualification limits:
+[prefill budgets](PREFILL_BUDGETS.md) and [MTP tuning](MTP_TUNING.md).
+Smaller/adaptive budgets failed the numerical gate; MTP tuning remains in progress.
 
 A Docker image ID is not a registry digest. Move an existing image with
 `docker save` / `docker load`, then compare `docker image inspect --format
@@ -60,7 +62,7 @@ guards; its site-specific host mappings and credentials are deliberately absent 
 2. Confirm the image ID and verified local shard on every rank.
 3. Mount the rank directory at `/model:ro`, the entrypoint at
    `/opt/amos-tp6/node.sh:ro`, and a writable persistent local cache at
-   `/root/.cache`. Rank 0 requires the control file described above.
+   `/root/.cache`. Rank 0 requires both control files described above.
 4. Use host network/IPC, GPU access, `/dev/infiniband`, unlimited memlock,
    `IPC_LOCK`, and the host's performance CPU cores.
 5. Set `NODE_RANK`, `HEAD_IP`, `VLLM_HOST_IP`, `NCCL_SOCKET_IFNAME`,

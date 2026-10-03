@@ -1,0 +1,3165 @@
+{
+  "schema": 1,
+  "phase": "measurement_summary_only",
+  "image": "sha256:2e947348fd26b8d58e4535e0321126935069a5e521784fa573f19fb560975d9d",
+  "fixtures_sha256": "542ce05b3bdc49d352097b31a9553f152ee1cf597445570858fd15d35681aadd",
+  "sources": {
+    "mtp1-r0-original-bench.json": "f5d4294320bc8ab00e181298b7868cf0526080b9c6a48e54717d23bb35975f16",
+    "mtp1-r0-depth4-bench.json": "e4ae67a925d2940d6cc5d57a02a3d3926b12c38acec50c3209c7641fe157e6ee",
+    "mtp1-r0-depth2-bench.json": "0f175ec4be20ee6418a8f47ab732a4542bdca409639af239378c7a04324dac73",
+    "mtp1-r0-depth1-bench.json": "487b3740d59197af335510fbcd043ba27641dabe122462a20cb30442c5c90477",
+    "mtp1-r0-depth3-bench.json": "8b574743952ed4fc47d06f7fcbcfa59d11ce36c721913d3cded1c363a2d9e026",
+    "mtp1-original-quality-short.json": "7f7dc720cb0802e7eb4de59c4a6396113765ac5a5b8c1eb5982ec992168bd3f9",
+    "mtp1-original-quality-long.json": "72f1e582fe5a10fe69cc9e31ab3cd731167179259ff85abc2b1f73223e43d3e9",
+    "mtp1-window-native.json": "ad9174c84d1553e9c46de63e0c1253234c62df32afec5a7da2b5375e908bbca1",
+    "mtp1-application-acceptance.json": "7eb2b7db9395cc0a5933dafa6c642d2b0d37f755d8772c193cb1d1ad7737e649",
+    "mtp-cpu-checks.json": "dd554b1219ab058180a3f23a86ce22fa0e5c8139f1d5cd00f36735c1edfc455a",
+    "mtp-tuning-build.json": "7d63bed9f1a31648a7d145fc6559cf3b54c4813b532592167b79e3bf58bae905",
+    "mtp-image-distribution.json": "100de0d43b430563e36a1e35e94bc7026d2abedf328a262b29aab86104ad0db1"
+  },
+  "cells": [
+    {
+      "policy": "fixed1",
+      "context": 0,
+      "kind": "code",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 35.299230546058276,
+      "range_output_tok_s": [
+        35.299230546058276,
+        35.299230546058276
+      ],
+      "median_step_ms_estimate": 52.681511749996744,
+      "median_accepted_per_wall_second": 16.960177176426434,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth1-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 35.299230546058276,
+          "mean_decode_tok_s_estimate": 36.66606755317413,
+          "mean_ttft_seconds": 0.297381485812366,
+          "mean_attempted_depth": 1.0,
+          "accepted_per_draft": 0.9318181818181818,
+          "server_step_ms_estimate": 52.681511749996744,
+          "accepted_per_wall_second": 16.960177176426434,
+          "accepted_per_server_request_decode_second": 17.687764660972157,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "17c8bac7a3a7dfdc56097b94c91f24f425e1041aae41c08b9dc0cfde2da51c95"
+          ],
+          "reasoning_hashes": [
+            "3fa1017928c90a9ac82327c16af51f055b5a7f83404d372f532fd8c822eba702"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed1",
+      "context": 0,
+      "kind": "mixed",
+      "requests": 4,
+      "repetitions": 1,
+      "median_output_tok_s": 75.23950236339167,
+      "range_output_tok_s": [
+        75.23950236339167,
+        75.23950236339167
+      ],
+      "median_step_ms_estimate": 90.62127565872004,
+      "median_accepted_per_wall_second": 34.901136350206095,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth1-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 75.23950236339167,
+          "mean_decode_tok_s_estimate": 20.90719895499716,
+          "mean_ttft_seconds": 0.8076966458465904,
+          "mean_attempted_depth": 1.0,
+          "accepted_per_draft": 0.8715596330275229,
+          "server_step_ms_estimate": 90.62127565872004,
+          "accepted_per_wall_second": 34.901136350206095,
+          "accepted_per_server_request_decode_second": 9.617604990574385,
+          "output_tokens": [
+            256,
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "09c494929412e90c3d2247df5cec454ff2e762087859b09b0967f53de2ef1059",
+            "d86fa38cd7e1e299c0ee1a4e91a872d8976923b07d22d4a37b3faddd40f3aa61",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "a6d1b17521008eb1d9d796d0e43c0a1c58d98221db082e52bde38e225a101252"
+          ],
+          "reasoning_hashes": [
+            "3fa1017928c90a9ac82327c16af51f055b5a7f83404d372f532fd8c822eba702",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "3fa1017928c90a9ac82327c16af51f055b5a7f83404d372f532fd8c822eba702"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true,
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed1",
+      "context": 0,
+      "kind": "prose",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 31.970932854227716,
+      "range_output_tok_s": [
+        31.970932854227716,
+        31.970932854227716
+      ],
+      "median_step_ms_estimate": 51.79283732215615,
+      "median_accepted_per_wall_second": 13.237964384953663,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth1-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 31.970932854227716,
+          "mean_decode_tok_s_estimate": 33.30245666285362,
+          "mean_ttft_seconds": 0.34991505881771445,
+          "mean_attempted_depth": 1.0,
+          "accepted_per_draft": 0.7114093959731543,
+          "server_step_ms_estimate": 51.79283732215615,
+          "accepted_per_wall_second": 13.237964384953663,
+          "accepted_per_server_request_decode_second": 13.735671431710205,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "1cdc77815f29ed184218e34d0949ecfefe3dbbead9c4f6e4d9cc08f641080907"
+          ],
+          "reasoning_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed1",
+      "context": 0,
+      "kind": "tools",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 34.926149031524126,
+      "range_output_tok_s": [
+        34.926149031524126,
+        34.926149031524126
+      ],
+      "median_step_ms_estimate": 52.85008848090043,
+      "median_accepted_per_wall_second": 16.9173534371445,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth1-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 34.926149031524126,
+          "mean_decode_tok_s_estimate": 37.47147091290043,
+          "mean_ttft_seconds": 0.5243354220874608,
+          "mean_attempted_depth": 1.0,
+          "accepted_per_draft": 0.9465648854961832,
+          "server_step_ms_estimate": 52.85008848090043,
+          "accepted_per_wall_second": 16.9173534371445,
+          "accepted_per_server_request_decode_second": 17.910374659793874,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "tool_streams": [
+            true
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed1",
+      "context": 8192,
+      "kind": "code",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 32.4915082439929,
+      "range_output_tok_s": [
+        32.4915082439929,
+        32.4915082439929
+      ],
+      "median_step_ms_estimate": 55.24740182705787,
+      "median_accepted_per_wall_second": 15.484234397527864,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth1-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 32.4915082439929,
+          "mean_decode_tok_s_estimate": 34.721564663867554,
+          "mean_ttft_seconds": 0.5346138053573668,
+          "mean_attempted_depth": 1.0,
+          "accepted_per_draft": 0.9172932330827067,
+          "server_step_ms_estimate": 55.24740182705787,
+          "accepted_per_wall_second": 15.484234397527864,
+          "accepted_per_server_request_decode_second": 16.60337324014131,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "e7a92fafbf7d1cc958c929fd6345242207cb18ce97f27a74230648a4cd9e694b"
+          ],
+          "reasoning_hashes": [
+            "8bb1eec68fcdc2065ea6d439e57e9ed4d9976ba573cb24e366074415368663ea"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed1",
+      "context": 8192,
+      "kind": "mixed",
+      "requests": 4,
+      "repetitions": 1,
+      "median_output_tok_s": 66.66429736211686,
+      "range_output_tok_s": [
+        66.66429736211686,
+        66.66429736211686
+      ],
+      "median_step_ms_estimate": 100.19301697986401,
+      "median_accepted_per_wall_second": 30.923380124028817,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth1-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 66.66429736211686,
+          "mean_decode_tok_s_estimate": 18.664938917956356,
+          "mean_ttft_seconds": 1.2640036244411021,
+          "mean_attempted_depth": 1.0,
+          "accepted_per_draft": 0.86996336996337,
+          "server_step_ms_estimate": 100.19301697986401,
+          "accepted_per_wall_second": 30.923380124028817,
+          "accepted_per_server_request_decode_second": 8.682874277937037,
+          "output_tokens": [
+            256,
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "b441c6dc1215f5942f08728901562e8e3aad7e46f888b1e08bb8804171b8e55c",
+            "e8f5ff29119bb4f74f1b15b04a6b4ea3fb7426ba370b89211482649b94852eb5",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "7fedc9928c1432937c180f3a1141ed729bdae43d7f989470957cd088691a7aa4"
+          ],
+          "reasoning_hashes": [
+            "9b3c1b8611ebe194484780cfb6de7f72ea6bd183e478ba82d51e3d205f4e72cf",
+            "4acd20d4f0c172bfe1a5665b5c5bba3a3f65de512b62d6273a6161ac715d1174",
+            "c488759ffdb1dea28fd25681dfa7dcfef2bf344e41b7fe6bdcb0bbffe7f869fa",
+            "8bb1eec68fcdc2065ea6d439e57e9ed4d9976ba573cb24e366074415368663ea"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true,
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed1",
+      "context": 8192,
+      "kind": "prose",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 30.40856300485775,
+      "range_output_tok_s": [
+        30.40856300485775,
+        30.40856300485775
+      ],
+      "median_step_ms_estimate": 54.41671456551533,
+      "median_accepted_per_wall_second": 13.066179416149815,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth1-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 30.40856300485775,
+          "mean_decode_tok_s_estimate": 32.33478939585822,
+          "mean_ttft_seconds": 0.532179560046643,
+          "mean_attempted_depth": 1.0,
+          "accepted_per_draft": 0.7586206896551724,
+          "server_step_ms_estimate": 54.41671456551533,
+          "accepted_per_wall_second": 13.066179416149815,
+          "accepted_per_server_request_decode_second": 13.94094986645742,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "14be341e73e4b558b888bf99d4cefa47daa798db373cbf134468461c182dc8d7"
+          ],
+          "reasoning_hashes": [
+            "25b8c9e3dd52cfab57b79d5fafb662523ee776537db47f071241dd6ae8fcdbe5"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed1",
+      "context": 8192,
+      "kind": "tools",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 32.086817087981785,
+      "range_output_tok_s": [
+        32.086817087981785,
+        32.086817087981785
+      ],
+      "median_step_ms_estimate": 54.96859273913235,
+      "median_accepted_per_wall_second": 14.790017251491603,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth1-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 32.086817087981785,
+          "mean_decode_tok_s_estimate": 33.610334211263606,
+          "mean_ttft_seconds": 0.3911471567116678,
+          "mean_attempted_depth": 1.0,
+          "accepted_per_draft": 0.855072463768116,
+          "server_step_ms_estimate": 54.96859273913235,
+          "accepted_per_wall_second": 14.790017251491603,
+          "accepted_per_server_request_decode_second": 15.55565498695015,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "4ce62b8eece8461cb09340b4736927635bc8c40c693a740558d62ab3b5584595"
+          ],
+          "tool_streams": [
+            true
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed1",
+      "context": 32768,
+      "kind": "code",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 31.574597322191874,
+      "range_output_tok_s": [
+        31.574597322191874,
+        31.574597322191874
+      ],
+      "median_step_ms_estimate": 55.44220128676363,
+      "median_accepted_per_wall_second": 14.80059249477744,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth1-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 31.574597322191874,
+          "mean_decode_tok_s_estimate": 33.88970650460978,
+          "mean_ttft_seconds": 0.5831285859458148,
+          "mean_attempted_depth": 1.0,
+          "accepted_per_draft": 0.8823529411764706,
+          "server_step_ms_estimate": 55.44220128676363,
+          "accepted_per_wall_second": 14.80059249477744,
+          "accepted_per_server_request_decode_second": 15.914825181862415,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "7151232d39ecffd896323a5608aad00c1214d53c3e050fd221b5137216d434ca"
+          ],
+          "reasoning_hashes": [
+            "ab51b27a67ebb4f7930a207942dcbc66387c65edf73038e67630498db8fd1c32"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed1",
+      "context": 32768,
+      "kind": "mixed",
+      "requests": 4,
+      "repetitions": 1,
+      "median_output_tok_s": 64.85345442393448,
+      "range_output_tok_s": [
+        64.85345442393448,
+        64.85345442393448
+      ],
+      "median_step_ms_estimate": 102.39329386257016,
+      "median_accepted_per_wall_second": 29.640055342188806,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth1-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 64.85345442393448,
+          "mean_decode_tok_s_estimate": 18.095022966696266,
+          "mean_ttft_seconds": 1.3866671005962417,
+          "mean_attempted_depth": 1.0,
+          "accepted_per_draft": 0.8462929475587704,
+          "server_step_ms_estimate": 102.39329386257016,
+          "accepted_per_wall_second": 29.640055342188806,
+          "accepted_per_server_request_decode_second": 8.265120845654643,
+          "output_tokens": [
+            256,
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "320eb1a7e3c8b76ef23fe4aaa3bfa76b67b8a4ba56d7fc5baa82056026477e2f",
+            "f5c36b1498161f99babe95ed3f5618b7a5b3f000c65abe4788ca82bac7505efc",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "2b0165c16c9734e98aeb6489e34e2188fb2563447755d7ea54ce22aca9a6ee23"
+          ],
+          "reasoning_hashes": [
+            "4dd4cc1154af9a249793ee5e185c256916fe446ed55c48d14dfc9e763b53655c",
+            "a7b9f9f5e566b1fecbc475f5ee634e2216c4d78fffcab40cc5592f67f34a4c1d",
+            "5aa3646f551d261b00910de8279fb2f9607ee405dbebf0bba987e1743b7fe5f0",
+            "86e2207ca18fe393f23f6e5e355d49bb53d2fd4adc719cd6c10f12388412b98f"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true,
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed1",
+      "context": 32768,
+      "kind": "prose",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 30.859186789155277,
+      "range_output_tok_s": [
+        30.859186789155277,
+        30.859186789155277
+      ],
+      "median_step_ms_estimate": 54.817463581554314,
+      "median_accepted_per_wall_second": 13.74198161704571,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth1-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 30.859186789155277,
+          "mean_decode_tok_s_estimate": 33.04781415051863,
+          "mean_ttft_seconds": 0.5793975158594549,
+          "mean_attempted_depth": 1.0,
+          "accepted_per_draft": 0.8085106382978723,
+          "server_step_ms_estimate": 54.817463581554314,
+          "accepted_per_wall_second": 13.74198161704571,
+          "accepted_per_server_request_decode_second": 14.749143529689514,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "44f9d8d7f5a3a69b205f669d9c4b37bd00dc1e8778922a1b33576d8bbb8e3fe2"
+          ],
+          "reasoning_hashes": [
+            "e7c8921874b95157b58d3a40e7cf2ba42cbb5a91de77dc00a83c7c7271cbf4f4"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed1",
+      "context": 32768,
+      "kind": "tools",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 31.957798050263392,
+      "range_output_tok_s": [
+        31.957798050263392,
+        31.957798050263392
+      ],
+      "median_step_ms_estimate": 55.0478460370397,
+      "median_accepted_per_wall_second": 14.980217836060964,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth1-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 31.957798050263392,
+          "mean_decode_tok_s_estimate": 34.38014672941895,
+          "mean_ttft_seconds": 0.5932431458495557,
+          "mean_attempted_depth": 1.0,
+          "accepted_per_draft": 0.8888888888888888,
+          "server_step_ms_estimate": 55.0478460370397,
+          "accepted_per_wall_second": 14.980217836060964,
+          "accepted_per_server_request_decode_second": 16.14756894013233,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "c488759ffdb1dea28fd25681dfa7dcfef2bf344e41b7fe6bdcb0bbffe7f869fa"
+          ],
+          "tool_streams": [
+            true
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed2",
+      "context": 0,
+      "kind": "code",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 41.084622301847425,
+      "range_output_tok_s": [
+        41.084622301847425,
+        41.084622301847425
+      ],
+      "median_step_ms_estimate": 61.18455628867318,
+      "median_accepted_per_wall_second": 25.35691532692146,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth2-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 41.084622301847425,
+          "mean_decode_tok_s_estimate": 42.965427192598916,
+          "mean_ttft_seconds": 0.29578948207199574,
+          "mean_attempted_depth": 2.0,
+          "accepted_per_draft": 1.6288659793814433,
+          "server_step_ms_estimate": 61.18455628867318,
+          "accepted_per_wall_second": 25.35691532692146,
+          "accepted_per_server_request_decode_second": 26.622175238083535,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "c0550181ac6a9b434dd01c6438d185b7df2a34a9513c64e9489a13cc7763dc7c"
+          ],
+          "reasoning_hashes": [
+            "8a31318f0a69b58072d8fa8b4151661c5182fabdc0d9bf687ba8e07c5aebc1d1"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed2",
+      "context": 0,
+      "kind": "mixed",
+      "requests": 4,
+      "repetitions": 1,
+      "median_output_tok_s": 76.33546035304778,
+      "range_output_tok_s": [
+        76.33546035304778,
+        76.33546035304778
+      ],
+      "median_step_ms_estimate": 111.88402248077321,
+      "median_accepted_per_wall_second": 45.249633236621094,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth2-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 76.33546035304778,
+          "mean_decode_tok_s_estimate": 22.25466076513403,
+          "mean_ttft_seconds": 0.8552932209568098,
+          "mean_attempted_depth": 2.0,
+          "accepted_per_draft": 1.4591346153846154,
+          "server_step_ms_estimate": 111.88402248077321,
+          "accepted_per_wall_second": 45.249633236621094,
+          "accepted_per_server_request_decode_second": 13.041492279519726,
+          "output_tokens": [
+            256,
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "02e1b1b1f2a13a6c01e2baeacdec4ff1e95a1d1baf5e58c14d710d7887e016ea",
+            "1af4f24f975e081d17d3faff8a0b17050018d3b9b407334a63c38d96934c5675",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "0392c554c14a848f36e5802975f815d5dfc3a0a5f0d11957a4ee83733d82285d"
+          ],
+          "reasoning_hashes": [
+            "3fa1017928c90a9ac82327c16af51f055b5a7f83404d372f532fd8c822eba702",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "3fa1017928c90a9ac82327c16af51f055b5a7f83404d372f532fd8c822eba702"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true,
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed2",
+      "context": 0,
+      "kind": "prose",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 32.37656263637066,
+      "range_output_tok_s": [
+        32.37656263637066,
+        32.37656263637066
+      ],
+      "median_step_ms_estimate": 60.43407871428436,
+      "median_accepted_per_wall_second": 16.441223213781974,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth2-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 32.37656263637066,
+          "mean_decode_tok_s_estimate": 33.78917867282802,
+          "mean_ttft_seconds": 0.35990490997210145,
+          "mean_attempted_depth": 2.0,
+          "accepted_per_draft": 1.0317460317460319,
+          "server_step_ms_estimate": 60.43407871428436,
+          "accepted_per_wall_second": 16.441223213781974,
+          "accepted_per_server_request_decode_second": 17.07225548392724,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "369537550238d5cccf52feea488b23f40e6572a1dcc60ec1093dbedf977b7ad6"
+          ],
+          "reasoning_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed2",
+      "context": 0,
+      "kind": "tools",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 41.66099110125041,
+      "range_output_tok_s": [
+        41.66099110125041,
+        41.66099110125041
+      ],
+      "median_step_ms_estimate": 61.82645251613795,
+      "median_accepted_per_wall_second": 26.526334177749284,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth2-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 41.66099110125041,
+          "mean_decode_tok_s_estimate": 45.43903861628221,
+          "mean_ttft_seconds": 0.5327191767282784,
+          "mean_attempted_depth": 2.0,
+          "accepted_per_draft": 1.7526881720430108,
+          "server_step_ms_estimate": 61.82645251613795,
+          "accepted_per_wall_second": 26.526334177749284,
+          "accepted_per_server_request_decode_second": 28.34851589755249,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "tool_streams": [
+            true
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed2",
+      "context": 8192,
+      "kind": "code",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 37.38259649519383,
+      "range_output_tok_s": [
+        37.38259649519383,
+        37.38259649519383
+      ],
+      "median_step_ms_estimate": 64.43276233674587,
+      "median_accepted_per_wall_second": 23.218097041936794,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth2-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 37.38259649519383,
+          "mean_decode_tok_s_estimate": 40.410251204072935,
+          "mean_ttft_seconds": 0.5375793790444732,
+          "mean_attempted_depth": 2.0,
+          "accepted_per_draft": 1.6224489795918366,
+          "server_step_ms_estimate": 64.43276233674587,
+          "accepted_per_wall_second": 23.218097041936794,
+          "accepted_per_server_request_decode_second": 25.180497013497707,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "f53d9ec5e3231f85db540f7d9a57afdf405235bfcbdc5a95194c23b20886b0a0"
+          ],
+          "reasoning_hashes": [
+            "8bb1eec68fcdc2065ea6d439e57e9ed4d9976ba573cb24e366074415368663ea"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed2",
+      "context": 8192,
+      "kind": "mixed",
+      "requests": 4,
+      "repetitions": 1,
+      "median_output_tok_s": 72.22553896325654,
+      "range_output_tok_s": [
+        72.22553896325654,
+        72.22553896325654
+      ],
+      "median_step_ms_estimate": 123.0174022239318,
+      "median_accepted_per_wall_second": 44.43563432309729,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth2-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 72.22553896325654,
+          "mean_decode_tok_s_estimate": 21.17514872896309,
+          "mean_ttft_seconds": 1.2762949689058587,
+          "mean_attempted_depth": 2.0,
+          "accepted_per_draft": 1.6030534351145038,
+          "server_step_ms_estimate": 123.0174022239318,
+          "accepted_per_wall_second": 44.43563432309729,
+          "accepted_per_server_request_decode_second": 13.031111095944162,
+          "output_tokens": [
+            256,
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "07c481b72924260927f5f9fb52119636513a6894927b49b8bbf7144cb69f7638",
+            "8bdad127dac803b654afa308dcd1fcc6e38105e2395ac44c56091b6632960364",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "ab8360dc975052d2f39735b78a29e3e3f0093e34faa34e35ec561ec9c2504677"
+          ],
+          "reasoning_hashes": [
+            "8bb1eec68fcdc2065ea6d439e57e9ed4d9976ba573cb24e366074415368663ea",
+            "2a6b5c83c80cedd13436c023ba652851fdf1fc2aa04f0d3a42b7d2fc2e4bcf84",
+            "c488759ffdb1dea28fd25681dfa7dcfef2bf344e41b7fe6bdcb0bbffe7f869fa",
+            "8bb1eec68fcdc2065ea6d439e57e9ed4d9976ba573cb24e366074415368663ea"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true,
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed2",
+      "context": 8192,
+      "kind": "prose",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 31.56128274847884,
+      "range_output_tok_s": [
+        31.56128274847884,
+        31.56128274847884
+      ],
+      "median_step_ms_estimate": 63.168600575014956,
+      "median_accepted_per_wall_second": 16.76693146012938,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth2-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 31.56128274847884,
+          "mean_decode_tok_s_estimate": 33.673465857192525,
+          "mean_ttft_seconds": 0.5382185680791736,
+          "mean_attempted_depth": 2.0,
+          "accepted_per_draft": 1.1333333333333333,
+          "server_step_ms_estimate": 63.168600575014956,
+          "accepted_per_wall_second": 16.76693146012938,
+          "accepted_per_server_request_decode_second": 17.941403213254024,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "83ae2ee0262e0a0fe0e658d1ef83757b0f0f8f97121b991e5214fd6ceeeaa36c"
+          ],
+          "reasoning_hashes": [
+            "25b8c9e3dd52cfab57b79d5fafb662523ee776537db47f071241dd6ae8fcdbe5"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed2",
+      "context": 8192,
+      "kind": "tools",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 38.44675967396644,
+      "range_output_tok_s": [
+        38.44675967396644,
+        38.44675967396644
+      ],
+      "median_step_ms_estimate": 64.58534048455401,
+      "median_accepted_per_wall_second": 23.879042141252594,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth2-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 38.44675967396644,
+          "mean_decode_tok_s_estimate": 40.72662015714012,
+          "mean_ttft_seconds": 0.3970355922356248,
+          "mean_attempted_depth": 2.0,
+          "accepted_per_draft": 1.6391752577319587,
+          "server_step_ms_estimate": 64.58534048455401,
+          "accepted_per_wall_second": 23.879042141252594,
+          "accepted_per_server_request_decode_second": 25.37998941298417,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "4ce62b8eece8461cb09340b4736927635bc8c40c693a740558d62ab3b5584595"
+          ],
+          "tool_streams": [
+            true
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed2",
+      "context": 32768,
+      "kind": "code",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 36.61670117216583,
+      "range_output_tok_s": [
+        36.61670117216583,
+        36.61670117216583
+      ],
+      "median_step_ms_estimate": 64.81249977778961,
+      "median_accepted_per_wall_second": 22.313302276788555,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth2-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 36.61670117216583,
+          "mean_decode_tok_s_estimate": 39.8252669430217,
+          "mean_ttft_seconds": 0.5881523336283863,
+          "mean_attempted_depth": 2.0,
+          "accepted_per_draft": 1.5757575757575757,
+          "server_step_ms_estimate": 64.81249977778961,
+          "accepted_per_wall_second": 22.313302276788555,
+          "accepted_per_server_request_decode_second": 24.312556700637664,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "f0e1b0ca7ca475c6d8066f390b2820943366ef564efbb87a01cb5d706c4d647d"
+          ],
+          "reasoning_hashes": [
+            "ab51b27a67ebb4f7930a207942dcbc66387c65edf73038e67630498db8fd1c32"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed2",
+      "context": 32768,
+      "kind": "mixed",
+      "requests": 4,
+      "repetitions": 1,
+      "median_output_tok_s": 70.0903472160079,
+      "range_output_tok_s": [
+        70.0903472160079,
+        70.0903472160079
+      ],
+      "median_step_ms_estimate": 126.41234006801247,
+      "median_accepted_per_wall_second": 42.98509575356734,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth2-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 70.0903472160079,
+          "mean_decode_tok_s_estimate": 20.41016628863066,
+          "mean_ttft_seconds": 1.4065961841261014,
+          "mean_attempted_depth": 2.0,
+          "accepted_per_draft": 1.5818639798488665,
+          "server_step_ms_estimate": 126.41234006801247,
+          "accepted_per_wall_second": 42.98509575356734,
+          "accepted_per_server_request_decode_second": 12.513525016606692,
+          "output_tokens": [
+            256,
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "4fa3d4d8fb040c0e628d0cf1c491423204a22f8639674ce37d3ef87f7d93c9b6",
+            "d0ccfa80c087fbc2a643df2653b26965f5d5a5355c1adfb6221d8897e134fea9",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "9a49d0b197b46a088b102dc6382a34efe8eb55fc79e6b659cfc92e9427d48200"
+          ],
+          "reasoning_hashes": [
+            "69494080c13d0fd47bd3e104e48c7c3bc01b286c9f45721cb80ad4c4e8b6f439",
+            "19319d7ee2a30f29d756b597844ec5d3a840790b677d4ecfd3690549f65eee46",
+            "c488759ffdb1dea28fd25681dfa7dcfef2bf344e41b7fe6bdcb0bbffe7f869fa",
+            "69494080c13d0fd47bd3e104e48c7c3bc01b286c9f45721cb80ad4c4e8b6f439"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true,
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed2",
+      "context": 32768,
+      "kind": "prose",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 30.877041194658197,
+      "range_output_tok_s": [
+        30.877041194658197,
+        30.877041194658197
+      ],
+      "median_step_ms_estimate": 63.822255421512615,
+      "median_accepted_per_wall_second": 16.162201250328902,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth2-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 30.877041194658197,
+          "mean_decode_tok_s_estimate": 33.07998913932578,
+          "mean_ttft_seconds": 0.5821453891694546,
+          "mean_attempted_depth": 2.0,
+          "accepted_per_draft": 1.1074380165289257,
+          "server_step_ms_estimate": 63.822255421512615,
+          "accepted_per_wall_second": 16.162201250328902,
+          "accepted_per_server_request_decode_second": 17.351909756477216,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "be8ab1c7711117e6d342d3e2a25420bdc349507338e8b7326e3fe467cac28cc7"
+          ],
+          "reasoning_hashes": [
+            "b2d36a7cd68a7bdfbcc482dd8e2278cfa5d19e7f81b8f95c63509a1f29bd4796"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed2",
+      "context": 32768,
+      "kind": "tools",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 35.970341062794986,
+      "range_output_tok_s": [
+        35.970341062794986,
+        35.970341062794986
+      ],
+      "median_step_ms_estimate": 64.65819802967714,
+      "median_accepted_per_wall_second": 21.778917440364154,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth2-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 35.970341062794986,
+          "mean_decode_tok_s_estimate": 39.13816175943705,
+          "mean_ttft_seconds": 0.6013901252299547,
+          "mean_attempted_depth": 2.0,
+          "accepted_per_draft": 1.5346534653465347,
+          "server_step_ms_estimate": 64.65819802967714,
+          "accepted_per_wall_second": 21.778917440364154,
+          "accepted_per_server_request_decode_second": 23.73486289615049,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "c488759ffdb1dea28fd25681dfa7dcfef2bf344e41b7fe6bdcb0bbffe7f869fa"
+          ],
+          "tool_streams": [
+            true
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed3",
+      "context": 0,
+      "kind": "code",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 44.085283861966786,
+      "range_output_tok_s": [
+        44.085283861966786,
+        44.085283861966786
+      ],
+      "median_step_ms_estimate": 69.64332220253064,
+      "median_accepted_per_wall_second": 30.308632655102166,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth3-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 44.085283861966786,
+          "mean_decode_tok_s_estimate": 46.33891307008472,
+          "mean_ttft_seconds": 0.3037520460784435,
+          "mean_attempted_depth": 3.0,
+          "accepted_per_draft": 2.2278481012658227,
+          "server_step_ms_estimate": 69.64332220253064,
+          "accepted_per_wall_second": 30.308632655102166,
+          "accepted_per_server_request_decode_second": 31.9894001435915,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "ee4567f6f3a572474e0556680354154bfec0e15476b7ab14fd82a48826ba22a2"
+          ],
+          "reasoning_hashes": [
+            "5b23810a7966b63304614dccf687eb136ea6835a37c738531a5bbdbd7cdcf88f"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed3",
+      "context": 0,
+      "kind": "mixed",
+      "requests": 4,
+      "repetitions": 1,
+      "median_output_tok_s": 76.12430815894572,
+      "range_output_tok_s": [
+        76.12430815894572,
+        76.12430815894572
+      ],
+      "median_step_ms_estimate": 127.8969083514364,
+      "median_accepted_per_wall_second": 50.40261809742696,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth3-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 76.12430815894572,
+          "mean_decode_tok_s_estimate": 23.06279418154203,
+          "mean_ttft_seconds": 0.8696366215590388,
+          "mean_attempted_depth": 3.0,
+          "accepted_per_draft": 1.937142857142857,
+          "server_step_ms_estimate": 127.8969083514364,
+          "accepted_per_wall_second": 50.40261809742696,
+          "accepted_per_server_request_decode_second": 15.146127315446568,
+          "output_tokens": [
+            256,
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "11d71a50860805c42f03dbaed8909448c13c300229940d7f8047b34db63c3166",
+            "57d0ec2d9d85b51c6bc7f264e9ced9d59a5bc19c55eb17415f2ee05a323b9aa9",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "fa3cc01bfd67d02bcec8a2893b9441ab2520a46d5f466a2d4c9cdc921a607b23"
+          ],
+          "reasoning_hashes": [
+            "23723557b00807d0811ed414ea56f47c1ad174bbe057098c07d7f159c88d46e7",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "8a31318f0a69b58072d8fa8b4151661c5182fabdc0d9bf687ba8e07c5aebc1d1"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true,
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed3",
+      "context": 0,
+      "kind": "prose",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 32.330401817045036,
+      "range_output_tok_s": [
+        32.330401817045036,
+        32.330401817045036
+      ],
+      "median_step_ms_estimate": 68.04572650889895,
+      "median_accepted_per_wall_second": 18.18585102208783,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth3-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 32.330401817045036,
+          "mean_decode_tok_s_estimate": 33.785024645098154,
+          "mean_ttft_seconds": 0.3702700398862362,
+          "mean_attempted_depth": 3.0,
+          "accepted_per_draft": 1.2857142857142858,
+          "server_step_ms_estimate": 68.04572650889895,
+          "accepted_per_wall_second": 18.18585102208783,
+          "accepted_per_server_request_decode_second": 18.894857203797233,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "e2026a78646881bc372eb749382203ba50b347077299d395807f9af470085df6"
+          ],
+          "reasoning_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed3",
+      "context": 0,
+      "kind": "tools",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 45.29170800541039,
+      "range_output_tok_s": [
+        45.29170800541039,
+        45.29170800541039
+      ],
+      "median_step_ms_estimate": 70.95997170270837,
+      "median_accepted_per_wall_second": 32.199573660096455,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth3-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 45.29170800541039,
+          "mean_decode_tok_s_estimate": 49.30299902849234,
+          "mean_ttft_seconds": 0.47991784289479256,
+          "mean_attempted_depth": 3.0,
+          "accepted_per_draft": 2.4594594594594597,
+          "server_step_ms_estimate": 70.95997170270837,
+          "accepted_per_wall_second": 32.199573660096455,
+          "accepted_per_server_request_decode_second": 34.65981454676352,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "tool_streams": [
+            true
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed3",
+      "context": 8192,
+      "kind": "code",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 39.465640372792166,
+      "range_output_tok_s": [
+        39.465640372792166,
+        39.465640372792166
+      ],
+      "median_step_ms_estimate": 74.36511381251876,
+      "median_accepted_per_wall_second": 27.132627756294614,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth3-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 39.465640372792166,
+          "mean_decode_tok_s_estimate": 42.87684503125309,
+          "mean_ttft_seconds": 0.5391653226688504,
+          "mean_attempted_depth": 3.0,
+          "accepted_per_draft": 2.2,
+          "server_step_ms_estimate": 74.36511381251876,
+          "accepted_per_wall_second": 27.132627756294614,
+          "accepted_per_server_request_decode_second": 29.58376431113117,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "16c28eaea1f1e59360e6b978c09ae1b35823798e2e3f02eadba949e058ebc163"
+          ],
+          "reasoning_hashes": [
+            "8bb1eec68fcdc2065ea6d439e57e9ed4d9976ba573cb24e366074415368663ea"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed3",
+      "context": 8192,
+      "kind": "mixed",
+      "requests": 4,
+      "repetitions": 1,
+      "median_output_tok_s": 71.04152606626127,
+      "range_output_tok_s": [
+        71.04152606626127,
+        71.04152606626127
+      ],
+      "median_step_ms_estimate": 143.41783601801242,
+      "median_accepted_per_wall_second": 48.355413738461046,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth3-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 71.04152606626127,
+          "mean_decode_tok_s_estimate": 21.561570912090225,
+          "mean_ttft_seconds": 1.2800305869895965,
+          "mean_attempted_depth": 3.0,
+          "accepted_per_draft": 2.093093093093093,
+          "server_step_ms_estimate": 143.41783601801242,
+          "accepted_per_wall_second": 48.355413738461046,
+          "accepted_per_server_request_decode_second": 14.594370903980263,
+          "output_tokens": [
+            256,
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "7fedc9928c1432937c180f3a1141ed729bdae43d7f989470957cd088691a7aa4",
+            "a4eec837169f8c671abcf3385602727a23fb3833b73992c4da67cf96f2afa6e5",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "bbe4758443a38e64b0d9791c88a4b4234fc7c84544c5b587391aa6529f566653"
+          ],
+          "reasoning_hashes": [
+            "8bb1eec68fcdc2065ea6d439e57e9ed4d9976ba573cb24e366074415368663ea",
+            "33e47089aec19b652a737e192bc7d9c311df5c87c4dd40522de6cf71150e60dc",
+            "c488759ffdb1dea28fd25681dfa7dcfef2bf344e41b7fe6bdcb0bbffe7f869fa",
+            "8bb1eec68fcdc2065ea6d439e57e9ed4d9976ba573cb24e366074415368663ea"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true,
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed3",
+      "context": 8192,
+      "kind": "prose",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 31.452343410220443,
+      "range_output_tok_s": [
+        31.452343410220443,
+        31.452343410220443
+      ],
+      "median_step_ms_estimate": 72.40006653332135,
+      "median_accepted_per_wall_second": 18.42910746692604,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth3-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 31.452343410220443,
+          "mean_decode_tok_s_estimate": 33.55712079309029,
+          "mean_ttft_seconds": 0.5400633751414716,
+          "mean_attempted_depth": 3.0,
+          "accepted_per_draft": 1.4285714285714286,
+          "server_step_ms_estimate": 72.40006653332135,
+          "accepted_per_wall_second": 18.42910746692604,
+          "accepted_per_server_request_decode_second": 19.73163143315544,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "face22fa0107c3552e6cf332ac774df850e817dffdde7a782f104b79a3776e5f"
+          ],
+          "reasoning_hashes": [
+            "33e47089aec19b652a737e192bc7d9c311df5c87c4dd40522de6cf71150e60dc"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed3",
+      "context": 8192,
+      "kind": "tools",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 41.46661544165098,
+      "range_output_tok_s": [
+        41.46661544165098,
+        41.46661544165098
+      ],
+      "median_step_ms_estimate": 75.04516206495578,
+      "median_accepted_per_wall_second": 28.994235015841898,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth3-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 41.46661544165098,
+          "mean_decode_tok_s_estimate": 44.153598616255394,
+          "mean_ttft_seconds": 0.39813570538535714,
+          "mean_attempted_depth": 3.0,
+          "accepted_per_draft": 2.324675324675325,
+          "server_step_ms_estimate": 75.04516206495578,
+          "accepted_per_wall_second": 28.994235015841898,
+          "accepted_per_server_request_decode_second": 30.977017847775297,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "4ce62b8eece8461cb09340b4736927635bc8c40c693a740558d62ab3b5584595"
+          ],
+          "tool_streams": [
+            true
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed3",
+      "context": 32768,
+      "kind": "code",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 39.414594584364146,
+      "range_output_tok_s": [
+        39.414594584364146,
+        39.414594584364146
+      ],
+      "median_step_ms_estimate": 74.93495484812206,
+      "median_accepted_per_wall_second": 27.559423557035867,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth3-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 39.414594584364146,
+          "mean_decode_tok_s_estimate": 43.18509649661597,
+          "mean_ttft_seconds": 0.5900263357907534,
+          "mean_attempted_depth": 3.0,
+          "accepted_per_draft": 2.2658227848101267,
+          "server_step_ms_estimate": 74.93495484812206,
+          "accepted_per_wall_second": 27.559423557035867,
+          "accepted_per_server_request_decode_second": 30.23719423602095,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "c584c12cedaf6edd53bcaa44c7821372c81d4edb1d72d9b1fbcc6799d38026b0"
+          ],
+          "reasoning_hashes": [
+            "31d379c784322679b8a58a1605b883120566e193a5054488dc3df6fcdbeff91c"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed3",
+      "context": 32768,
+      "kind": "mixed",
+      "requests": 4,
+      "repetitions": 1,
+      "median_output_tok_s": 64.93959918111351,
+      "range_output_tok_s": [
+        64.93959918111351,
+        64.93959918111351
+      ],
+      "median_step_ms_estimate": 146.9025619598817,
+      "median_accepted_per_wall_second": 42.74344711725635,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth3-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 64.93959918111351,
+          "mean_decode_tok_s_estimate": 20.03774029427738,
+          "mean_ttft_seconds": 1.4294684081105515,
+          "mean_attempted_depth": 3.0,
+          "accepted_per_draft": 1.9312320916905443,
+          "server_step_ms_estimate": 146.9025619598817,
+          "accepted_per_wall_second": 42.74344711725635,
+          "accepted_per_server_request_decode_second": 13.146347251710653,
+          "output_tokens": [
+            256,
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "b2c0d0730a5aebf4ab52a9d60c434c73eaf17fd5737883dab7e573c838ac03a9",
+            "193fb59543912d66debd2132ce9de12299bafda94d5ab2b94d852a9397f253b9",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "e9d52477a6e2063e26314cce98efbdfe697dee30e79741857f1008cce7541295"
+          ],
+          "reasoning_hashes": [
+            "386d3b378bf930ac986f69b9b186aa86af94756d6223f99710a0b9395ef338ee",
+            "e7c8921874b95157b58d3a40e7cf2ba42cbb5a91de77dc00a83c7c7271cbf4f4",
+            "c488759ffdb1dea28fd25681dfa7dcfef2bf344e41b7fe6bdcb0bbffe7f869fa",
+            "eac5277b940b7cb3ecd58e0e78a048c4d78ce87202fb425143d9f931b43a16b9"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true,
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed3",
+      "context": 32768,
+      "kind": "prose",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 31.14639790635324,
+      "range_output_tok_s": [
+        31.14639790635324,
+        31.14639790635324
+      ],
+      "median_step_ms_estimate": 73.55738438459761,
+      "median_accepted_per_wall_second": 18.493173756897235,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth3-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 31.14639790635324,
+          "mean_decode_tok_s_estimate": 33.39750142803022,
+          "mean_ttft_seconds": 0.5837107957340777,
+          "mean_attempted_depth": 3.0,
+          "accepted_per_draft": 1.4615384615384615,
+          "server_step_ms_estimate": 73.55738438459761,
+          "accepted_per_wall_second": 18.493173756897235,
+          "accepted_per_server_request_decode_second": 19.8693642217721,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "6a53ef393771ec1e523381ef4e93dec4b5ff433ace7cdbc80624ae559ec479af"
+          ],
+          "reasoning_hashes": [
+            "348255e045848fe5b5c8eaa3e00b2d92c10145b9332b2418d8da0ca4c1201409"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed3",
+      "context": 32768,
+      "kind": "tools",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 37.243356970570474,
+      "range_output_tok_s": [
+        37.243356970570474,
+        37.243356970570474
+      ],
+      "median_step_ms_estimate": 74.87371957146631,
+      "median_accepted_per_wall_second": 25.02288046460204,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth3-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 37.243356970570474,
+          "mean_decode_tok_s_estimate": 40.64315508855304,
+          "mean_ttft_seconds": 0.5993858831934631,
+          "mean_attempted_depth": 3.0,
+          "accepted_per_draft": 2.0476190476190474,
+          "server_step_ms_estimate": 74.87371957146631,
+          "accepted_per_wall_second": 25.02288046460204,
+          "accepted_per_server_request_decode_second": 27.34763358009232,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "c488759ffdb1dea28fd25681dfa7dcfef2bf344e41b7fe6bdcb0bbffe7f869fa"
+          ],
+          "tool_streams": [
+            true
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed4",
+      "context": 0,
+      "kind": "code",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 43.83564694297537,
+      "range_output_tok_s": [
+        43.83564694297537,
+        43.83564694297537
+      ],
+      "median_step_ms_estimate": 78.00169807042423,
+      "median_accepted_per_wall_second": 31.849337232005546,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth4-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 43.83564694297537,
+          "mean_decode_tok_s_estimate": 46.040502701071844,
+          "mean_ttft_seconds": 0.30117151979357004,
+          "mean_attempted_depth": 4.0,
+          "accepted_per_draft": 2.619718309859155,
+          "server_step_ms_estimate": 78.00169807042423,
+          "accepted_per_wall_second": 31.849337232005546,
+          "accepted_per_server_request_decode_second": 33.5854010190128,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "950c35b23c6b48b3d3a11e30fc769598c23de9202bbea1694efdc30a78a93797"
+          ],
+          "reasoning_hashes": [
+            "3fa1017928c90a9ac82327c16af51f055b5a7f83404d372f532fd8c822eba702"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed4",
+      "context": 0,
+      "kind": "mixed",
+      "requests": 4,
+      "repetitions": 1,
+      "median_output_tok_s": 71.77384812191748,
+      "range_output_tok_s": [
+        71.77384812191748,
+        71.77384812191748
+      ],
+      "median_step_ms_estimate": 144.66112553581698,
+      "median_accepted_per_wall_second": 49.48470388093139,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth4-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 71.77384812191748,
+          "mean_decode_tok_s_estimate": 22.38864129436418,
+          "mean_ttft_seconds": 0.8662801327882335,
+          "mean_attempted_depth": 4.0,
+          "accepted_per_draft": 2.1993769470404985,
+          "server_step_ms_estimate": 144.66112553581698,
+          "accepted_per_wall_second": 49.48470388093139,
+          "accepted_per_server_request_decode_second": 15.203648795722593,
+          "output_tokens": [
+            256,
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "7707be8e47e71cd65cd6dd8a852231832260946324570b8e399361e7c5a1c4d1",
+            "f34f19418b1d1374785de95f6976e0f1df605866630483f73b42b04d6a7f2e3e",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "766e6a489401cf366741d4b5f39e05f98bd888dd895b318f7cea19c9b787a501"
+          ],
+          "reasoning_hashes": [
+            "7abdcea10c4bafb6be6e05479cdfa25074f9c1ee273b2b84a5d668e7ef2ca4ff",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "3fa1017928c90a9ac82327c16af51f055b5a7f83404d372f532fd8c822eba702"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true,
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed4",
+      "context": 0,
+      "kind": "prose",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 28.4617030162671,
+      "range_output_tok_s": [
+        28.4617030162671,
+        28.4617030162671
+      ],
+      "median_step_ms_estimate": 76.2694741491016,
+      "median_accepted_per_wall_second": 15.898529419242951,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth4-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 28.4617030162671,
+          "mean_decode_tok_s_estimate": 29.601644515988706,
+          "mean_ttft_seconds": 0.379875638987869,
+          "mean_attempted_depth": 4.0,
+          "accepted_per_draft": 1.2543859649122806,
+          "server_step_ms_estimate": 76.2694741491016,
+          "accepted_per_wall_second": 15.898529419242951,
+          "accepted_per_server_request_decode_second": 16.446762992754376,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "3b8513cc31daba0109e04e9d9ee0c04cf9806852c981287eee89b0f3db0fa450"
+          ],
+          "reasoning_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed4",
+      "context": 0,
+      "kind": "tools",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 44.5493103906333,
+      "range_output_tok_s": [
+        44.5493103906333,
+        44.5493103906333
+      ],
+      "median_step_ms_estimate": 79.77911868657606,
+      "median_accepted_per_wall_second": 33.063941305548155,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth4-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 44.5493103906333,
+          "mean_decode_tok_s_estimate": 48.44714538176745,
+          "mean_ttft_seconds": 0.4827751279808581,
+          "mean_attempted_depth": 4.0,
+          "accepted_per_draft": 2.8358208955223883,
+          "server_step_ms_estimate": 79.77911868657606,
+          "accepted_per_wall_second": 33.063941305548155,
+          "accepted_per_server_request_decode_second": 35.545904018610756,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "tool_streams": [
+            true
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed4",
+      "context": 8192,
+      "kind": "code",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 39.37650637613805,
+      "range_output_tok_s": [
+        39.37650637613805,
+        39.37650637613805
+      ],
+      "median_step_ms_estimate": 83.9727865774914,
+      "median_accepted_per_wall_second": 28.609492913912803,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth4-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 39.37650637613805,
+          "mean_decode_tok_s_estimate": 42.80432443726001,
+          "mean_ttft_seconds": 0.5437420774251223,
+          "mean_attempted_depth": 4.0,
+          "accepted_per_draft": 2.619718309859155,
+          "server_step_ms_estimate": 83.9727865774914,
+          "accepted_per_wall_second": 28.609492913912803,
+          "accepted_per_server_request_decode_second": 31.19722968156639,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "694252e1aeb63305505f0723be77ee8be69d3be12d825c7468c349b9f5a6d20c"
+          ],
+          "reasoning_hashes": [
+            "8bb1eec68fcdc2065ea6d439e57e9ed4d9976ba573cb24e366074415368663ea"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed4",
+      "context": 8192,
+      "kind": "mixed",
+      "requests": 4,
+      "repetitions": 1,
+      "median_output_tok_s": 65.05299584970633,
+      "range_output_tok_s": [
+        65.05299584970633,
+        65.05299584970633
+      ],
+      "median_step_ms_estimate": 161.38267556450427,
+      "median_accepted_per_wall_second": 45.67685939056528,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth4-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 65.05299584970633,
+          "mean_decode_tok_s_estimate": 20.53703066143028,
+          "mean_ttft_seconds": 1.303135727182962,
+          "mean_attempted_depth": 4.0,
+          "accepted_per_draft": 2.3193548387096774,
+          "server_step_ms_estimate": 161.38267556450427,
+          "accepted_per_wall_second": 45.67685939056528,
+          "accepted_per_server_request_decode_second": 14.371770889265228,
+          "output_tokens": [
+            256,
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "7664543f59dda15c302234c6eac16304ba2608e1c53cd826b7aa832637706458",
+            "ee6b9fa44674deb192783f41512062487d71cc7253885dcc8384fb29a95932b0",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "daa3ae96e112064e37c0879e208d98ef36c7b345542827b81968e3483fb18994"
+          ],
+          "reasoning_hashes": [
+            "9b3c1b8611ebe194484780cfb6de7f72ea6bd183e478ba82d51e3d205f4e72cf",
+            "06dc5693281bee3b5a3d3fbef9609ca9dc96c62f44a3228ff753fabeb51542fa",
+            "4ce62b8eece8461cb09340b4736927635bc8c40c693a740558d62ab3b5584595",
+            "8bb1eec68fcdc2065ea6d439e57e9ed4d9976ba573cb24e366074415368663ea"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true,
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed4",
+      "context": 8192,
+      "kind": "prose",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 28.58369025337533,
+      "range_output_tok_s": [
+        28.58369025337533,
+        28.58369025337533
+      ],
+      "median_step_ms_estimate": 81.7382016698988,
+      "median_accepted_per_wall_second": 16.971566087941603,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth4-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 28.58369025337533,
+          "mean_decode_tok_s_estimate": 30.30411102374428,
+          "mean_ttft_seconds": 0.5412271600216627,
+          "mean_attempted_depth": 4.0,
+          "accepted_per_draft": 1.4757281553398058,
+          "server_step_ms_estimate": 81.7382016698988,
+          "accepted_per_wall_second": 16.971566087941603,
+          "accepted_per_server_request_decode_second": 18.05432619253798,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "0bfc9fd96e9ff9ecacd4b3dfe9978ffcea53bacf3493a1853b466749929e0921"
+          ],
+          "reasoning_hashes": [
+            "33e47089aec19b652a737e192bc7d9c311df5c87c4dd40522de6cf71150e60dc"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed4",
+      "context": 8192,
+      "kind": "tools",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 40.56064046581233,
+      "range_output_tok_s": [
+        40.56064046581233,
+        40.56064046581233
+      ],
+      "median_step_ms_estimate": 84.44502715714667,
+      "median_accepted_per_wall_second": 29.311400336622192,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth4-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 40.56064046581233,
+          "mean_decode_tok_s_estimate": 43.16078107054185,
+          "mean_ttft_seconds": 0.4031817470677197,
+          "mean_attempted_depth": 4.0,
+          "accepted_per_draft": 2.642857142857143,
+          "server_step_ms_estimate": 84.44502715714667,
+          "accepted_per_wall_second": 29.311400336622192,
+          "accepted_per_server_request_decode_second": 31.29677651638336,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "4ce62b8eece8461cb09340b4736927635bc8c40c693a740558d62ab3b5584595"
+          ],
+          "tool_streams": [
+            true
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed4",
+      "context": 32768,
+      "kind": "code",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 38.87788894071597,
+      "range_output_tok_s": [
+        38.87788894071597,
+        38.87788894071597
+      ],
+      "median_step_ms_estimate": 84.62574273238408,
+      "median_accepted_per_wall_second": 27.943482676139602,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth4-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 38.87788894071597,
+          "mean_decode_tok_s_estimate": 42.54291073757016,
+          "mean_ttft_seconds": 0.5905152498744428,
+          "mean_attempted_depth": 4.0,
+          "accepted_per_draft": 2.591549295774648,
+          "server_step_ms_estimate": 84.62574273238408,
+          "accepted_per_wall_second": 27.943482676139602,
+          "accepted_per_server_request_decode_second": 30.623652001141362,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "ca5cf04c0911eb84414e5f00c4d08ed518aeeb43896d43794326b4174eb6c5a0"
+          ],
+          "reasoning_hashes": [
+            "ab51b27a67ebb4f7930a207942dcbc66387c65edf73038e67630498db8fd1c32"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed4",
+      "context": 32768,
+      "kind": "mixed",
+      "requests": 4,
+      "repetitions": 1,
+      "median_output_tok_s": 61.33955032730429,
+      "range_output_tok_s": [
+        61.33955032730429,
+        61.33955032730429
+      ],
+      "median_step_ms_estimate": 160.30450184971525,
+      "median_accepted_per_wall_second": 41.87143132693916,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth4-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 61.33955032730429,
+          "mean_decode_tok_s_estimate": 19.743167050695764,
+          "mean_ttft_seconds": 1.426163422060199,
+          "mean_attempted_depth": 4.0,
+          "accepted_per_draft": 2.144171779141104,
+          "server_step_ms_estimate": 160.30450184971525,
+          "accepted_per_wall_second": 41.87143132693916,
+          "accepted_per_server_request_decode_second": 13.37561799200908,
+          "output_tokens": [
+            256,
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "fb8517d8f43e79dbfe7e78e5eb722ea12512a96ea3ba7df74a00b9cbe8c1a7c5",
+            "5445e16e5c27d68f467e16f423f52855a16ce1c795891c4fb12c2c1c93604a8d",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "65978e5517f3fe07f56afa77964824f2624026ab00c11f78473c9391ca5e3aa4"
+          ],
+          "reasoning_hashes": [
+            "86e2207ca18fe393f23f6e5e355d49bb53d2fd4adc719cd6c10f12388412b98f",
+            "64ef3a842fe160b58f86640b31b93e22af1856533e8707d743da9b179501e918",
+            "c488759ffdb1dea28fd25681dfa7dcfef2bf344e41b7fe6bdcb0bbffe7f869fa",
+            "69494080c13d0fd47bd3e104e48c7c3bc01b286c9f45721cb80ad4c4e8b6f439"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true,
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed4",
+      "context": 32768,
+      "kind": "prose",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 28.592769962603136,
+      "range_output_tok_s": [
+        28.592769962603136,
+        28.592769962603136
+      ],
+      "median_step_ms_estimate": 82.97602449504728,
+      "median_accepted_per_wall_second": 17.20033818062845,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth4-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 28.592769962603136,
+          "mean_decode_tok_s_estimate": 30.479356447458127,
+          "mean_ttft_seconds": 0.5867431662045419,
+          "mean_attempted_depth": 4.0,
+          "accepted_per_draft": 1.5247524752475248,
+          "server_step_ms_estimate": 82.97602449504728,
+          "accepted_per_wall_second": 17.20033818062845,
+          "accepted_per_server_request_decode_second": 18.375819816946457,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "85639de8843be6958bc86d243693ccb21d41c3bfa5b066f85ed68bca89ce642e"
+          ],
+          "reasoning_hashes": [
+            "a7b9f9f5e566b1fecbc475f5ee634e2216c4d78fffcab40cc5592f67f34a4c1d"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "fixed4",
+      "context": 32768,
+      "kind": "tools",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 34.042533468795355,
+      "range_output_tok_s": [
+        34.042533468795355,
+        34.042533468795355
+      ],
+      "median_step_ms_estimate": 84.58098967071791,
+      "median_accepted_per_wall_second": 23.271263113434323,
+      "samples": [
+        {
+          "source": "mtp1-r0-depth4-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 34.042533468795355,
+          "mean_decode_tok_s_estimate": 36.84222001591215,
+          "mean_ttft_seconds": 0.5983635718002915,
+          "mean_attempted_depth": 4.0,
+          "accepted_per_draft": 2.1341463414634148,
+          "server_step_ms_estimate": 84.58098967071791,
+          "accepted_per_wall_second": 23.271263113434323,
+          "accepted_per_server_request_decode_second": 25.231985931730705,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "c488759ffdb1dea28fd25681dfa7dcfef2bf344e41b7fe6bdcb0bbffe7f869fa"
+          ],
+          "tool_streams": [
+            true
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "original",
+      "context": 0,
+      "kind": "code",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 42.08852998972482,
+      "range_output_tok_s": [
+        42.08852998972482,
+        42.08852998972482
+      ],
+      "median_step_ms_estimate": 76.01864342105776,
+      "median_accepted_per_wall_second": 29.593497649025267,
+      "samples": [
+        {
+          "source": "mtp1-r0-original-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 42.08852998972482,
+          "mean_decode_tok_s_estimate": 44.1438106368732,
+          "mean_ttft_seconds": 0.3056243001483381,
+          "mean_attempted_depth": 3.710526315789474,
+          "accepted_per_draft": 2.3684210526315788,
+          "server_step_ms_estimate": 76.01864342105776,
+          "accepted_per_wall_second": 29.593497649025267,
+          "accepted_per_server_request_decode_second": 31.15579213263766,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "eda16da9b934fba717bf1388c930bb40b071faf12658a77f38ea2f04b43b612a"
+          ],
+          "reasoning_hashes": [
+            "3fa1017928c90a9ac82327c16af51f055b5a7f83404d372f532fd8c822eba702"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "original",
+      "context": 0,
+      "kind": "mixed",
+      "requests": 4,
+      "repetitions": 1,
+      "median_output_tok_s": 73.76954048668853,
+      "range_output_tok_s": [
+        73.76954048668853,
+        73.76954048668853
+      ],
+      "median_step_ms_estimate": 123.82496770328294,
+      "median_accepted_per_wall_second": 47.76289584245556,
+      "samples": [
+        {
+          "source": "mtp1-r0-original-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 73.76954048668853,
+          "mean_decode_tok_s_estimate": 23.051280483133056,
+          "mean_ttft_seconds": 0.9249417288228869,
+          "mean_attempted_depth": 2.758241758241758,
+          "accepted_per_draft": 1.8214285714285714,
+          "server_step_ms_estimate": 123.82496770328294,
+          "accepted_per_wall_second": 47.76289584245556,
+          "accepted_per_server_request_decode_second": 14.709703585735564,
+          "output_tokens": [
+            256,
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "384690ce6227863c68788d7431fa0e0b128a54a678bdd14cbb3a6013836e5edd",
+            "cce18d0e9bb38486805456de73c09383c6ee046dcef2a7a1930de1d5a76702b8",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "30354bde7d264ecba377d8ce773c91fc50844e3a90cdf69d28247bfea5272917"
+          ],
+          "reasoning_hashes": [
+            "3fa1017928c90a9ac82327c16af51f055b5a7f83404d372f532fd8c822eba702",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "3fa1017928c90a9ac82327c16af51f055b5a7f83404d372f532fd8c822eba702"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true,
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "original",
+      "context": 0,
+      "kind": "prose",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 32.4282468896284,
+      "range_output_tok_s": [
+        32.4282468896284,
+        32.4282468896284
+      ],
+      "median_step_ms_estimate": 66.57162706138925,
+      "median_accepted_per_wall_second": 17.987543196590753,
+      "samples": [
+        {
+          "source": "mtp1-r0-original-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 32.4282468896284,
+          "mean_decode_tok_s_estimate": 33.9728411578159,
+          "mean_ttft_seconds": 0.38809531601145864,
+          "mean_attempted_depth": 2.763157894736842,
+          "accepted_per_draft": 1.2456140350877194,
+          "server_step_ms_estimate": 66.57162706138925,
+          "accepted_per_wall_second": 17.987543196590753,
+          "accepted_per_server_request_decode_second": 18.710884652692535,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "c4232ef7064338006f36282c9137c5e194dfca1679f99f587cd58483c3472309"
+          ],
+          "reasoning_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "original",
+      "context": 0,
+      "kind": "tools",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 44.148967933034726,
+      "range_output_tok_s": [
+        44.148967933034726,
+        44.148967933034726
+      ],
+      "median_step_ms_estimate": 79.35466263236722,
+      "median_accepted_per_wall_second": 32.249441419833964,
+      "samples": [
+        {
+          "source": "mtp1-r0-original-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 44.148967933034726,
+          "mean_decode_tok_s_estimate": 47.99485591036499,
+          "mean_ttft_seconds": 0.48527802992612123,
+          "mean_attempted_depth": 4.0,
+          "accepted_per_draft": 2.75,
+          "server_step_ms_estimate": 79.35466263236722,
+          "accepted_per_wall_second": 32.249441419833964,
+          "accepted_per_server_request_decode_second": 34.65454843832111,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "tool_streams": [
+            true
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "original",
+      "context": 8192,
+      "kind": "code",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 40.32275397817797,
+      "range_output_tok_s": [
+        40.32275397817797,
+        40.32275397817797
+      ],
+      "median_step_ms_estimate": 82.76240837143892,
+      "median_accepted_per_wall_second": 29.769533210451705,
+      "samples": [
+        {
+          "source": "mtp1-r0-original-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 40.32275397817797,
+          "mean_decode_tok_s_estimate": 44.05291858754307,
+          "mean_ttft_seconds": 0.5600349446758628,
+          "mean_attempted_depth": 3.757142857142857,
+          "accepted_per_draft": 2.7,
+          "server_step_ms_estimate": 82.76240837143892,
+          "accepted_per_wall_second": 29.769533210451705,
+          "accepted_per_server_request_decode_second": 32.62350689315806,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "9203fa61dcdb9dd22a2f16f71b2c6bc48715d3bcfd1c6be47de9e03d4af72406"
+          ],
+          "reasoning_hashes": [
+            "8bb1eec68fcdc2065ea6d439e57e9ed4d9976ba573cb24e366074415368663ea"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "original",
+      "context": 8192,
+      "kind": "mixed",
+      "requests": 4,
+      "repetitions": 1,
+      "median_output_tok_s": 67.3250232098106,
+      "range_output_tok_s": [
+        67.3250232098106,
+        67.3250232098106
+      ],
+      "median_step_ms_estimate": 139.01512696380416,
+      "median_accepted_per_wall_second": 43.78756392356822,
+      "samples": [
+        {
+          "source": "mtp1-r0-original-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 67.3250232098106,
+          "mean_decode_tok_s_estimate": 20.72362515287861,
+          "mean_ttft_seconds": 1.3799072600668296,
+          "mean_attempted_depth": 2.863509749303621,
+          "accepted_per_draft": 1.8551532033426184,
+          "server_step_ms_estimate": 139.01512696380416,
+          "accepted_per_wall_second": 43.78756392356822,
+          "accepted_per_server_request_decode_second": 13.344973628845809,
+          "output_tokens": [
+            256,
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "a837b7457366d3250a7fb4177a7f37e14f1dd361514dac1360609b093cb7aaf4",
+            "a6c7667daf6f10d07db6a61bc9f733479b43d1a4bfd5d005ba5a54f85b01c80e",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "6c766826edbdad92fac51877fcbea044e21e279608ae5feac71797086ad738f6"
+          ],
+          "reasoning_hashes": [
+            "8bb1eec68fcdc2065ea6d439e57e9ed4d9976ba573cb24e366074415368663ea",
+            "9194bd60678bbd31520e55ef38127f7669e8ac92ec907b7c433f40ab0184c44d",
+            "4ce62b8eece8461cb09340b4736927635bc8c40c693a740558d62ab3b5584595",
+            "8bb1eec68fcdc2065ea6d439e57e9ed4d9976ba573cb24e366074415368663ea"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true,
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "original",
+      "context": 8192,
+      "kind": "prose",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 31.356098975288315,
+      "range_output_tok_s": [
+        31.356098975288315,
+        31.356098975288315
+      ],
+      "median_step_ms_estimate": 68.78205996395695,
+      "median_accepted_per_wall_second": 17.637805673599676,
+      "samples": [
+        {
+          "source": "mtp1-r0-original-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 31.356098975288315,
+          "mean_decode_tok_s_estimate": 33.417911787116935,
+          "mean_ttft_seconds": 0.5333898821845651,
+          "mean_attempted_depth": 2.6216216216216215,
+          "accepted_per_draft": 1.2972972972972974,
+          "server_step_ms_estimate": 68.78205996395695,
+          "accepted_per_wall_second": 17.637805673599676,
+          "accepted_per_server_request_decode_second": 18.860983488675746,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "0a38c85ed0f18fca33b6f9491d76222572c051f6d270010d945b3ba5695b0295"
+          ],
+          "reasoning_hashes": [
+            "33e47089aec19b652a737e192bc7d9c311df5c87c4dd40522de6cf71150e60dc"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "original",
+      "context": 8192,
+      "kind": "tools",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 39.899748037218224,
+      "range_output_tok_s": [
+        39.899748037218224,
+        39.899748037218224
+      ],
+      "median_step_ms_estimate": 83.3530990138974,
+      "median_accepted_per_wall_second": 28.833802292520986,
+      "samples": [
+        {
+          "source": "mtp1-r0-original-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 39.899748037218224,
+          "mean_decode_tok_s_estimate": 42.51196794750839,
+          "mean_ttft_seconds": 0.41753954300656915,
+          "mean_attempted_depth": 3.861111111111111,
+          "accepted_per_draft": 2.5694444444444446,
+          "server_step_ms_estimate": 83.3530990138974,
+          "accepted_per_wall_second": 28.833802292520986,
+          "accepted_per_server_request_decode_second": 30.826021765741938,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "4ce62b8eece8461cb09340b4736927635bc8c40c693a740558d62ab3b5584595"
+          ],
+          "tool_streams": [
+            true
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "original",
+      "context": 32768,
+      "kind": "code",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 38.202355126778286,
+      "range_output_tok_s": [
+        38.202355126778286,
+        38.202355126778286
+      ],
+      "median_step_ms_estimate": 68.83145521351253,
+      "median_accepted_per_wall_second": 25.07029555194825,
+      "samples": [
+        {
+          "source": "mtp1-r0-original-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 38.202355126778286,
+          "mean_decode_tok_s_estimate": 41.736438062322186,
+          "mean_ttft_seconds": 0.5911453068256378,
+          "mean_attempted_depth": 2.4269662921348316,
+          "accepted_per_draft": 1.8876404494382022,
+          "server_step_ms_estimate": 68.83145521351253,
+          "accepted_per_wall_second": 25.07029555194825,
+          "accepted_per_server_request_decode_second": 27.424096201116395,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "698b680dcfebbbb5cbbc14c37ca43ab59c7b9dd78f317d5ce163e32c9b9a1898"
+          ],
+          "reasoning_hashes": [
+            "ab51b27a67ebb4f7930a207942dcbc66387c65edf73038e67630498db8fd1c32"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "original",
+      "context": 32768,
+      "kind": "mixed",
+      "requests": 4,
+      "repetitions": 1,
+      "median_output_tok_s": 65.55531332468595,
+      "range_output_tok_s": [
+        65.55531332468595,
+        65.55531332468595
+      ],
+      "median_step_ms_estimate": 130.14921485214438,
+      "median_accepted_per_wall_second": 40.01178791789915,
+      "samples": [
+        {
+          "source": "mtp1-r0-original-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 65.55531332468595,
+          "mean_decode_tok_s_estimate": 19.751732943854833,
+          "mean_ttft_seconds": 1.419478110037744,
+          "mean_attempted_depth": 2.335839598997494,
+          "accepted_per_draft": 1.5664160401002507,
+          "server_step_ms_estimate": 130.14921485214438,
+          "accepted_per_wall_second": 40.01178791789915,
+          "accepted_per_server_request_decode_second": 12.035539683276406,
+          "output_tokens": [
+            256,
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "15c5b84c8c1294fbee2d77137677613496d25d28bf5a158c1b685fe3bfe1fcad",
+            "2f0ce89677edb4aae30adcf8cf91a7477475192e19934daa8e7ee7e7db61e297",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "c9485ebf2c02e34633aff8740b64f77d008c79a64e1f2fd93ffc90d5c791aa3f"
+          ],
+          "reasoning_hashes": [
+            "69494080c13d0fd47bd3e104e48c7c3bc01b286c9f45721cb80ad4c4e8b6f439",
+            "2b291f4f1ee6ccfa46dc2f3bacf2e2b8ec3c0ea6ddbf1ce0c69bc839079e61fb",
+            "c488759ffdb1dea28fd25681dfa7dcfef2bf344e41b7fe6bdcb0bbffe7f869fa",
+            "3c2ae62747e9f0c8362ba3e1610457cd5c7cba03769d6643ad0b86eb0dc2eb69"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true,
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "original",
+      "context": 32768,
+      "kind": "prose",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 30.4737391505559,
+      "range_output_tok_s": [
+        30.4737391505559,
+        30.4737391505559
+      ],
+      "median_step_ms_estimate": 70.54560079278245,
+      "median_accepted_per_wall_second": 17.141478272187694,
+      "samples": [
+        {
+          "source": "mtp1-r0-original-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 30.4737391505559,
+          "mean_decode_tok_s_estimate": 32.62077540536669,
+          "mean_ttft_seconds": 0.5833442131988704,
+          "mean_attempted_depth": 2.6666666666666665,
+          "accepted_per_draft": 1.2972972972972974,
+          "server_step_ms_estimate": 70.54560079278245,
+          "accepted_per_wall_second": 17.141478272187694,
+          "accepted_per_server_request_decode_second": 18.389485421038817,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "14764fd227d852e2ea720d95342cea47b10d4743fa5a72391da5918dbb770f1c"
+          ],
+          "reasoning_hashes": [
+            "06dc5693281bee3b5a3d3fbef9609ca9dc96c62f44a3228ff753fabeb51542fa"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "original",
+      "context": 32768,
+      "kind": "tools",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 34.28640919535138,
+      "range_output_tok_s": [
+        34.28640919535138,
+        34.28640919535138
+      ],
+      "median_step_ms_estimate": 69.27424842426188,
+      "median_accepted_per_wall_second": 21.16114317525593,
+      "samples": [
+        {
+          "source": "mtp1-r0-original-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 34.28640919535138,
+          "mean_decode_tok_s_estimate": 37.26242912426601,
+          "mean_ttft_seconds": 0.6229154230095446,
+          "mean_attempted_depth": 2.4242424242424243,
+          "accepted_per_draft": 1.595959595959596,
+          "server_step_ms_estimate": 69.27424842426188,
+          "accepted_per_wall_second": 21.16114317525593,
+          "accepted_per_server_request_decode_second": 23.038280923458476,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "c488759ffdb1dea28fd25681dfa7dcfef2bf344e41b7fe6bdcb0bbffe7f869fa"
+          ],
+          "tool_streams": [
+            true
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    }
+  ],
+  "comparisons": [
+    {
+      "policy": "fixed1",
+      "equal_cell_geomean_ratio": 0.9095092795265192,
+      "three_visits_per_cell": false,
+      "cells": [
+        {
+          "context": 0,
+          "kind": "code",
+          "requests": 1,
+          "ratio": 0.8386900315757279,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 0,
+          "kind": "mixed",
+          "requests": 4,
+          "ratio": 1.0199264068476661,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 0,
+          "kind": "prose",
+          "requests": 1,
+          "ratio": 0.9858976639422667,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 0,
+          "kind": "tools",
+          "requests": 1,
+          "ratio": 0.7910977462598945,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 8192,
+          "kind": "code",
+          "requests": 1,
+          "ratio": 0.8057859406521881,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 8192,
+          "kind": "mixed",
+          "requests": 4,
+          "ratio": 0.9901860286682016,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 8192,
+          "kind": "prose",
+          "requests": 1,
+          "ratio": 0.9697814459899072,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 8192,
+          "kind": "tools",
+          "requests": 1,
+          "ratio": 0.8041859577171117,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 32768,
+          "kind": "code",
+          "requests": 1,
+          "ratio": 0.826509182939336,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 32768,
+          "kind": "mixed",
+          "requests": 4,
+          "ratio": 0.9892936382246353,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 32768,
+          "kind": "prose",
+          "requests": 1,
+          "ratio": 1.012648518013988,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 32768,
+          "kind": "tools",
+          "requests": 1,
+          "ratio": 0.9320835514789426,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        }
+      ]
+    },
+    {
+      "policy": "fixed2",
+      "equal_cell_geomean_ratio": 1.0000016775862375,
+      "three_visits_per_cell": false,
+      "cells": [
+        {
+          "context": 0,
+          "kind": "code",
+          "requests": 1,
+          "ratio": 0.9761477132101672,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 0,
+          "kind": "mixed",
+          "requests": 4,
+          "ratio": 1.0347829178469976,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 0,
+          "kind": "prose",
+          "requests": 1,
+          "ratio": 0.9984061965041264,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 0,
+          "kind": "tools",
+          "requests": 1,
+          "ratio": 0.9436458665226765,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 8192,
+          "kind": "code",
+          "requests": 1,
+          "ratio": 0.9270844078612461,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 8192,
+          "kind": "mixed",
+          "requests": 4,
+          "ratio": 1.0727889203717622,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 8192,
+          "kind": "prose",
+          "requests": 1,
+          "ratio": 1.0065436639089649,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 8192,
+          "kind": "tools",
+          "requests": 1,
+          "ratio": 0.9635840215858896,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 32768,
+          "kind": "code",
+          "requests": 1,
+          "ratio": 0.9584932931660809,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 32768,
+          "kind": "mixed",
+          "requests": 4,
+          "ratio": 1.069178738706664,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 32768,
+          "kind": "prose",
+          "requests": 1,
+          "ratio": 1.013234412820487,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 32768,
+          "kind": "tools",
+          "requests": 1,
+          "ratio": 1.0491136840212452,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        }
+      ]
+    },
+    {
+      "policy": "fixed3",
+      "equal_cell_geomean_ratio": 1.0253574757249087,
+      "three_visits_per_cell": false,
+      "cells": [
+        {
+          "context": 0,
+          "kind": "code",
+          "requests": 1,
+          "ratio": 1.0474417584251443,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 0,
+          "kind": "mixed",
+          "requests": 4,
+          "ratio": 1.0319205956377362,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 0,
+          "kind": "prose",
+          "requests": 1,
+          "ratio": 0.9969827208693587,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 0,
+          "kind": "tools",
+          "requests": 1,
+          "ratio": 1.0258837324149679,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 8192,
+          "kind": "code",
+          "requests": 1,
+          "ratio": 0.9787436739601253,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 8192,
+          "kind": "mixed",
+          "requests": 4,
+          "ratio": 1.0552023999289035,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 8192,
+          "kind": "prose",
+          "requests": 1,
+          "ratio": 1.0030694007889176,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 8192,
+          "kind": "tools",
+          "requests": 1,
+          "ratio": 1.039270107745322,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 32768,
+          "kind": "code",
+          "requests": 1,
+          "ratio": 1.031732060852346,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 32768,
+          "kind": "mixed",
+          "requests": 4,
+          "ratio": 0.9906077156473511,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 32768,
+          "kind": "prose",
+          "requests": 1,
+          "ratio": 1.0220733908784236,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 32768,
+          "kind": "tools",
+          "requests": 1,
+          "ratio": 1.0862425621292533,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        }
+      ]
+    },
+    {
+      "policy": "fixed4",
+      "equal_cell_geomean_ratio": 0.9702669659405988,
+      "three_visits_per_cell": false,
+      "cells": [
+        {
+          "context": 0,
+          "kind": "code",
+          "requests": 1,
+          "ratio": 1.0415105244511291,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 0,
+          "kind": "mixed",
+          "requests": 4,
+          "ratio": 0.9729469324113363,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 0,
+          "kind": "prose",
+          "requests": 1,
+          "ratio": 0.8776824449726907,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 0,
+          "kind": "tools",
+          "requests": 1,
+          "ratio": 1.0090679913108234,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 8192,
+          "kind": "code",
+          "requests": 1,
+          "ratio": 0.9765331603453471,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 8192,
+          "kind": "mixed",
+          "requests": 4,
+          "ratio": 0.9662528544101091,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 8192,
+          "kind": "prose",
+          "requests": 1,
+          "ratio": 0.9115831110209878,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 8192,
+          "kind": "tools",
+          "requests": 1,
+          "ratio": 1.0165638246130684,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 32768,
+          "kind": "code",
+          "requests": 1,
+          "ratio": 1.017683041050633,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 32768,
+          "kind": "mixed",
+          "requests": 4,
+          "ratio": 0.9356915132645068,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 32768,
+          "kind": "prose",
+          "requests": 1,
+          "ratio": 0.9382757337831169,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        },
+        {
+          "context": 32768,
+          "kind": "tools",
+          "requests": 1,
+          "ratio": 0.9928871021410696,
+          "candidate_repetitions": 1,
+          "control_repetitions": 1
+        }
+      ]
+    }
+  ],
+  "production_policy_selected": false,
+  "limitations": [
+    "First-pass samples alone cannot establish a repeatable win. Require balanced repeated visits and final numerical/native/application gates.",
+    "Output throughput includes cached prefill and client delivery; SSE decode estimates count all generated reasoning and content/tool tokens.",
+    "Concurrent step costs are request-weighted full-run estimates with declining residency; not isolated fixed-batch GPU timings.",
+    "Tool bodies can be truncated at256 tokens; separate functional tool tests establish basic API correctness, not comprehensive task quality.",
+    "Same prompts/settings do not guarantee identical generated text across draft policies. Answer/reasoning hashes are retained; the first pass records tool presence but does not retain tool-argument hashes."
+  ],
+  "experiment_status": "in_progress",
+  "date": "2026-10-03",
+  "base_image": "sha256:7176241a30ba8349fccb979ad7a35d0eba422d23017543da8c0147b28cb0c1cd",
+  "serving_policy": {
+    "mode": "original",
+    "depth": 0,
+    "window": 16,
+    "cost_ms": null
+  },
+  "prefill_budget": 3072,
+  "weights_bpw": 3.25,
+  "tensor_parallel": 6,
+  "context_length": 360000,
+  "max_requests": 4,
+  "qualification": {
+    "cpu_tests": 38,
+    "short": {
+      "reference_sha256": "9e9e2fe042e38fcf6af3b500d721deb9d616f3da0c2d2032671a4072ceaf3a58",
+      "summary": {
+        "positions": 4096,
+        "mean_coarsened_kl": 0,
+        "top1_agreement": 1,
+        "mean_common_reference_mass": 0.9995512817500845,
+        "mean_nll_delta": 0.0
+      },
+      "passed": true
+    },
+    "long": {
+      "reference_sha256": "d3b321c96f516b74af1e41c6b30d8439cc346c8f440da6438ff4e12f59732287",
+      "passed": true,
+      "cases": [
+        {
+          "context": 8192,
+          "summary": {
+            "positions": 512,
+            "mean_coarsened_kl": 0,
+            "top1_agreement": 1,
+            "mean_common_reference_mass": 0.9991739549163815,
+            "mean_nll_delta": 0.0
+          },
+          "passed": true
+        },
+        {
+          "context": 32768,
+          "summary": {
+            "positions": 512,
+            "mean_coarsened_kl": 0,
+            "top1_agreement": 1,
+            "mean_common_reference_mass": 0.9978193007741218,
+            "mean_nll_delta": 0.0
+          },
+          "passed": true
+        },
+        {
+          "context": 131072,
+          "summary": {
+            "positions": 512,
+            "mean_coarsened_kl": 0,
+            "top1_agreement": 1,
+            "mean_common_reference_mass": 0.4608117383047953,
+            "mean_nll_delta": 0.0
+          },
+          "passed": true
+        }
+      ]
+    },
+    "functional_checks": 40,
+    "native": true,
+    "pi_router": true,
+    "code_chat": true,
+    "guards_clear": true,
+    "min_available_gib": 10.46
+  },
+  "decision": "Original adaptive policy remains selected. First pass suggests depth3 for some C1 work and depth2 for C4; repeat, calibrate costs, and qualify a candidate before selection.",
+  "remaining": [
+    "Two balanced repeat visits of the same12 cells per policy",
+    "C2/C3 fixed-depth cost cells",
+    "Fit and test current cost/probe policies against original",
+    "Final short/long numerical and native/router/client gates for any promoted policy"
+  ],
+  "source_revision": "e788e69b84038f213ec3623b3eb86312ee4122b3"
+}

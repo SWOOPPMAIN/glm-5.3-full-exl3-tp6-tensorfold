@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "reference_image": "sha256:ba7322e87e3050d67ad3f0b75d874f43edd1ac927166a4600ba4c1498aa9a3a6",
+  "cost_ms": {
+    "1": [
+      55.57226186003351,
+      63.85468628331975,
+      72.93648392662621,
+      80.7224249718761
+    ],
+    "2": [
+      68.38654967564855,
+      80.66584603870542,
+      94.16335919118725,
+      104.15978384612006
+    ],
+    "3": [
+      84.5904584172276,
+      101.51133996235744,
+      110.97722139802775,
+      124.790900391468
+    ],
+    "4": [
+      92.59679998843586,
+      109.98506771263851,
+      130.24286272921114,
+      150.71740424139733
+    ]
+  },
+  "prior_conditional": [
+    0.773202674518464,
+    0.7391434776572323,
+    0.7421067637144247,
+    0.7153782181081864
+  ],
+  "source_sha256": {
+    "qualification/optimization-20260930/p16-interleaved-analysis.json": "5181d81cf3dbc19d79bc8c7eee22f7d51666f23d0490f4528730682d3621f6d1",
+    "qualification/optimization-20260930/p16-batch-run.json": "4f18e82471891d28d0dac76bd142759992d1a576578a514f17f411917e56b146",
+    "qualification/optimization-20260930/p16-batch-0-depth4-c2.json": "093ea2ff514373e6c7e0903d71f37f5ab25ae8d17f67f66613a95a9710811f61",
+    "qualification/optimization-20260930/p16-batch-1-depth2-c2.json": "77aa90569ed9bc58a246f3e812bca2dcf557f936f1babdd309206b3fb174ed35",
+    "qualification/optimization-20260930/p16-batch-2-depth3-c2.json": "5c848d69c1919b645983f89a7cbe715548d3120a204bdfcb9556aae4fa5dc220",
+    "qualification/optimization-20260930/p16-batch-3-depth1-c2.json": "a85d40553d728a652b87dcf9c708b89df5e593a6e2fccdbb3b1ee9fe624944f6",
+    "qualification/optimization-20260930/p16-batch-0-depth4-c3.json": "6c50c817c97141e2cc21116d3ec9f8a31963247ed9506b4cbb030e9328a99867",
+    "qualification/optimization-20260930/p16-batch-1-depth2-c3.json": "67f6f7321bc19777f2b1075ac086fef0f890274db331bd6e9db6a363da98ad27",
+    "qualification/optimization-20260930/p16-batch-2-depth3-c3.json": "21c645daccf3fc87d1e745b424bcaa6086c2075a93addbcde9d47148e33d49a3",
+    "qualification/optimization-20260930/p16-batch-3-depth1-c3.json": "ef0038122368c393dff13dbde3b4abaea173e8c445c492478477c008b19ccd13",
+    "qualification/optimization-20260930/p16-batch-0-depth4-c4.json": "b71428c675c627076e0489a3b27706b8a55e8edf33c3fe8b2feee750c36e8351",
+    "qualification/optimization-20260930/p16-batch-1-depth2-c4.json": "42f7591565996468f7a9ddcd180c0edae2ec5276a48df03bb90a8793afc961ec",
+    "qualification/optimization-20260930/p16-batch-2-depth3-c4.json": "83220eff35dd61970a84ca7965ee16b28e6cbf45ed25c733456793ca595c7028",
+    "qualification/optimization-20260930/p16-batch-3-depth1-c4.json": "5302b95a67a8f345e60a614ea313ada2364d761ec72f44dd249ff929a300e231"
+  },
+  "method": "C1 equal-weight prose/code mean of weighted server decode milliseconds per draft round, three interleaved visits each. C2..C4 one mixed prose/code512tokens cell per depth/count; sum request decode time divided by total draft rounds.",
+  "limitation": "Concurrent costs include declining residency as requests finish; they are full-run estimates, not isolated constant-batch step timings. One concurrent sample per cell; live qualification is required. Probe depth4 periodically; unattempted suffixes are censored."
+}

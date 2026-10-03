@@ -2,6 +2,12 @@
 
 ## Current serving: vLLM P27
 
+Latest October 3 image adds bounded MTP controls with **original adaptive MTP
+still selected**. [First-pass results](mtp-first-pass.json) cover 60 cells with
+one visit each; no experimental policy has been promoted. Original-reference
+short/long and native/Pi/Code/Chat checks passed on the selected original policy.
+[Conditions, limitations and replay recipe](../recipes/vllm-tp6/MTP_TUNING.md).
+
 October 3 update: the current image adds scheduler-budget controls while retaining
 3072 and the P27 inference settings. All four smaller/adaptive screens failed
 strict fidelity. [Results](prefill-budgets.json) and

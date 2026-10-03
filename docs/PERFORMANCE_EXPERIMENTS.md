@@ -46,6 +46,9 @@ consistency across chunk/batch shapes is a prerequisite to another budget trial.
 actual workload classes, especially tools and long-context cache pressure, rather
 than presenting MTP4 or adaptive drafting as a new feature. Optimize accepted tokens
 per total target-plus-draft time, including graph capture and rejection work.
+The [first 60-cell comparison](../recipes/vllm-tp6/MTP_TUNING.md) and 40 functional
+checks are complete. Original adaptive MTP still serves; two balanced repeat
+visits, C2/C3 cost measurements and a fitted candidate remain pending.
 
 **TP6 communication:** two NCCL rails, performance-core affinity, custom small-message
 RoCE and decode projection sharding are already present. The next test is where each

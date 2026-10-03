@@ -33,3 +33,11 @@ and router path after native API qualification.
 See [the synthetic Code/tool replay protocol](CACHE_REUSE.md) and
 [per-request samples](../results/cache-reuse-samples.json). Keep cold prefill,
 cached first-token latency, generation and aggregate throughput separate.
+
+## Adaptive MTP comparison
+
+See the [first-pass protocol and limits](../recipes/vllm-tp6/MTP_TUNING.md),
+[API replay client](mtp_matrix.py) and [frozen synthetic prompts](mtp-fixtures.json).
+The operator applies policies and verifies fleet guards externally. The client
+records measurements without changing serving. Repeat and balance policy order
+before selecting a candidate; the first published pass has one visit per cell.
