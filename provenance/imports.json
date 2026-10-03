@@ -26,6 +26,12 @@
       "change": null
     },
     {
+      "path": "benchmarks/analyze_e3_boundary_public_samples.py",
+      "sha256": "78031d09a0fbac8c404d0f2e8100877505f4c0754a176ef3432f3302a340b3f3",
+      "origin": "amos-recipes@2ee53b8d80f6140e08386faeb1bd41172540d0c1:analyze_e3_boundary_public_samples.py",
+      "change": null
+    },
+    {
       "path": "benchmarks/analyze_e3_crossover_samples.py",
       "sha256": "37722035b8989708ed7715e87ee9411e052c0f68a8371494de3294d19b0c28ca",
       "origin": "amos-recipes@f41feacb6280b17994b3e7f43389d2678bfaf3cd:analyze_e3_crossover_samples.py",
@@ -126,6 +132,12 @@
       "sha256": "41f10410541c336db8344b1fb785011769229c41231569eade5f469b0eafc8cd",
       "origin": "amos-recipes@d0486aaf699729638c36fafa1e46e3fe74fe3dd0:runtime/exl3-tp6/mtp_overlap_cost.py",
       "change": "Use portable stream/idle imports and external host guards; identical native-counter timing math, memory field null."
+    },
+    {
+      "path": "benchmarks/ngram_scatter_fix.py",
+      "sha256": "ed286fcfd379d25327ddc2499edd58b5512580a97c6e9539711014f08b81aade",
+      "origin": "amos-recipes@2ee53b8d80f6140e08386faeb1bd41172540d0c1:ngram_scatter_fix.py",
+      "change": null
     },
     {
       "path": "benchmarks/ngram_source_check.py",
@@ -3200,6 +3212,12 @@
       "change": null
     },
     {
+      "path": "results/copy-drafting-scatter-fix-cpu.json",
+      "sha256": "66ae816b5945737c4ee731f6ac958192591febef5e4b14a6d296f883722b8649",
+      "origin": "amos-recipes@2ee53b8d80f6140e08386faeb1bd41172540d0c1:qualification/serving-optimization-20261003/ngram2-scatter-cpu-checks.json",
+      "change": null
+    },
+    {
       "path": "results/copy-drafting-source-review.json",
       "sha256": "cb4deecd3daff9c6b7cd37c0c2e207afe55992983948178838cc33220aa7d028",
       "origin": "amos-recipes@1ec92c9d2a3ce7c556884fb662f1ea6f1da1027c:qualification/serving-optimization-20261003/ngram1-source-review.json",
@@ -3210,6 +3228,18 @@
       "sha256": "b2a316d6c7f39e71c94da1183d6cd28be4d4ea7496c756e2424010325f2f6b9d",
       "origin": "amos-recipes@1ec92c9d2a3ce7c556884fb662f1ea6f1da1027c:qualification/serving-optimization-20261003/ngram1-tensor-cpu-checks.json",
       "change": null
+    },
+    {
+      "path": "results/e3-boundary-serving-samples.json",
+      "sha256": "281d85e4a1e8897030fe95f0b5654698f53de5302041c5267877c007745f1a8b",
+      "origin": "amos-recipes@2ee53b8d80f6140e08386faeb1bd41172540d0c1:export_e3_boundary.py + e35 receipts",
+      "change": "Allowlisted scalar/timing export; private site data and generated text omitted."
+    },
+    {
+      "path": "results/e3-boundary-serving.json",
+      "sha256": "adecab7dd5b0e5bf43a615687069b2bd3e46cc5828d561bac9410a116b72a07f",
+      "origin": "amos-recipes@2ee53b8d80f6140e08386faeb1bd41172540d0c1:export_e3_boundary.py + e35 receipts",
+      "change": "Allowlisted scalar/timing export; private site data and generated text omitted."
     },
     {
       "path": "results/e3-crossover-component.json",
@@ -3374,6 +3404,12 @@
       "change": null
     },
     {
+      "path": "results/upstream-review-20261003.json",
+      "sha256": "fd60be28ab7e3bd108820909937d4c9fe076fe121476892ec8ceaab28d7f3b94",
+      "origin": "amos-recipes@2ee53b8d80f6140e08386faeb1bd41172540d0c1:qualification/serving-optimization-20261003/upstream-recipe-review-20261003.json",
+      "change": null
+    },
+    {
       "path": "runtime/vllm/Dockerfile.prefill-budget",
       "sha256": "c99b683b8e295a07c5cf3baf8df6c1d5a7949cf5a2ba994458f7d7300e62e234",
       "origin": "amos-recipes@5bd4d47ce20866232283569ed2803b460728de8d:runtime/exl3-tp6/Dockerfile.prefill-budget",
@@ -3407,6 +3443,12 @@
       "path": "runtime/vllm/amos_dynamic_graphs.py",
       "sha256": "7ee03ca15070e1e96f2f033d02b4d7ba6e6ab9f2597eca030454301a579fbb00",
       "origin": "amos-recipes@173f4c5:amos_dynamic_graphs.py",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/amos_e3_boundary.py",
+      "sha256": "3023c7aeddda7b43e9b36a217562a58f82489b1cd7b2c7c5526cbb2c1ddb6821",
+      "origin": "amos-recipes@2ee53b8d80f6140e08386faeb1bd41172540d0c1:amos_e3_boundary.py",
       "change": null
     },
     {
@@ -3503,6 +3545,12 @@
       "path": "runtime/vllm/build_e3_capture.py",
       "sha256": "4f14f260b94c8cc7bb13c757134e17235e6d92ea265106ccc8a314fc9128aa02",
       "origin": "amos-recipes@c367d0b4a6bf35b0dd9f8ee607b4060b85e3465a:build_e3_capture.py",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/build_e3_crossover.py",
+      "sha256": "40911e90bd4743cd266e4f0c637c1da1e55239d6793835d4370763a1be7336a9",
+      "origin": "amos-recipes@2ee53b8d80f6140e08386faeb1bd41172540d0c1:build_e3_crossover.py",
       "change": null
     },
     {
@@ -3905,6 +3953,12 @@
       "path": "runtime/vllm/squash_patch_layers.py",
       "sha256": "1222a1c210adf96f50343c9a31ef796a6491136ebac2bd3c3e2eef0acaf82625",
       "origin": "amos-recipes@5bd4d47ce20866232283569ed2803b460728de8d:runtime/exl3-tp6/squash_patch_layers.py",
+      "change": null
+    },
+    {
+      "path": "runtime/vllm/test_e3_boundary.py",
+      "sha256": "aff307e00d8e2c590034e4b5e72ce1daf7ae4836fc0c273c4ee138a51434c254",
+      "origin": "amos-recipes@2ee53b8d80f6140e08386faeb1bd41172540d0c1:test_e3_boundary.py",
       "change": null
     },
     {

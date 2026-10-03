@@ -33,6 +33,11 @@ Sources: [Kindling Spark OS](https://github.com/kindlingai/kindling-spark-os),
 
 ## Maintenance and recovery
 
+The subsequent E35 boundary comparison selected the current image and required
+row32 / native-through32 controls in [E3 prefill](E3_PREFILL.md). Both cache
+files must persist on every rank before a restart. Native/router/Code/Chat
+acceptance passed on the selected image; no new OS reboot test was part of E35.
+
 October 3: [dual-HCA RoCEnante](COMMUNICATION.md) was selected with unchanged
 image/precision/weights after numerical and application acceptance. The HCA pair
 and per-node shared GID-index checks are required on subsequent launches.

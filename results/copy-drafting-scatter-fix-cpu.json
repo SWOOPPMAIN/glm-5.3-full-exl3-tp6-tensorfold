@@ -1,0 +1,53 @@
+{
+  "phase": "cpu_scatter_fix_checked_not_deployed",
+  "source_sha256": "6b304fb5a2b7a2e4b6ac05c90c49d228975a7b1f7d566dc1445f048992163b72",
+  "candidate_sha256": "9a2772e4c32c19a78e9781db93b9445fc8e20a6aa9e6e26f967ba9ced108fda0",
+  "history_rows_checked": 2048,
+  "four_request_batches": 512,
+  "original_failing_batches": 158,
+  "candidate_all_passed": true,
+  "example_boundary_cases": [
+    {
+      "capacity": 8,
+      "prior": 7,
+      "new_count": 1,
+      "original_correct": false,
+      "candidate_correct": true
+    },
+    {
+      "capacity": 32,
+      "prior": 31,
+      "new_count": 1,
+      "original_correct": false,
+      "candidate_correct": true
+    },
+    {
+      "capacity": 128,
+      "prior": 127,
+      "new_count": 1,
+      "original_correct": false,
+      "candidate_correct": true
+    },
+    {
+      "capacity": 360000,
+      "prior": 359999,
+      "new_count": 1,
+      "original_correct": false,
+      "candidate_correct": true
+    }
+  ],
+  "capacities": [
+    8,
+    32,
+    128,
+    360000
+  ],
+  "gpu_used": false,
+  "target_model_loaded": false,
+  "proposal_matching_kernel_changed": false,
+  "limitations": [
+    "Only the original propose method scatter/history update was executed on PyTorch CPU; kernel return was a snapshot stub.",
+    "Earlier source checks cover the unchanged matching kernel. GPU compilation/scheduling and full target verification remain unqualified.",
+    "Original failures are history-state disagreements near terminal capacity, not proof of incorrect final target output."
+  ]
+}

@@ -1,8 +1,8 @@
 # E3 prefill: actual TP6 routes
 
-October 3, 2026. **Row32 is qualified and selected in full-model serving.**
-The original 3.25 bpw weights, 3072-token budget, adaptive MTP, 512-row native/E3
-boundary, dual-port RoCEnante and 2 MiB crossover remain selected. TensorFold
+October 3, 2026. **Row32 and native-through32 dispatch are qualified and selected.**
+The original 3.25 bpw weights, 3072-token budget, adaptive MTP,
+dual-port RoCEnante and 2 MiB crossover remain selected. TensorFold
 development is excluded.
 
 ## Findings
@@ -122,9 +122,9 @@ Recalculate the published timing comparison:
 python3 benchmarks/analyze_e3_public_samples.py --samples results/e3-row32-serving-samples.json
 ```
 
-### Image and persistent policy
+### E33 image and row policy — retained base for E35
 
-Selected image ID:
+E33 image ID:
 `sha256:b4988201229054893df527528c38e8091d4d5392d44c314406e66493ec9300da`.
 This is a local Docker image ID, not a pullable registry digest.
 
@@ -139,8 +139,8 @@ fail visibly. Change policies only while the six-rank service is idle and draine
 Each rank latches the choice at target layer 3 for the whole prefill chunk; row32
 and row64 share one scratch arena. Verify all six `.applied.json` acknowledgments
 against the exact control digest after a real uncached prompt above 512 rows.
-The image retains the 512-row native boundary; lowering it needs a separate
-actual-route native/row32 comparison and full-model qualification.
+This E33 base retains the 512-row native boundary. The E35 image and boundary
+policy below supersede it; the row32 control itself remains unchanged.
 
 [The builder](../../runtime/vllm/build_e3_rows.py) appends one layer to the exact
 124-layer diagnostic base. Inputs are that retained base archive, the E32 probe
@@ -158,9 +158,9 @@ PYTHONPATH=runtime/vllm python3 benchmarks/test_e3_rows_policy.py
 
 ## Native/E3 crossover comparison (E34)
 
-The follow-up component comparison is complete. **The serving boundary is still
-512 rows.** The next full-model candidate is native through 32 rows and row32 E3
-above 32; it has not been promoted or measured in full-model serving.
+The component comparison supplied the evidence for the subsequent E35 full-model
+trial below: native through 32 rows and row32 E3 above 32. Its isolated ratios
+must not be presented as full-model throughput gains.
 
 All six serving ranks were stopped for these probes. Native, row64 E3 and row32
 E3 used the same original weights and captured code/prose operands, including
@@ -330,3 +330,106 @@ the native activation and router-order epilogues; vLLM supplies serving. The
 full-model TP6 recipe builds on Adapt and Kindling's work. The local capture,
 ownership audit and row-tile experiment preserve these sources and their
 per-component licenses; see [credits](../../CREDITS.md).
+
+
+## Full-model native/E3 boundary (E35)
+
+**Selected: native through 32 rows, row32 E3 above 32.** Four alternating visits
+(512, 32, 512, 32), with one then two repetitions, used the same six containers.
+Both policies passed the short reference, 8K/32K/128K tails and eight functional
+checks before timing; their numerical summaries were identical. The 128K check
+retains the approximately 46% common-mass limitation described above.
+
+Twenty synthetic code/prose fixtures have exact rendered lengths of 33, 65, 128,
+256, 384, 512, 513, 3105, 3328 and 3584 tokens. Each visit warms kernels separately;
+measured requests use unique cache salts and report zero cache hits/preemptions.
+There are **120 timed one-token requests**, three per fixture/policy, plus 72
+cached matrix cells, 12 conventional decode, 12 cold-prefill measurements and six
+mixed-traffic rounds. Short timing is nonstreaming end-to-end one-token latency;
+it is not streaming TTFT or generation tok/s.
+
+| Prompt tokens | Code: 512 → 32 boundary, ms | Reduction | Prose: 512 → 32 boundary, ms | Reduction |
+| --- | ---: | ---: | ---: | ---: |
+| 65 | 334.4 → 311.6 | 6.84% | 329.3 → 303.9 | 7.72% |
+| 128 | 420.8 → 395.4 | 6.03% | 414.6 → 390.2 | 5.88% |
+| 256 | 772.0 → 738.3 | 4.36% | 760.7 → 722.3 | 5.04% |
+| 384 | 878.1 → 826.1 | 5.93% | 871.5 → 827.3 | 5.08% |
+| 512 | 796.0 → 748.9 | 5.91% | 800.8 → 746.4 | 6.80% |
+
+All ten 65–512-token cells have non-overlapping observed ranges. At 33 tokens,
+median reductions are 0.88% / 1.39%, with overlapping ranges. At 513 both policies
+already use E3; changes are +0.21% / −0.08% latency reduction, also overlapping.
+The 3072-plus-tail fixtures improve 0.28–1.43%; their full ranges remain in the
+results. These are three-sample ranges, not confidence intervals.
+
+| Other measurement | Boundary 512 | Selected boundary 32 | Change |
+| --- | ---: | ---: | ---: |
+| Cold 8K prefill | 982.14 tok/s | 977.48 tok/s | −0.47% |
+| Cold 32K prefill | 964.43 tok/s | 962.61 tok/s | −0.19% |
+| Prose, 512 output tokens | 35.45 tok/s | 36.39 tok/s | +2.64% |
+| Code, 512 output tokens | 49.50 tok/s | 47.90 tok/s | −3.23% |
+| Cached short C4 aggregate | 77.25 tok/s | 78.59 tok/s | +1.74% |
+| Cached 8K C4 aggregate | 69.25 tok/s | 71.60 tok/s | +3.38% |
+| Cached 32K C4 aggregate | 68.22 tok/s | 67.84 tok/s | −0.56% |
+
+The 12-cell cached geometric mean changes +0.87%. Conventional generation and
+long-prefill ranges overlap; no global decode or long-prefill gain is claimed.
+The code median regression remains part of the decision. Native decode kernels
+and original adaptive MTP are unchanged. Selection is justified by the repeated
+short-prompt latency benefit and passed quality gates.
+
+With three active decoders and a cold 32K arrival, median aggregate output is
+27.60 → 27.58 tok/s and arrival TTFT is 34.477 → 34.404 seconds. Approximately
+three-second stream gaps remain during large prefill chunks; lowering the E3
+boundary does not resolve that scheduling limitation.
+
+Native API, Pi-router, Code and Chat acceptance passed after reopening. The
+same six containers retained exclusive GPU ownership and fresh clear guards;
+final minimum available RAM was **10.08 GiB**. Original weights, precision,
+360K context, four admitted requests, 24 GiB KV/rank, 3072 prefill budget and
+communication settings remain unchanged. No 12-hour soak was run.
+
+[Results, decision and quality](../../results/e3-boundary-serving.json) ·
+[Every timing sample](../../results/e3-boundary-serving-samples.json)
+
+```sh
+python3 benchmarks/analyze_e3_boundary_public_samples.py --samples results/e3-boundary-serving-samples.json
+```
+
+### Current image and two required controls
+
+Current local image ID:
+`sha256:286e0a42c8caa3a7d45a76f006bd400e391e161b6ec9f0bbdc9dacb7dfb0d20e`.
+It is not a registry digest. Every rank's persistent mounted cache must contain:
+
+`/root/.cache/amos-e3-rows.json`:
+
+```json
+{"revision":"e33-selected32","rows":32}
+```
+
+`/root/.cache/amos-e3-boundary.json`:
+
+```json
+{"revision":"e35-selected32","native_max_rows":32}
+```
+
+Change controls only while serving is idle and drained. The boundary is latched
+at target layer 3 per prefill chunk and applies identically to generation and
+teacher scoring. Native decode through 32 rows does not access the control.
+Validate both policies and all six digest-matching acknowledgments after a real
+uncached prefill above 512 rows. Missing/invalid controls fail visibly.
+
+[The source-pinned builder](../../runtime/vllm/build_e3_crossover.py) takes
+`--base-archive` (the retained E33 delta), a new `--output` archive and a new
+`--receipt`. It replaces only the last source overlay, retaining 125 layers,
+all earlier layers, configuration, weights and compiled kernels. This requires
+retained base artifacts; it is not a clean-machine image build.
+
+```sh
+PYTHONPATH=runtime/vllm python3 runtime/vllm/test_e3_boundary.py
+```
+
+Those five CPU tests cover dispatch boundaries, chunk latching, invalid controls,
+decode isolation and capture-safe acknowledgments; they do not replace the GPU
+gates above.

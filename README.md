@@ -13,19 +13,21 @@ reboot. No 12-hour soak was run. [Operating notes](recipes/vllm-tp6/OPERATIONS.m
 
 | Measurement | vLLM P27 |
 | --- | ---: |
-| Prose generation, one request | **36.8 output tok/s median** |
-| Code generation, one request | **48.6 output tok/s median** |
-| Four concurrent requests, cached short mixed workload | **78.1 output tok/s combined median** |
-| Cold prefill, 8K / 32K | **982 / 965 input tok/s** |
-| Time to first token, 8K / 32K | **8.34 / 33.94 s** |
+| Prose generation, one request | **36.4 output tok/s median** |
+| Code generation, one request | **47.9 output tok/s median** |
+| Four concurrent requests, cached short mixed workload | **78.6 output tok/s combined median** |
+| Cold prefill, 8K / 32K | **977 / 963 input tok/s** |
+| Time to first token, 8K / 32K | **8.38 / 34.04 s** |
 | Configured context / admitted requests | **360,000 tokens / 4** |
 | KV allocation | **24 GiB per rank** |
 
-October 3, three samples per workload across alternating row64/row32 visits in
-one six-rank deployment. **32-row E3 prefill is selected:** cold prefill improves
-**3.9% / 3.3%** at 8K/32K. The cached matrix improves 1.8% overall, but short and
-32K C4 medians fall 2.4% / 2.6%; this is not a uniform speedup. Generation varies
-with unchanged adaptive MTP and is not an isolated E3 decode-kernel gain.
+October 3, three samples per workload across four alternating boundary-policy
+visits in the same six containers. **Row32 E3 now handles prefill above 32 rows:**
+65–512-token cold prompts have **4.4–7.7% lower one-token latency**, with separated
+observed ranges. Long-prefill medians change −0.5% / −0.2%; prose +2.6%, code
+−3.2%, with overlapping ranges. The cached matrix changes +0.9% overall.
+These generation differences are not isolated E3 decode-kernel gains.
+The earlier row64/row32 study's 3.9% / 3.3% cold-prefill gains remain documented.
 Prefill is prompt tokens divided by TTFT. C4 uses 256 output tokens per request;
 single-request generation uses 512. All requests share the cache.
 [Every sample, quality checks and replay](recipes/vllm-tp6/E3_PREFILL.md).
@@ -69,10 +71,11 @@ been measured; smaller prefill budgets and MTP retuning were rejected for promot
 Dual-port communication and its bounded crossover screen are complete; retain
 the 2 MiB cutoff. [E3 row32](recipes/vllm-tp6/E3_PREFILL.md) passed component and
 full-model checks and is selected for repeatable cold-prefill gains. The native/E3
-component comparison passed 1,296 exact checks and favors row32 above 32 rows;
-the new boundary still needs full-model qualification. That and
-[copy/ngram drafting](recipes/vllm-tp6/COPY_DRAFTING.md) remain. Copy drafting has source/CPU checks and an offline launcher; no serving
-comparison or promotion yet.
+component comparison passed 1,296 exact checks; the full-model boundary
+comparison is now complete. [Copy/ngram drafting](recipes/vllm-tp6/COPY_DRAFTING.md)
+remains: source/CPU checks, a history-scatter fix and an offline launcher are
+prepared; no serving comparison or promotion yet.
+[Latest upstream review](docs/UPSTREAM_REVIEW_20261003.md).
 TensorFold development is excluded from this optimization goal.
 
 ## Credits

@@ -14,8 +14,10 @@ is complete: about 26.5% of the 64-row tile capacity is unused padding. A 32-row
 candidate passed 468 exact comparisons and was 13.5% faster at 3072 rows in the
 isolated six-rank component comparison. Full-model row32 now passes the same
 numerical gates and is selected: cold prefill improves 3.94% / 3.28% at 8K/32K.
-The native/E3 component crossover comparison is complete; full-model boundary
-qualification and copy drafting remain.
+The native/E3 component and full-model boundary comparisons are complete:
+native through32 / E3 above32 is selected for 4.4–7.7% lower one-token latency
+at65–512-token prompts. Long-prefill medians are essentially unchanged; generation
+has mixed results. Copy drafting remains.
 Keep full GLM, TP6, the original 3.25 bpw experts and the current dense precision.
 Start from [P27 measurements](../results/p27-serving.json), with production serving
 remaining the priority. No numerical speedup promise is supported for this list.
@@ -91,19 +93,32 @@ The diagnostic hook is inactive. A separate actual-route native/E3 comparison
 passed 1,296 exact checks across six ranks and layers 3/40/77. Row32 beat native
 in all 324 cell medians, with 1.236–1.307 geometric-mean speed ratios across
 33–1024 rows. All 54 maximum-rank-median comparisons also favored row32.
-The serving boundary remains 512; a native-through32 candidate now needs
-full-model numerical gates and repeated short-prefill/tail timing. These component
-ratios are not full-model throughput gains.
+The full-model boundary comparison is complete. Both policies passed numerical
+gates through128K and eight functional checks. Native-through32 is selected after
+four alternating visits and native/router/Code/Chat acceptance: ten65–512-token
+cells have4.4–7.7% lower one-token latency with separated observed ranges.
+Long-prefill medians change−0.47/−0.19%, prose+2.64%, code−3.23%; their ranges
+overlap. The cached matrix changes+0.87%, and mixed traffic is essentially
+unchanged. These component ratios are not full-model throughput gains.
 
 **Copy drafting:** no new drafter weights are required. Full target verification is
 mandatory. First validate compatibility with the pinned TP6 scheduler; combining it
 with existing MTP is additional implementation work. Flash's DFlash2 checkpoint is
 not established as a compatible full-GLM drafter. [Source and CPU checks](../recipes/vllm-tp6/COPY_DRAFTING.md)
 are complete: the pinned configuration permits asynchronous GPU ngram, while
-CPU ngram disables asynchronous scheduling. An offline launcher is checked; full TP6 runtime qualification and timing remain.
+CPU ngram disables asynchronous scheduling. An offline launcher is checked.
+A prepared history-scatter fix passes2,048 CPU history-row checks; CUDA and
+full TP6 runtime qualification and timing remain.
 [vLLM speculative-decoding reference](https://docs.vllm.ai/en/latest/features/speculative_decoding/).
 
 ## New upstream ideas worth inspecting
+
+The [October 3 refresh](UPSTREAM_REVIEW_20261003.md) checks 14 repository heads.
+New candidates include knapcio's short-context DSA and current-draft-confidence
+stopping, and Christopher Owen's UVM page-table packing for memory headroom.
+These follow the ordered experiments above; none is installed or speed-qualified
+on our TP6 deployment. Kindling's full-GLM head remains the already-reviewed D13
+merge. Mia's TensorFold v1.5 is recorded without expanding the backend scope.
 
 [Mia v1.4 changelog, pinned review](https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks-TensorFold/blob/cf28cc4f8038be322cdeda220c6f1c8ace8f27d1/CHANGELOG.md)
 adds prompt-state retention fixes, bounded interleaving of prompt work with decode,

@@ -37,10 +37,23 @@ still need runtime verification.
 - Offline launch checks retained identical non-speculative arguments, preserved
   the current MTP launch, and rejected inherited MTP-only settings for copy profiles.
   The deployed launcher was not changed.
+- A prepared scatter fix gives padded history writes distinct destinations using
+  modulo indexing, while masked writes preserve the previous values. Against an
+  independent append oracle, all **2,048 history rows in 512 four-request batches**
+  passed at capacities 8, 32, 128 and 360,000. The original source failed 158 of
+  those batches. This runs the actual proposal method's tensor operations on CPU;
+  CUDA compilation, full-model behavior and speed remain unqualified.
 
 [Pinned source review](../../results/copy-drafting-source-review.json) ·
 [CPU proposer checks](../../results/copy-drafting-cpu.json) ·
-[Tensor semantics checks](../../results/copy-drafting-tensor-cpu.json)
+[Tensor semantics checks](../../results/copy-drafting-tensor-cpu.json) ·
+[Scatter-fix checks](../../results/copy-drafting-scatter-fix-cpu.json)
+
+The [source-pinned patch and checker](../../benchmarks/ngram_scatter_fix.py) take
+the retained original `ngram_proposer_gpu.py` as `--source`, a new `--candidate`
+path and a new `--output` receipt. It changes history scatter only; the matching
+kernel and native target verifier are unchanged. No copy-drafting runtime is
+installed by this preparation.
 
 ## Remaining trial
 

@@ -1,0 +1,230 @@
+{
+  "phase": "read_only_upstream_review",
+  "checked_at": 1791030417.7824504,
+  "scope": "Preserve full GLM-5.3 EXL3 3.25 bpw, dense precision, six ranks, 360K context and current reasoning. No TensorFold development.",
+  "heads": {
+    "MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks-TensorFold": {
+      "sha": "1576746a04983b6eded0551dbf22512ee9e95654",
+      "committed_at": "2026-10-03T06:24:03Z",
+      "subject": "Merge pull request #46 from MiaAI-Lab/release/v1.5-date",
+      "url": "https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks-TensorFold/commit/1576746a04983b6eded0551dbf22512ee9e95654"
+    },
+    "MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks": {
+      "sha": "6278ecb01034cea9ef6de0f851d09fccafe3e835",
+      "committed_at": "2026-10-01T11:45:32Z",
+      "subject": "Merge pull request #309 from MiaAI-Lab/integrate-283-5f",
+      "url": "https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks/commit/6278ecb01034cea9ef6de0f851d09fccafe3e835"
+    },
+    "adapt-ai-systems/glm-5.3-full-exl3-tp6": {
+      "sha": "3b9c548c22487537c1af1323af30fa9b0daef345",
+      "committed_at": "2026-10-03T03:32:35Z",
+      "subject": "Merge D13 adaptive draft length (opt-in on TP6) and its hang record",
+      "url": "https://github.com/adapt-ai-systems/glm-5.3-full-exl3-tp6/commit/3b9c548c22487537c1af1323af30fa9b0daef345"
+    },
+    "adapt-ai-systems/spark-recipes": {
+      "sha": "9ec2cadabb41990d1e57374af40b8f3432b4f36a",
+      "committed_at": "2026-09-29T21:50:13Z",
+      "subject": "GLM 5.3 full TP4: publish 4-Spark recipe (TP6 speed stack on TP4 + DCP2), measured ladder, KL gate",
+      "url": "https://github.com/adapt-ai-systems/spark-recipes/commit/9ec2cadabb41990d1e57374af40b8f3432b4f36a"
+    },
+    "christopherowen/dgx-spark-memory-saver": {
+      "sha": "6f97319e7c00e5422b0afe4cabbd348211bfcb34",
+      "committed_at": "2026-10-03T09:06:30Z",
+      "subject": "Describe the patch as in use and make its comments precise",
+      "url": "https://github.com/christopherowen/dgx-spark-memory-saver/commit/6f97319e7c00e5422b0afe4cabbd348211bfcb34"
+    },
+    "ciprianveg/gb10-vllm": {
+      "sha": "c7b7c67af434aec947df0be05d5ea89deb8f244a",
+      "committed_at": "2026-09-30T14:01:05Z",
+      "subject": "remote-dspark: measured throughput table (int4int8 TP4: local 39.5, RDMA 38.5, TCP 37.0)",
+      "url": "https://github.com/ciprianveg/gb10-vllm/commit/c7b7c67af434aec947df0be05d5ea89deb8f244a"
+    },
+    "jnardiello/GLM-5.3-Flash-FP8-4-DGX-Spark-Switchless": {
+      "sha": "53359a299fe13bd079094a48be795a6400d0a2df",
+      "committed_at": "2026-10-01T16:30:43Z",
+      "subject": "docs: archive E37 and E38 diagnostic results",
+      "url": "https://github.com/jnardiello/GLM-5.3-Flash-FP8-4-DGX-Spark-Switchless/commit/53359a299fe13bd079094a48be795a6400d0a2df"
+    },
+    "kindlingai/glm-5.3-flash-gx10": {
+      "sha": "c748079d45e6e070b2acb108a91edfe52f4a7747",
+      "committed_at": "2026-10-02T03:34:20Z",
+      "subject": "Update README to reflect DGX Spark instead of ASUS GX10",
+      "url": "https://github.com/kindlingai/glm-5.3-flash-gx10/commit/c748079d45e6e070b2acb108a91edfe52f4a7747"
+    },
+    "kindlingai/glm-5.3-full-exl3-tp6": {
+      "sha": "3b9c548c22487537c1af1323af30fa9b0daef345",
+      "committed_at": "2026-10-03T03:32:35Z",
+      "subject": "Merge D13 adaptive draft length (opt-in on TP6) and its hang record",
+      "url": "https://github.com/kindlingai/glm-5.3-full-exl3-tp6/commit/3b9c548c22487537c1af1323af30fa9b0daef345"
+    },
+    "kindlingai/kindling-spark-os": {
+      "sha": "73ff3ae198ba4f145a22ea859d7106721fdbd621",
+      "committed_at": "2026-10-02T13:29:55Z",
+      "subject": "Release 0.9.5",
+      "url": "https://github.com/kindlingai/kindling-spark-os/commit/73ff3ae198ba4f145a22ea859d7106721fdbd621"
+    },
+    "kindlingai/talos-dgx-kernel": {
+      "sha": "53e5a160ab83a7508a5fa5123a5a31d06039d498",
+      "committed_at": "2026-10-02T21:01:31Z",
+      "subject": "Merge pull request #5 from kindlingai/dgx1022.5",
+      "url": "https://github.com/kindlingai/talos-dgx-kernel/commit/53e5a160ab83a7508a5fa5123a5a31d06039d498"
+    },
+    "knapcio/GLM-5.3-4x-DGX-Spark-TP4": {
+      "sha": "be5c80a6bc85b97bb4b0908cf128ff3add74d05a",
+      "committed_at": "2026-10-03T10:48:54Z",
+      "subject": "Remove internal test name from README title",
+      "url": "https://github.com/knapcio/GLM-5.3-4x-DGX-Spark-TP4/commit/be5c80a6bc85b97bb4b0908cf128ff3add74d05a"
+    },
+    "tonyd2wild/GLM-5.3-Flash-NVFP4-1M-KV-4x-DGX-Spark": {
+      "sha": "96658cf02227a159a25b330b4ce33a80a548375d",
+      "committed_at": "2026-09-30T22:16:17Z",
+      "subject": "Credits: add Matt Mastracci (GX10 recipe, FlashKDA fp32 kernels, vLLM #58454)",
+      "url": "https://github.com/tonyd2wild/GLM-5.3-Flash-NVFP4-1M-KV-4x-DGX-Spark/commit/96658cf02227a159a25b330b4ce33a80a548375d"
+    },
+    "tonyd2wild/GLM-5.3-Flash-NVFP4-DFlash2-2x-DGX-Spark": {
+      "sha": "d061f26ad3ec5c3c04f64aad7516dbe62a8aa6af",
+      "committed_at": "2026-09-30T22:16:15Z",
+      "subject": "Credits: add Matt Mastracci (GX10 recipe, FlashKDA fp32 kernels, vLLM #58454)",
+      "url": "https://github.com/tonyd2wild/GLM-5.3-Flash-NVFP4-DFlash2-2x-DGX-Spark/commit/d061f26ad3ec5c3c04f64aad7516dbe62a8aa6af"
+    }
+  },
+  "source_sha256": {
+    "MiaAI-Lab-repos.json": "4d7c50beb6795b693db773cca507a139a66b244b4e77fbdf49ae11bb7e11b01a",
+    "MiaAI-Lab__GLM-5.3-Flash-EXL3-2x-DGX-Sparks-TensorFold-commits.json": "164c6c3397656242b6a120d89979ecdebbb6ea7ca7e04282fc71ebc54f5135fb",
+    "MiaAI-Lab__GLM-5.3-Flash-EXL3-2x-DGX-Sparks-TensorFold__CHANGELOG.md": "7803dc257c6cbcf21534a595f0704fe8ef4450beadc0407092324af49353684b",
+    "MiaAI-Lab__GLM-5.3-Flash-EXL3-2x-DGX-Sparks-commits.json": "6d4f1a7dbcc6805cacddc405dd59b9a1469d3d9bee6853987f47592e5c893e84",
+    "MiaAI-Lab__GLM-5.3-Flash-EXL3-2x-DGX-Sparks__CHANGELOG.md": "bd4cb66df2dca02fad8fa64cf525c544094db9abc69b4a07be50fbe07d2f94a7",
+    "MiaAI-Lab__GLM-5.3-Flash-EXL3-2x-DGX-Sparks__README.md": "7370b42c57df91e5951ce63a65d9b71f2eb475cd936f5927ae0003cf23d18958",
+    "adapt-ai-systems-repos.json": "52cd65d4ac3c140bf88e45b34f2dfea134ab64994ba53ec77e3645e12d4a178d",
+    "adapt-ai-systems__glm-5.3-full-exl3-tp6-commits.json": "255fd1eefab4da0470632eed78f91740e46d9f48ff1369b3641a18e60755e992",
+    "adapt-ai-systems__spark-recipes-commits.json": "63136d2d02bd688683d586a4475525c5673f84eaccbe1efc9e99332bbf87f3bb",
+    "christopherowen__dgx-spark-memory-saver-commits.json": "8f69eeeb6087ffaef0fd9461f7feabe032cf36a057fccb3bea3309c34ccafd01",
+    "christopherowen__dgx-spark-memory-saver__README.md": "fa642841bba5732944ea0a53f2fef01b605dd85a92cdc996ff932b7ec48d4d61",
+    "christopherowen__dgx-spark-memory-saver__compatibility.json": "2860c906aa598b762ee49bc138d77d19797c26be93c70b8a39b6d15d8eea92fb",
+    "ciprianveg-repos.json": "501e2d2d0d8a488a47cd458c9c3fe91be07196db3eb442f4631ee4dd76529051",
+    "ciprianveg__gb10-vllm-commits.json": "2e83a800fd048b692e20f6cbacda47f659aefcc1cf700b7cb923fd494296713d",
+    "ciprianveg__gb10-vllm__README.md": "01c5a5a341ff021267c8e8ab054f5eb9cd88b909dc74e6e5eb40242fdf24d857",
+    "jnardiello-latest-commit.json": "f321bc151ec5a0858dae12da6c7a6322f4a83c0974992f84ef97ea9ff1bcce9d",
+    "jnardiello-repos.json": "b8cbf94defd1f90b2456b570e9c6d3721f1c9bd3084f02783b03933ee7bb6c8a",
+    "jnardiello__GLM-5.3-Flash-FP8-4-DGX-Spark-Switchless-commits.json": "4cff76c8c237768db26408af1c0b33707ee7e9ddac7d36ccf33a57202e7b2aa8",
+    "jnardiello__GLM-5.3-Flash-FP8-4-DGX-Spark-Switchless__README.md": "2dd257649af39e9cb254c02214f3231323f64b64fea418db0b489ac3421ab9d8",
+    "jnardiello__GLM-5.3-Flash-FP8-4-DGX-Spark-Switchless__docs__benchmarks__experiments__2026-10-01-e37-allreduce-butterfly.md": "cc3ef4fc00635e1bba2f1c7ef696406a252d723d2cf038af02dacf90af8cb773",
+    "jnardiello__GLM-5.3-Flash-FP8-4-DGX-Spark-Switchless__docs__benchmarks__experiments__2026-10-01-e38-mla-prep.md": "1c273c454efbf08e34ebaeb854d779022e2a6566dc307b5caa01bde7e0c45872",
+    "kindlingai-repos.json": "f1ea9c43c4be30c3ae0c134af44a80c64888a57a7307b2038b7ce127d134b64e",
+    "kindlingai__glm-5.3-flash-gx10-commits.json": "8864a638a91fa4acb057965c504c786cc5aff517eae68d126d6de4f8157b5622",
+    "kindlingai__glm-5.3-full-exl3-tp6-commits.json": "d588b28dfa8bf643a944df95151ae7a2fea81f96e9bf0c808516822d6d24dec2",
+    "kindlingai__kindling-spark-os-commits.json": "c2936d76b03377a1a923f3e63c660c972bc705bf32374888cca733db1ef571da",
+    "kindlingai__talos-dgx-kernel-commits.json": "11b82509eb2345d4afaf82ec8551fa609bcd8af1ffd74ac79365ff5e2d81369f",
+    "kindlingai__talos-dgx-kernel__README.md": "b0f898bce593eae3ec50b5295ef0cc20a74db5b5c648cd78ae86040eeabbc510",
+    "kindlingai__talos-dgx-kernel__extension__patches__0002-nvidia-uvm-pack-user-leaf-page-tables.patch": "415addf018456e0b8ca17553ffa7d574fc39b0438bb32ece2680f946abaff5ed",
+    "knapcio-repos.json": "c966146568d40a7f558fd182bbe6bdae95ba61df335a25a6c744f0ad8f1ba0b3",
+    "knapcio__GLM-5.3-4x-DGX-Spark-TP4-commits.json": "d7840f194e7b2043574e1a228983e95630f7228e181daac2065cab4b1eb85f03",
+    "knapcio__GLM-5.3-4x-DGX-Spark-TP4__README.md": "4256c414066a39337ea8a2bcdb72e0209154911767d944eca04129ef0ad12526",
+    "knapcio__GLM-5.3-4x-DGX-Spark-TP4__docs__pad-hygiene-v2.md": "b82d9e4081964d7736441d5be6e8a704092b9ae1098cea8ee654f110d6736f07",
+    "knapcio__GLM-5.3-4x-DGX-Spark-TP4__docs__runtime.md": "a160c602759aefa8308de3b1cb3451a38285528264ac6af6801afe567c50d041",
+    "knapcio__GLM-5.3-4x-DGX-Spark-TP4__overlay__bringup__glm_dsa_short.py": "3efc939eea8bf52be5cd677b7ca5b11dd52fd873aeaf5f649492b162a16c9df2",
+    "tonyd2wild-repos.json": "63ec100c2b90bb8c58236579fbfdcd1c31d0c5baa9b0e441de4e0481c9a4edd0",
+    "tonyd2wild__GLM-5.3-Flash-NVFP4-1M-KV-4x-DGX-Spark-commits.json": "2ac874cbf59a2523a990930b05b692bf92a0e9226b6fefd595cceb331e115451",
+    "tonyd2wild__GLM-5.3-Flash-NVFP4-DFlash2-2x-DGX-Spark-commits.json": "69aa3a8f14e6f4557a153db9fc90a7e81c496b0638d5110134cc47e562bc535d"
+  },
+  "findings": [
+    {
+      "source": "kindlingai/glm-5.3-full-exl3-tp6",
+      "status": "unchanged_since_prior_review",
+      "prior_head": "3b9c548c22487537c1af1323af30fa9b0daef345",
+      "finding": "Same D13 opt-in launch and hang record. Adapt full-GLM mirror has the same HEAD. Published gains are against fixed k4, while our selected controller is already request/phase adaptive.",
+      "decision": "No new runtime patch to import."
+    },
+    {
+      "source": "adapt-ai-systems/spark-recipes",
+      "status": "current_head_reviewed",
+      "finding": "Latest recipe commit adds full TP4 on September29. The full TP6 recipe remains a reference for the existing stack.",
+      "decision": "No newly demonstrated TP6 improvement."
+    },
+    {
+      "source": "knapcio/GLM-5.3-4x-DGX-Spark-TP4",
+      "status": "new_candidates_for_compatibility_review",
+      "finding": "October3 full-GLM Int4-Int8Mix TP4 stack includes per-proposal confidence stopping, DSA shortcut at context <=2048, descriptor-scoped graph pad handling, split-layout MLA and dirty-L2 discard. Latest functional change resets watchdog busy-stall allowance during GPU idle.",
+      "decision": "Prioritize source compatibility of short DSA and current-draft-confidence stopping after ordered experiments. Current-draft-confidence differs from our acceptance-history/cost policy. Inspect L2 and graph work before proposing kernels. Keep EXL3 TP6 weights and capacity.",
+      "limitations": [
+        "Source DSA explicitly permits TP4 only; requires a port and strict numerical gates for TP6.",
+        "Their 66K context, quantization and benchmark protocols differ; do not claim their reported rates as an A/B against ours.",
+        "Pad hygiene removes overhead of their own remap; our path may not have that overhead."
+      ]
+    },
+    {
+      "source": "christopherowen/dgx-spark-memory-saver",
+      "status": "new_memory_headroom_candidate",
+      "finding": "UVM leaf-page-table packing is validated upstream on the same 7.0.0-1019-nvidia-64k kernel and580.178.04 driver. Upstream profiled backing storage fell from about3.25GiB to0.218GiB versus stock64KiB UVM; reported net gain versus4KiB OS is separately1.78-1.86GiB. Serving throughput comparable.",
+      "local_read_only_check": {
+        "nodes": 6,
+        "kernel": "7.0.0-1019-nvidia-64k",
+        "packing_parameter_present_nodes": 0
+      },
+      "decision": "Investigate a UVM-only build for our existing OS, not a Talos installation. Requires drained driver activation, allocation/readback and serving gates. No local memory gain or tok/s gain measured."
+    },
+    {
+      "source": "kindlingai/talos-dgx-kernel",
+      "status": "new_adoption_of_memory_patch",
+      "finding": "dgx1022.5 adopts Christopher Owen page-table packing in the open580.178.04 UVM module, plus existing ATS TLB flush patch.",
+      "decision": "Follow credited allocator patch; do not migrate the OS for an unmeasured throughput claim."
+    },
+    {
+      "source": "kindlingai/kindling-spark-os",
+      "status": "already_reviewed",
+      "finding": "0.9.5 adds Wi-Fi support; nearby console/setup changes.",
+      "decision": "No measured inference-speed reason to update."
+    },
+    {
+      "source": "kindlingai/glm-5.3-flash-gx10",
+      "status": "flash_specific",
+      "finding": "Recent commits propagate DFlash block-drop fix toTP3/6 and increase pinned TP4 KV using display carveout.",
+      "decision": "DFlash and display-carveout KV changes do not directly apply to retained full EXL3/MTP configuration. Preserve24GiB KV and360K context."
+    },
+    {
+      "source": "MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks",
+      "status": "scheduler_robustness_reference",
+      "finding": "Decode-floorv7 allows runnable prefill progress when a waiting request cannot obtainKV; preserves priority behavior and validates legacy patch migration. TP2 progress cases pass; timing and temperature0 identity comparisons inconclusive due baseline drift.",
+      "decision": "Inspect waiting-allocation progress in our pinned scheduler before porting; preserve3072 budget. This is not evidence that our rejected small-budget policies now qualify."
+    },
+    {
+      "source": "MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks-TensorFold",
+      "status": "outside_current_backend_scope",
+      "finding": "v1.5 October3 adds up to8streams, larger verify windows with proportional memory reserve, and serial cancellation. Reported4-to8stream aggregate gains27-36percent are Flash/DFlash2 on2/3Sparks; single-stream unchanged.",
+      "decision": "Record developments only; no TensorFold port or claim of equivalent fullTP6 gains."
+    },
+    {
+      "source": "jnardiello/GLM-5.3-Flash-FP8-4-DGX-Spark-Switchless",
+      "status": "useful_negative_and_draft_policy_evidence",
+      "finding": "E35 current-draft confidence verify cap is conceptually relevant; E36 quantizes output head, outside fixed-precision plan. LatestE37 butterfly collectives all slower thanNCCL; E38 MLA-prep fusion remains no-go with about48-52us optimistic margin versus52-101ms target graphs.",
+      "decision": "Use draft-confidence idea as corroborating reference. Avoid rerunning butterfly/fusion just on enthusiasm; require TP6 profiles. No SparkCache import justified by our measured prefix-reuse outcome."
+    },
+    {
+      "source": "tonyd2wild/GLM-5.3-Flash-NVFP4-1M-KV-4x-DGX-Spark",
+      "status": "recipe_refresh",
+      "finding": "Main recent serving refresh adopts knapcio Flash stack; latest commits update credit. Repository pushed_at is later than main commit date.",
+      "decision": "Inspect upstream implementation rather than counting mirrored recipe changes as independent innovations."
+    },
+    {
+      "source": "tonyd2wild/GLM-5.3-Flash-NVFP4-DFlash2-2x-DGX-Spark",
+      "status": "recipe_refresh",
+      "finding": "RecentTP2 KV pin and credit updates remain Flash-specific.",
+      "decision": "No direct fullTP6 EXL3 import."
+    },
+    {
+      "source": "ciprianveg/gb10-vllm",
+      "status": "remote_draft_reference",
+      "finding": "Latest remote-DSpark benchmark reports local39.5, RDMA38.5, TCP37.0tok/s for their Int4Int8 TP4 setup; RPC improvements are not full-model throughput wins over local drafting.",
+      "decision": "No current compatible fullGLM remote drafter established; all six GPUs reserved for target. Keep target-verified local ngram next."
+    }
+  ],
+  "priority_after_current_ordered_plan": [
+    "Source compatibility: short-context DSA shortcut",
+    "Source compatibility: per-proposal-confidence MTP stopping",
+    "UVM-only allocator packing for memory headroom",
+    "Profile attention temporary-buffer traffic and graph padding before porting",
+    "Verify scheduler progress under KV-blocked admission"
+  ],
+  "runtime_changes_applied": false,
+  "public_repository_updated": false
+}
