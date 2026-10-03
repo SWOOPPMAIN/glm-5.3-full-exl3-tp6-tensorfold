@@ -157,6 +157,9 @@ def bench(api,image,policy,name,scope,repetitions,expected_depth):
     else:
         cells=[([item],1) for item in items]
         cells += [([i for i in items if i['nominal_context']==n],4) for n in (0,8192,32768)]
+        if scope=='candidate_matrix':
+            cells += [([i for i in items if i['nominal_context']==n],count)
+                      for count in (2,3) for n in (0,8192,32768)]
     out=Q/(name+'-bench.json');assert not out.exists()
     report=dict(phase='running',fixture_sha256=hashlib.sha256(FIXTURES.read_bytes()).hexdigest(),
         image=image,policy=policy,scope=scope,repetitions=repetitions,rows=[])
@@ -191,7 +194,7 @@ def main():
     p.add_argument('--fixtures',type=Path,default=Path(__file__).with_name('mtp-fixtures.json'))
     p.add_argument('--output-dir',required=True,type=Path)
     p.add_argument('--name',required=True)
-    p.add_argument('--scope',choices=['screen','matrix'],default='matrix')
+    p.add_argument('--scope',choices=['screen','matrix','candidate_matrix'],default='matrix')
     p.add_argument('--repetitions',type=int,default=1)
     a=p.parse_args()
     assert re.fullmatch(r'sha256:[a-f0-9]{64}',a.image)

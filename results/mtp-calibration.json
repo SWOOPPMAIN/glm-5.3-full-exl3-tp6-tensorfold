@@ -1,0 +1,117 @@
+{
+  "status": "calibration_complete_candidates_unqualified",
+  "sources": {
+    "mtp5-cost-r0-fixed1-bench.json": "462ad5637a2bfa407f84c813815cc885e2eac9aec8423f41bce192feb0438389",
+    "mtp5-cost-r0-fixed2-bench.json": "c2c723fa3c85cf1a6d06329dec865eb09c2d1b3abeea6878cdf623009f7273a7",
+    "mtp5-cost-r0-fixed3-bench.json": "c2ecd3a83664d482f968017d3d9f7f74238fd0a39042946343ea8ffd75cb4d12",
+    "mtp5-cost-r0-fixed4-bench.json": "ddb49c752ec2f577b020099edb7ded9d974ccd51240c054c636fd27ab672fbb3",
+    "mtp6-cost-r1-fixed1-bench.json": "9b7a4012e6b4e9f4e0fd9e4b219ff4a1e8f9ada2957faa83f4ba8ac4315b920f",
+    "mtp6-cost-r1-fixed2-bench.json": "a23f13fc5a179728646f29e0ea7ee5f473b98525073e9b477214057d7e809a1c",
+    "mtp6-cost-r1-fixed3-bench.json": "e72e1e1cc698cf21bac168fb57e9f839dbb77db39d29954f77fd9b2fa64232c4",
+    "mtp6-cost-r1-fixed4-bench.json": "65a78e3c4b9c9325e9a216c13ef8b68f34d079123f88234d8b30a45a65065f68",
+    "mtp7-cost-r2-fixed1-bench.json": "2926729baecef13292f764f4834f38af3b8532c13a1bb11009424287828c392e",
+    "mtp7-cost-r2-fixed2-bench.json": "18b46b9622b6f57e996e3b70d5edc054cd918afd43b36870f6919c9f8260b1ce",
+    "mtp7-cost-r2-fixed3-bench.json": "eded85c8946435014434ea29b32a08550210b330b754269ce6b5a8ae3a9c8382",
+    "mtp7-cost-r2-fixed4-bench.json": "de74cc4da2bea7133d76e1b0e0f242331a9cbcd6cc70889c77e5e7e53abab042"
+  },
+  "fit_sha256": "1009f0f15317d0b3780cf755cc655f9f2b3049c9c566abfee3d9e27df4bf0ece",
+  "calibration_cells": 72,
+  "steady_batch_steps": 6130.0,
+  "minimum_counter_fit_R_squared": 0.9993656383261039,
+  "minimum_available_gib": 10.22,
+  "new_cost_ms": {
+    "1": [
+      54.88796678654397,
+      63.728430255918155,
+      73.38259017292006,
+      82.8654828108595
+    ],
+    "2": [
+      69.49212038033457,
+      85.04606175653792,
+      100.20828363024422,
+      112.81013873222179
+    ],
+    "3": [
+      83.05355944829763,
+      102.79724266484445,
+      121.69326983884719,
+      138.29252087385964
+    ],
+    "4": [
+      95.60922627323768,
+      119.60712389997519,
+      141.10653862002857,
+      157.87340129579366
+    ]
+  },
+  "current_policy_cost_ms": {
+    "1": [
+      55.57226186003351,
+      63.85468628331975,
+      72.93648392662621,
+      80.7224249718761
+    ],
+    "2": [
+      68.38654967564855,
+      80.66584603870542,
+      94.16335919118725,
+      104.15978384612006
+    ],
+    "3": [
+      84.5904584172276,
+      101.51133996235744,
+      110.97722139802775,
+      124.790900391468
+    ],
+    "4": [
+      92.59679998843586,
+      109.98506771263851,
+      130.24286272921114,
+      150.71740424139733
+    ]
+  },
+  "cost_ratio_new_to_current": {
+    "1": [
+      0.9876863915452455,
+      0.998022760195839,
+      1.0061163662172505,
+      1.0265484819085906
+    ],
+    "2": [
+      1.0161664934103218,
+      1.054300747254678,
+      1.0641961426501734,
+      1.0830488943686873
+    ],
+    "3": [
+      0.9818312963697456,
+      1.0126675768733213,
+      1.0965607924385272,
+      1.1081939503604603
+    ],
+    "4": [
+      1.0325327255928718,
+      1.0874851140018074,
+      1.0834109114555028,
+      1.0474795667455556
+    ]
+  },
+  "candidates": [
+    "mtp-fitted-window16",
+    "mtp-fitted-window8",
+    "mtp-fitted-window32"
+  ],
+  "original_policy_retained": true,
+  "remaining": "Screen fitted policies on18-cell C1..C4 short/8K/32K matrix with bracketing original visits, repeat eligible candidates and run original numerical/native/application gates before promotion.",
+  "limitations": [
+    "Wall time includes target, draft and scheduling; API polling is present and this is not isolated GPU timing.",
+    "Identical prompts can produce different continuations. Cost calibration does not claim output equivalence or replace original numerical gates.",
+    "Calibration uses representative8K code/prose; full short/8K/32K code/prose/tool and mixed-concurrency matrices remain required for candidate comparison.",
+    "All fitted controls require repeated end-to-end comparisons and numerical/application qualification.",
+    "Native acceptance accounting, priors and target verification are unchanged.",
+    "Homogeneous calibration prompts can have different routing diversity from mixed traffic; promotion requires actual mixed-workload comparisons."
+  ],
+  "recorded_at": 1791009365.952012,
+  "source_revision": "d0486aaf699729638c36fafa1e46e3fe74fe3dd0"
+}

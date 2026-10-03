@@ -1,0 +1,76 @@
+{
+  "schema": 1,
+  "phase": "completed",
+  "outcome": "rejected_with_evidence",
+  "image": "sha256:2e947348fd26b8d58e4535e0321126935069a5e521784fa573f19fb560975d9d",
+  "fixture_sha256": "542ce05b3bdc49d352097b31a9553f152ee1cf597445570858fd15d35681aadd",
+  "selected_policy": "original",
+  "fixed_depth_measurements": 180,
+  "cost_calibration_cells": 72,
+  "candidate_screen_measurements": 90,
+  "candidate_screen": [
+    {
+      "policy": "costs32",
+      "fingerprint": "costs-16c9e3e4ab76",
+      "equal_cell_geomean_ratio": 0.9972512647215945,
+      "geomean_by_concurrency": {
+        "1": 0.9981705571399168,
+        "2": 1.0188817937255183,
+        "3": 0.9966668730416113,
+        "4": 0.9739563261705335
+      },
+      "candidate_visits": 1,
+      "original_visits": 2,
+      "smallest_cell_ratio": 0.8757552505634907,
+      "largest_cell_ratio": 1.080963727357222
+    },
+    {
+      "policy": "costs8",
+      "fingerprint": "costs-7b3c5f7e0bf7",
+      "equal_cell_geomean_ratio": 1.001902701542378,
+      "geomean_by_concurrency": {
+        "1": 1.0161537507945897,
+        "2": 0.9919894444602805,
+        "3": 1.0005927619611528,
+        "4": 0.9712043172386312
+      },
+      "candidate_visits": 1,
+      "original_visits": 2,
+      "smallest_cell_ratio": 0.9452914368728418,
+      "largest_cell_ratio": 1.1063059441993455
+    },
+    {
+      "policy": "costs16",
+      "fingerprint": "costs-d5d5aca6b0fa",
+      "equal_cell_geomean_ratio": 0.9976222769158904,
+      "geomean_by_concurrency": {
+        "1": 1.0037447901400516,
+        "2": 1.001940334981035,
+        "3": 0.9987863744741035,
+        "4": 0.9741199741847184
+      },
+      "candidate_visits": 1,
+      "original_visits": 2,
+      "smallest_cell_ratio": 0.9143196221700733,
+      "largest_cell_ratio": 1.1065653781362919
+    }
+  ],
+  "hypothesis": "Measured concurrency-specific costs and full-depth probe cadence could improve accepted output per total serving step.",
+  "decision": "Retain original adaptive policy. Repeated fixed-depth testing found no useful general winner. All fitted screens are within0.3% overall of original and all reduce the C4 geometric mean by2.6\u20132.9%; none earns further production qualification in this bounded pass.",
+  "quality": "Three fitted policies passed eight functional checks each. No changed policy is promoted; original numerical qualification remains applicable. Native/Pi/Code/Chat acceptance passed after explicit original selection on the same image and containers.",
+  "sources": {
+    "mtp-three-visits-summary.json": "be90ef705fc39e22c704852c6a1b1ab7279ab7f8aa1982bc8e253943dc6a6886",
+    "mtp-calibrated-cost-fit.json": "1009f0f15317d0b3780cf755cc655f9f2b3049c9c566abfee3d9e27df4bf0ece",
+    "mtp8-screen-summary.json": "80b341fd7480d36b58ea65ff2f0aeb3139a3ebdc1a4085c74d4d01a04407eea7",
+    "mtp8-application-acceptance.json": "297ceab87812164f89914d6dc3222ec4a069e80ab315831f6e05df1460e57306",
+    "mtp8-final-serving.json": "e7508770d3fc663062f0089c0064ecef287b73a6cfb2bba2b59639e94c688e58"
+  },
+  "limitations": [
+    "Each fitted candidate has one18-cell screen visit bracketed by two original visits. This rejects promotion for insufficient demonstrated benefit; it does not establish statistical equivalence or universal regression.",
+    "No full numerical qualification was run for the fitted policies because none qualified for promotion on this performance screen.",
+    "Output rates include cached prefill and delivery with256output tokens and cannot be compared directly with the512-token historical serving baseline.",
+    "Cost fits use homogeneous code/prose prompts; heterogeneous expert routing and adaptive exploration can change realized costs."
+  ],
+  "next_experiment": "tp6_communication",
+  "source_revision": "e24ee612a65f4e94006e45a6ab7edf52a69b054b"
+}

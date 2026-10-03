@@ -36,8 +36,11 @@ cached first-token latency, generation and aggregate throughput separate.
 
 ## Adaptive MTP comparison
 
-See the [first-pass protocol and limits](../recipes/vllm-tp6/MTP_TUNING.md),
+See the [repeated-comparison protocol and limits](../recipes/vllm-tp6/MTP_TUNING.md),
 [API replay client](mtp_matrix.py) and [frozen synthetic prompts](mtp-fixtures.json).
 The operator applies policies and verifies fleet guards externally. The client
 records measurements without changing serving. Repeat and balance policy order
-before selecting a candidate; the first published pass has one visit per cell.
+before selecting a candidate. Three fixed-depth visits and the cost calibration
+and fitted-policy screen are complete; no changed policy was promoted. Use `candidate_matrix`
+to include mixed C2/C3, and [the cost client](mtp_costs.py) for native-counter
+timing inside simultaneous decode.

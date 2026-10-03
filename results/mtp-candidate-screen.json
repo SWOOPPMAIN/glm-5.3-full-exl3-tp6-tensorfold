@@ -1,0 +1,4241 @@
+{
+  "schema": 1,
+  "phase": "measurement_summary_only",
+  "image": "sha256:2e947348fd26b8d58e4535e0321126935069a5e521784fa573f19fb560975d9d",
+  "fixtures_sha256": "542ce05b3bdc49d352097b31a9553f152ee1cf597445570858fd15d35681aadd",
+  "sources": {
+    "mtp8-screen-original-start-bench.json": "00d93ec095ae1b268bfdb0a5076283a16a8eed88d81e960909417a3008f1f358",
+    "mtp8-screen-costs16-bench.json": "fb942d5c0edd59561a180d5c70e5e1c3ab2833369c39659ab26a9f8a084eb800",
+    "mtp8-screen-costs32-bench.json": "34d16d2738abdf50fce1dbec07f2c885b8fe00c8484e3b92a21d2f55a814b5ee",
+    "mtp8-screen-costs8-bench.json": "767e9b5660ae6373ab45c7d675265d992c147f1fa1ae5b3885a14f8060e1d9fd",
+    "mtp8-screen-original-end-bench.json": "90cf35435128a9a88440203f894efbfbffd14a5e34d2a615ede752a9bae232e7"
+  },
+  "cells": [
+    {
+      "policy": "costs-16c9e3e4ab76",
+      "context": 0,
+      "kind": "code",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 43.84897015284131,
+      "range_output_tok_s": [
+        43.84897015284131,
+        43.84897015284131
+      ],
+      "median_step_ms_estimate": 72.82878093419161,
+      "median_accepted_per_wall_second": 30.660022099057013,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs32-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 43.84897015284131,
+          "mean_decode_tok_s_estimate": 46.067468732168635,
+          "mean_ttft_seconds": 0.302620021160692,
+          "mean_attempted_depth": 3.3421052631578947,
+          "accepted_per_draft": 2.3552631578947367,
+          "server_step_ms_estimate": 72.82878093419161,
+          "accepted_per_wall_second": 30.660022099057013,
+          "accepted_per_server_request_decode_second": 32.339730635103756,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "5237fff8c256ff1ca6a2be6548744d4abadef14b38f0b20c328b3a14b887eee5"
+          ],
+          "reasoning_hashes": [
+            "3fa1017928c90a9ac82327c16af51f055b5a7f83404d372f532fd8c822eba702"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-16c9e3e4ab76",
+      "context": 0,
+      "kind": "mixed",
+      "requests": 2,
+      "repetitions": 1,
+      "median_output_tok_s": 50.71383946460908,
+      "range_output_tok_s": [
+        50.71383946460908,
+        50.71383946460908
+      ],
+      "median_step_ms_estimate": 80.77033915911174,
+      "median_accepted_per_wall_second": 28.922736569659868,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs32-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 50.71383946460908,
+          "mean_decode_tok_s_estimate": 28.975607171207784,
+          "mean_ttft_seconds": 0.4954080383758992,
+          "mean_attempted_depth": 2.05,
+          "accepted_per_draft": 1.3272727272727274,
+          "server_step_ms_estimate": 80.77033915911174,
+          "accepted_per_wall_second": 28.922736569659868,
+          "accepted_per_server_request_decode_second": 16.432674928578617,
+          "output_tokens": [
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "bcb31c1ce6ee1f66b8b1bbfe9f8b9f8a0f6c50307792e2bf901f010a3f8f4d3f",
+            "a6cab61cebac40b2debcd37a1e8afbc892ac3d076a878d1658677696710dbd85"
+          ],
+          "reasoning_hashes": [
+            "3fa1017928c90a9ac82327c16af51f055b5a7f83404d372f532fd8c822eba702",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "tool_streams": [
+            false,
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-16c9e3e4ab76",
+      "context": 0,
+      "kind": "mixed",
+      "requests": 3,
+      "repetitions": 1,
+      "median_output_tok_s": 65.11263197126895,
+      "range_output_tok_s": [
+        65.11263197126895,
+        65.11263197126895
+      ],
+      "median_step_ms_estimate": 97.61770828338145,
+      "median_accepted_per_wall_second": 39.16931767021648,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs32-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 65.11263197126895,
+          "mean_decode_tok_s_estimate": 26.24722491068579,
+          "mean_ttft_seconds": 0.7927507158989707,
+          "mean_attempted_depth": 2.1140065146579805,
+          "accepted_per_draft": 1.504885993485342,
+          "server_step_ms_estimate": 97.61770828338145,
+          "accepted_per_wall_second": 39.16931767021648,
+          "accepted_per_server_request_decode_second": 15.416116808609157,
+          "output_tokens": [
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "7ca50a2ed9047202a5cd665fe26c4a5d7512338d6f0d5fbfb9a66743fada747e",
+            "b983eb0414cc319c0f9d2b409a6193978f3cf138fe1bd0a193999ae35d1c5e8a",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "3fa1017928c90a9ac82327c16af51f055b5a7f83404d372f532fd8c822eba702",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-16c9e3e4ab76",
+      "context": 0,
+      "kind": "mixed",
+      "requests": 4,
+      "repetitions": 1,
+      "median_output_tok_s": 75.21115252879773,
+      "range_output_tok_s": [
+        75.21115252879773,
+        75.21115252879773
+      ],
+      "median_step_ms_estimate": 113.57937735643681,
+      "median_accepted_per_wall_second": 45.6114508988119,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs32-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 75.21115252879773,
+          "mean_decode_tok_s_estimate": 22.593836014423946,
+          "mean_ttft_seconds": 0.8193330104695633,
+          "mean_attempted_depth": 2.1955445544554455,
+          "accepted_per_draft": 1.5371287128712872,
+          "server_step_ms_estimate": 113.57937735643681,
+          "accepted_per_wall_second": 45.6114508988119,
+          "accepted_per_server_request_decode_second": 13.533519452633048,
+          "output_tokens": [
+            256,
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "fd992a820d58cb0fff9658202a56074b9e8e6af5bae16dadb7f3fb45a42ea474",
+            "5856019674dc06121e98aae09643f0ea46304b40c9cd6ef02c351f37e23eed7b",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "a79b14ba9482cba84a1d7bb65fc9c5931cbb7cf3028209a1e8b11df93ffbab08"
+          ],
+          "reasoning_hashes": [
+            "5b23810a7966b63304614dccf687eb136ea6835a37c738531a5bbdbd7cdcf88f",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "3fa1017928c90a9ac82327c16af51f055b5a7f83404d372f532fd8c822eba702"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true,
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-16c9e3e4ab76",
+      "context": 0,
+      "kind": "prose",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 33.3275399226697,
+      "range_output_tok_s": [
+        33.3275399226697,
+        33.3275399226697
+      ],
+      "median_step_ms_estimate": 62.03038553781162,
+      "median_accepted_per_wall_second": 17.835441286741204,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs32-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 33.3275399226697,
+          "mean_decode_tok_s_estimate": 34.903792955213326,
+          "mean_ttft_seconds": 0.37527918396517634,
+          "mean_attempted_depth": 2.235294117647059,
+          "accepted_per_draft": 1.1512605042016806,
+          "server_step_ms_estimate": 62.03038553781162,
+          "accepted_per_wall_second": 17.835441286741204,
+          "accepted_per_server_request_decode_second": 18.559621937218356,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "fbc0d0af1a2d86dd93f1391709513dc472c2fe40fa44fbc093462e40b39b6aa5"
+          ],
+          "reasoning_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-16c9e3e4ab76",
+      "context": 0,
+      "kind": "tools",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 44.06064006530939,
+      "range_output_tok_s": [
+        44.06064006530939,
+        44.06064006530939
+      ],
+      "median_step_ms_estimate": 76.1370963098696,
+      "median_accepted_per_wall_second": 32.35703254796159,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs32-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 44.06064006530939,
+          "mean_decode_tok_s_estimate": 47.857066656048644,
+          "mean_ttft_seconds": 0.48161132587119937,
+          "mean_attempted_depth": 3.6619718309859155,
+          "accepted_per_draft": 2.647887323943662,
+          "server_step_ms_estimate": 76.1370963098696,
+          "accepted_per_wall_second": 32.35703254796159,
+          "accepted_per_server_request_decode_second": 34.777886894544174,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "tool_streams": [
+            true
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-16c9e3e4ab76",
+      "context": 8192,
+      "kind": "code",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 36.25515196157781,
+      "range_output_tok_s": [
+        36.25515196157781,
+        36.25515196157781
+      ],
+      "median_step_ms_estimate": 79.5878614268387,
+      "median_accepted_per_wall_second": 25.067038660934656,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs32-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 36.25515196157781,
+          "mean_decode_tok_s_estimate": 39.101990078907235,
+          "mean_ttft_seconds": 0.5394124877639115,
+          "mean_attempted_depth": 3.597560975609756,
+          "accepted_per_draft": 2.158536585365854,
+          "server_step_ms_estimate": 79.5878614268387,
+          "accepted_per_wall_second": 25.067038660934656,
+          "accepted_per_server_request_decode_second": 27.12142965859301,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "6110cd1533bcf1e4bc73e528d32e90961ac3d9f9dc1e1db76abb319e7be7bf57"
+          ],
+          "reasoning_hashes": [
+            "8bb1eec68fcdc2065ea6d439e57e9ed4d9976ba573cb24e366074415368663ea"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-16c9e3e4ab76",
+      "context": 8192,
+      "kind": "mixed",
+      "requests": 2,
+      "repetitions": 1,
+      "median_output_tok_s": 47.78717711252163,
+      "range_output_tok_s": [
+        47.78717711252163,
+        47.78717711252163
+      ],
+      "median_step_ms_estimate": 90.11264617646364,
+      "median_accepted_per_wall_second": 28.933642392347082,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs32-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 47.78717711252163,
+          "mean_decode_tok_s_estimate": 27.804956960261897,
+          "mean_ttft_seconds": 0.8375715781003237,
+          "mean_attempted_depth": 2.196078431372549,
+          "accepted_per_draft": 1.5196078431372548,
+          "server_step_ms_estimate": 90.11264617646364,
+          "accepted_per_wall_second": 28.933642392347082,
+          "accepted_per_server_request_decode_second": 16.86342491997709,
+          "output_tokens": [
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "0e12bd544202e1165dd4a66276f6255dbd20e4ce075586e43e165fae133d03e3",
+            "f3cd82fe23fe7c8aac9ee2eaacf192f38e0d09dc5ca5bba8087bff626e364ddd"
+          ],
+          "reasoning_hashes": [
+            "8bb1eec68fcdc2065ea6d439e57e9ed4d9976ba573cb24e366074415368663ea",
+            "33e47089aec19b652a737e192bc7d9c311df5c87c4dd40522de6cf71150e60dc"
+          ],
+          "tool_streams": [
+            false,
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-16c9e3e4ab76",
+      "context": 8192,
+      "kind": "mixed",
+      "requests": 3,
+      "repetitions": 1,
+      "median_output_tok_s": 56.549763170615186,
+      "range_output_tok_s": [
+        56.549763170615186,
+        56.549763170615186
+      ],
+      "median_step_ms_estimate": 118.83913543508817,
+      "median_accepted_per_wall_second": 35.56449949401971,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs32-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 56.549763170615186,
+          "mean_decode_tok_s_estimate": 22.674125015878307,
+          "mean_ttft_seconds": 1.0859146220609546,
+          "mean_attempted_depth": 2.7403508771929825,
+          "accepted_per_draft": 1.694736842105263,
+          "server_step_ms_estimate": 118.83913543508817,
+          "accepted_per_wall_second": 35.56449949401971,
+          "accepted_per_server_request_decode_second": 14.26076381236344,
+          "output_tokens": [
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "9a7ef9795d6df5af3095331bdaeb0ab571b905a7f69b3b33302af622d7d542c4",
+            "b5e8ed0521574b93f352cf1f41c5432bfb3486c57706db98bc128c6cdbba9ee1",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "8bb1eec68fcdc2065ea6d439e57e9ed4d9976ba573cb24e366074415368663ea",
+            "ce964ed127d948f2c93f598fe3aed0bbcbc4b0cf931230bf86407c8802729d86",
+            "c488759ffdb1dea28fd25681dfa7dcfef2bf344e41b7fe6bdcb0bbffe7f869fa"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-16c9e3e4ab76",
+      "context": 8192,
+      "kind": "mixed",
+      "requests": 4,
+      "repetitions": 1,
+      "median_output_tok_s": 67.82867712765592,
+      "range_output_tok_s": [
+        67.82867712765592,
+        67.82867712765592
+      ],
+      "median_step_ms_estimate": 147.06884498498454,
+      "median_accepted_per_wall_second": 45.6386313876513,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs32-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 67.82867712765592,
+          "mean_decode_tok_s_estimate": 20.93760843316521,
+          "mean_ttft_seconds": 1.2803103303303942,
+          "mean_attempted_depth": 3.195195195195195,
+          "accepted_per_draft": 2.069069069069069,
+          "server_step_ms_estimate": 147.06884498498454,
+          "accepted_per_wall_second": 45.6386313876513,
+          "accepted_per_server_request_decode_second": 14.068710944730118,
+          "output_tokens": [
+            256,
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "041283426912913259cc23f2c0cabec9892b2c0796ce46390c928676b1f9f09e",
+            "3c991b7c14d84ac2694251998221ace6852fa5588fe5b2f5ca082e01571d7c89",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "a2fff06de47c7454a5d81e461cd145f7d9496707141a32f0b4c4bef5b143a23c"
+          ],
+          "reasoning_hashes": [
+            "8bb1eec68fcdc2065ea6d439e57e9ed4d9976ba573cb24e366074415368663ea",
+            "6b2d23784a9a84e86e83bb66065cbe3e5cbbe5de7edaa4df8c2933daffd533ca",
+            "c488759ffdb1dea28fd25681dfa7dcfef2bf344e41b7fe6bdcb0bbffe7f869fa",
+            "8bb1eec68fcdc2065ea6d439e57e9ed4d9976ba573cb24e366074415368663ea"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true,
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-16c9e3e4ab76",
+      "context": 8192,
+      "kind": "prose",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 32.54721081136265,
+      "range_output_tok_s": [
+        32.54721081136265,
+        32.54721081136265
+      ],
+      "median_step_ms_estimate": 66.05090245045119,
+      "median_accepted_per_wall_second": 18.307806081391494,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs32-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 32.54721081136265,
+          "mean_decode_tok_s_estimate": 34.800922498734366,
+          "mean_ttft_seconds": 0.5378459431231022,
+          "mean_attempted_depth": 2.315315315315315,
+          "accepted_per_draft": 1.2972972972972974,
+          "server_step_ms_estimate": 66.05090245045119,
+          "accepted_per_wall_second": 18.307806081391494,
+          "accepted_per_server_request_decode_second": 19.640871648505925,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "60e17c638a5dc70338531b767913e80fdb09f0f6b0decf6c970a124550b60067"
+          ],
+          "reasoning_hashes": [
+            "33e47089aec19b652a737e192bc7d9c311df5c87c4dd40522de6cf71150e60dc"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-16c9e3e4ab76",
+      "context": 8192,
+      "kind": "tools",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 41.3196925034457,
+      "range_output_tok_s": [
+        41.3196925034457,
+        41.3196925034457
+      ],
+      "median_step_ms_estimate": 74.33653528203602,
+      "median_accepted_per_wall_second": 28.73009869380209,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs32-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 41.3196925034457,
+          "mean_decode_tok_s_estimate": 44.004178045396635,
+          "mean_ttft_seconds": 0.40045385994017124,
+          "mean_attempted_depth": 3.0384615384615383,
+          "accepted_per_draft": 2.282051282051282,
+          "server_step_ms_estimate": 74.33653528203602,
+          "accepted_per_wall_second": 28.73009869380209,
+          "accepted_per_server_request_decode_second": 30.69891908996136,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "4ce62b8eece8461cb09340b4736927635bc8c40c693a740558d62ab3b5584595"
+          ],
+          "tool_streams": [
+            true
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-16c9e3e4ab76",
+      "context": 32768,
+      "kind": "code",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 37.45024545082943,
+      "range_output_tok_s": [
+        37.45024545082943,
+        37.45024545082943
+      ],
+      "median_step_ms_estimate": 65.7981944842169,
+      "median_accepted_per_wall_second": 23.698983449352998,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs32-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 37.45024545082943,
+          "mean_decode_tok_s_estimate": 40.89219059128807,
+          "mean_ttft_seconds": 0.5995907629840076,
+          "mean_attempted_depth": 2.1052631578947367,
+          "accepted_per_draft": 1.7052631578947368,
+          "server_step_ms_estimate": 65.7981944842169,
+          "accepted_per_wall_second": 23.698983449352998,
+          "accepted_per_server_request_decode_second": 25.916564599713755,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "e6686fb79e0f8d6957cb1c0221154f3a46364fe26ed31cbd0df24a261bea8c42"
+          ],
+          "reasoning_hashes": [
+            "31d379c784322679b8a58a1605b883120566e193a5054488dc3df6fcdbeff91c"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-16c9e3e4ab76",
+      "context": 32768,
+      "kind": "mixed",
+      "requests": 2,
+      "repetitions": 1,
+      "median_output_tok_s": 46.318194525403605,
+      "range_output_tok_s": [
+        46.318194525403605,
+        46.318194525403605
+      ],
+      "median_step_ms_estimate": 94.27142143214778,
+      "median_accepted_per_wall_second": 28.496545459965105,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs32-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 46.318194525403605,
+          "mean_decode_tok_s_estimate": 27.604681240672583,
+          "mean_ttft_seconds": 0.8927517873235047,
+          "mean_attempted_depth": 2.407035175879397,
+          "accepted_per_draft": 1.5829145728643217,
+          "server_step_ms_estimate": 94.27142143214778,
+          "accepted_per_wall_second": 28.496545459965105,
+          "accepted_per_server_request_decode_second": 16.7910332613753,
+          "output_tokens": [
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "f742bbce95851be4782efc8bafd9d19960756e0ebb736c06773fcd8baec77113",
+            "fa931f3633a6bdb2c9e3ec781b068616a26fa4ef3c8e77200e7f0f3d81006598"
+          ],
+          "reasoning_hashes": [
+            "69494080c13d0fd47bd3e104e48c7c3bc01b286c9f45721cb80ad4c4e8b6f439",
+            "2b291f4f1ee6ccfa46dc2f3bacf2e2b8ec3c0ea6ddbf1ce0c69bc839079e61fb"
+          ],
+          "tool_streams": [
+            false,
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-16c9e3e4ab76",
+      "context": 32768,
+      "kind": "mixed",
+      "requests": 3,
+      "repetitions": 1,
+      "median_output_tok_s": 55.6327421822549,
+      "range_output_tok_s": [
+        55.6327421822549,
+        55.6327421822549
+      ],
+      "median_step_ms_estimate": 110.10116328254789,
+      "median_accepted_per_wall_second": 32.88706373794756,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs32-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 55.6327421822549,
+          "mean_decode_tok_s_estimate": 22.148855634877997,
+          "mean_ttft_seconds": 1.2191981311577063,
+          "mean_attempted_depth": 2.104761904761905,
+          "accepted_per_draft": 1.4412698412698413,
+          "server_step_ms_estimate": 110.10116328254789,
+          "accepted_per_wall_second": 32.88706373794756,
+          "accepted_per_server_request_decode_second": 13.090414290820636,
+          "output_tokens": [
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "634dd0d0e84d708236ab93c265d045fa9211348d256be38bc0ecd3976027de47",
+            "0448e1c378364cc320f125a9e56c0881b06596b134e8f716e13f0297ebdc9668",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "69494080c13d0fd47bd3e104e48c7c3bc01b286c9f45721cb80ad4c4e8b6f439",
+            "13140852fa80203985fa17db967673ebe6fe3b438652715e8ce4edf5ff1c51d4",
+            "c488759ffdb1dea28fd25681dfa7dcfef2bf344e41b7fe6bdcb0bbffe7f869fa"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-16c9e3e4ab76",
+      "context": 32768,
+      "kind": "mixed",
+      "requests": 4,
+      "repetitions": 1,
+      "median_output_tok_s": 64.19052114620665,
+      "range_output_tok_s": [
+        64.19052114620665,
+        64.19052114620665
+      ],
+      "median_step_ms_estimate": 153.24231248521852,
+      "median_accepted_per_wall_second": 43.19069245091443,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs32-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 64.19052114620665,
+          "mean_decode_tok_s_estimate": 19.829525204447314,
+          "mean_ttft_seconds": 1.4194630151614547,
+          "mean_attempted_depth": 3.366863905325444,
+          "accepted_per_draft": 2.0384615384615383,
+          "server_step_ms_estimate": 153.24231248521852,
+          "accepted_per_wall_second": 43.19069245091443,
+          "accepted_per_server_request_decode_second": 13.302210762828086,
+          "output_tokens": [
+            256,
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "76fde30b02cd6c97d9da8145d4f55c17f8e64cc4e4fb8793276c25641267c572",
+            "1a9a8da10be1701a2db56a3faea4c6c1850742ee9ad5d4d79111441029fa99d0",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "fb7328358dae2ea444f857faafc1b8bb864df5b991ae6532eb9535b7f4c63831"
+          ],
+          "reasoning_hashes": [
+            "86e2207ca18fe393f23f6e5e355d49bb53d2fd4adc719cd6c10f12388412b98f",
+            "01cfc1dac84ed0516936130bf6465b07394a1c34672f0d637417289ebcc5f453",
+            "c488759ffdb1dea28fd25681dfa7dcfef2bf344e41b7fe6bdcb0bbffe7f869fa",
+            "69494080c13d0fd47bd3e104e48c7c3bc01b286c9f45721cb80ad4c4e8b6f439"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true,
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-16c9e3e4ab76",
+      "context": 32768,
+      "kind": "prose",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 30.89710776741338,
+      "range_output_tok_s": [
+        30.89710776741338,
+        30.89710776741338
+      ],
+      "median_step_ms_estimate": 66.51664269827899,
+      "median_accepted_per_wall_second": 16.776163983087734,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs32-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 30.89710776741338,
+          "mean_decode_tok_s_estimate": 33.10831025345621,
+          "mean_ttft_seconds": 0.5832608733326197,
+          "mean_attempted_depth": 2.2758620689655173,
+          "accepted_per_draft": 1.1982758620689655,
+          "server_step_ms_estimate": 66.51664269827899,
+          "accepted_per_wall_second": 16.776163983087734,
+          "accepted_per_server_request_decode_second": 18.01467743199807,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "dd744192fb5ffa623e0c2e35157231769632e967bbf837dabaeade28260f0f84"
+          ],
+          "reasoning_hashes": [
+            "e7c8921874b95157b58d3a40e7cf2ba42cbb5a91de77dc00a83c7c7271cbf4f4"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-16c9e3e4ab76",
+      "context": 32768,
+      "kind": "tools",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 35.31953641255719,
+      "range_output_tok_s": [
+        35.31953641255719,
+        35.31953641255719
+      ],
+      "median_step_ms_estimate": 66.63311923002766,
+      "median_accepted_per_wall_second": 21.66080944051359,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs32-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 35.31953641255719,
+          "mean_decode_tok_s_estimate": 38.351809134141995,
+          "mean_ttft_seconds": 0.5989000760018826,
+          "mean_attempted_depth": 2.2,
+          "accepted_per_draft": 1.57,
+          "server_step_ms_estimate": 66.63311923002766,
+          "accepted_per_wall_second": 21.66080944051359,
+          "accepted_per_server_request_decode_second": 23.561856598369967,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "31d379c784322679b8a58a1605b883120566e193a5054488dc3df6fcdbeff91c"
+          ],
+          "tool_streams": [
+            true
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-7b3c5f7e0bf7",
+      "context": 0,
+      "kind": "code",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 41.39111817905473,
+      "range_output_tok_s": [
+        41.39111817905473,
+        41.39111817905473
+      ],
+      "median_step_ms_estimate": 73.48429774997385,
+      "median_accepted_per_wall_second": 28.294709692713194,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs8-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 41.39111817905473,
+          "mean_decode_tok_s_estimate": 43.36910100543251,
+          "mean_ttft_seconds": 0.3049020911566913,
+          "mean_attempted_depth": 3.3875,
+          "accepted_per_draft": 2.1875,
+          "server_step_ms_estimate": 73.48429774997385,
+          "accepted_per_wall_second": 28.294709692713194,
+          "accepted_per_server_request_decode_second": 29.76826433645518,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "9d139e187a973210921db53db90039f1dae571960ef45959dae22eb9f132da1b"
+          ],
+          "reasoning_hashes": [
+            "3fa1017928c90a9ac82327c16af51f055b5a7f83404d372f532fd8c822eba702"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-7b3c5f7e0bf7",
+      "context": 0,
+      "kind": "mixed",
+      "requests": 2,
+      "repetitions": 1,
+      "median_output_tok_s": 49.27450357413291,
+      "range_output_tok_s": [
+        49.27450357413291,
+        49.27450357413291
+      ],
+      "median_step_ms_estimate": 87.39624708866398,
+      "median_accepted_per_wall_second": 29.834172085900786,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs8-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 49.27450357413291,
+          "mean_decode_tok_s_estimate": 29.335495871885474,
+          "mean_ttft_seconds": 0.44438390899449587,
+          "mean_attempted_depth": 2.768472906403941,
+          "accepted_per_draft": 1.5270935960591132,
+          "server_step_ms_estimate": 87.39624708866398,
+          "accepted_per_wall_second": 29.834172085900786,
+          "accepted_per_server_request_decode_second": 17.473217065143178,
+          "output_tokens": [
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "2b474e8a9c1b706af083d5d45d8b102912c2684592aba3e5a681c286dbbdfc3b",
+            "a971d887f5d5b18b6b5735d3f315f1444f3205624a2fa91ec53770cb69fcb397"
+          ],
+          "reasoning_hashes": [
+            "b4f0e701f71496b4618b47933354e4609a4876764d841d82d344b1a167b9fc35",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "tool_streams": [
+            false,
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-7b3c5f7e0bf7",
+      "context": 0,
+      "kind": "mixed",
+      "requests": 3,
+      "repetitions": 1,
+      "median_output_tok_s": 61.98733509729444,
+      "range_output_tok_s": [
+        61.98733509729444,
+        61.98733509729444
+      ],
+      "median_step_ms_estimate": 104.47876804714005,
+      "median_accepted_per_wall_second": 38.09638302854554,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs8-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 61.98733509729444,
+          "mean_decode_tok_s_estimate": 25.578650739110262,
+          "mean_ttft_seconds": 0.8890702611145874,
+          "mean_attempted_depth": 2.5454545454545454,
+          "accepted_per_draft": 1.5892255892255893,
+          "server_step_ms_estimate": 104.47876804714005,
+          "accepted_per_wall_second": 38.09638302854554,
+          "accepted_per_server_request_decode_second": 15.210990892508825,
+          "output_tokens": [
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "3e135825a6721c8f0e03526aaae9d84cd10e5226aba4828bfd95463d5e6f9988",
+            "46207a8a615f0adc6bb34559e12898f03d83385ebe725ac5ade8255e4da3949c",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "5b23810a7966b63304614dccf687eb136ea6835a37c738531a5bbdbd7cdcf88f",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-7b3c5f7e0bf7",
+      "context": 0,
+      "kind": "mixed",
+      "requests": 4,
+      "repetitions": 1,
+      "median_output_tok_s": 74.2353427058301,
+      "range_output_tok_s": [
+        74.2353427058301,
+        74.2353427058301
+      ],
+      "median_step_ms_estimate": 131.59457671092542,
+      "median_accepted_per_wall_second": 50.02186178420193,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs8-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 74.2353427058301,
+          "mean_decode_tok_s_estimate": 23.20412148438058,
+          "mean_ttft_seconds": 0.6960038644028828,
+          "mean_attempted_depth": 3.327433628318584,
+          "accepted_per_draft": 2.0353982300884956,
+          "server_step_ms_estimate": 131.59457671092542,
+          "accepted_per_wall_second": 50.02186178420193,
+          "accepted_per_server_request_decode_second": 15.467189309477904,
+          "output_tokens": [
+            256,
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "12d1298a8b9fb9cb1eac3896a364b5531574403320d8172bcbb611292ac93975",
+            "ed6f8645b8e37c2943d30efb2e23dbed3e3e8d1d42f20b4464dcddf6695e4967",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "4649ba7c38480d4730633a5e21c31754ff452ebf603b0f97d72afdea6a4a77e3"
+          ],
+          "reasoning_hashes": [
+            "3fa1017928c90a9ac82327c16af51f055b5a7f83404d372f532fd8c822eba702",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "3fa1017928c90a9ac82327c16af51f055b5a7f83404d372f532fd8c822eba702"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true,
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-7b3c5f7e0bf7",
+      "context": 0,
+      "kind": "prose",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 33.61131986046732,
+      "range_output_tok_s": [
+        33.61131986046732,
+        33.61131986046732
+      ],
+      "median_step_ms_estimate": 63.627574478248235,
+      "median_accepted_per_wall_second": 18.643778985102966,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs8-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 33.61131986046732,
+          "mean_decode_tok_s_estimate": 35.21670634493598,
+          "mean_ttft_seconds": 0.37529979320243,
+          "mean_attempted_depth": 2.4695652173913043,
+          "accepted_per_draft": 1.2347826086956522,
+          "server_step_ms_estimate": 63.627574478248235,
+          "accepted_per_wall_second": 18.643778985102966,
+          "accepted_per_server_request_decode_second": 19.40640703061494,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "bffc13559631e20afc03f88a8340c78365a95ed67ba904a232b4db38b6cc8d17"
+          ],
+          "reasoning_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-7b3c5f7e0bf7",
+      "context": 0,
+      "kind": "tools",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 45.09202910653291,
+      "range_output_tok_s": [
+        45.09202910653291,
+        45.09202910653291
+      ],
+      "median_step_ms_estimate": 76.52976057969668,
+      "median_accepted_per_wall_second": 33.2905996138075,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs8-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 45.09202910653291,
+          "mean_decode_tok_s_estimate": 49.007355435645,
+          "mean_ttft_seconds": 0.47373538883402944,
+          "mean_attempted_depth": 3.681159420289855,
+          "accepted_per_draft": 2.739130434782609,
+          "server_step_ms_estimate": 76.52976057969668,
+          "accepted_per_wall_second": 33.2905996138075,
+          "accepted_per_server_request_decode_second": 35.7917026531153,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "tool_streams": [
+            true
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-7b3c5f7e0bf7",
+      "context": 8192,
+      "kind": "code",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 40.23459807713371,
+      "range_output_tok_s": [
+        40.23459807713371,
+        40.23459807713371
+      ],
+      "median_step_ms_estimate": 76.61250039473089,
+      "median_accepted_per_wall_second": 28.28995177298464,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs8-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 40.23459807713371,
+          "mean_decode_tok_s_estimate": 43.82791014306802,
+          "mean_ttft_seconds": 0.5442274012602866,
+          "mean_attempted_depth": 3.25,
+          "accepted_per_draft": 2.3684210526315788,
+          "server_step_ms_estimate": 76.61250039473089,
+          "accepted_per_wall_second": 28.28995177298464,
+          "accepted_per_server_request_decode_second": 30.91428997133306,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "4c0512b9a8d0ccbfa749e8308da2df5d7c56da777d699d8730a78ee3ef228230"
+          ],
+          "reasoning_hashes": [
+            "3c2ae62747e9f0c8362ba3e1610457cd5c7cba03769d6643ad0b86eb0dc2eb69"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-7b3c5f7e0bf7",
+      "context": 8192,
+      "kind": "mixed",
+      "requests": 2,
+      "repetitions": 1,
+      "median_output_tok_s": 46.46427035231689,
+      "range_output_tok_s": [
+        46.46427035231689,
+        46.46427035231689
+      ],
+      "median_step_ms_estimate": 94.03367596039088,
+      "median_accepted_per_wall_second": 28.223414217911238,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs8-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 46.46427035231689,
+          "mean_decode_tok_s_estimate": 27.15511008826011,
+          "mean_ttft_seconds": 0.8341469469014555,
+          "mean_attempted_depth": 2.485148514851485,
+          "accepted_per_draft": 1.5396039603960396,
+          "server_step_ms_estimate": 94.03367596039088,
+          "accepted_per_wall_second": 28.223414217911238,
+          "accepted_per_server_request_decode_second": 16.372899864560818,
+          "output_tokens": [
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "f3c52abd44998aed4da47b78f25e59679d4b35e30387346797727080fc267e19",
+            "a477905969a4ddbe797aeabc0c7349432cc356f7af667412e03bddaadbb8a215"
+          ],
+          "reasoning_hashes": [
+            "8bb1eec68fcdc2065ea6d439e57e9ed4d9976ba573cb24e366074415368663ea",
+            "33e47089aec19b652a737e192bc7d9c311df5c87c4dd40522de6cf71150e60dc"
+          ],
+          "tool_streams": [
+            false,
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-7b3c5f7e0bf7",
+      "context": 8192,
+      "kind": "mixed",
+      "requests": 3,
+      "repetitions": 1,
+      "median_output_tok_s": 58.558451474448894,
+      "range_output_tok_s": [
+        58.558451474448894,
+        58.558451474448894
+      ],
+      "median_step_ms_estimate": 127.65015367320903,
+      "median_accepted_per_wall_second": 39.11521563332329,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs8-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 58.558451474448894,
+          "mean_decode_tok_s_estimate": 23.73220299355979,
+          "mean_ttft_seconds": 0.9975837448922297,
+          "mean_attempted_depth": 3.248031496062992,
+          "accepted_per_draft": 2.0196850393700787,
+          "server_step_ms_estimate": 127.65015367320903,
+          "accepted_per_wall_second": 39.11521563332329,
+          "accepted_per_server_request_decode_second": 15.822033748118912,
+          "output_tokens": [
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "e9fc6c10b8275a41216d20966acb34a9ec6860a06273a3e54248035d532fb867",
+            "91cb7e53d7b17085a7bdc560c5dcf327f9d57dd6115a9c0fee18d3ef91e9e132",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "9b3c1b8611ebe194484780cfb6de7f72ea6bd183e478ba82d51e3d205f4e72cf",
+            "2a6b5c83c80cedd13436c023ba652851fdf1fc2aa04f0d3a42b7d2fc2e4bcf84",
+            "4ce62b8eece8461cb09340b4736927635bc8c40c693a740558d62ab3b5584595"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-7b3c5f7e0bf7",
+      "context": 8192,
+      "kind": "mixed",
+      "requests": 4,
+      "repetitions": 1,
+      "median_output_tok_s": 67.11256497286094,
+      "range_output_tok_s": [
+        67.11256497286094,
+        67.11256497286094
+      ],
+      "median_step_ms_estimate": 143.6875153487002,
+      "median_accepted_per_wall_second": 44.304779220365226,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs8-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 67.11256497286094,
+          "mean_decode_tok_s_estimate": 20.5513101195022,
+          "mean_ttft_seconds": 1.2759052690817043,
+          "mean_attempted_depth": 3.0835734870317,
+          "accepted_per_draft": 1.9481268011527377,
+          "server_step_ms_estimate": 143.6875153487002,
+          "accepted_per_wall_second": 44.304779220365226,
+          "accepted_per_server_request_decode_second": 13.558079812466886,
+          "output_tokens": [
+            256,
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "ea578bf6a63a5fc639e11e27287da790f28c10350bd67fba735b9382d0e4c948",
+            "a79068de4d9296c931929492c98ab53fed2db24f6eaea3b6a121f66bb41120db",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "4ac64419ff83fe3ce91ee043efc8c507c9e2a4fb6dff25e756a75ed04de263f7"
+          ],
+          "reasoning_hashes": [
+            "8bb1eec68fcdc2065ea6d439e57e9ed4d9976ba573cb24e366074415368663ea",
+            "8d7fa27766c302cc315d6aa38b2775b245000bbaab7c253368dd925c4de5b0c4",
+            "c488759ffdb1dea28fd25681dfa7dcfef2bf344e41b7fe6bdcb0bbffe7f869fa",
+            "8bb1eec68fcdc2065ea6d439e57e9ed4d9976ba573cb24e366074415368663ea"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true,
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-7b3c5f7e0bf7",
+      "context": 8192,
+      "kind": "prose",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 31.58544907956333,
+      "range_output_tok_s": [
+        31.58544907956333,
+        31.58544907956333
+      ],
+      "median_step_ms_estimate": 72.10121521905724,
+      "median_accepted_per_wall_second": 18.50709907005664,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs8-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 31.58544907956333,
+          "mean_decode_tok_s_estimate": 33.69603917724777,
+          "mean_ttft_seconds": 0.537086030934006,
+          "mean_attempted_depth": 2.9238095238095236,
+          "accepted_per_draft": 1.4285714285714286,
+          "server_step_ms_estimate": 72.10121521905724,
+          "accepted_per_wall_second": 18.50709907005664,
+          "accepted_per_server_request_decode_second": 19.813416795142164,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "b36e0491dee459fb27d1d71fc5bcae72d7b75c9df40c4f93777e8dbd0209d220"
+          ],
+          "reasoning_hashes": [
+            "33e47089aec19b652a737e192bc7d9c311df5c87c4dd40522de6cf71150e60dc"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-7b3c5f7e0bf7",
+      "context": 8192,
+      "kind": "tools",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 40.041989692621584,
+      "range_output_tok_s": [
+        40.041989692621584,
+        40.041989692621584
+      ],
+      "median_step_ms_estimate": 76.87171844871698,
+      "median_accepted_per_wall_second": 27.68528193591414,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs8-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 40.041989692621584,
+          "mean_decode_tok_s_estimate": 42.55004551886216,
+          "mean_ttft_seconds": 0.4001147239468992,
+          "mean_attempted_depth": 3.2435897435897436,
+          "accepted_per_draft": 2.269230769230769,
+          "server_step_ms_estimate": 76.87171844871698,
+          "accepted_per_wall_second": 27.68528193591414,
+          "accepted_per_server_request_decode_second": 29.519709133920674,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "4ce62b8eece8461cb09340b4736927635bc8c40c693a740558d62ab3b5584595"
+          ],
+          "tool_streams": [
+            true
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-7b3c5f7e0bf7",
+      "context": 32768,
+      "kind": "code",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 41.273463937431636,
+      "range_output_tok_s": [
+        41.273463937431636,
+        41.273463937431636
+      ],
+      "median_step_ms_estimate": 76.12263570268082,
+      "median_accepted_per_wall_second": 29.18162879951221,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs8-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 41.273463937431636,
+          "mean_decode_tok_s_estimate": 45.373717158574316,
+          "mean_ttft_seconds": 0.58231291314587,
+          "mean_attempted_depth": 3.0675675675675675,
+          "accepted_per_draft": 2.445945945945946,
+          "server_step_ms_estimate": 76.12263570268082,
+          "accepted_per_wall_second": 29.18162879951221,
+          "accepted_per_server_request_decode_second": 32.13165076810138,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "03fcecdc75d29183610d91feb648e4e6d77f8de4e004ce4645517c89aae40574"
+          ],
+          "reasoning_hashes": [
+            "31d379c784322679b8a58a1605b883120566e193a5054488dc3df6fcdbeff91c"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-7b3c5f7e0bf7",
+      "context": 32768,
+      "kind": "mixed",
+      "requests": 2,
+      "repetitions": 1,
+      "median_output_tok_s": 45.24784064088806,
+      "range_output_tok_s": [
+        45.24784064088806,
+        45.24784064088806
+      ],
+      "median_step_ms_estimate": 100.54647186171543,
+      "median_accepted_per_wall_second": 28.633399155561975,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs8-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 45.24784064088806,
+          "mean_decode_tok_s_estimate": 27.168071883885936,
+          "mean_ttft_seconds": 0.8946958009619266,
+          "mean_attempted_depth": 2.8617021276595747,
+          "accepted_per_draft": 1.7234042553191489,
+          "server_step_ms_estimate": 100.54647186171543,
+          "accepted_per_wall_second": 28.633399155561975,
+          "accepted_per_server_request_decode_second": 17.140375225591193,
+          "output_tokens": [
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "806a882ee8c1e71284c7105bc5ba5432e4144488087e4f70a9017ce277370307",
+            "4583c683d5a767e15b81395c99c315874855cc0eaa87002b794ad6a7d9d17e82"
+          ],
+          "reasoning_hashes": [
+            "69494080c13d0fd47bd3e104e48c7c3bc01b286c9f45721cb80ad4c4e8b6f439",
+            "9ef08ee7facc202604f41eeda9dae6eb18719eff9321e18ab69ec29eaa8dfabc"
+          ],
+          "tool_streams": [
+            false,
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-7b3c5f7e0bf7",
+      "context": 32768,
+      "kind": "mixed",
+      "requests": 3,
+      "repetitions": 1,
+      "median_output_tok_s": 57.10260999223022,
+      "range_output_tok_s": [
+        57.10260999223022,
+        57.10260999223022
+      ],
+      "median_step_ms_estimate": 125.60264752032188,
+      "median_accepted_per_wall_second": 37.027473666836784,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs8-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 57.10260999223022,
+          "mean_decode_tok_s_estimate": 22.566484482098367,
+          "mean_ttft_seconds": 1.2038676195467513,
+          "mean_attempted_depth": 2.841328413284133,
+          "accepted_per_draft": 1.8376383763837638,
+          "server_step_ms_estimate": 125.60264752032188,
+          "accepted_per_wall_second": 37.027473666836784,
+          "accepted_per_server_request_decode_second": 14.63057039531307,
+          "output_tokens": [
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "a51be99b7ddaf7e5ed5330c55e1ca45db2d3d7ae654b2ed3e535ad2d3debc275",
+            "2fd926db712641dae658c39b2ad3def1785a68189174e0a1ebdcd86a5b6b2961",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "69494080c13d0fd47bd3e104e48c7c3bc01b286c9f45721cb80ad4c4e8b6f439",
+            "e7c8921874b95157b58d3a40e7cf2ba42cbb5a91de77dc00a83c7c7271cbf4f4",
+            "c488759ffdb1dea28fd25681dfa7dcfef2bf344e41b7fe6bdcb0bbffe7f869fa"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-7b3c5f7e0bf7",
+      "context": 32768,
+      "kind": "mixed",
+      "requests": 4,
+      "repetitions": 1,
+      "median_output_tok_s": 65.17263819615333,
+      "range_output_tok_s": [
+        65.17263819615333,
+        65.17263819615333
+      ],
+      "median_step_ms_estimate": 148.40751402318372,
+      "median_accepted_per_wall_second": 43.215059897644636,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs8-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 65.17263819615333,
+          "mean_decode_tok_s_estimate": 20.21940389157221,
+          "mean_ttft_seconds": 1.414321608725004,
+          "mean_attempted_depth": 3.136231884057971,
+          "accepted_per_draft": 1.9681159420289855,
+          "server_step_ms_estimate": 148.40751402318372,
+          "accepted_per_wall_second": 43.215059897644636,
+          "accepted_per_server_request_decode_second": 13.261565325604288,
+          "output_tokens": [
+            256,
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "7fedc9928c1432937c180f3a1141ed729bdae43d7f989470957cd088691a7aa4",
+            "908103657c8ecbffee4f2e4fe278a56c45b9531a2d6fdc487f65085c7b2c690d",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "612599f959d42bb0561058b38da628b1104fa6a07075df56d753d0f595e3f16b"
+          ],
+          "reasoning_hashes": [
+            "8bb1eec68fcdc2065ea6d439e57e9ed4d9976ba573cb24e366074415368663ea",
+            "b2d36a7cd68a7bdfbcc482dd8e2278cfa5d19e7f81b8f95c63509a1f29bd4796",
+            "c488759ffdb1dea28fd25681dfa7dcfef2bf344e41b7fe6bdcb0bbffe7f869fa",
+            "69494080c13d0fd47bd3e104e48c7c3bc01b286c9f45721cb80ad4c4e8b6f439"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true,
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-7b3c5f7e0bf7",
+      "context": 32768,
+      "kind": "prose",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 31.933748222848127,
+      "range_output_tok_s": [
+        31.933748222848127,
+        31.933748222848127
+      ],
+      "median_step_ms_estimate": 68.24607161465667,
+      "median_accepted_per_wall_second": 18.33695698733857,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs8-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 31.933748222848127,
+          "mean_decode_tok_s_estimate": 34.344447009112066,
+          "mean_ttft_seconds": 0.5916076484136283,
+          "mean_attempted_depth": 2.403669724770642,
+          "accepted_per_draft": 1.348623853211009,
+          "server_step_ms_estimate": 68.24607161465667,
+          "accepted_per_wall_second": 18.33695698733857,
+          "accepted_per_server_request_decode_second": 19.761193887112704,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "2a528fa088b7452c13850f0ab531406037938eeeaa4da63d01b25cf1b97aa88c"
+          ],
+          "reasoning_hashes": [
+            "27dc47015a88411850e7b85ffefe736697cc510d1cb9d0c56367b28036caf10c"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-7b3c5f7e0bf7",
+      "context": 32768,
+      "kind": "tools",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 35.81111672584327,
+      "range_output_tok_s": [
+        35.81111672584327,
+        35.81111672584327
+      ],
+      "median_step_ms_estimate": 78.11758577381191,
+      "median_accepted_per_wall_second": 24.060594050175943,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs8-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 35.81111672584327,
+          "mean_decode_tok_s_estimate": 38.95463164694343,
+          "mean_ttft_seconds": 0.6023458917625248,
+          "mean_attempted_depth": 3.3452380952380953,
+          "accepted_per_draft": 2.0476190476190474,
+          "server_step_ms_estimate": 78.11758577381191,
+          "accepted_per_wall_second": 24.060594050175943,
+          "accepted_per_server_request_decode_second": 26.212011384323784,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "c488759ffdb1dea28fd25681dfa7dcfef2bf344e41b7fe6bdcb0bbffe7f869fa"
+          ],
+          "tool_streams": [
+            true
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-d5d5aca6b0fa",
+      "context": 0,
+      "kind": "code",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 39.70727553130603,
+      "range_output_tok_s": [
+        39.70727553130603,
+        39.70727553130603
+      ],
+      "median_step_ms_estimate": 65.35333817021424,
+      "median_accepted_per_wall_second": 25.282366842198762,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs16-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 39.70727553130603,
+          "mean_decode_tok_s_estimate": 41.509455465994044,
+          "mean_ttft_seconds": 0.3037836402654648,
+          "mean_attempted_depth": 2.478723404255319,
+          "accepted_per_draft": 1.7340425531914894,
+          "server_step_ms_estimate": 65.35333817021424,
+          "accepted_per_wall_second": 25.282366842198762,
+          "accepted_per_server_request_decode_second": 26.533343234512923,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "3669049c01d3c303a5c4105e027a896e17701c8a38822c131fd7a3f96ae8ed9d"
+          ],
+          "reasoning_hashes": [
+            "5b23810a7966b63304614dccf687eb136ea6835a37c738531a5bbdbd7cdcf88f"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-d5d5aca6b0fa",
+      "context": 0,
+      "kind": "mixed",
+      "requests": 2,
+      "repetitions": 1,
+      "median_output_tok_s": 50.569602392113175,
+      "range_output_tok_s": [
+        50.569602392113175,
+        50.569602392113175
+      ],
+      "median_step_ms_estimate": 84.14460331248218,
+      "median_accepted_per_wall_second": 30.025701420317198,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs16-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 50.569602392113175,
+          "mean_decode_tok_s_estimate": 29.63508564019932,
+          "mean_ttft_seconds": 0.44461946561932564,
+          "mean_attempted_depth": 2.4326923076923075,
+          "accepted_per_draft": 1.4615384615384615,
+          "server_step_ms_estimate": 84.14460331248218,
+          "accepted_per_wall_second": 30.025701420317198,
+          "accepted_per_server_request_decode_second": 17.36936659040205,
+          "output_tokens": [
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "e725b51f7c440ffd5a0f4b54a0e8789d29a65d51cec1d4640e7dc6e9adb6a442",
+            "a71e25f6b932098669de1a365ca567eb80b40ad98baafb314e8c0c4cc554c607"
+          ],
+          "reasoning_hashes": [
+            "3fa1017928c90a9ac82327c16af51f055b5a7f83404d372f532fd8c822eba702",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "tool_streams": [
+            false,
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-d5d5aca6b0fa",
+      "context": 0,
+      "kind": "mixed",
+      "requests": 3,
+      "repetitions": 1,
+      "median_output_tok_s": 65.87593281573669,
+      "range_output_tok_s": [
+        65.87593281573669,
+        65.87593281573669
+      ],
+      "median_step_ms_estimate": 109.04641750758773,
+      "median_accepted_per_wall_second": 43.316856864514364,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs16-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 65.87593281573669,
+          "mean_decode_tok_s_estimate": 27.130234069296144,
+          "mean_ttft_seconds": 0.7694294235358635,
+          "mean_attempted_depth": 2.8636363636363638,
+          "accepted_per_draft": 1.9128787878787878,
+          "server_step_ms_estimate": 109.04641750758773,
+          "accepted_per_wall_second": 43.316856864514364,
+          "accepted_per_server_request_decode_second": 17.541876492601737,
+          "output_tokens": [
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "142dd3e8b5e023b796095cda2c8707136c52631181a06e3d8483275a0828fac0",
+            "043f7c200b129796212895f182015db5c7361f806c9ea16e680ee23e3e5910a0",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "3fa1017928c90a9ac82327c16af51f055b5a7f83404d372f532fd8c822eba702",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-d5d5aca6b0fa",
+      "context": 0,
+      "kind": "mixed",
+      "requests": 4,
+      "repetitions": 1,
+      "median_output_tok_s": 72.16830010424086,
+      "range_output_tok_s": [
+        72.16830010424086,
+        72.16830010424086
+      ],
+      "median_step_ms_estimate": 125.87973670326971,
+      "median_accepted_per_wall_second": 46.79663209884368,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs16-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 72.16830010424086,
+          "mean_decode_tok_s_estimate": 22.65776482451406,
+          "mean_ttft_seconds": 0.8772311570355669,
+          "mean_attempted_depth": 2.9945054945054945,
+          "accepted_per_draft": 1.8241758241758241,
+          "server_step_ms_estimate": 125.87973670326971,
+          "accepted_per_wall_second": 46.79663209884368,
+          "accepted_per_server_request_decode_second": 14.491417538279943,
+          "output_tokens": [
+            256,
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "2b7ec4ad9af50c0c6171ab5b43bae103205dc46b29b13ed6aa58a81e9e3acea4",
+            "b904886ef3438be92daa0b8054031dca88f63ae04290f3bc9e62de5eb2b2d3d0",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "238de6e6dc2babc681efdc6ab570295317b8343c42984b4894d9edb675a39551"
+          ],
+          "reasoning_hashes": [
+            "8a31318f0a69b58072d8fa8b4151661c5182fabdc0d9bf687ba8e07c5aebc1d1",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "23723557b00807d0811ed414ea56f47c1ad174bbe057098c07d7f159c88d46e7"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true,
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-d5d5aca6b0fa",
+      "context": 0,
+      "kind": "prose",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 34.49916802557599,
+      "range_output_tok_s": [
+        34.49916802557599,
+        34.49916802557599
+      ],
+      "median_step_ms_estimate": 61.89005586085209,
+      "median_accepted_per_wall_second": 19.001494889086775,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs16-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 34.49916802557599,
+          "mean_decode_tok_s_estimate": 36.212488662514104,
+          "mean_ttft_seconds": 0.37844678293913603,
+          "mean_attempted_depth": 2.243478260869565,
+          "accepted_per_draft": 1.2260869565217392,
+          "server_step_ms_estimate": 61.89005586085209,
+          "accepted_per_wall_second": 19.001494889086775,
+          "accepted_per_server_request_decode_second": 19.810726286600232,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "3554dc0ea5a3c1813c60a2e9e633aa449541df538068b286570ad09864c00e54"
+          ],
+          "reasoning_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-d5d5aca6b0fa",
+      "context": 0,
+      "kind": "tools",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 43.463602129820764,
+      "range_output_tok_s": [
+        43.463602129820764,
+        43.463602129820764
+      ],
+      "median_step_ms_estimate": 73.18650872000337,
+      "median_accepted_per_wall_second": 30.89990463916945,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs16-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 43.463602129820764,
+          "mean_decode_tok_s_estimate": 47.10521376836944,
+          "mean_ttft_seconds": 0.47634464129805565,
+          "mean_attempted_depth": 3.2666666666666666,
+          "accepted_per_draft": 2.4266666666666667,
+          "server_step_ms_estimate": 73.18650872000337,
+          "accepted_per_wall_second": 30.89990463916945,
+          "accepted_per_server_request_decode_second": 33.15729509588437,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "tool_streams": [
+            true
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-d5d5aca6b0fa",
+      "context": 8192,
+      "kind": "code",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 37.85166782831088,
+      "range_output_tok_s": [
+        37.85166782831088,
+        37.85166782831088
+      ],
+      "median_step_ms_estimate": 66.22442362768584,
+      "median_accepted_per_wall_second": 23.80515047014864,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs16-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 37.85166782831088,
+          "mean_decode_tok_s_estimate": 40.984312243921835,
+          "mean_ttft_seconds": 0.5411042971536517,
+          "mean_attempted_depth": 2.202127659574468,
+          "accepted_per_draft": 1.7127659574468086,
+          "server_step_ms_estimate": 66.22442362768584,
+          "accepted_per_wall_second": 23.80515047014864,
+          "accepted_per_server_request_decode_second": 25.86305570700004,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "a12469486963123e559b730768b8429abb405d4acf7d1251630f2715fada42fc"
+          ],
+          "reasoning_hashes": [
+            "8bb1eec68fcdc2065ea6d439e57e9ed4d9976ba573cb24e366074415368663ea"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-d5d5aca6b0fa",
+      "context": 8192,
+      "kind": "mixed",
+      "requests": 2,
+      "repetitions": 1,
+      "median_output_tok_s": 46.927944132901246,
+      "range_output_tok_s": [
+        46.927944132901246,
+        46.927944132901246
+      ],
+      "median_step_ms_estimate": 96.8461162694175,
+      "median_accepted_per_wall_second": 29.421621223947852,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs16-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 46.927944132901246,
+          "mean_decode_tok_s_estimate": 27.63155834788177,
+          "mean_ttft_seconds": 0.8327335440553725,
+          "mean_attempted_depth": 2.6424870466321244,
+          "accepted_per_draft": 1.6632124352331605,
+          "server_step_ms_estimate": 96.8461162694175,
+          "accepted_per_wall_second": 29.421621223947852,
+          "accepted_per_server_request_decode_second": 17.173764930399976,
+          "output_tokens": [
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "c87309233752884c1b21558a327650f3f5edd6f4d04d329eaebc745aadfdbf6b",
+            "62257dcf63bc4ae67bdb3ab03680a9ab5dd7b559771ac4654a6df45e72645fa5"
+          ],
+          "reasoning_hashes": [
+            "9b3c1b8611ebe194484780cfb6de7f72ea6bd183e478ba82d51e3d205f4e72cf",
+            "33e47089aec19b652a737e192bc7d9c311df5c87c4dd40522de6cf71150e60dc"
+          ],
+          "tool_streams": [
+            false,
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-d5d5aca6b0fa",
+      "context": 8192,
+      "kind": "mixed",
+      "requests": 3,
+      "repetitions": 1,
+      "median_output_tok_s": 57.3741520088388,
+      "range_output_tok_s": [
+        57.3741520088388,
+        57.3741520088388
+      ],
+      "median_step_ms_estimate": 120.56912668748843,
+      "median_accepted_per_wall_second": 36.979433911946884,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs16-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 57.3741520088388,
+          "mean_decode_tok_s_estimate": 23.47109824058524,
+          "mean_ttft_seconds": 0.9926849987047414,
+          "mean_attempted_depth": 2.886029411764706,
+          "accepted_per_draft": 1.8198529411764706,
+          "server_step_ms_estimate": 120.56912668748843,
+          "accepted_per_wall_second": 36.979433911946884,
+          "accepted_per_server_request_decode_second": 15.093855211321841,
+          "output_tokens": [
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "484a86de8791baa7b6d82edd08c6ecc2dda4498ff16133e7350f76512d1b31dc",
+            "65ecf90f3550924adcc5dc95326373618b3b300f5aaf5bef0149bff41bc6e3a7",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "8bb1eec68fcdc2065ea6d439e57e9ed4d9976ba573cb24e366074415368663ea",
+            "8d7fa27766c302cc315d6aa38b2775b245000bbaab7c253368dd925c4de5b0c4",
+            "4ce62b8eece8461cb09340b4736927635bc8c40c693a740558d62ab3b5584595"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-d5d5aca6b0fa",
+      "context": 8192,
+      "kind": "mixed",
+      "requests": 4,
+      "repetitions": 1,
+      "median_output_tok_s": 68.17311338496249,
+      "range_output_tok_s": [
+        68.17311338496249,
+        68.17311338496249
+      ],
+      "median_step_ms_estimate": 139.83240627507868,
+      "median_accepted_per_wall_second": 45.07148218908165,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs16-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 68.17311338496249,
+          "mean_decode_tok_s_estimate": 20.995838115373292,
+          "mean_ttft_seconds": 1.2962114311521873,
+          "mean_attempted_depth": 2.8624641833810887,
+          "accepted_per_draft": 1.9398280802292263,
+          "server_step_ms_estimate": 139.83240627507868,
+          "accepted_per_wall_second": 45.07148218908165,
+          "accepted_per_server_request_decode_second": 13.872521627162673,
+          "output_tokens": [
+            256,
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "65df0411457a0dac0daef6600a1bc51324af4dc96177871185f5b6fe576463d9",
+            "e4becf061d1ac9be1b3526dc809ba294b23ce155c0d0400a64dfac7ad510cee6",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "345c2f3829aa4773e658c8e6fa6608588435104ce652b4cef14a4f6b80fb3558"
+          ],
+          "reasoning_hashes": [
+            "8bb1eec68fcdc2065ea6d439e57e9ed4d9976ba573cb24e366074415368663ea",
+            "23087cc19989ebaf309da1bff0f78c8d6583a058a1b168a2882e3e80c04dbd1c",
+            "c488759ffdb1dea28fd25681dfa7dcfef2bf344e41b7fe6bdcb0bbffe7f869fa",
+            "8bb1eec68fcdc2065ea6d439e57e9ed4d9976ba573cb24e366074415368663ea"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true,
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-d5d5aca6b0fa",
+      "context": 8192,
+      "kind": "prose",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 31.51636761803872,
+      "range_output_tok_s": [
+        31.51636761803872,
+        31.51636761803872
+      ],
+      "median_step_ms_estimate": 65.98799953913523,
+      "median_accepted_per_wall_second": 17.35862435212289,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs16-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 31.51636761803872,
+          "mean_decode_tok_s_estimate": 33.61971493756845,
+          "mean_ttft_seconds": 0.537695970851928,
+          "mean_attempted_depth": 2.2869565217391306,
+          "accepted_per_draft": 1.2260869565217392,
+          "server_step_ms_estimate": 65.98799953913523,
+          "accepted_per_wall_second": 17.35862435212289,
+          "accepted_per_server_request_decode_second": 18.580453492829232,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "545819450424ace1ba014b780d32aef826edcfd00752e92907d813ccc2ea1ecf"
+          ],
+          "reasoning_hashes": [
+            "f10cf6ab1d75b1d8da1ac8bdd03ec8aec3464ee07b66a1c732bc0fdb22405c37"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-d5d5aca6b0fa",
+      "context": 8192,
+      "kind": "tools",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 42.29831214719457,
+      "range_output_tok_s": [
+        42.29831214719457,
+        42.29831214719457
+      ],
+      "median_step_ms_estimate": 76.47966401349845,
+      "median_accepted_per_wall_second": 30.07145629214614,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs16-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 42.29831214719457,
+          "mean_decode_tok_s_estimate": 45.07231114181252,
+          "mean_ttft_seconds": 0.39444976300001144,
+          "mean_attempted_depth": 3.1486486486486487,
+          "accepted_per_draft": 2.4594594594594597,
+          "server_step_ms_estimate": 76.47966401349845,
+          "accepted_per_wall_second": 30.07145629214614,
+          "accepted_per_server_request_decode_second": 32.158345505092335,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "4ce62b8eece8461cb09340b4736927635bc8c40c693a740558d62ab3b5584595"
+          ],
+          "tool_streams": [
+            true
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-d5d5aca6b0fa",
+      "context": 32768,
+      "kind": "code",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 37.15448891842278,
+      "range_output_tok_s": [
+        37.15448891842278,
+        37.15448891842278
+      ],
+      "median_step_ms_estimate": 67.25405674467069,
+      "median_accepted_per_wall_second": 23.366690296351823,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs16-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 37.15448891842278,
+          "mean_decode_tok_s_estimate": 40.41779459549323,
+          "mean_ttft_seconds": 0.5808064988814294,
+          "mean_attempted_depth": 2.234042553191489,
+          "accepted_per_draft": 1.7127659574468086,
+          "server_step_ms_estimate": 67.25405674467069,
+          "accepted_per_wall_second": 23.366690296351823,
+          "accepted_per_server_request_decode_second": 25.46710251173853,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "3e0ef6ca324c635d40c2b9238b34df98c8088d9219f4ff9153dee12a41ac310b"
+          ],
+          "reasoning_hashes": [
+            "31d379c784322679b8a58a1605b883120566e193a5054488dc3df6fcdbeff91c"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-d5d5aca6b0fa",
+      "context": 32768,
+      "kind": "mixed",
+      "requests": 2,
+      "repetitions": 1,
+      "median_output_tok_s": 44.980325917254554,
+      "range_output_tok_s": [
+        44.980325917254554,
+        44.980325917254554
+      ],
+      "median_step_ms_estimate": 98.42601545729374,
+      "median_accepted_per_wall_second": 27.58559050394127,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs16-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 44.980325917254554,
+          "mean_decode_tok_s_estimate": 26.359786387746446,
+          "mean_ttft_seconds": 0.8893813919275999,
+          "mean_attempted_depth": 2.613065326633166,
+          "accepted_per_draft": 1.5778894472361809,
+          "server_step_ms_estimate": 98.42601545729374,
+          "accepted_per_wall_second": 27.58559050394127,
+          "accepted_per_server_request_decode_second": 16.03122345149504,
+          "output_tokens": [
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "1e0f84e1afac150d9cd0b44bb772d977a3d3f873eb1d1667b658edd23e94f15d",
+            "d578ab756e650bfa9381b620d0b3ed48f3644480d8b3f609a2a94930e51c3776"
+          ],
+          "reasoning_hashes": [
+            "ab51b27a67ebb4f7930a207942dcbc66387c65edf73038e67630498db8fd1c32",
+            "ab5ce85f68b3ae88588d117a0cddbc5c9105d5720ed617360c0c04f73174c546"
+          ],
+          "tool_streams": [
+            false,
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-d5d5aca6b0fa",
+      "context": 32768,
+      "kind": "mixed",
+      "requests": 3,
+      "repetitions": 1,
+      "median_output_tok_s": 54.54453041378596,
+      "range_output_tok_s": [
+        54.54453041378596,
+        54.54453041378596
+      ],
+      "median_step_ms_estimate": 116.9837946700354,
+      "median_accepted_per_wall_second": 33.380116268853385,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs16-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 54.54453041378596,
+          "mean_decode_tok_s_estimate": 22.16992431304223,
+          "mean_ttft_seconds": 1.2038033396626513,
+          "mean_attempted_depth": 2.491582491582492,
+          "accepted_per_draft": 1.5824915824915824,
+          "server_step_ms_estimate": 116.9837946700354,
+          "accepted_per_wall_second": 33.380116268853385,
+          "accepted_per_server_request_decode_second": 13.527442727902269,
+          "output_tokens": [
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "47a3b67a2a7de821c88e2c9e8e11f29c3d9a6d372af7c32f425b8fb68d86c318",
+            "155e166dc264cf87725a135e049f28355ef3c6bc97a33de9c209746e1e99817d",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "386d3b378bf930ac986f69b9b186aa86af94756d6223f99710a0b9395ef338ee",
+            "e078934a51b8c103b4f4003694894cfe933e484332e4701190a6255c94c543f6",
+            "5aa3646f551d261b00910de8279fb2f9607ee405dbebf0bba987e1743b7fe5f0"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-d5d5aca6b0fa",
+      "context": 32768,
+      "kind": "mixed",
+      "requests": 4,
+      "repetitions": 1,
+      "median_output_tok_s": 66.59257151866287,
+      "range_output_tok_s": [
+        66.59257151866287,
+        66.59257151866287
+      ],
+      "median_step_ms_estimate": 136.62192165415934,
+      "median_accepted_per_wall_second": 42.53080251289601,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs16-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 66.59257151866287,
+          "mean_decode_tok_s_estimate": 20.123254588340586,
+          "mean_ttft_seconds": 1.4240652065491304,
+          "mean_attempted_depth": 2.5951742627345844,
+          "accepted_per_draft": 1.7533512064343164,
+          "server_step_ms_estimate": 136.62192165415934,
+          "accepted_per_wall_second": 42.53080251289601,
+          "accepted_per_server_request_decode_second": 12.833600824856624,
+          "output_tokens": [
+            256,
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "7efaae138fbc1e76aae5e294e13adf8252c425504c31b098de0c1c8409143984",
+            "be4dbe63226ad556d43af9a9ec5e6d745209a6bf250aea7fd0e0e119653fd98b",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "48295c8c1da60917bc3d4674e5b85d43575d59f2d92235de35a124b58a5c5dc3"
+          ],
+          "reasoning_hashes": [
+            "386d3b378bf930ac986f69b9b186aa86af94756d6223f99710a0b9395ef338ee",
+            "06dc5693281bee3b5a3d3fbef9609ca9dc96c62f44a3228ff753fabeb51542fa",
+            "c488759ffdb1dea28fd25681dfa7dcfef2bf344e41b7fe6bdcb0bbffe7f869fa",
+            "69494080c13d0fd47bd3e104e48c7c3bc01b286c9f45721cb80ad4c4e8b6f439"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true,
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-d5d5aca6b0fa",
+      "context": 32768,
+      "kind": "prose",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 30.834570817421273,
+      "range_output_tok_s": [
+        30.834570817421273,
+        30.834570817421273
+      ],
+      "median_step_ms_estimate": 66.65026220688843,
+      "median_accepted_per_wall_second": 16.86265591577726,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs16-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 30.834570817421273,
+          "mean_decode_tok_s_estimate": 33.035996611272104,
+          "mean_ttft_seconds": 0.5832926169969141,
+          "mean_attempted_depth": 2.3017241379310347,
+          "accepted_per_draft": 1.206896551724138,
+          "server_step_ms_estimate": 66.65026220688843,
+          "accepted_per_wall_second": 16.86265591577726,
+          "accepted_per_server_request_decode_second": 18.107904031612392,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "928f919802fe95818242a1df2dfc39c26fdd9157bd958681cc64a49ac6b298a1"
+          ],
+          "reasoning_hashes": [
+            "06dc5693281bee3b5a3d3fbef9609ca9dc96c62f44a3228ff753fabeb51542fa"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "costs-d5d5aca6b0fa",
+      "context": 32768,
+      "kind": "tools",
+      "requests": 1,
+      "repetitions": 1,
+      "median_output_tok_s": 39.193191599550374,
+      "range_output_tok_s": [
+        39.193191599550374,
+        39.193191599550374
+      ],
+      "median_step_ms_estimate": 81.44926501371043,
+      "median_accepted_per_wall_second": 28.170106462176832,
+      "samples": [
+        {
+          "source": "mtp8-screen-costs16-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 39.193191599550374,
+          "mean_decode_tok_s_estimate": 42.992367074693504,
+          "mean_ttft_seconds": 0.6002204958349466,
+          "mean_attempted_depth": 3.5616438356164384,
+          "accepted_per_draft": 2.5205479452054793,
+          "server_step_ms_estimate": 81.44926501371043,
+          "accepted_per_wall_second": 28.170106462176832,
+          "accepted_per_server_request_decode_second": 30.946233152394846,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "c488759ffdb1dea28fd25681dfa7dcfef2bf344e41b7fe6bdcb0bbffe7f869fa"
+          ],
+          "tool_streams": [
+            true
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "original",
+      "context": 0,
+      "kind": "code",
+      "requests": 1,
+      "repetitions": 2,
+      "median_output_tok_s": 42.68694486416767,
+      "range_output_tok_s": [
+        41.07963772584556,
+        44.294252002489785
+      ],
+      "median_step_ms_estimate": 77.03869489702744,
+      "median_accepted_per_wall_second": 30.360306951387344,
+      "samples": [
+        {
+          "source": "mtp8-screen-original-start-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 41.07963772584556,
+          "mean_decode_tok_s_estimate": 43.0316921144278,
+          "mean_ttft_seconds": 0.305710606276989,
+          "mean_attempted_depth": 3.857142857142857,
+          "accepted_per_draft": 2.3376623376623376,
+          "server_step_ms_estimate": 76.9591711038877,
+          "accepted_per_wall_second": 28.884120275985158,
+          "accepted_per_server_request_decode_second": 30.375357532199917,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "dd4ac1619e009d7c98609473fea04d8565ace026dd75ed17bb60adaab7945c0a"
+          ],
+          "reasoning_hashes": [
+            "8a31318f0a69b58072d8fa8b4151661c5182fabdc0d9bf687ba8e07c5aebc1d1"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        },
+        {
+          "source": "mtp8-screen-original-end-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 44.294252002489785,
+          "mean_decode_tok_s_estimate": 46.56643437965089,
+          "mean_ttft_seconds": 0.303255844861269,
+          "mean_attempted_depth": 3.8732394366197185,
+          "accepted_per_draft": 2.591549295774648,
+          "server_step_ms_estimate": 77.11821869016718,
+          "accepted_per_wall_second": 31.836493626789533,
+          "accepted_per_server_request_decode_second": 33.604890514737455,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "9365d35ced91d9254c35144de774eb46ff44702763af4e644779a203886f003b"
+          ],
+          "reasoning_hashes": [
+            "3fa1017928c90a9ac82327c16af51f055b5a7f83404d372f532fd8c822eba702"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "original",
+      "context": 0,
+      "kind": "mixed",
+      "requests": 2,
+      "repetitions": 2,
+      "median_output_tok_s": 49.11234734971376,
+      "range_output_tok_s": [
+        48.79415869566257,
+        49.43053600376495
+      ],
+      "median_step_ms_estimate": 89.72138789612926,
+      "median_accepted_per_wall_second": 29.791721113792505,
+      "samples": [
+        {
+          "source": "mtp8-screen-original-start-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 48.79415869566257,
+          "mean_decode_tok_s_estimate": 28.326701228628462,
+          "mean_ttft_seconds": 0.6063822081778198,
+          "mean_attempted_depth": 2.483720930232558,
+          "accepted_per_draft": 1.386046511627907,
+          "server_step_ms_estimate": 85.8163431860428,
+          "accepted_per_wall_second": 28.399725178334855,
+          "accepted_per_server_request_decode_second": 16.15131174516574,
+          "output_tokens": [
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "f7337c26b7a0008fefc0c7b122c550cc0aa05d4843b59baf2f461aec925357d4",
+            "4609a2ce1e4fd2b71deed8fd497e2d17c44c3b3bc1c66e58edbc8e5574249842"
+          ],
+          "reasoning_hashes": [
+            "3fa1017928c90a9ac82327c16af51f055b5a7f83404d372f532fd8c822eba702",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "tool_streams": [
+            false,
+            false
+          ],
+          "preemptions": 0.0
+        },
+        {
+          "source": "mtp8-screen-original-end-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 49.43053600376495,
+          "mean_decode_tok_s_estimate": 28.693882588812656,
+          "mean_ttft_seconds": 0.5452454045880586,
+          "mean_attempted_depth": 3.1088082901554404,
+          "accepted_per_draft": 1.6735751295336787,
+          "server_step_ms_estimate": 93.62643260621572,
+          "accepted_per_wall_second": 31.183717049250152,
+          "accepted_per_server_request_decode_second": 17.875028268700397,
+          "output_tokens": [
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "10ad0c6b3c05a54bf18d2d0a92ae2c12e8141362ac79f89746ca66ed08b0fb67",
+            "7d198ed0cea8b3ad9fdf3879033946d7e08b4827bfa7a801fccbbdbb30a19250"
+          ],
+          "reasoning_hashes": [
+            "3fa1017928c90a9ac82327c16af51f055b5a7f83404d372f532fd8c822eba702",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "tool_streams": [
+            false,
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "original",
+      "context": 0,
+      "kind": "mixed",
+      "requests": 3,
+      "repetitions": 2,
+      "median_output_tok_s": 63.754138183685676,
+      "range_output_tok_s": [
+        62.85622110701456,
+        64.65205526035679
+      ],
+      "median_step_ms_estimate": 112.38914911971818,
+      "median_accepted_per_wall_second": 41.76031663372471,
+      "samples": [
+        {
+          "source": "mtp8-screen-original-start-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 64.65205526035679,
+          "mean_decode_tok_s_estimate": 26.001912574837217,
+          "mean_ttft_seconds": 0.8430551711159447,
+          "mean_attempted_depth": 3.1264367816091956,
+          "accepted_per_draft": 1.9425287356321839,
+          "server_step_ms_estimate": 114.84396055172277,
+          "accepted_per_wall_second": 42.68045835546991,
+          "accepted_per_server_request_decode_second": 16.914504918674577,
+          "output_tokens": [
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "d55867a8db0d615623b92ad99e0295bd783fc02251522f10b446a31cf590308d",
+            "58b2c5d8c719f21685d02fc861bdb298f0264eab0e6f39178afbf3b30f71f98b",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "3fa1017928c90a9ac82327c16af51f055b5a7f83404d372f532fd8c822eba702",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true
+          ],
+          "preemptions": 0.0
+        },
+        {
+          "source": "mtp8-screen-original-end-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 62.85622110701456,
+          "mean_decode_tok_s_estimate": 26.67936342869774,
+          "mean_ttft_seconds": 0.8435428906232119,
+          "mean_attempted_depth": 3.003717472118959,
+          "accepted_per_draft": 1.8550185873605949,
+          "server_step_ms_estimate": 109.93433768771358,
+          "accepted_per_wall_second": 40.84017491197952,
+          "accepted_per_server_request_decode_second": 16.87387786544071,
+          "output_tokens": [
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "d96dcc49728cd00397049f297ebbc203e3d73577225dac54e7e3d77d173d1b5c",
+            "899a22ae19191ac6a4c59605d745f0da43b8896a953bacbfbb080e44cae54e14",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "3fa1017928c90a9ac82327c16af51f055b5a7f83404d372f532fd8c822eba702",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "original",
+      "context": 0,
+      "kind": "mixed",
+      "requests": 4,
+      "repetitions": 2,
+      "median_output_tok_s": 78.53169912488698,
+      "range_output_tok_s": [
+        77.43000365943708,
+        79.6333945903369
+      ],
+      "median_step_ms_estimate": 123.50871683920585,
+      "median_accepted_per_wall_second": 52.03438184424131,
+      "samples": [
+        {
+          "source": "mtp8-screen-original-start-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 77.43000365943708,
+          "mean_decode_tok_s_estimate": 23.845249883556512,
+          "mean_ttft_seconds": 0.7164323802571744,
+          "mean_attempted_depth": 2.951008645533141,
+          "accepted_per_draft": 1.956772334293948,
+          "server_step_ms_estimate": 125.03117781555555,
+          "accepted_per_wall_second": 51.342746567146264,
+          "accepted_per_server_request_decode_second": 15.650275143217113,
+          "output_tokens": [
+            256,
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "d7aad767035853990bfeefea2b1d4d1affa0baaa4b8b67eba0963295fba4f4a6",
+            "e9542e50dd2fbf3974b5261534bc08046f42bea5e3fd96a8a3308106b8d10a45",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "17c8bac7a3a7dfdc56097b94c91f24f425e1041aae41c08b9dc0cfde2da51c95"
+          ],
+          "reasoning_hashes": [
+            "3fa1017928c90a9ac82327c16af51f055b5a7f83404d372f532fd8c822eba702",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "3fa1017928c90a9ac82327c16af51f055b5a7f83404d372f532fd8c822eba702"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true,
+            false
+          ],
+          "preemptions": 0.0
+        },
+        {
+          "source": "mtp8-screen-original-end-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 79.6333945903369,
+          "mean_decode_tok_s_estimate": 24.197196857563245,
+          "mean_ttft_seconds": 0.728547235019505,
+          "mean_attempted_depth": 2.8685714285714288,
+          "accepted_per_draft": 1.937142857142857,
+          "server_step_ms_estimate": 121.98625586285614,
+          "accepted_per_wall_second": 52.726017121336355,
+          "accepted_per_server_request_decode_second": 15.880009132510002,
+          "output_tokens": [
+            256,
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "2476aefd92aea77fb5de330e9d64c405159c0dd6fbf1a54efe4bfc1f93d69690",
+            "50061f6d18a8cee7314d0a59f1ccda16cab20102213cd4aa75daf11edd0432b5",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "ff461a4531e683ab767f707fa17b3fd66727318726bf42fdc36c91ee89024f93"
+          ],
+          "reasoning_hashes": [
+            "3fa1017928c90a9ac82327c16af51f055b5a7f83404d372f532fd8c822eba702",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "3fa1017928c90a9ac82327c16af51f055b5a7f83404d372f532fd8c822eba702"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true,
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "original",
+      "context": 0,
+      "kind": "prose",
+      "requests": 1,
+      "repetitions": 2,
+      "median_output_tok_s": 32.71406834912422,
+      "range_output_tok_s": [
+        31.746233174326434,
+        33.681903523922
+      ],
+      "median_step_ms_estimate": 63.02352513157818,
+      "median_accepted_per_wall_second": 17.328686267258295,
+      "samples": [
+        {
+          "source": "mtp8-screen-original-start-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 31.746233174326434,
+          "mean_decode_tok_s_estimate": 33.19701041314547,
+          "mean_ttft_seconds": 0.3821564419195056,
+          "mean_attempted_depth": 2.4227642276422765,
+          "accepted_per_draft": 1.0731707317073171,
+          "server_step_ms_estimate": 63.12307349592045,
+          "accepted_per_wall_second": 16.369151480512066,
+          "accepted_per_server_request_decode_second": 17.00124332153558,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "94d04c1773e35eebb43444ee6242ac93b3a79899121a5fdec216a02e53ae2f34"
+          ],
+          "reasoning_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        },
+        {
+          "source": "mtp8-screen-original-end-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 33.681903523922,
+          "mean_decode_tok_s_estimate": 35.3256553504759,
+          "mean_ttft_seconds": 0.3817319911904633,
+          "mean_attempted_depth": 2.413793103448276,
+          "accepted_per_draft": 1.1982758620689655,
+          "server_step_ms_estimate": 62.92397676723591,
+          "accepted_per_wall_second": 18.288221054004524,
+          "accepted_per_server_request_decode_second": 19.0432315888353,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "d94950a961b46793e5957b96503a4082a894988350a5265394b1bd1e7fc86a85"
+          ],
+          "reasoning_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "original",
+      "context": 0,
+      "kind": "tools",
+      "requests": 1,
+      "repetitions": 2,
+      "median_output_tok_s": 45.8944388347078,
+      "range_output_tok_s": [
+        44.44121745733515,
+        47.347660212080456
+      ],
+      "median_step_ms_estimate": 79.1150867796462,
+      "median_accepted_per_wall_second": 34.24723062033814,
+      "samples": [
+        {
+          "source": "mtp8-screen-original-start-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 44.44121745733515,
+          "mean_decode_tok_s_estimate": 48.34227079558631,
+          "mean_ttft_seconds": 0.48532460583373904,
+          "mean_attempted_depth": 4.0,
+          "accepted_per_draft": 2.7941176470588234,
+          "server_step_ms_estimate": 78.78532135295887,
+          "accepted_per_wall_second": 32.98371608161593,
+          "accepted_per_server_request_decode_second": 35.46495208848808,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "tool_streams": [
+            true
+          ],
+          "preemptions": 0.0
+        },
+        {
+          "source": "mtp8-screen-original-end-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 47.347660212080456,
+          "mean_decode_tok_s_estimate": 51.81736192593696,
+          "mean_ttft_seconds": 0.4854778149165213,
+          "mean_attempted_depth": 4.0,
+          "accepted_per_draft": 3.0476190476190474,
+          "server_step_ms_estimate": 79.44485220633354,
+          "accepted_per_wall_second": 35.51074515906034,
+          "accepted_per_server_request_decode_second": 38.361441465128486,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "tool_streams": [
+            true
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "original",
+      "context": 8192,
+      "kind": "code",
+      "requests": 1,
+      "repetitions": 2,
+      "median_output_tok_s": 41.39872634306219,
+      "range_output_tok_s": [
+        39.93024184243299,
+        42.86721084369138
+      ],
+      "median_step_ms_estimate": 81.97169555111913,
+      "median_accepted_per_wall_second": 30.49165094694596,
+      "samples": [
+        {
+          "source": "mtp8-screen-original-start-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 42.86721084369138,
+          "mean_decode_tok_s_estimate": 46.97412508163232,
+          "mean_ttft_seconds": 0.5431625926867127,
+          "mean_attempted_depth": 3.878787878787879,
+          "accepted_per_draft": 2.878787878787879,
+          "server_step_ms_estimate": 82.31639189392753,
+          "accepted_per_wall_second": 31.815508048052195,
+          "accepted_per_server_request_decode_second": 34.97223107758986,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "d3640c0a27cf042cdc18f186b15fce68b5f22b88a9012aa68023524aa94236e9"
+          ],
+          "reasoning_hashes": [
+            "8bb1eec68fcdc2065ea6d439e57e9ed4d9976ba573cb24e366074415368663ea"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        },
+        {
+          "source": "mtp8-screen-original-end-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 39.93024184243299,
+          "mean_decode_tok_s_estimate": 43.42624603075082,
+          "mean_ttft_seconds": 0.538927795831114,
+          "mean_attempted_depth": 3.7083333333333335,
+          "accepted_per_draft": 2.5972222222222223,
+          "server_step_ms_estimate": 81.62699920831074,
+          "accepted_per_wall_second": 29.167793845839725,
+          "accepted_per_server_request_decode_second": 31.81817593948486,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "caaebb13d4eaa4dfeaeec807f9323231b30bc56662fe1c2ea272abf3b7ee0989"
+          ],
+          "reasoning_hashes": [
+            "8bb1eec68fcdc2065ea6d439e57e9ed4d9976ba573cb24e366074415368663ea"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "original",
+      "context": 8192,
+      "kind": "mixed",
+      "requests": 2,
+      "repetitions": 2,
+      "median_output_tok_s": 46.3059249322081,
+      "range_output_tok_s": [
+        43.38608056929684,
+        49.225769295119356
+      ],
+      "median_step_ms_estimate": 100.68954522692016,
+      "median_accepted_per_wall_second": 29.817905450563455,
+      "samples": [
+        {
+          "source": "mtp8-screen-original-start-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 49.225769295119356,
+          "mean_decode_tok_s_estimate": 29.264956070909214,
+          "mean_ttft_seconds": 0.841151000931859,
+          "mean_attempted_depth": 3.063953488372093,
+          "accepted_per_draft": 1.9767441860465116,
+          "server_step_ms_estimate": 102.76064109301694,
+          "accepted_per_wall_second": 32.6889874225402,
+          "accepted_per_server_request_decode_second": 19.23639406119704,
+          "output_tokens": [
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "21f29983b3989978b102ac86b4f1cc16df1ce3f58c2ca32590bff8da92bbbde9",
+            "88ebd6dd6daa49569740311212e1aeadd7938dc02c908d908ccec0657f42d8e5"
+          ],
+          "reasoning_hashes": [
+            "8bb1eec68fcdc2065ea6d439e57e9ed4d9976ba573cb24e366074415368663ea",
+            "b1d3338814b9e0bd70e6fa4750a90962a1da0385343b6a3d119bf13f873aeca0"
+          ],
+          "tool_streams": [
+            false,
+            false
+          ],
+          "preemptions": 0.0
+        },
+        {
+          "source": "mtp8-screen-original-end-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 43.38608056929684,
+          "mean_decode_tok_s_estimate": 27.536223779024695,
+          "mean_ttft_seconds": 0.8399046706035733,
+          "mean_attempted_depth": 2.948453608247423,
+          "accepted_per_draft": 1.6391752577319587,
+          "server_step_ms_estimate": 98.61844936082336,
+          "accepted_per_wall_second": 26.94682347858671,
+          "accepted_per_server_request_decode_second": 16.62138543402335,
+          "output_tokens": [
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "92584e71407dd1224730313b9d68989869205d339349213d7a7085b02f6f1a41",
+            "19c33bc0fa7fbeef467ddaa8ce25396680998ccfe76b17033dbe80f23ff37da5"
+          ],
+          "reasoning_hashes": [
+            "8bb1eec68fcdc2065ea6d439e57e9ed4d9976ba573cb24e366074415368663ea",
+            "b5ada389686525784dc8c9c6e12d0864b2f10a0f52300973e6582eb3f11c2847"
+          ],
+          "tool_streams": [
+            false,
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "original",
+      "context": 8192,
+      "kind": "mixed",
+      "requests": 3,
+      "repetitions": 2,
+      "median_output_tok_s": 57.16987677287177,
+      "range_output_tok_s": [
+        57.13678102032294,
+        57.20297252542059
+      ],
+      "median_step_ms_estimate": 122.39578206514702,
+      "median_accepted_per_wall_second": 37.6295423747664,
+      "samples": [
+        {
+          "source": "mtp8-screen-original-start-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 57.20297252542059,
+          "mean_decode_tok_s_estimate": 24.330404530368405,
+          "mean_ttft_seconds": 1.0128796446758013,
+          "mean_attempted_depth": 2.980916030534351,
+          "accepted_per_draft": 1.9427480916030535,
+          "server_step_ms_estimate": 121.4034175076352,
+          "accepted_per_wall_second": 37.91186590551964,
+          "accepted_per_server_request_decode_second": 16.002416830488908,
+          "output_tokens": [
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "d7a614d5c15709600b725bb85afe317e63fcd45c6659fe1205b55ed68e910e51",
+            "a9fc9a8d489d237dc6b0390979d95b9a24213655c31cd07948f65dd3d9f582cc",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "9b3c1b8611ebe194484780cfb6de7f72ea6bd183e478ba82d51e3d205f4e72cf",
+            "0f902eaec06fbefa5cb72b3b1fadfc6a68e42845a782134351697cdaff1f65fe",
+            "4ce62b8eece8461cb09340b4736927635bc8c40c693a740558d62ab3b5584595"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true
+          ],
+          "preemptions": 0.0
+        },
+        {
+          "source": "mtp8-screen-original-end-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 57.13678102032294,
+          "mean_decode_tok_s_estimate": 23.54726975706807,
+          "mean_ttft_seconds": 1.087073554750532,
+          "mean_attempted_depth": 3.0641509433962266,
+          "accepted_per_draft": 1.8943396226415095,
+          "server_step_ms_estimate": 123.38814662265885,
+          "accepted_per_wall_second": 37.34721884401317,
+          "accepted_per_server_request_decode_second": 15.352687227199466,
+          "output_tokens": [
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "df51c441caf9f89092325459f37d47369d44422a0adc7ebd118312a93a05e6d2",
+            "313b14ae1f9f3608d2aa0a5b1a361c5e790a60847aaab734745f07309f6831d3",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "8bb1eec68fcdc2065ea6d439e57e9ed4d9976ba573cb24e366074415368663ea",
+            "9194bd60678bbd31520e55ef38127f7669e8ac92ec907b7c433f40ab0184c44d",
+            "4ce62b8eece8461cb09340b4736927635bc8c40c693a740558d62ab3b5584595"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "original",
+      "context": 8192,
+      "kind": "mixed",
+      "requests": 4,
+      "repetitions": 2,
+      "median_output_tok_s": 68.17865118065083,
+      "range_output_tok_s": [
+        67.43338194824588,
+        68.9239204130558
+      ],
+      "median_step_ms_estimate": 140.45426016605754,
+      "median_accepted_per_wall_second": 44.414430880977484,
+      "samples": [
+        {
+          "source": "mtp8-screen-original-start-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 68.9239204130558,
+          "mean_decode_tok_s_estimate": 20.752061107544368,
+          "mean_ttft_seconds": 1.294021297711879,
+          "mean_attempted_depth": 2.948717948717949,
+          "accepted_per_draft": 1.9202279202279202,
+          "server_step_ms_estimate": 141.54018255554195,
+          "accepted_per_wall_second": 45.36593980312462,
+          "accepted_per_server_request_decode_second": 13.566662735328897,
+          "output_tokens": [
+            256,
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "9203fa61dcdb9dd22a2f16f71b2c6bc48715d3bcfd1c6be47de9e03d4af72406",
+            "f6478bee7bdf9dc7f5b8a75e1f16cfddbfe0fd2f84ec644cbd9640347abb2a4a",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "e190d1c500078e0d2eae4c2604dacdcbf7effb48a7fe34b5a9824fde3a3a0906"
+          ],
+          "reasoning_hashes": [
+            "8bb1eec68fcdc2065ea6d439e57e9ed4d9976ba573cb24e366074415368663ea",
+            "33e47089aec19b652a737e192bc7d9c311df5c87c4dd40522de6cf71150e60dc",
+            "4ce62b8eece8461cb09340b4736927635bc8c40c693a740558d62ab3b5584595",
+            "8bb1eec68fcdc2065ea6d439e57e9ed4d9976ba573cb24e366074415368663ea"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true,
+            false
+          ],
+          "preemptions": 0.0
+        },
+        {
+          "source": "mtp8-screen-original-end-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 67.43338194824588,
+          "mean_decode_tok_s_estimate": 20.00565339315159,
+          "mean_ttft_seconds": 1.1853503270540386,
+          "mean_attempted_depth": 2.7983651226158037,
+          "accepted_per_draft": 1.7983651226158037,
+          "server_step_ms_estimate": 139.36833777657313,
+          "accepted_per_wall_second": 43.46292195883035,
+          "accepted_per_server_request_decode_second": 12.903684949581832,
+          "output_tokens": [
+            256,
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "b97889e3653afc65eb7c90285d01929eda81119849b6caac69ec5e2684787db0",
+            "8e46633a51c01f107c42ba61c1bde0c2afca581e440941f1d35a960e8c70f03e",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "0a95ec1c201035aff15b4df13213da80f1430944487c151d99560d894421db6f"
+          ],
+          "reasoning_hashes": [
+            "8bb1eec68fcdc2065ea6d439e57e9ed4d9976ba573cb24e366074415368663ea",
+            "6b2d23784a9a84e86e83bb66065cbe3e5cbbe5de7edaa4df8c2933daffd533ca",
+            "4ce62b8eece8461cb09340b4736927635bc8c40c693a740558d62ab3b5584595",
+            "8bb1eec68fcdc2065ea6d439e57e9ed4d9976ba573cb24e366074415368663ea"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true,
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "original",
+      "context": 8192,
+      "kind": "prose",
+      "requests": 1,
+      "repetitions": 2,
+      "median_output_tok_s": 31.463647722284307,
+      "range_output_tok_s": [
+        30.53969598166769,
+        32.38759946290092
+      ],
+      "median_step_ms_estimate": 68.66894456054942,
+      "median_accepted_per_wall_second": 17.8428618366208,
+      "samples": [
+        {
+          "source": "mtp8-screen-original-start-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 30.53969598166769,
+          "mean_decode_tok_s_estimate": 32.518924836637645,
+          "mean_ttft_seconds": 0.5406721280887723,
+          "mean_attempted_depth": 2.3728813559322033,
+          "accepted_per_draft": 1.1779661016949152,
+          "server_step_ms_estimate": 66.48434395763122,
+          "accepted_per_wall_second": 16.58210055254613,
+          "accepted_per_server_request_decode_second": 17.717947287644186,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "ee2d5c745a7ac7909220be4b624a84aecc20cb7e8e1b6bc38bc972a4a8a91ed8"
+          ],
+          "reasoning_hashes": [
+            "e768ab6030ea32e67165f2e3177c3b59b53923d948024d38676a2a7e6c2ae3dc"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        },
+        {
+          "source": "mtp8-screen-original-end-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 32.38759946290092,
+          "mean_decode_tok_s_estimate": 34.62522872084009,
+          "mean_ttft_seconds": 0.5394556899555027,
+          "mean_attempted_depth": 2.8173076923076925,
+          "accepted_per_draft": 1.4519230769230769,
+          "server_step_ms_estimate": 70.85354516346761,
+          "accepted_per_wall_second": 19.103623120695467,
+          "accepted_per_server_request_decode_second": 20.491890329175714,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "428648bbca8e3c1d768a6f0272e790a630a617c7916bcf80023abf47313f03ee"
+          ],
+          "reasoning_hashes": [
+            "9194bd60678bbd31520e55ef38127f7669e8ac92ec907b7c433f40ab0184c44d"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "original",
+      "context": 8192,
+      "kind": "tools",
+      "requests": 1,
+      "repetitions": 2,
+      "median_output_tok_s": 38.22486495866567,
+      "range_output_tok_s": [
+        38.10808746096066,
+        38.34164245637068
+      ],
+      "median_step_ms_estimate": 82.36023317327935,
+      "median_accepted_per_wall_second": 27.175489931551375,
+      "samples": [
+        {
+          "source": "mtp8-screen-original-start-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 38.34164245637068,
+          "mean_decode_tok_s_estimate": 40.62778670326436,
+          "mean_ttft_seconds": 0.4000959671102464,
+          "mean_attempted_depth": 3.8684210526315788,
+          "accepted_per_draft": 2.3947368421052633,
+          "server_step_ms_estimate": 82.61516668421552,
+          "accepted_per_wall_second": 27.25851143382603,
+          "accepted_per_server_request_decode_second": 28.98664904059078,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "4ce62b8eece8461cb09340b4736927635bc8c40c693a740558d62ab3b5584595"
+          ],
+          "tool_streams": [
+            true
+          ],
+          "preemptions": 0.0
+        },
+        {
+          "source": "mtp8-screen-original-end-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 38.10808746096066,
+          "mean_decode_tok_s_estimate": 40.3556356835645,
+          "mean_ttft_seconds": 0.3987055909819901,
+          "mean_attempted_depth": 3.779220779220779,
+          "accepted_per_draft": 2.3636363636363638,
+          "server_step_ms_estimate": 82.10529966234319,
+          "accepted_per_wall_second": 27.092468429276718,
+          "accepted_per_server_request_decode_second": 28.787865988636334,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "4ce62b8eece8461cb09340b4736927635bc8c40c693a740558d62ab3b5584595"
+          ],
+          "tool_streams": [
+            true
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "original",
+      "context": 32768,
+      "kind": "code",
+      "requests": 1,
+      "repetitions": 2,
+      "median_output_tok_s": 37.307459255587766,
+      "range_output_tok_s": [
+        36.92572783438545,
+        37.68919067679008
+      ],
+      "median_step_ms_estimate": 69.46333604103737,
+      "median_accepted_per_wall_second": 24.266658449949865,
+      "samples": [
+        {
+          "source": "mtp8-screen-original-start-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 36.92572783438545,
+          "mean_decode_tok_s_estimate": 40.217310239735106,
+          "mean_ttft_seconds": 0.592059435788542,
+          "mean_attempted_depth": 2.4347826086956523,
+          "accepted_per_draft": 1.7934782608695652,
+          "server_step_ms_estimate": 69.08262156522814,
+          "accepted_per_wall_second": 23.799785518256243,
+          "accepted_per_server_request_decode_second": 25.9613520771813,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "b5372d94492d93af3cdd62a9d3a116fd73bfbb553a5d8b6c361c40bfa878aaf9"
+          ],
+          "reasoning_hashes": [
+            "d8ff26010998685b36e4b755b1de873068dc557d76121058d0be0c5859be859f"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        },
+        {
+          "source": "mtp8-screen-original-end-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 37.68919067679008,
+          "mean_decode_tok_s_estimate": 41.12637794892651,
+          "mean_ttft_seconds": 0.5917804487980902,
+          "mean_attempted_depth": 2.49438202247191,
+          "accepted_per_draft": 1.8876404494382022,
+          "server_step_ms_estimate": 69.84405051684661,
+          "accepted_per_wall_second": 24.73353138164349,
+          "accepted_per_server_request_decode_second": 27.02650312331037,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "65978e5517f3fe07f56afa77964824f2624026ab00c11f78473c9391ca5e3aa4"
+          ],
+          "reasoning_hashes": [
+            "69494080c13d0fd47bd3e104e48c7c3bc01b286c9f45721cb80ad4c4e8b6f439"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "original",
+      "context": 32768,
+      "kind": "mixed",
+      "requests": 2,
+      "repetitions": 2,
+      "median_output_tok_s": 46.66495262586885,
+      "range_output_tok_s": [
+        46.31322137146158,
+        47.01668388027612
+      ],
+      "median_step_ms_estimate": 92.18483278845268,
+      "median_accepted_per_wall_second": 27.98143005350809,
+      "samples": [
+        {
+          "source": "mtp8-screen-original-start-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 46.31322137146158,
+          "mean_decode_tok_s_estimate": 27.482344949058003,
+          "mean_ttft_seconds": 0.8960812357254326,
+          "mean_attempted_depth": 2.2135922330097086,
+          "accepted_per_draft": 1.4854368932038835,
+          "server_step_ms_estimate": 91.39385973786084,
+          "accepted_per_wall_second": 27.679386210287586,
+          "accepted_per_server_request_decode_second": 16.253136670936836,
+          "output_tokens": [
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "57ceffdc95055c96b6860039ab791837fe044f088a7bba7f3287171652649f69",
+            "a67b88533c5cc61369edbbcb7f9ee643c1afdb4c6a144096182cd51f1a5906bd"
+          ],
+          "reasoning_hashes": [
+            "69494080c13d0fd47bd3e104e48c7c3bc01b286c9f45721cb80ad4c4e8b6f439",
+            "a7b9f9f5e566b1fecbc475f5ee634e2216c4d78fffcab40cc5592f67f34a4c1d"
+          ],
+          "tool_streams": [
+            false,
+            false
+          ],
+          "preemptions": 0.0
+        },
+        {
+          "source": "mtp8-screen-original-end-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 47.01668388027612,
+          "mean_decode_tok_s_estimate": 26.98114727089702,
+          "mean_ttft_seconds": 0.8952765800058842,
+          "mean_attempted_depth": 2.2536585365853656,
+          "accepted_per_draft": 1.502439024390244,
+          "server_step_ms_estimate": 92.97580583904453,
+          "accepted_per_wall_second": 28.2834738967286,
+          "accepted_per_server_request_decode_second": 16.159462247535643,
+          "output_tokens": [
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "fb7328358dae2ea444f857faafc1b8bb864df5b991ae6532eb9535b7f4c63831",
+            "d90355aeaa60c7591992ab38e6e7a062b98aaf2bd29d276401223f62a98db287"
+          ],
+          "reasoning_hashes": [
+            "69494080c13d0fd47bd3e104e48c7c3bc01b286c9f45721cb80ad4c4e8b6f439",
+            "fb58bfb513273ccbfc5d4b5870d48e7ac360af28bd4ded9b298285561c987722"
+          ],
+          "tool_streams": [
+            false,
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "original",
+      "context": 32768,
+      "kind": "mixed",
+      "requests": 3,
+      "repetitions": 2,
+      "median_output_tok_s": 56.76763509940914,
+      "range_output_tok_s": [
+        55.257574186149824,
+        58.27769601266846
+      ],
+      "median_step_ms_estimate": 131.3651239366109,
+      "median_accepted_per_wall_second": 37.41339026794346,
+      "samples": [
+        {
+          "source": "mtp8-screen-original-start-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 55.257574186149824,
+          "mean_decode_tok_s_estimate": 21.805626854923652,
+          "mean_ttft_seconds": 1.242829176131636,
+          "mean_attempted_depth": 3.1074074074074076,
+          "accepted_per_draft": 1.8518518518518519,
+          "server_step_ms_estimate": 130.50778698518656,
+          "accepted_per_wall_second": 35.974983194107956,
+          "accepted_per_server_request_decode_second": 14.1895889481449,
+          "output_tokens": [
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "0bb45e9602059e41dd7b5dc339bf6d160f0fc4fef4628177fe7e6bee9220d1e3",
+            "a54a99fa3ecc8cda63b15d04cd1b7940b59dd842bdaaa8603c7109230a112591",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "8bb1eec68fcdc2065ea6d439e57e9ed4d9976ba573cb24e366074415368663ea",
+            "a7b9f9f5e566b1fecbc475f5ee634e2216c4d78fffcab40cc5592f67f34a4c1d",
+            "c488759ffdb1dea28fd25681dfa7dcfef2bf344e41b7fe6bdcb0bbffe7f869fa"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true
+          ],
+          "preemptions": 0.0
+        },
+        {
+          "source": "mtp8-screen-original-end-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 58.27769601266846,
+          "mean_decode_tok_s_estimate": 22.508481578192725,
+          "mean_ttft_seconds": 1.2269893240494032,
+          "mean_attempted_depth": 3.1274131274131274,
+          "accepted_per_draft": 1.9768339768339769,
+          "server_step_ms_estimate": 132.22246088803524,
+          "accepted_per_wall_second": 38.85179734177897,
+          "accepted_per_server_request_decode_second": 14.950818216187502,
+          "output_tokens": [
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "fb7328358dae2ea444f857faafc1b8bb864df5b991ae6532eb9535b7f4c63831",
+            "c7d5382a56c44da58dfff4456c4cc2df4099bad677a19f642a122ebfbe61cd3f",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "69494080c13d0fd47bd3e104e48c7c3bc01b286c9f45721cb80ad4c4e8b6f439",
+            "453af45a527d4c14dcefde7c175dd66e1eb5e578ea5f022587dac684eaf71f0f",
+            "c488759ffdb1dea28fd25681dfa7dcfef2bf344e41b7fe6bdcb0bbffe7f869fa"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "original",
+      "context": 32768,
+      "kind": "mixed",
+      "requests": 4,
+      "repetitions": 2,
+      "median_output_tok_s": 66.1994901925424,
+      "range_output_tok_s": [
+        65.27203993665053,
+        67.12694044843427
+      ],
+      "median_step_ms_estimate": 133.12204413904104,
+      "median_accepted_per_wall_second": 41.384644214884716,
+      "samples": [
+        {
+          "source": "mtp8-screen-original-start-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 65.27203993665053,
+          "mean_decode_tok_s_estimate": 19.634483875177622,
+          "mean_ttft_seconds": 1.4391561803640798,
+          "mean_attempted_depth": 2.349367088607595,
+          "accepted_per_draft": 1.5924050632911393,
+          "server_step_ms_estimate": 132.3702868126492,
+          "accepted_per_wall_second": 40.09386046889959,
+          "accepted_per_server_request_decode_second": 12.029928329345966,
+          "output_tokens": [
+            256,
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "a51be99b7ddaf7e5ed5330c55e1ca45db2d3d7ae654b2ed3e535ad2d3debc275",
+            "acea92aa0680924fd1d609a981d62288351c33e8fd9cb1bdb3ef409f648e38a0",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "9885eee153206ce1fd7e68904c9a33686224edae51b645c1151a69d41d707bea"
+          ],
+          "reasoning_hashes": [
+            "69494080c13d0fd47bd3e104e48c7c3bc01b286c9f45721cb80ad4c4e8b6f439",
+            "2b291f4f1ee6ccfa46dc2f3bacf2e2b8ec3c0ea6ddbf1ce0c69bc839079e61fb",
+            "c488759ffdb1dea28fd25681dfa7dcfef2bf344e41b7fe6bdcb0bbffe7f869fa",
+            "86e2207ca18fe393f23f6e5e355d49bb53d2fd4adc719cd6c10f12388412b98f"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true,
+            false
+          ],
+          "preemptions": 0.0
+        },
+        {
+          "source": "mtp8-screen-original-end-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 67.12694044843427,
+          "mean_decode_tok_s_estimate": 20.409567668617882,
+          "mean_ttft_seconds": 1.4169604517519474,
+          "mean_attempted_depth": 2.4308510638297873,
+          "accepted_per_draft": 1.7313829787234043,
+          "server_step_ms_estimate": 133.87380146543288,
+          "accepted_per_wall_second": 42.67542796086983,
+          "accepted_per_server_request_decode_second": 12.932948491572185,
+          "output_tokens": [
+            256,
+            256,
+            256,
+            256
+          ],
+          "answer_hashes": [
+            "fb7328358dae2ea444f857faafc1b8bb864df5b991ae6532eb9535b7f4c63831",
+            "7c33581231522e8589c1e601c4c60d70fba205a76850650eeae1b7399716e6ed",
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "0fa82bd4481c794d37541f2394ccdd83821341b3568040c41d91f7afe3a5bb3d"
+          ],
+          "reasoning_hashes": [
+            "69494080c13d0fd47bd3e104e48c7c3bc01b286c9f45721cb80ad4c4e8b6f439",
+            "a7b9f9f5e566b1fecbc475f5ee634e2216c4d78fffcab40cc5592f67f34a4c1d",
+            "4e4514992e26370a8ed8f87e09ec49467d88df6e108fca257e3ea1b627a4b462",
+            "386d3b378bf930ac986f69b9b186aa86af94756d6223f99710a0b9395ef338ee"
+          ],
+          "tool_streams": [
+            false,
+            false,
+            true,
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "original",
+      "context": 32768,
+      "kind": "prose",
+      "requests": 1,
+      "repetitions": 2,
+      "median_output_tok_s": 30.828069082735137,
+      "range_output_tok_s": [
+        29.999911165622716,
+        31.656226999847558
+      ],
+      "median_step_ms_estimate": 69.6350292993188,
+      "median_accepted_per_wall_second": 17.369903785812,
+      "samples": [
+        {
+          "source": "mtp8-screen-original-start-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 29.999911165622716,
+          "mean_decode_tok_s_estimate": 32.09280133768938,
+          "mean_ttft_seconds": 0.5874081319198012,
+          "mean_attempted_depth": 2.283333333333333,
+          "accepted_per_draft": 1.125,
+          "server_step_ms_estimate": 66.34443060832685,
+          "accepted_per_wall_second": 15.820265653746354,
+          "accepted_per_server_request_decode_second": 16.95696216976504,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "f09839b8953926cd32958b49b9eba37571f503bb2a764118b887ed2e3b252942"
+          ],
+          "reasoning_hashes": [
+            "06dc5693281bee3b5a3d3fbef9609ca9dc96c62f44a3228ff753fabeb51542fa"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        },
+        {
+          "source": "mtp8-screen-original-end-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 31.656226999847558,
+          "mean_decode_tok_s_estimate": 34.01887356658825,
+          "mean_ttft_seconds": 0.5907992972061038,
+          "mean_attempted_depth": 2.941747572815534,
+          "accepted_per_draft": 1.4854368932038835,
+          "server_step_ms_estimate": 72.92562799031074,
+          "accepted_per_wall_second": 18.91954191787764,
+          "accepted_per_server_request_decode_second": 20.36920262656149,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "a9d9e19070efa4f373c998b074b1cf02750a9879bf301095c6cb102baa15fe80"
+          ],
+          "reasoning_hashes": [
+            "e7c8921874b95157b58d3a40e7cf2ba42cbb5a91de77dc00a83c7c7271cbf4f4"
+          ],
+          "tool_streams": [
+            false
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    },
+    {
+      "policy": "original",
+      "context": 32768,
+      "kind": "tools",
+      "requests": 1,
+      "repetitions": 2,
+      "median_output_tok_s": 35.54062290014878,
+      "range_output_tok_s": [
+        33.2542083247818,
+        37.827037475515766
+      ],
+      "median_step_ms_estimate": 73.40344772259209,
+      "median_accepted_per_wall_second": 23.303240687263433,
+      "samples": [
+        {
+          "source": "mtp8-screen-original-start-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 37.827037475515766,
+          "mean_decode_tok_s_estimate": 41.32917419857836,
+          "mean_ttft_seconds": 0.5974283032119274,
+          "mean_attempted_depth": 2.764705882352941,
+          "accepted_per_draft": 2.0352941176470587,
+          "server_step_ms_estimate": 72.7535639764563,
+          "accepted_per_wall_second": 25.562802669000888,
+          "accepted_per_server_request_decode_second": 27.975180958910798,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "c488759ffdb1dea28fd25681dfa7dcfef2bf344e41b7fe6bdcb0bbffe7f869fa"
+          ],
+          "tool_streams": [
+            true
+          ],
+          "preemptions": 0.0
+        },
+        {
+          "source": "mtp8-screen-original-end-bench.json",
+          "repeat": 0,
+          "aggregate_output_tok_s": 33.2542083247818,
+          "mean_decode_tok_s_estimate": 35.929129453822554,
+          "mean_ttft_seconds": 0.6007634438574314,
+          "mean_attempted_depth": 2.9375,
+          "accepted_per_draft": 1.6875,
+          "server_step_ms_estimate": 74.05333146872788,
+          "accepted_per_wall_second": 21.04367870552598,
+          "accepted_per_server_request_decode_second": 22.7876311103251,
+          "output_tokens": [
+            256
+          ],
+          "answer_hashes": [
+            "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+          ],
+          "reasoning_hashes": [
+            "c488759ffdb1dea28fd25681dfa7dcfef2bf344e41b7fe6bdcb0bbffe7f869fa"
+          ],
+          "tool_streams": [
+            true
+          ],
+          "preemptions": 0.0
+        }
+      ]
+    }
+  ],
+  "comparisons": [
+    {
+      "policy": "costs-16c9e3e4ab76",
+      "equal_cell_geomean_ratio": 0.9972512647215945,
+      "three_visits_per_cell": false,
+      "cells": [
+        {
+          "context": 0,
+          "kind": "code",
+          "requests": 1,
+          "ratio": 1.0272220298822339,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 0,
+          "kind": "mixed",
+          "requests": 2,
+          "ratio": 1.0326087471138692,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 0,
+          "kind": "mixed",
+          "requests": 3,
+          "ratio": 1.0213083232914113,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 0,
+          "kind": "mixed",
+          "requests": 4,
+          "ratio": 0.957717117634133,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 0,
+          "kind": "prose",
+          "requests": 1,
+          "ratio": 1.0187525307766225,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 0,
+          "kind": "tools",
+          "requests": 1,
+          "ratio": 0.9600431159861663,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 8192,
+          "kind": "code",
+          "requests": 1,
+          "ratio": 0.8757552505634907,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 8192,
+          "kind": "mixed",
+          "requests": 2,
+          "ratio": 1.0319883941953882,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 8192,
+          "kind": "mixed",
+          "requests": 3,
+          "ratio": 0.9891531408276388,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 8192,
+          "kind": "mixed",
+          "requests": 4,
+          "ratio": 0.9948668087893439,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 8192,
+          "kind": "prose",
+          "requests": 1,
+          "ratio": 1.034438571733401,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 8192,
+          "kind": "tools",
+          "requests": 1,
+          "ratio": 1.080963727357222,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 32768,
+          "kind": "code",
+          "requests": 1,
+          "ratio": 1.0038272827496362,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 32768,
+          "kind": "mixed",
+          "requests": 2,
+          "ratio": 0.9925691963464457,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 32768,
+          "kind": "mixed",
+          "requests": 3,
+          "ratio": 0.9800080994185003,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 32768,
+          "kind": "mixed",
+          "requests": 4,
+          "ratio": 0.9696528018494912,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 32768,
+          "kind": "prose",
+          "requests": 1,
+          "ratio": 1.002239474827079,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 32768,
+          "kind": "tools",
+          "requests": 1,
+          "ratio": 0.993779329973683,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        }
+      ]
+    },
+    {
+      "policy": "costs-7b3c5f7e0bf7",
+      "equal_cell_geomean_ratio": 1.001902701542378,
+      "three_visits_per_cell": false,
+      "cells": [
+        {
+          "context": 0,
+          "kind": "code",
+          "requests": 1,
+          "ratio": 0.969643489614065,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 0,
+          "kind": "mixed",
+          "requests": 2,
+          "ratio": 1.0033017404618128,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 0,
+          "kind": "mixed",
+          "requests": 3,
+          "ratio": 0.9722872406917211,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 0,
+          "kind": "mixed",
+          "requests": 4,
+          "ratio": 0.9452914368728418,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 0,
+          "kind": "prose",
+          "requests": 1,
+          "ratio": 1.0274270843286026,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 0,
+          "kind": "tools",
+          "requests": 1,
+          "ratio": 0.9825161882670617,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 8192,
+          "kind": "code",
+          "requests": 1,
+          "ratio": 0.9718800946608454,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 8192,
+          "kind": "mixed",
+          "requests": 2,
+          "ratio": 1.0034195498813727,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 8192,
+          "kind": "mixed",
+          "requests": 3,
+          "ratio": 1.024288572583316,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 8192,
+          "kind": "mixed",
+          "requests": 4,
+          "ratio": 0.9843633426398373,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 8192,
+          "kind": "prose",
+          "requests": 1,
+          "ratio": 1.003871177250461,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 8192,
+          "kind": "tools",
+          "requests": 1,
+          "ratio": 1.0475377672601554,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 32768,
+          "kind": "code",
+          "requests": 1,
+          "ratio": 1.1063059441993455,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 32768,
+          "kind": "mixed",
+          "requests": 2,
+          "ratio": 0.9696321992150655,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 32768,
+          "kind": "mixed",
+          "requests": 3,
+          "ratio": 1.0059008076033904,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 32768,
+          "kind": "mixed",
+          "requests": 4,
+          "ratio": 0.9844885210837356,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 32768,
+          "kind": "prose",
+          "requests": 1,
+          "ratio": 1.0358659874916465,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 32768,
+          "kind": "tools",
+          "requests": 1,
+          "ratio": 1.0076108352533504,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        }
+      ]
+    },
+    {
+      "policy": "costs-d5d5aca6b0fa",
+      "equal_cell_geomean_ratio": 0.9976222769158904,
+      "three_visits_per_cell": false,
+      "cells": [
+        {
+          "context": 0,
+          "kind": "code",
+          "requests": 1,
+          "ratio": 0.9301971752173148,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 0,
+          "kind": "mixed",
+          "requests": 2,
+          "ratio": 1.0296718670769849,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 0,
+          "kind": "mixed",
+          "requests": 3,
+          "ratio": 1.0332808926996675,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 0,
+          "kind": "mixed",
+          "requests": 4,
+          "ratio": 0.9189703127328676,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 0,
+          "kind": "prose",
+          "requests": 1,
+          "ratio": 1.054566728216167,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 0,
+          "kind": "tools",
+          "requests": 1,
+          "ratio": 0.9470341774165303,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 8192,
+          "kind": "code",
+          "requests": 1,
+          "ratio": 0.9143196221700733,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 8192,
+          "kind": "mixed",
+          "requests": 2,
+          "ratio": 1.0134328209965309,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 8192,
+          "kind": "mixed",
+          "requests": 3,
+          "ratio": 1.0035731270994093,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 8192,
+          "kind": "mixed",
+          "requests": 4,
+          "ratio": 0.999918775223733,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 8192,
+          "kind": "prose",
+          "requests": 1,
+          "ratio": 1.0016755811729063,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 8192,
+          "kind": "tools",
+          "requests": 1,
+          "ratio": 1.1065653781362919,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 32768,
+          "kind": "code",
+          "requests": 1,
+          "ratio": 0.9958997385451255,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 32768,
+          "kind": "mixed",
+          "requests": 2,
+          "ratio": 0.9638995302937388,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 32768,
+          "kind": "mixed",
+          "requests": 3,
+          "ratio": 0.9608385186078269,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 32768,
+          "kind": "mixed",
+          "requests": 4,
+          "ratio": 1.005937830109827,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 32768,
+          "kind": "prose",
+          "requests": 1,
+          "ratio": 1.0002109030789015,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        },
+        {
+          "context": 32768,
+          "kind": "tools",
+          "requests": 1,
+          "ratio": 1.1027716568070138,
+          "candidate_repetitions": 1,
+          "control_repetitions": 2
+        }
+      ]
+    }
+  ],
+  "production_policy_selected": false,
+  "limitations": [
+    "First-pass samples alone cannot establish a repeatable win. Require balanced repeated visits and final numerical/native/application gates.",
+    "Output throughput includes cached prefill and client delivery; SSE decode estimates count all generated reasoning and content/tool tokens.",
+    "Concurrent step costs are request-weighted full-run estimates with declining residency; not isolated fixed-batch GPU timings.",
+    "Tool bodies can be truncated at256 tokens; separate functional tool tests establish basic API correctness, not comprehensive task quality.",
+    "Same prompts/settings do not guarantee identical generated text across draft policies. Answer/reasoning hashes are retained; the first pass records tool presence but does not retain tool-argument hashes."
+  ],
+  "source_revision": "e24ee612a65f4e94006e45a6ab7edf52a69b054b"
+}

@@ -3,8 +3,10 @@
 ## Current serving: vLLM P27
 
 Latest October 3 image adds bounded MTP controls with **original adaptive MTP
-still selected**. [First-pass results](mtp-first-pass.json) cover 60 cells with
-one visit each; no experimental policy has been promoted. Original-reference
+still selected**. [Repeated results](mtp-repeated-matrix.json) cover 60 cells with
+three visits each. [Cost calibration](mtp-calibration.json) adds 72 cells and
+6,130 simultaneous batch steps. A [90-measurement candidate screen](mtp-candidate-screen.json)
+found no useful overall gain; [retain original](mtp-outcome.json). Original-reference
 short/long and native/Pi/Code/Chat checks passed on the selected original policy.
 [Conditions, limitations and replay recipe](../recipes/vllm-tp6/MTP_TUNING.md).
 

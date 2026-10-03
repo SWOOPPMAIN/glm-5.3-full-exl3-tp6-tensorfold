@@ -35,9 +35,9 @@ Prefill-budget update: fixed/adaptive 1536 and 768-token policies failed our
 numerical gate. Serving retains **3072** on a newly qualified scheduler-control
 image; no speedup is claimed. [Results and recipe](recipes/vllm-tp6/PREFILL_BUDGETS.md).
 
-MTP tuning: the first 60-cell comparison is complete. Depth 3 for single requests
-and depth 2 for long concurrent mixes merit repeat tests; the original adaptive
-policy remains selected. [Preliminary results and replay](recipes/vllm-tp6/MTP_TUNING.md).
+MTP tuning: **270 workload measurements** and **72 cost-calibration cells** are
+complete. Recalibrated policies showed no useful overall gain in the bounded
+screen; the original adaptive policy remains selected. [Results and replay](recipes/vllm-tp6/MTP_TUNING.md).
 
 The latest local TensorFold HTTP measurements remain around 19–21 output
 tok/s for one request and 368–388 cold-prefill tok/s. Its strict numerical
@@ -61,7 +61,7 @@ artifacts are not included in this repository.
 [Ranked experiment plan](docs/PERFORMANCE_EXPERIMENTS.md): prompt reuse,
 mixed prefill/decode scheduling, workload-aware MTP, six-rank communication,
 E3 prefill kernels, and target-verified copy/ngram drafting. Prompt reuse has
-been measured and smaller prefill budgets rejected; MTP comparisons are in progress.
+been measured; smaller prefill budgets and MTP retuning were rejected for promotion.
 Communication, E3 and copy/ngram drafting remain to be assessed.
 TensorFold development is excluded from this optimization goal.
 

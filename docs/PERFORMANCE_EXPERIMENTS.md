@@ -4,8 +4,9 @@
 Prompt-cache replay results are recorded in [cache reuse](../results/cache-reuse.json)
 and its [reproduction protocol](../benchmarks/CACHE_REUSE.md).
 Smaller/adaptive prefill budgets were rejected at the numerical gate; see
-[the experiment](../recipes/vllm-tp6/PREFILL_BUDGETS.md). The remaining four
-experiments have no promoted change yet; no new serving speedup is claimed.
+[the experiment](../recipes/vllm-tp6/PREFILL_BUDGETS.md). MTP retuning also
+finished without a promoted policy; communication, E3 and copy drafting remain.
+No new serving speedup is claimed.
 Keep full GLM, TP6, the original 3.25 bpw experts and the current dense precision.
 Start from [P27 measurements](../results/p27-serving.json), with production serving
 remaining the priority. No numerical speedup promise is supported for this list.
@@ -46,9 +47,11 @@ consistency across chunk/batch shapes is a prerequisite to another budget trial.
 actual workload classes, especially tools and long-context cache pressure, rather
 than presenting MTP4 or adaptive drafting as a new feature. Optimize accepted tokens
 per total target-plus-draft time, including graph capture and rejection work.
-The [first 60-cell comparison](../recipes/vllm-tp6/MTP_TUNING.md) and 40 functional
-checks are complete. Original adaptive MTP still serves; two balanced repeat
-visits, C2/C3 cost measurements and a fitted candidate remain pending.
+The [270 measurements and 72 calibration cells](../recipes/vllm-tp6/MTP_TUNING.md)
+are complete. Fixed depth 3's first-pass advantage shrank to 0.9% with repeats;
+no global fixed-depth policy was promoted. The fitted windows 8/16/32 were within
+0.3% overall of original in a bracketed screen, with all three C4 averages lower.
+Retain original adaptive MTP; this rejects promotion, not every possible retuning.
 
 **TP6 communication:** two NCCL rails, performance-core affinity, custom small-message
 RoCE and decode projection sharding are already present. The next test is where each
@@ -85,7 +88,11 @@ strict numerical repair before a production comparison. Its published gains on o
 models/hardware cannot be added to our baseline, and NVFP4 paths do not directly apply
 to the retained EXL3 checkpoint.
 
-Kindling full TP6 remains at `bc6f5fe` in this review. Its `kring` CUPTI tool addresses
+The [Kindling review at `3b9c548`](https://github.com/kindlingai/glm-5.3-full-exl3-tp6/commit/3b9c548c22487537c1af1323af30fa9b0daef345)
+adds an opt-in D13 adaptive-MTP launcher and alternating benchmark/hang records;
+the scheduler and graph-overlay code did not change in that merge. Our phase-aware
+policy already implements this class of adaptation, so their fixed-k4-relative
+gains are not additional gains on our baseline. Its `kring` CUPTI tool addresses
 an observed hang; do not count instrumentation as a throughput optimization. Kindling
 Spark OS 0.9.5 changes Wi-Fi/setup/console behavior; upgrading it is not a measured
 inference speed improvement.

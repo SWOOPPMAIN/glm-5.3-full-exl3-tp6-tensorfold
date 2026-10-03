@@ -13,7 +13,7 @@ def analyze(paths):
     groups=defaultdict(list);sources={};fixtures=set();images=set()
     for path in paths:
         raw=path.read_bytes();d=json.loads(raw)
-        assert d['phase']=='complete' and d['passed'] and d['scope']=='matrix'
+        assert d['phase']=='complete' and d['passed'] and d['scope'] in ('matrix','candidate_matrix')
         assert path.name not in sources
         sources[path.name]=hashlib.sha256(raw).hexdigest()
         fixtures.add(d['fixture_sha256']);images.add(d['image'])

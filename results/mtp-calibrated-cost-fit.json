@@ -1,0 +1,551 @@
+{
+  "schema": 1,
+  "phase": "candidate_unqualified",
+  "sources": {
+    "mtp1-r0-depth1-bench.json": "487b3740d59197af335510fbcd043ba27641dabe122462a20cb30442c5c90477",
+    "mtp1-r0-depth2-bench.json": "0f175ec4be20ee6418a8f47ab732a4542bdca409639af239378c7a04324dac73",
+    "mtp1-r0-depth3-bench.json": "8b574743952ed4fc47d06f7fcbcfa59d11ce36c721913d3cded1c363a2d9e026",
+    "mtp1-r0-depth4-bench.json": "e4ae67a925d2940d6cc5d57a02a3d3926b12c38acec50c3209c7641fe157e6ee",
+    "mtp2-r1-fixed1-bench.json": "feeefb4de65560c64072691e23266729875f7a0a9c01df2d544e0507abaae7ab",
+    "mtp2-r1-fixed2-bench.json": "b3b9d80fbd6ce86f16bc9d19b487974db505e16b113da3b8da6bb9c669391b8d",
+    "mtp2-r1-fixed3-bench.json": "d2dd1b6358aae19f6978f761ceb7c4483b1e5f2369ff9840eb2b32df69516bf3",
+    "mtp2-r1-fixed4-bench.json": "6711fdd10f589d7db4b711dce874027a65dc91097368d7199af797ac6f2bb3b0",
+    "mtp3-r2-fixed1-bench.json": "c2d0319b40a9a4d225121caf5ef87296f84a10fdcf037b668f87e5372e5cc281",
+    "mtp3-r2-fixed2-bench.json": "0ed723d69a579f71aa6b38f699bb6bfc257467f737f02f48c5c057f30aee8353",
+    "mtp3-r2-fixed3-bench.json": "7b4dde283f85cd01fafe1f606d9f153f6e1782a78e53ec4f80a837edd8b1a635",
+    "mtp3-r2-fixed4-bench.json": "41aeb38216538006b7711d55fcfdc72074f2055fb066cbb369b60968737ad16b",
+    "mtp5-cost-r0-fixed1-bench.json": "462ad5637a2bfa407f84c813815cc885e2eac9aec8423f41bce192feb0438389",
+    "mtp5-cost-r0-fixed2-bench.json": "c2c723fa3c85cf1a6d06329dec865eb09c2d1b3abeea6878cdf623009f7273a7",
+    "mtp5-cost-r0-fixed3-bench.json": "c2ecd3a83664d482f968017d3d9f7f74238fd0a39042946343ea8ffd75cb4d12",
+    "mtp5-cost-r0-fixed4-bench.json": "ddb49c752ec2f577b020099edb7ded9d974ccd51240c054c636fd27ab672fbb3",
+    "mtp6-cost-r1-fixed1-bench.json": "9b7a4012e6b4e9f4e0fd9e4b219ff4a1e8f9ada2957faa83f4ba8ac4315b920f",
+    "mtp6-cost-r1-fixed2-bench.json": "a23f13fc5a179728646f29e0ea7ee5f473b98525073e9b477214057d7e809a1c",
+    "mtp6-cost-r1-fixed3-bench.json": "e72e1e1cc698cf21bac168fb57e9f839dbb77db39d29954f77fd9b2fa64232c4",
+    "mtp6-cost-r1-fixed4-bench.json": "65a78e3c4b9c9325e9a216c13ef8b68f34d079123f88234d8b30a45a65065f68",
+    "mtp7-cost-r2-fixed1-bench.json": "2926729baecef13292f764f4834f38af3b8532c13a1bb11009424287828c392e",
+    "mtp7-cost-r2-fixed2-bench.json": "18b46b9622b6f57e996e3b70d5edc054cd918afd43b36870f6919c9f8260b1ce",
+    "mtp7-cost-r2-fixed3-bench.json": "eded85c8946435014434ea29b32a08550210b330b754269ce6b5a8ae3a9c8382",
+    "mtp7-cost-r2-fixed4-bench.json": "de74cc4da2bea7133d76e1b0e0f242331a9cbcd6cc70889c77e5e7e53abab042"
+  },
+  "image": "sha256:2e947348fd26b8d58e4535e0321126935069a5e521784fa573f19fb560975d9d",
+  "fixture_sha256": "542ce05b3bdc49d352097b31a9553f152ee1cf597445570858fd15d35681aadd",
+  "cells": [
+    {
+      "depth": 1,
+      "requests": 1,
+      "context": 8192,
+      "kind": "code",
+      "visits": 3,
+      "median_ms": 55.35921900757261,
+      "range_ms": [
+        55.24740182705787,
+        55.50343438635812
+      ]
+    },
+    {
+      "depth": 1,
+      "requests": 1,
+      "context": 8192,
+      "kind": "prose",
+      "visits": 3,
+      "median_ms": 54.41671456551533,
+      "range_ms": [
+        54.291894620686875,
+        54.7537747172414
+      ]
+    },
+    {
+      "depth": 1,
+      "requests": 2,
+      "context": 8192,
+      "kind": "code",
+      "visits": 3,
+      "median_ms": 70.77381478647365,
+      "range_ms": [
+        70.5977137421413,
+        71.03144741181931
+      ]
+    },
+    {
+      "depth": 1,
+      "requests": 2,
+      "context": 8192,
+      "kind": "prose",
+      "visits": 3,
+      "median_ms": 68.21042597419547,
+      "range_ms": [
+        68.07797369973115,
+        68.99578212772929
+      ]
+    },
+    {
+      "depth": 1,
+      "requests": 3,
+      "context": 8192,
+      "kind": "code",
+      "visits": 3,
+      "median_ms": 84.29448174770701,
+      "range_ms": [
+        83.09784907784578,
+        85.08805423154234
+      ]
+    },
+    {
+      "depth": 1,
+      "requests": 3,
+      "context": 8192,
+      "kind": "prose",
+      "visits": 3,
+      "median_ms": 81.81263714888826,
+      "range_ms": [
+        81.79781820705216,
+        82.17391105301847
+      ]
+    },
+    {
+      "depth": 1,
+      "requests": 4,
+      "context": 8192,
+      "kind": "code",
+      "visits": 3,
+      "median_ms": 97.94453789929729,
+      "range_ms": [
+        97.50904951101573,
+        98.0825278637455
+      ]
+    },
+    {
+      "depth": 1,
+      "requests": 4,
+      "context": 8192,
+      "kind": "prose",
+      "visits": 3,
+      "median_ms": 93.27391464717807,
+      "range_ms": [
+        93.0399570469635,
+        94.11842076473187
+      ]
+    },
+    {
+      "depth": 2,
+      "requests": 1,
+      "context": 8192,
+      "kind": "code",
+      "visits": 3,
+      "median_ms": 64.28825993682135,
+      "range_ms": [
+        64.16856761053695,
+        64.43276233674587
+      ]
+    },
+    {
+      "depth": 2,
+      "requests": 1,
+      "context": 8192,
+      "kind": "prose",
+      "visits": 3,
+      "median_ms": 63.168600575014956,
+      "range_ms": [
+        62.92354849138692,
+        63.16931101680878
+      ]
+    },
+    {
+      "depth": 2,
+      "requests": 2,
+      "context": 8192,
+      "kind": "code",
+      "visits": 3,
+      "median_ms": 86.84831416684001,
+      "range_ms": [
+        79.02471937443445,
+        86.95221862188197
+      ]
+    },
+    {
+      "depth": 2,
+      "requests": 2,
+      "context": 8192,
+      "kind": "prose",
+      "visits": 3,
+      "median_ms": 83.24380934623584,
+      "range_ms": [
+        82.98420890041366,
+        83.54260354855495
+      ]
+    },
+    {
+      "depth": 2,
+      "requests": 3,
+      "context": 8192,
+      "kind": "code",
+      "visits": 3,
+      "median_ms": 104.69174551305882,
+      "range_ms": [
+        104.6679948033513,
+        105.94714320952785
+      ]
+    },
+    {
+      "depth": 2,
+      "requests": 3,
+      "context": 8192,
+      "kind": "prose",
+      "visits": 3,
+      "median_ms": 100.90273981663007,
+      "range_ms": [
+        100.30130122266044,
+        100.98693093440706
+      ]
+    },
+    {
+      "depth": 2,
+      "requests": 4,
+      "context": 8192,
+      "kind": "code",
+      "visits": 3,
+      "median_ms": 122.60623155316874,
+      "range_ms": [
+        120.91554984576287,
+        122.76048973864752
+      ]
+    },
+    {
+      "depth": 2,
+      "requests": 4,
+      "context": 8192,
+      "kind": "prose",
+      "visits": 3,
+      "median_ms": 116.60801624678165,
+      "range_ms": [
+        116.49571006815002,
+        117.65448017587617
+      ]
+    },
+    {
+      "depth": 3,
+      "requests": 1,
+      "context": 8192,
+      "kind": "code",
+      "visits": 3,
+      "median_ms": 74.36511381251876,
+      "range_ms": [
+        73.94672028399158,
+        74.6012144050446
+      ]
+    },
+    {
+      "depth": 3,
+      "requests": 1,
+      "context": 8192,
+      "kind": "prose",
+      "visits": 3,
+      "median_ms": 72.40006653332135,
+      "range_ms": [
+        72.08708430691404,
+        72.55382466970632
+      ]
+    },
+    {
+      "depth": 3,
+      "requests": 2,
+      "context": 8192,
+      "kind": "code",
+      "visits": 3,
+      "median_ms": 102.55749624440817,
+      "range_ms": [
+        102.4490180114035,
+        102.67279252145532
+      ]
+    },
+    {
+      "depth": 3,
+      "requests": 2,
+      "context": 8192,
+      "kind": "prose",
+      "visits": 3,
+      "median_ms": 97.85907101608028,
+      "range_ms": [
+        97.29552437508899,
+        98.879809617048
+      ]
+    },
+    {
+      "depth": 3,
+      "requests": 3,
+      "context": 8192,
+      "kind": "code",
+      "visits": 3,
+      "median_ms": 124.62576448086794,
+      "range_ms": [
+        123.3988126310691,
+        125.80655012210552
+      ]
+    },
+    {
+      "depth": 3,
+      "requests": 3,
+      "context": 8192,
+      "kind": "prose",
+      "visits": 3,
+      "median_ms": 118.76077519682644,
+      "range_ms": [
+        117.27758306996253,
+        119.08002285491042
+      ]
+    },
+    {
+      "depth": 3,
+      "requests": 4,
+      "context": 8192,
+      "kind": "code",
+      "visits": 3,
+      "median_ms": 144.99552428302647,
+      "range_ms": [
+        140.48387132333463,
+        145.2762329312298
+      ]
+    },
+    {
+      "depth": 3,
+      "requests": 4,
+      "context": 8192,
+      "kind": "prose",
+      "visits": 3,
+      "median_ms": 137.2175529570307,
+      "range_ms": [
+        134.60449027353675,
+        137.96801136733652
+      ]
+    },
+    {
+      "depth": 4,
+      "requests": 1,
+      "context": 8192,
+      "kind": "code",
+      "visits": 3,
+      "median_ms": 83.9727865774914,
+      "range_ms": [
+        83.68579899999456,
+        84.78850624284989
+      ]
+    },
+    {
+      "depth": 4,
+      "requests": 1,
+      "context": 8192,
+      "kind": "prose",
+      "visits": 3,
+      "median_ms": 81.75817904422762,
+      "range_ms": [
+        81.7382016698988,
+        82.31950011999288
+      ]
+    },
+    {
+      "depth": 4,
+      "requests": 2,
+      "context": 8192,
+      "kind": "code",
+      "visits": 3,
+      "median_ms": 116.37588611713316,
+      "range_ms": [
+        116.16254434122371,
+        116.9487447322833
+      ]
+    },
+    {
+      "depth": 4,
+      "requests": 2,
+      "context": 8192,
+      "kind": "prose",
+      "visits": 3,
+      "median_ms": 109.24439134731043,
+      "range_ms": [
+        108.34028010464372,
+        111.35721162789133
+      ]
+    },
+    {
+      "depth": 4,
+      "requests": 3,
+      "context": 8192,
+      "kind": "code",
+      "visits": 3,
+      "median_ms": 142.2872406656409,
+      "range_ms": [
+        139.60838702120589,
+        143.3163860645203
+      ]
+    },
+    {
+      "depth": 4,
+      "requests": 3,
+      "context": 8192,
+      "kind": "prose",
+      "visits": 3,
+      "median_ms": 134.2978010820784,
+      "range_ms": [
+        133.97526573466413,
+        136.77712157418574
+      ]
+    },
+    {
+      "depth": 4,
+      "requests": 4,
+      "context": 8192,
+      "kind": "code",
+      "visits": 3,
+      "median_ms": 158.95273858396413,
+      "range_ms": [
+        158.62346814946937,
+        164.07141539237423
+      ]
+    },
+    {
+      "depth": 4,
+      "requests": 4,
+      "context": 8192,
+      "kind": "prose",
+      "visits": 3,
+      "median_ms": 156.79406400762315,
+      "range_ms": [
+        155.2191963714528,
+        157.87692892639845
+      ]
+    }
+  ],
+  "cost_ms": {
+    "1": [
+      54.88796678654397,
+      63.728430255918155,
+      73.38259017292006,
+      82.8654828108595
+    ],
+    "2": [
+      69.49212038033457,
+      85.04606175653792,
+      100.20828363024422,
+      112.81013873222179
+    ],
+    "3": [
+      83.05355944829763,
+      102.79724266484445,
+      121.69326983884719,
+      138.29252087385964
+    ],
+    "4": [
+      95.60922627323768,
+      119.60712389997519,
+      141.10653862002857,
+      157.87340129579366
+    ]
+  },
+  "controls": [
+    {
+      "revision": "mtp-fitted-window16",
+      "mode": "costs",
+      "depth": 0,
+      "window": 16,
+      "cost_ms": {
+        "1": [
+          54.88796678654397,
+          63.728430255918155,
+          73.38259017292006,
+          82.8654828108595
+        ],
+        "2": [
+          69.49212038033457,
+          85.04606175653792,
+          100.20828363024422,
+          112.81013873222179
+        ],
+        "3": [
+          83.05355944829763,
+          102.79724266484445,
+          121.69326983884719,
+          138.29252087385964
+        ],
+        "4": [
+          95.60922627323768,
+          119.60712389997519,
+          141.10653862002857,
+          157.87340129579366
+        ]
+      }
+    },
+    {
+      "revision": "mtp-fitted-window8",
+      "mode": "costs",
+      "depth": 0,
+      "window": 8,
+      "cost_ms": {
+        "1": [
+          54.88796678654397,
+          63.728430255918155,
+          73.38259017292006,
+          82.8654828108595
+        ],
+        "2": [
+          69.49212038033457,
+          85.04606175653792,
+          100.20828363024422,
+          112.81013873222179
+        ],
+        "3": [
+          83.05355944829763,
+          102.79724266484445,
+          121.69326983884719,
+          138.29252087385964
+        ],
+        "4": [
+          95.60922627323768,
+          119.60712389997519,
+          141.10653862002857,
+          157.87340129579366
+        ]
+      }
+    },
+    {
+      "revision": "mtp-fitted-window32",
+      "mode": "costs",
+      "depth": 0,
+      "window": 32,
+      "cost_ms": {
+        "1": [
+          54.88796678654397,
+          63.728430255918155,
+          73.38259017292006,
+          82.8654828108595
+        ],
+        "2": [
+          69.49212038033457,
+          85.04606175653792,
+          100.20828363024422,
+          112.81013873222179
+        ],
+        "3": [
+          83.05355944829763,
+          102.79724266484445,
+          121.69326983884719,
+          138.29252087385964
+        ],
+        "4": [
+          95.60922627323768,
+          119.60712389997519,
+          141.10653862002857,
+          157.87340129579366
+        ]
+      }
+    }
+  ],
+  "method": "Equal-weight mean of code/prose8K per-cell medians. C2..4 use native counter slopes inside verified simultaneous decode; C1 uses request-decode milliseconds per draft round from matching matrix fixtures.",
+  "limitations": [
+    "Wall time includes target, draft and scheduling; API polling is present and this is not isolated GPU timing.",
+    "Identical prompts can produce different continuations. Cost calibration does not claim output equivalence or replace original numerical gates.",
+    "Calibration uses representative8K code/prose; full short/8K/32K code/prose/tool and mixed-concurrency matrices remain required for candidate comparison.",
+    "All fitted controls require repeated end-to-end comparisons and numerical/application qualification.",
+    "Native acceptance accounting, priors and target verification are unchanged."
+  ],
+  "source_revision": "d0486aaf699729638c36fafa1e46e3fe74fe3dd0"
+}
