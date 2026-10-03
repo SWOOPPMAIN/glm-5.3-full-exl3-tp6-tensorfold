@@ -9,6 +9,12 @@ workloads improve 2.37% overall, with C4 gains of 3.0–4.2%; code generation is
 939/931 tok/s at 8K/32K. [Individual samples](communication-samples.json) and
 [conditions, regressions and replay](../recipes/vllm-tp6/COMMUNICATION.md).
 
+The [communication experiment is complete](communication-outcome.json).
+[Actual collective-size histograms](communication-sizes.json) matched on all six
+ranks. Retain the 2 MiB cutoff: 128 KiB lost 10.1% in the bounded C4 screen, and
+16 MiB failed the numerical gate before timing. The same qualified dual-port
+configuration reopened and passed native/Pi/Code/Chat again.
+
 Latest October 3 image adds bounded MTP controls with **original adaptive MTP
 still selected**. [Repeated results](mtp-repeated-matrix.json) cover 60 cells with
 three visits each. [Cost calibration](mtp-calibration.json) adds 72 cells and

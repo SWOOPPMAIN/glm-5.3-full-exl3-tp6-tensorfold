@@ -65,8 +65,8 @@ artifacts are not included in this repository.
 mixed prefill/decode scheduling, workload-aware MTP, six-rank communication,
 E3 prefill kernels, and target-verified copy/ngram drafting. Prompt reuse has
 been measured; smaller prefill budgets and MTP retuning were rejected for promotion.
-Dual-port communication is selected; message-size/crossover tests, E3 and
-copy/ngram drafting remain.
+Dual-port communication and its bounded crossover screen are complete; retain
+the 2 MiB cutoff. E3 and copy/ngram drafting remain.
 TensorFold development is excluded from this optimization goal.
 
 ## Credits

@@ -3786,6 +3786,24 @@
       "sha256": "cee739f5b4a3ad0a568fc171482c27494be8aee5c03a6d8aae01b7ac7bb9e2e6",
       "origin": "amos-recipes@c69f8b66c6c5ca72a00b732c589bc2a55bd89c3e:qualification/serving-optimization-20261003/comm1-summary.json",
       "change": "Selected per-case rank summaries and limitations; raw traces and host inventory excluded."
+    },
+    {
+      "path": "results/communication-sizes.json",
+      "sha256": "31b9791e956a9134be7e34264704c83eb80c3e3546b942ef4b1f8f7028a17030",
+      "origin": "amos-recipes@3e692ad3be63e06a7f2cde03c0870373288fa391:qualification/serving-optimization-20261003/comm4-size-summary-final.json",
+      "change": "Add local source revision; selected numerical/profile/acceptance fields and original receipt hashes only."
+    },
+    {
+      "path": "benchmarks/comm_sizes_host.py",
+      "sha256": "46618bd5ab97aed1cb6b544e5f27c7839c376d5e72099b2c628910da4cd7e679",
+      "origin": "amos-recipes@963f633371eee9f3ef2e0f9715401422d6c64ea5:comm_sizes_host.py",
+      "change": null
+    },
+    {
+      "path": "results/communication-outcome.json",
+      "sha256": "926188d7f372bdee87ac6de5f88bfecc94b3df655da06c4936a96d4106f2a06a",
+      "origin": "amos-recipes@3e692ad3be63e06a7f2cde03c0870373288fa391:qualification/serving-optimization-20261003/communication-outcome.json",
+      "change": "Add local source revision; selected numerical/profile/acceptance fields and original receipt hashes only."
     }
   ]
 }

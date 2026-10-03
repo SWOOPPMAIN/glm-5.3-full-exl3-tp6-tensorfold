@@ -49,8 +49,76 @@ show about **60%** of transmitted bytes on the second HCA on every rank, as
 expected. These port counters establish utilization, not isolated bandwidth gains.
 
 Kernel durations include synchronization and rank skew; they are not all removable
-wire time. The traces did not record exact operand-size histograms. Actual size
-profiling and crossover trials remain unfinished in the communication experiment.
+wire time. The original traces did not record operand sizes. A subsequent
+[bounded CPU probe](../../results/communication-sizes.json) measured actual payloads
+with identical histograms on all six ranks:
+
+- C1: 21,713 custom RoCE operations per rank, dominated by 60 KiB payloads.
+- C4: 24,996 custom operations, dominated by 144/192 KiB payloads.
+- Cold 32K: 3,360 NCCL reductions of 18 MiB and 160 of 6,180,864 bytes per rank.
+
+RoCE counts combine reductions and gathers. Decode request profiles also include
+initial prompt work and declining concurrency. All counters had zero histogram
+drops. The accompanying request durations are **not speed results** because probe
+traps add overhead. All probes were removed, the same workers stayed alive, and
+native/Pi/Code/Chat passed again. The crossover outcomes below complete this
+bounded communication experiment.
+
+## Crossover outcomes
+
+Keep the **2 MiB** all-reduce cutoff with dual-HCA RoCEnante.
+
+| Candidate | Numerical result | Performance result | Decision |
+| --- | --- | --- | --- |
+| 128 KiB: move dominant C4 reductions to NCCL | Existing short/8K/32K/128K and basic checks passed | Short C4 70.37 vs 78.28 tok/s, −10.1%; C1 +1.2% | Reject promotion |
+| 16 MiB: allow the measured prefill tail on RoCE | Short top-1 97.12% vs required 99.5%; KL 0.01617 vs limit 0.001 | Not timed | Reject at numerical gate |
+
+The 128 KiB screen used three repeats per cell and the earlier three matched
+dual-port control samples. All three candidate C4 samples were below all three
+controls. This bounded result rejects promotion; it is not a universal or
+statistical-significance claim. The existing numerical references mainly exercise
+prefill and do not exhaustively cover the changed small-batch decode arithmetic.
+Additional targeted fidelity and a fresh full-matrix comparison would have been
+required for a promising candidate; this slower candidate did not proceed.
+
+The 16 MiB setting preserves the 18 MiB full NCCL tiles but changes smaller
+reductions, including the short-reference workload. Its numerical failure was
+recorded before timing, without relaxing thresholds. Neither candidate changes
+weights, dense precision or the 24 GiB KV allocation. The shared RoCE region stays
+the same size; its two alignment scratch buffers grow by 28 MiB per rank at the
+16 MiB cutoff. Existing guards remain authoritative.
+
+[Numerical results, screening samples and final acceptance](../../results/communication-outcome.json).
+
+### Reproduce the size diagnostic
+
+The [host helper](../../benchmarks/comm_sizes_host.py) requires root and Linux
+tracefs uprobes/histograms on AArch64. It resolves the current ELF function offsets,
+checks exclusive GPU process ownership, and records only integer size arguments.
+Run it on all six hosts within a drained, externally owned window with the usual
+fresh guards. It does not create admission holds or manage memory guards itself.
+
+```bash
+# On each host, CID is the exact running serving container ID.
+python3 comm_sizes_host.py inspect --label comm4-sizes --cid "$CID"
+python3 comm_sizes_host.py start --label comm4-sizes --cid "$CID"
+python3 comm_sizes_host.py snapshot --label comm4-sizes --cid "$CID"
+# Issue the same bounded native API workload, then snapshot again.
+python3 comm_sizes_host.py snapshot --label comm4-sizes --cid "$CID"
+python3 comm_sizes_host.py stop --label comm4-sizes --cid "$CID"
+```
+
+Warm before arming; wait until all six report `armed`, then subtract matching
+before/after counts. Our cases were the frozen code fixture at C1/C4 with 256
+output tokens, followed by a uniquely salted 32K prompt with one output token.
+Keep the entire sequence under 100 seconds or use separate uniquely numbered
+labels. The observer expires after 100 seconds and cleans up its own trace
+instance/events. Require `cleanup_complete`, no dropped entries, fresh clear
+guards and application acceptance before ending the window. Do not reuse a
+consumed label, clear another owner's events, or count traced durations as speed.
+
+References: [Linux uprobes](https://docs.kernel.org/trace/uprobetracer.html) and
+[histogram triggers](https://docs.kernel.org/trace/histogram.html).
 
 ## Configuration and reproduction
 

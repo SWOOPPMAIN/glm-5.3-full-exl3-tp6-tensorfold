@@ -1,0 +1,217 @@
+{
+  "schema": 1,
+  "experiment": "tp6_communication",
+  "phase": "complete",
+  "outcome": "promoted_dual_hca_retained_2mib_cutoff",
+  "completed_at": 1791018105.987999,
+  "selected": {
+    "image": "sha256:2e947348fd26b8d58e4535e0321126935069a5e521784fa573f19fb560975d9d",
+    "tuning": {
+      "MAX_NUM_BATCHED_TOKENS": 3072,
+      "VLLM_EXL3_PREFILL_BLOCK_M": 32,
+      "VLLM_DCP_QUERY_SPLIT": 1,
+      "VLLM_DCP_QUERY_SPLIT_MIN_CONTEXT_TOKENS": 32768,
+      "AMOS_TP6_DYNAMIC_GRAPHS": 1,
+      "AMOS_PERFORMANCE_CORES": 1,
+      "AMOS_TORCH_PROFILER": 1,
+      "AMOS_TP6_DECODE_PROJECTIONS": 1,
+      "AMOS_TP6_DRAFT_EH": 1,
+      "AMOS_MTP_ADAPT_WINDOW": 16,
+      "AMOS_MTP_COST_AWARE": 1,
+      "AMOS_TP6_SHARED_384": 1,
+      "AMOS_TP6_E3_PREFILL": 1,
+      "AMOS_TP6_NCCL_RAILS": 2,
+      "AMOS_TP6_ROCE_RAILS": 2,
+      "VLLM_ROCE_ALLREDUCE_MAX_SIZE": 2097152
+    },
+    "mtp": "original",
+    "prefill_budget": 3072,
+    "context": 360000,
+    "max_requests": 4,
+    "kv_bytes_per_rank": 25769803776,
+    "weights": "original3.25bpw EXL3",
+    "dense_and_draft": "mxfp8"
+  },
+  "dual_hca": {
+    "measurements": "comm2-balanced-comparison.json",
+    "matrix_geomean_ratio": 1.0236744255667003,
+    "quality": "comm2-dual-roce-quality-trial.json",
+    "qualified": true,
+    "limitations": "Modest overall/concurrency gains with per-workload regressions; cold prefill unchanged. See full matched comparison."
+  },
+  "actual_sizes": {
+    "summary": "comm4-size-summary-final.json",
+    "ranks": 6,
+    "cases": [
+      "decode-c1",
+      "decode-c4",
+      "prefill32k"
+    ],
+    "identical_rank_histograms": true,
+    "profiling_timings_eligible_for_speed": false,
+    "all_probes_removed": true
+  },
+  "candidates": [
+    {
+      "name": "128KiB",
+      "cutoff_bytes": 131072,
+      "outcome": "rejected_with_evidence",
+      "reason": "Failed the predefined C4 performance screen;no promotion.",
+      "existing_numerical_gates_passed": true,
+      "short_summary": {
+        "positions": 4096,
+        "mean_coarsened_kl": 0,
+        "top1_agreement": 1,
+        "mean_common_reference_mass": 0.9995512817500845,
+        "mean_nll_delta": 0.0
+      },
+      "long_summaries": [
+        {
+          "context": 8192,
+          "passed": true,
+          "summary": {
+            "positions": 512,
+            "mean_coarsened_kl": 2.721325492030414e-15,
+            "top1_agreement": 1,
+            "mean_common_reference_mass": 0.9991739549163815,
+            "mean_nll_delta": 2.1827872842550278e-10
+          }
+        },
+        {
+          "context": 32768,
+          "passed": true,
+          "summary": {
+            "positions": 512,
+            "mean_coarsened_kl": 0,
+            "top1_agreement": 1,
+            "mean_common_reference_mass": 0.9978193007741218,
+            "mean_nll_delta": 0.0
+          }
+        },
+        {
+          "context": 131072,
+          "passed": true,
+          "summary": {
+            "positions": 512,
+            "mean_coarsened_kl": 8.614766033407895e-13,
+            "top1_agreement": 1,
+            "mean_common_reference_mass": 0.4608117383047953,
+            "mean_nll_delta": -1.0477378964424133e-07
+          }
+        }
+      ],
+      "basic_cases_passed": 8,
+      "screen": [
+        {
+          "fixtures": [
+            "code-0"
+          ],
+          "requests": 1,
+          "control_samples": [
+            42.97499990015991,
+            44.562189642054776,
+            42.00685539097909
+          ],
+          "candidate_samples": [
+            41.08103636202323,
+            43.57469614959071,
+            43.502641493446546
+          ],
+          "control_median": 42.97499990015991,
+          "candidate_median": 43.502641493446546,
+          "ratio": 1.0122778730543913,
+          "control_accepted_per_wall_second": 30.552538991519935,
+          "candidate_accepted_per_wall_second": 30.24793041341205
+        },
+        {
+          "fixtures": [
+            "code-0",
+            "prose-0",
+            "tools-0",
+            "code-0"
+          ],
+          "requests": 4,
+          "control_samples": [
+            72.76424932185228,
+            80.08686697844006,
+            78.27600222562725
+          ],
+          "candidate_samples": [
+            64.20505736214244,
+            70.36529666541799,
+            71.40935430833042
+          ],
+          "control_median": 78.27600222562725,
+          "candidate_median": 70.36529666541799,
+          "ratio": 0.8989383037548725,
+          "control_accepted_per_wall_second": 49.53403265840475,
+          "candidate_accepted_per_wall_second": 45.009052066258576
+        }
+      ],
+      "limitations": [
+        "Selected controls were measured earlier across two visits, not simultaneously interleaved with this screen.",
+        "Different prompt working sets/cache state and adaptive MTP contribute variation; modest positive differences are insufficient for promotion.",
+        "Existing references mainly exercise prefill. Changed small-batch decode arithmetic was not exhaustively qualified; the slower candidate was rejected before further promotion work."
+      ]
+    },
+    {
+      "name": "16MiB",
+      "cutoff_bytes": 16777216,
+      "outcome": "rejected_with_evidence",
+      "reason": "Failed short numerical gate before timing.",
+      "short_summary": {
+        "positions": 4096,
+        "mean_coarsened_kl": 0.016174718433655772,
+        "top1_agreement": 0.97119140625,
+        "mean_common_reference_mass": 0.9994704017796314,
+        "mean_nll_delta": 0.0020811308200727897
+      },
+      "thresholds": {
+        "max_kl": 0.001,
+        "min_top1": 0.995,
+        "max_nll_delta": 0.01
+      },
+      "long_context_tested": false,
+      "speed_tested": false
+    }
+  ],
+  "acceptance": {
+    "native": true,
+    "pi_router": true,
+    "code_chat": true,
+    "same_containers": true,
+    "minimum_available_gib": 13.89,
+    "guard_floor_gib": 8,
+    "guard_floor_seconds": 2,
+    "pressure_protections_retained": true,
+    "long_soak": false
+  },
+  "qualification_reuse": {
+    "reference": "comm2-dual-roce-quality-trial.json",
+    "scope": "Prior short/long checks on the same pinned image and transport configuration; fresh functional checks on these containers.",
+    "fresh_basic_cases": 8
+  },
+  "remaining_goal_experiments": [
+    "E3 prefill",
+    "target-verified copy/ngram drafting"
+  ],
+  "sources": {
+    "comm2-balanced-comparison.json": "c2f73b847a4fa24cc3f67b620b5fad7232c6fd079ecef49b0e2c2004ad8000d4",
+    "comm2-selection.json": "9db661b226b035c8f3949d1c207033cf7b29c890ff4ec52af4e1795a349b54ba",
+    "comm2-dual-roce-quality-trial.json": "3ea55baae71c885e59ea0144fcbb97ae3a4c036d035d6a2c558271cc6ed37e21",
+    "comm4-size-summary-final.json": "31a2a81867458b2a070c57d0dcc6ced769451538abc724c54551525ae8bd5e68",
+    "comm5-plan.json": "86c4dba134b44355bf85dd6de1de41ba53bb3401039bedd0a604cfcdd1e0075a",
+    "comm5-small128k-quality-trial.json": "e5cdebc91bc9bfaf323db1caeec37b54254d62f8fcba32e8fd45b3b0899680ef",
+    "comm5-small128k-screen-summary.json": "677e07d845b5828e902a00fb102226ee78f6194bf94cc56088e5491701a99c84",
+    "comm5-tail16m-quality-trial.json": "8db7470ad520efd473dacd0541dd674868d11cefa631ec555e76f04e971d3e37",
+    "comm5-tail16m-short.json": "031e85488095acc9fb03dc003e89b48cf6c06632a80b232a49c753f638cb5f91",
+    "comm5-selection.json": "f415dc7f41d1155252680f8004410593b3cc1cacda27194b8cf6e7f46dec3302",
+    "comm5-selected2m-quality-trial.json": "0729744619d80587f7bdea1503ffa61977d06e64047026dfbc31ecdfbf44b7fc",
+    "comm5-selected2m-basic.json": "d27c8552649774a608a5acb1d9c42a15ce6b9f36b270675b63fa577449d39ed7",
+    "comm5-window-native.json": "d71ae3eaa16cdec0928500496b7f0aa171b728163598a3e06fc79dfe467b6f44",
+    "comm5-application-acceptance.json": "6a370288f3605ac49063749c630ada6281065124ac0488385fd171d88b35d4ae",
+    "comm5-final-serving.json": "074e0b0634385733ef04ce815c2e7d6e74fcaec0afbea80e447415cf05f1c446",
+    "comm5-allocation-review.json": "4fe391b9bc3bf2d043394bf9b05391747cb2deee3f86d366b930f117437018b8"
+  },
+  "local_source_revision": "3e692ad3be63e06a7f2cde03c0870373288fa391"
+}

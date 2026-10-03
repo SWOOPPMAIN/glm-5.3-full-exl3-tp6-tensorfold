@@ -1,0 +1,295 @@
+{
+  "schema": 1,
+  "phase": "actual_size_profile_complete",
+  "image": "sha256:2e947348fd26b8d58e4535e0321126935069a5e521784fa573f19fb560975d9d",
+  "tuning": {
+    "MAX_NUM_BATCHED_TOKENS": 3072,
+    "VLLM_EXL3_PREFILL_BLOCK_M": 32,
+    "VLLM_DCP_QUERY_SPLIT": 1,
+    "VLLM_DCP_QUERY_SPLIT_MIN_CONTEXT_TOKENS": 32768,
+    "AMOS_TP6_DYNAMIC_GRAPHS": 1,
+    "AMOS_PERFORMANCE_CORES": 1,
+    "AMOS_TORCH_PROFILER": 1,
+    "AMOS_TP6_DECODE_PROJECTIONS": 1,
+    "AMOS_TP6_DRAFT_EH": 1,
+    "AMOS_MTP_ADAPT_WINDOW": 16,
+    "AMOS_MTP_COST_AWARE": 1,
+    "AMOS_TP6_SHARED_384": 1,
+    "AMOS_TP6_E3_PREFILL": 1,
+    "AMOS_TP6_NCCL_RAILS": 2,
+    "AMOS_TP6_ROCE_RAILS": 2,
+    "VLLM_ROCE_ALLREDUCE_MAX_SIZE": 2097152
+  },
+  "cases": [
+    {
+      "case": "decode-c1",
+      "ranks": 6,
+      "identical_rank_histograms": true,
+      "roce_payload_histogram": [
+        {
+          "nbytes": 2688,
+          "hitcount": 78
+        },
+        {
+          "nbytes": 3584,
+          "hitcount": 936
+        },
+        {
+          "nbytes": 4224,
+          "hitcount": 21
+        },
+        {
+          "nbytes": 4480,
+          "hitcount": 5070
+        },
+        {
+          "nbytes": 5632,
+          "hitcount": 252
+        },
+        {
+          "nbytes": 7040,
+          "hitcount": 1365
+        },
+        {
+          "nbytes": 10240,
+          "hitcount": 301
+        },
+        {
+          "nbytes": 36864,
+          "hitcount": 157
+        },
+        {
+          "nbytes": 49152,
+          "hitcount": 1884
+        },
+        {
+          "nbytes": 51648,
+          "hitcount": 303
+        },
+        {
+          "nbytes": 61440,
+          "hitcount": 11108
+        },
+        {
+          "nbytes": 154944,
+          "hitcount": 1
+        },
+        {
+          "nbytes": 206592,
+          "hitcount": 12
+        },
+        {
+          "nbytes": 258240,
+          "hitcount": 65
+        },
+        {
+          "nbytes": 540672,
+          "hitcount": 160
+        }
+      ],
+      "nccl_allreduce_histogram": [],
+      "minimum_available_gib": 13.25
+    },
+    {
+      "case": "decode-c4",
+      "ranks": 6,
+      "identical_rank_histograms": true,
+      "roce_payload_histogram": [
+        {
+          "nbytes": 4480,
+          "hitcount": 234
+        },
+        {
+          "nbytes": 7040,
+          "hitcount": 63
+        },
+        {
+          "nbytes": 8960,
+          "hitcount": 234
+        },
+        {
+          "nbytes": 10240,
+          "hitcount": 169
+        },
+        {
+          "nbytes": 10752,
+          "hitcount": 2418
+        },
+        {
+          "nbytes": 13440,
+          "hitcount": 78
+        },
+        {
+          "nbytes": 14080,
+          "hitcount": 63
+        },
+        {
+          "nbytes": 14336,
+          "hitcount": 3978
+        },
+        {
+          "nbytes": 16896,
+          "hitcount": 651
+        },
+        {
+          "nbytes": 17920,
+          "hitcount": 156
+        },
+        {
+          "nbytes": 20480,
+          "hitcount": 3
+        },
+        {
+          "nbytes": 21120,
+          "hitcount": 21
+        },
+        {
+          "nbytes": 22528,
+          "hitcount": 1071
+        },
+        {
+          "nbytes": 28160,
+          "hitcount": 42
+        },
+        {
+          "nbytes": 30720,
+          "hitcount": 32
+        },
+        {
+          "nbytes": 40960,
+          "hitcount": 53
+        },
+        {
+          "nbytes": 51648,
+          "hitcount": 12
+        },
+        {
+          "nbytes": 61440,
+          "hitcount": 978
+        },
+        {
+          "nbytes": 103296,
+          "hitcount": 17
+        },
+        {
+          "nbytes": 122880,
+          "hitcount": 480
+        },
+        {
+          "nbytes": 147456,
+          "hitcount": 4867
+        },
+        {
+          "nbytes": 154944,
+          "hitcount": 4
+        },
+        {
+          "nbytes": 184320,
+          "hitcount": 253
+        },
+        {
+          "nbytes": 196608,
+          "hitcount": 8007
+        },
+        {
+          "nbytes": 206592,
+          "hitcount": 227
+        },
+        {
+          "nbytes": 245760,
+          "hitcount": 473
+        },
+        {
+          "nbytes": 258240,
+          "hitcount": 3
+        },
+        {
+          "nbytes": 516480,
+          "hitcount": 3
+        },
+        {
+          "nbytes": 619776,
+          "hitcount": 32
+        },
+        {
+          "nbytes": 774720,
+          "hitcount": 1
+        },
+        {
+          "nbytes": 826368,
+          "hitcount": 51
+        },
+        {
+          "nbytes": 1032960,
+          "hitcount": 2
+        },
+        {
+          "nbytes": 1081344,
+          "hitcount": 160
+        },
+        {
+          "nbytes": 1204224,
+          "hitcount": 160
+        }
+      ],
+      "nccl_allreduce_histogram": [],
+      "minimum_available_gib": 13.32
+    },
+    {
+      "case": "prefill32k",
+      "ranks": 6,
+      "identical_rank_histograms": true,
+      "roce_payload_histogram": [
+        {
+          "nbytes": 10240,
+          "hitcount": 33
+        },
+        {
+          "nbytes": 51648,
+          "hitcount": 55
+        },
+        {
+          "nbytes": 61440,
+          "hitcount": 99
+        }
+      ],
+      "nccl_allreduce_histogram": [
+        {
+          "count": 3090432,
+          "dtype": 9,
+          "hitcount": 160,
+          "payload_bytes": 6180864
+        },
+        {
+          "count": 9437184,
+          "dtype": 9,
+          "hitcount": 3360,
+          "payload_bytes": 18874368
+        }
+      ],
+      "minimum_available_gib": 13.46
+    }
+  ],
+  "uprobes_removed_on_all_nodes": true,
+  "model_or_image_changed": false,
+  "source_window_sha256": "807da8248387c0611ea98a6dc4e63e3bfeecc40ee8ae9087dbf4664f76674c5d",
+  "source_hashes": {
+    "comm_sizes_host.py": "46618bd5ab97aed1cb6b544e5f27c7839c376d5e72099b2c628910da4cd7e679",
+    "comm_size_window.py": "18033f3d9b32170eef9641f946f112f8f2852534f119a028dcace68a7ddf5ca3"
+  },
+  "limitations": [
+    "CPU instrumentation overhead makes the accompanying request durations ineligible as speed measurements.",
+    "RoCE payload counts combine reduce and gather operations; short request profiles include initial uncached prompt tokens and declining concurrency.",
+    "NCCL sizes are actual API call count times BF16 width(dtype9); captured NCCL replays would not re-enter this API. Current decode profiles observed custom RoCE only.",
+    "One synthetic code request group per case; not a histogram for all application workloads."
+  ],
+  "references": [
+    "https://docs.kernel.org/trace/uprobetracer.html",
+    "https://docs.kernel.org/trace/histogram.html"
+  ],
+  "source_window_phase": "completed_original_policy_serving",
+  "provenance_note": "Finalized the window hash after application acceptance; measured histograms rechecked unchanged against the final window.",
+  "initial_summary_sha256": "7235b98e8c716917381d099cd751d329a9fb00cd3279ff2989359a7e5464d1d6",
+  "initial_summary": "comm4-size-summary.json",
+  "local_source_revision": "3e692ad3be63e06a7f2cde03c0870373288fa391"
+}
